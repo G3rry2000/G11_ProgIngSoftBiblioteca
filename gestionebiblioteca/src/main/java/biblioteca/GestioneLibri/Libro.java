@@ -8,7 +8,7 @@ package biblioteca.GestioneLibri;
  *
  * @author vince
  */
-public class Libro {
+public class Libro implements Comparable<Libro>{
     
     private String titolo;
     private String autore;
@@ -17,13 +17,15 @@ public class Libro {
     private int copieDisponibili; 
 
     public Libro(String titolo, String autore, int annoPubblicazione, String ISBN, int copieDisponibili) {
-         return;
+         this.titolo=titolo;
+         this.autore=autore;
+         this.annoPubblicazione=annoPubblicazione;
+         this.ISBN=ISBN;
+         this.copieDisponibili=copieDisponibili;
     }
 
     public String getTitolo() {
-        
-        return null;
-        
+        return null;  
     }
 
     public String getAutore() {
@@ -67,9 +69,14 @@ public class Libro {
     }
     
     public void incrementaCopie(){
-        copieDisponibili++;
+        
     }
-
+    
+    @Override 
+    public String toString(){
+    return null;
+    }
+    
     @Override
     public boolean equals(Object o){ 
         return false;
@@ -79,6 +86,11 @@ public class Libro {
     public int hashCode() {
         return 0;
     }
-          
-
+    
+    @Override
+    public int compareTo(Libro o){
+    return 0;
+    }
+    
+//controlli
 }

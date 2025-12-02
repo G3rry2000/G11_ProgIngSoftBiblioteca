@@ -19,7 +19,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #f7fbff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #f7fbff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca.GestioneLibri.LibroViewController">
    <top>
       <VBox prefHeight="78.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -38,12 +38,12 @@
             </HBox>
             <MenuBar prefHeight="28.0" prefWidth="600.0" style="-fx-background-color: trasparante;">
                <menus>
-                  <Menu mnemonicParsing="false" text="Home">
+                  <Menu fx:id="HomeID" mnemonicParsing="false" onAction="#ClickHome" text="Home">
                      <items>
                         <MenuItem mnemonicParsing="false" text="Close" />
                      </items>
                   </Menu>
-                  <Menu mnemonicParsing="false" text="Utenti">
+                  <Menu fx:id="UtentiID" mnemonicParsing="false" onAction="#clickUtenti" text="Utenti">
                      <items>
                         <MenuItem mnemonicParsing="false" text="Delete" />
                      </items>
@@ -53,7 +53,7 @@
                         <MenuItem mnemonicParsing="false" text="About" />
                      </items>
                   </Menu>
-                  <Menu mnemonicParsing="false" text="Prestiti">
+                  <Menu mnemonicParsing="false" onAction="#clickPrestiti" text="Prestiti">
                      <items>
                         <MenuItem mnemonicParsing="false" text="About" />
                      </items>
@@ -87,23 +87,22 @@
                               <Label text="Titolo" />
                               <Label text="Autori" GridPane.rowIndex="1" />
                               <Label text="ISBN" GridPane.rowIndex="2" />
-                              <TextField GridPane.columnIndex="1" />
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <TextField fx:id="txtTitolo" GridPane.columnIndex="1" />
+                              <TextField fx:id="txtAutori" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="txtISBN" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                               <Label text="Numero copie" GridPane.rowIndex="3" />
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <TextField fx:id="txtCopie" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                               <Label prefHeight="21.0" prefWidth="135.0" text="Anno di pubblicazione" GridPane.rowIndex="4" />
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <TextField fx:id="txtAnno" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                            </children>
                         </GridPane>
                      </children>
                   </VBox>
                   <HBox alignment="CENTER_LEFT" layoutX="2.0" layoutY="226.0" prefHeight="47.0" prefWidth="227.0" spacing="10.0">
                      <children>
-                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="31.0" prefWidth="28.0" HBox.hgrow="ALWAYS" />
-                        <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="35.0" HBox.hgrow="ALWAYS" />
-                        <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="27.0" HBox.hgrow="ALWAYS" />
-                        <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="27.0" HBox.hgrow="ALWAYS" />
+                        <Button fx:id="addButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addLibro" prefHeight="31.0" prefWidth="52.0" text="AGG" HBox.hgrow="ALWAYS" />
+                        <Button fx:id="removeButton" mnemonicParsing="false" onAction="#removeLibro" prefHeight="31.0" prefWidth="51.0" text="RIM" HBox.hgrow="ALWAYS" />
+                        <Button fx:id="searchButton" mnemonicParsing="false" onAction="#searchLibro" prefHeight="31.0" prefWidth="49.0" text="RIC" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
                </children>
@@ -113,18 +112,18 @@
                   <VBox prefHeight="232.0" prefWidth="335.0" spacing="8.0" AnchorPane.bottomAnchor="43.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="12.0">
                      <children>
                         <Label text="Risultati Ricerca" />
-                        <TableView prefHeight="200.0" prefWidth="300.0">
+                        <TableView fx:id="libroTable" prefHeight="200.0" prefWidth="300.0">
                            <columns>
-                              <TableColumn prefWidth="75.0" text="Titolo" />
-                              <TableColumn prefWidth="75.0" text="Autori" />
-                              <TableColumn prefWidth="75.0" text="ISBN" />
-                              <TableColumn prefWidth="63.0" text="Numero Copie" />
-                              <TableColumn prefWidth="63.0" text="Anno" />
+                              <TableColumn fx:id="colTitolo" prefWidth="75.0" text="Titolo" />
+                              <TableColumn fx:id="colAutore" prefWidth="75.0" text="Autori" />
+                              <TableColumn fx:id="colISBN" prefWidth="75.0" text="ISBN" />
+                              <TableColumn fx:id="colNumCopie" prefWidth="63.0" text="Numero Copie" />
+                              <TableColumn fx:id="colAnno" prefWidth="63.0" text="Anno" />
                            </columns>
                         </TableView>
                      </children>
                   </VBox>
-                  <Button layoutX="115.0" layoutY="244.0" mnemonicParsing="false" text="Visualizza Libri" />
+                  <Button fx:id="viewButton" layoutX="115.0" layoutY="244.0" mnemonicParsing="false" onAction="#viewLibri" text="Visualizza Libri" />
                </children>
             </AnchorPane>
          </items>

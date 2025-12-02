@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #f7fbff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca.GestionePrestiti.PrestitiViewController">
+   <top>
+      <VBox prefHeight="78.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="600.0" spacing="10.0">
+               <padding>
+                  <Insets bottom="8.0" left="12.0" right="12.0" top="8.0" />
+               </padding>
+               <children>
+                  <Label style="-fx-font-size: 22; -fx-font-weight: bold;" text="Gestione Biblioteca      " textFill="#0b3d91">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+                  <Label text="Schermata: Prestiti" />
+               </children>
+            </HBox>
+            <MenuBar prefHeight="7.0" prefWidth="600.0" style="-fx-background-color: trasparante;">
+               <menus>
+                  <Menu fx:id="HomeID" mnemonicParsing="false" onAction="#clickHome" text="Home">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Close" />
+                     </items>
+                  </Menu>
+                  <Menu fx:id="utentiID" mnemonicParsing="false" onAction="#clickUtenti" text="Utenti">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Delete" />
+                     </items>
+                  </Menu>
+                  <Menu fx:id="LibriID" mnemonicParsing="false" onAction="#clickLibri" text="Libri">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="About" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Prestiti">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="About" />
+                     </items>
+                  </Menu>
+               </menus>
+            </MenuBar>
+         </children>
+      </VBox>
+   </top>
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="15.0" prefWidth="600.0" BorderPane.alignment="CENTER_RIGHT">
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+         <children>
+            <Label alignment="CENTER" prefHeight="11.0" prefWidth="151.0" text="Biblioteca Universitaria" />
+         </children>
+      </HBox>
+   </bottom>
+   <center>
+      <SplitPane dividerPositions="0.27734375" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="283.0" prefWidth="580.0" BorderPane.alignment="CENTER">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="96.0" prefWidth="598.0">
+               <children>
+                  <HBox prefHeight="68.0" prefWidth="600.0">
+                     <children>
+                        <GridPane prefHeight="58.0" prefWidth="577.0">
+                          <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                              <RowConstraints maxHeight="29.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="ISBN" GridPane.rowIndex="1" />
+                              <Label text="Matricola" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                              <TextField fx:id="textISBN" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="txtMatricola" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                              <Label text="Ricerca Libro" />
+                              <Label text="Ricerca Utente" GridPane.columnIndex="3" />
+                              <Button fx:id="searchButton" mnemonicParsing="false" onAction="#searchPrestito" prefHeight="31.0" prefWidth="44.0" text="RIC" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                              <Button fx:id="addButton" mnemonicParsing="false" onAction="#addPrestito" text="AGG" GridPane.columnIndex="5" />
+                           </children>
+                        </GridPane>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="260.0" prefWidth="578.0">
+               <children>
+                  <TableView fx:id="prestitoTable" prefHeight="152.0" prefWidth="579.0">
+                    <columns>
+                      <TableColumn fx:id="colID" prefWidth="63.0" text="ID" />
+                      <TableColumn fx:id="colNome" prefWidth="87.0" text="Nome" />
+                        <TableColumn fx:id="colCognome" prefWidth="75.0" text="Cognome" />
+                        <TableColumn fx:id="colMatricola" prefWidth="75.0" text="Matricola" />
+                        <TableColumn fx:id="colTitolo" prefWidth="75.0" text="Titolo" />
+                        <TableColumn fx:id="colAutori" prefWidth="75.0" text="Autori" />
+                        <TableColumn fx:id="colISBN" minWidth="9.0" prefWidth="56.0" text="ISBN" />
+                        <TableColumn fx:id="colNumCopie" prefWidth="94.0" text="Numero Copie" />
+                    </columns>
+                  </TableView>
+                  <Button fx:id="viewButton" layoutX="162.0" layoutY="160.0" mnemonicParsing="false" onAction="#viewPrestiti" text="Visualizza Prestiti" />
+                  <Button fx:id="cronButton" layoutX="345.0" layoutY="160.0" mnemonicParsing="false" onAction="#viewCron" text="Cronologia" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </center>
+</BorderPane>
