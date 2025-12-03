@@ -44,7 +44,7 @@ public class ArchivioLibri implements Archivio{
    public Libro modificaLibro(Libro l){
       return null;
    }
-   public Set<Libro> visualizzaLibri(){ 
+   public Set<Libro> getLibri(){ 
    return null;
    }
    

@@ -59,6 +59,8 @@ public class UtentiViewController implements Initializable {
 
     private ArchivioUtenti archivioUtenti;
     
+    private UtentiService utenteService;
+    
     private ObservableList<Utente> listaUtenti;
     /**
      * Initializes the controller class.

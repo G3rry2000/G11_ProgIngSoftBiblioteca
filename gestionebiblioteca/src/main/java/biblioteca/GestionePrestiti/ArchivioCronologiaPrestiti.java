@@ -30,18 +30,18 @@ public class ArchivioCronologiaPrestiti implements Archivio{
    
    }
     
-   public void aggiungiPrestito(Prestito p){
+   public void aggiungiPrestitoCronologia(Prestito p){
    }
-   public Prestito rimuoviPrestito(Prestito p){
+   public Prestito rimuoviPrestitoCronologia(Prestito p){
    return null;
    }
-   public List<Prestito> ricercaPrestitoUtente(Utente utente){
+   public List<Prestito> ricercaPrestitoUtenteCronologia(Utente utente){
    return null;
    }
-    public List<Prestito> ricercaPrestitoLibro(Libro libro){
+    public List<Prestito> ricercaPrestitoLibroCronologia(Libro libro){
    return null;
    }
-   public List<Prestito> visualizzaCronologia(){ 
+   public List<Prestito> getCronologia(){ 
    return null;
    }
    

@@ -64,9 +64,10 @@ public class PrestitiViewController {
 
     private ArchivioPrestitiAttivi archivioPrestitiAttivi;
     private ArchivioCronologiaPrestiti archivioCronologiaPrestiti;
-    
     private ArchivioLibri archivioLibri;
     private ArchivioUtenti archivioUtenti;
+    
+    private PrestitiService prestitiService;
     
     private ObservableList<Prestito> listaPrestiti;
     @FXML
