@@ -23,7 +23,7 @@ public class Utente implements Comparable<Utente>{
         this.nome=nome;
         this.cognome=cognome;
         this.matricola=matricola;
-        this.prestitiAttivi = new ArrayList<>(); //DUBBIO aggiungiPrestitoAttivo e rimuoviPrestitoAttivo
+        this.prestitiAttivi = new ArrayList<>(); 
     }
 
     public String getNome() {
@@ -58,9 +58,15 @@ public class Utente implements Comparable<Utente>{
         this.email = email;
     }
 
+    public void aggiungiPrestitoAttivo(Prestito p){
+    }
+    public void rimuoviPrestitoAttivo(Prestito p){
+    }
     public List<Prestito> getPrestitiAttivi() {
         return prestitiAttivi;
     }
+    
+    
     
     @Override
     public String toString(){

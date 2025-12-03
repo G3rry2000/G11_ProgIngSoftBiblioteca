@@ -9,7 +9,7 @@ package biblioteca.gestioneEccezioni;
  *
  * @author Utente
  */
-public class ErroreScritturaFileException extends Exception{
+public class ErroreScritturaFileException extends BibliotecaException{
 
     /**
      * Creates a new instance of <code>ErroreScritturaFileException</code>

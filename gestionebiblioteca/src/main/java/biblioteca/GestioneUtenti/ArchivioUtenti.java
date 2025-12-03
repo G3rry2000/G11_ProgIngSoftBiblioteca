@@ -12,7 +12,10 @@ import java.util.Set;
  * @author Utente
  */
 public class ArchivioUtenti implements Archivio{
-   Set<Utente> utenti= new TreeSet<>(); 
+   private Set<Utente> utenti;
+   public ArchivioUtenti(){
+        this.utenti= new TreeSet<>(); 
+   }
    
    @Override
    public void leggiDaFile(String filename){
@@ -22,17 +25,20 @@ public class ArchivioUtenti implements Archivio{
    }
    public void aggiungiUtente(Utente u){
    }
-   public void rimuoviUtente(Utente l){}
-   public Utente ricercaCognome(String cognome){
+   public Utente rimuoviUtente(Utente u){
    return null;
    }
-   public Utente ricercaMatricola(String matricola){
+   
+   public Set<Utente> ricercaCognome(String cognome){
    return null;
    }
-   public Utente modificaUtente(Utente l){ //DA CONTROLLARE
+   public Utente ricercaMatricola(int matricola){
    return null;
    }
-   public Set<Utente> visualizzaUtente(){ //DA CONTROLLARE
+   public Utente modificaUtente(Utente u){ 
+   return null;
+   }
+   public Set<Utente> visualizzaUtenti(){ 
    return null;
    }
 }

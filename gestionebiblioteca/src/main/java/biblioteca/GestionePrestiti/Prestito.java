@@ -39,6 +39,9 @@ public class Prestito {
         this.stato=stato;
     }
 
+    //serve per settare il contatore quando prendi da file
+    public static void setContatore(int val){
+    }
     public Utente getUtente() {
         return utente;
     }

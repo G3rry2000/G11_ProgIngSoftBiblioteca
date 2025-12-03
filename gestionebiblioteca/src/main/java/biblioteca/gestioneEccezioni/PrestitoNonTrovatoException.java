@@ -9,7 +9,7 @@ package biblioteca.gestioneEccezioni;
  *
  * @author Utente
  */
-public class PrestitoNonTrovatoException extends Exception{
+public class PrestitoNonTrovatoException extends BibliotecaException{
 
     /**
      * Creates a new instance of <code>PrestitoNonTrovatoException</code>

@@ -5,8 +5,13 @@
  */
 package biblioteca.GestionePrestiti;
 
+import biblioteca.GestioneLibri.ArchivioLibri;
+import biblioteca.GestioneUtenti.ArchivioUtenti;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.TableColumn;
@@ -35,8 +40,9 @@ public class PrestitiViewController {
     private Button addButton;
     @FXML
     private TableView<Prestito> prestitoTable;
+    //mancano alcuni attributi da aggiungere
     @FXML
-    private TableColumn<Prestito, String> colID;
+    private TableColumn<Prestito, Integer> colID;
     @FXML
     private TableColumn<Prestito, String> colNome;
     @FXML
@@ -56,6 +62,20 @@ public class PrestitiViewController {
     @FXML
     private Button cronButton;
 
+    private ArchivioPrestitiAttivi archivioPrestitiAttivi;
+    private ArchivioCronologiaPrestiti archivioCronologiaPrestiti;
+    
+    private ArchivioLibri archivioLibri;
+    private ArchivioUtenti archivioUtenti;
+    
+    private ObservableList<Prestito> listaPrestiti;
+    @FXML
+    private Button backButton;
+    
+    public void initialize(URL url, ResourceBundle rb){
+        //inizializzaione archivio e tabella
+    }
+    
     @FXML
     private void clickUtenti(ActionEvent event) {
     }
@@ -68,21 +88,28 @@ public class PrestitiViewController {
     private void clickHome(ActionEvent event) {
     }
 
+
+
     @FXML
-    private void searchPrestito(ActionEvent event) {
+    private void onAggiungiPrestito(ActionEvent event) {
     }
 
     @FXML
-    private void addPrestito(ActionEvent event) {
+    private void onRicercaPrestito(ActionEvent event) {
     }
 
     @FXML
-    private void viewPrestiti(ActionEvent event) {
+    private void onRestituzioneLibro(ActionEvent event) {
     }
 
     @FXML
-    private void viewCron(ActionEvent event) {
+    private void onVisualizzaPrestito(ActionEvent event) {
     }
+
+    @FXML
+    private void onVisualizzaCronologia(ActionEvent event) {
+    }
+
 
 
 

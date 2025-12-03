@@ -12,7 +12,7 @@ import java.util.Set;
  * @author Utente
  */
 public class ArchivioLibri implements Archivio{
-   Set<Libro> libri;
+   private Set<Libro> libri;
    
    public ArchivioLibri(){
    this.libri= new TreeSet<>();
@@ -29,22 +29,25 @@ public class ArchivioLibri implements Archivio{
    
    public void aggiungiLibro(Libro l){
    }
-   public void rimuoviLibro(Libro l){}
-   public Libro ricercaTitolo(String titolo){
+   public Libro rimuoviLibro(Libro l){
    return null;
    }
-   public Libro ricercaISBN(String ISBN){
+   public Set<Libro> ricercaTitolo(String titolo){
    return null;
    }
-   public Libro ricercaAutore(String autore){
+   public Libro ricercaISBN(String ISBN){ 
    return null;
    }
-   public Libro modificaLibro(Libro l){ //DA CONTROLLARE
+   public Set<Libro> ricercaAutore(String autore){   
    return null;
    }
-   public Set<Libro> visualizzaLibri(){ //DA CONTROLLARE
+   public Libro modificaLibro(Libro l){
+      return null;
+   }
+   public Set<Libro> visualizzaLibri(){ 
    return null;
    }
    
    
 }
+

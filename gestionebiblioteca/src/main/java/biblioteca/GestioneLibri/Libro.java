@@ -45,11 +45,6 @@ public class Libro implements Comparable<Libro>{
     public int getCopieDisponibili() {
         return 0;
     }
- 
-    public boolean hasCopieDisponibili(){
-        return false;
-    }
-
     public void setTitolo(String titolo) {
     }
 

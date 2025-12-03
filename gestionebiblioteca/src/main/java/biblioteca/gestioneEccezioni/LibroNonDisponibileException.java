@@ -9,7 +9,7 @@ package biblioteca.gestioneEccezioni;
  *
  * @author Utente
  */
-public class LibroNonDisponibileException extends Exception{
+public class LibroNonDisponibileException extends BibliotecaException{
 
     /**
      * Creates a new instance of <code>LibroNonDisponibileException</code>

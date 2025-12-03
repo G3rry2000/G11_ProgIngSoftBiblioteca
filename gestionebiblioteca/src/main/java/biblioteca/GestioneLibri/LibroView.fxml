@@ -100,9 +100,9 @@
                   </VBox>
                   <HBox alignment="CENTER_LEFT" layoutX="2.0" layoutY="226.0" prefHeight="47.0" prefWidth="227.0" spacing="10.0">
                      <children>
-                        <Button fx:id="addButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addLibro" prefHeight="31.0" prefWidth="52.0" text="AGG" HBox.hgrow="ALWAYS" />
-                        <Button fx:id="removeButton" mnemonicParsing="false" onAction="#removeLibro" prefHeight="31.0" prefWidth="51.0" text="RIM" HBox.hgrow="ALWAYS" />
-                        <Button fx:id="searchButton" mnemonicParsing="false" onAction="#searchLibro" prefHeight="31.0" prefWidth="49.0" text="RIC" HBox.hgrow="ALWAYS" />
+                        <Button fx:id="addButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onAggiungiLibro" prefHeight="31.0" prefWidth="52.0" text="AGG" HBox.hgrow="ALWAYS" />
+                        <Button fx:id="removeButton" mnemonicParsing="false" onAction="#onRimuoviLibro" prefHeight="31.0" prefWidth="51.0" text="RIM" HBox.hgrow="ALWAYS" />
+                        <Button fx:id="searchButton" mnemonicParsing="false" onAction="#onRicercaLibro" prefHeight="31.0" prefWidth="49.0" text="RIC" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
                </children>
@@ -123,7 +123,7 @@
                         </TableView>
                      </children>
                   </VBox>
-                  <Button fx:id="viewButton" layoutX="115.0" layoutY="244.0" mnemonicParsing="false" onAction="#viewLibri" text="Visualizza Libri" />
+                  <Button fx:id="viewButton" layoutX="115.0" layoutY="244.0" mnemonicParsing="false" onAction="#onVisualizzaLibri" text="Visualizza Libri" />
                </children>
             </AnchorPane>
          </items>

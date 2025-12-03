@@ -5,6 +5,9 @@
  */
 package biblioteca.GestioneLibri;
 
+
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,6 +15,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -53,22 +57,15 @@ public class LibroViewController {
     private Menu HomeID;
     @FXML
     private Menu UtentiID;
-
-    @FXML
-    private void addLibro(ActionEvent event) {
+    
+    private ArchivioLibri archivioLibri;
+    private ObservableList<Libro> listaLibri;
+    
+    public void initialize(URL url, ResourceBundle rb){
+        //inizializzaione archivio e tabella
     }
 
-    @FXML
-    private void removeLibro(ActionEvent event) {
-    }
 
-    @FXML
-    private void searchLibro(ActionEvent event) {
-    }
-
-    @FXML
-    private void viewLibri(ActionEvent event) {
-    }
 
 
     @FXML
@@ -81,6 +78,22 @@ public class LibroViewController {
 
     @FXML
     private void ClickHome(ActionEvent event) {
+    }
+
+    @FXML
+    private void onAggiungiLibro(ActionEvent event) {
+    }
+
+    @FXML
+    private void onRimuoviLibro(ActionEvent event) {
+    }
+
+    @FXML
+    private void onRicercaLibro(ActionEvent event) {
+    }
+
+    @FXML
+    private void onVisualizzaLibri(ActionEvent event) {
     }
     
     

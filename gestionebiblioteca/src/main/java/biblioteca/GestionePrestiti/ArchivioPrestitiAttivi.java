@@ -8,8 +8,8 @@ import biblioteca.Archivio;
 import biblioteca.GestioneLibri.Libro;
 import biblioteca.GestioneUtenti.Utente;
 
-import java.util.Map;
-import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.LinkedList;
 
 
 /**
@@ -17,22 +17,26 @@ import java.util.LinkedHashMap;
  * @author Utente
  */
 public class ArchivioPrestitiAttivi implements Archivio{
-    Map<Integer,Prestito> libri= new LinkedHashMap<>();
+   private List<Prestito> prestitiAttivi;
+   
+   public ArchivioPrestitiAttivi(){
+   this.prestitiAttivi= new LinkedList<>();
+   }
    @Override
    public void leggiDaFile(String filename){
-   
    }
    @Override
    public void scriviSuFile(String filename){
-       
    }
    public void aggiungiPrestito(Prestito p){
    }
-   public void rimuoviPrestito(Prestito p){}
+   public Prestito rimuoviPrestito(Prestito p){
+   return null;
+   }
    public Prestito ricercaPrestito(Utente utente, Libro libro){
    return null;
    }
-   public Map<Integer,Prestito> visualizzaPrestitiAttivi(){ //DA CONTROLLARE
+   public List<Prestito> visualizzaPrestitiAttivi(){ 
    return null;
    }
    

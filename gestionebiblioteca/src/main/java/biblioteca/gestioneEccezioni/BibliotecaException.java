@@ -9,22 +9,22 @@ package biblioteca.gestioneEccezioni;
  *
  * @author Utente
  */
-public class LibroNonTrovatoException extends BibliotecaException{
+public abstract class BibliotecaException extends Exception{
 
     /**
-     * Creates a new instance of <code>LibroNonTrovatoException</code> without
-     * detail message.
+     * Creates a new instance of <code>BibliotecaException</code> without detail
+     * message.
      */
-    public LibroNonTrovatoException() {
+    public BibliotecaException() {
     }
 
     /**
-     * Constructs an instance of <code>LibroNonTrovatoException</code> with the
+     * Constructs an instance of <code>BibliotecaException</code> with the
      * specified detail message.
      *
      * @param msg the detail message.
      */
-    public LibroNonTrovatoException(String msg) {
+    public BibliotecaException(String msg) {
         super(msg);
     }
 }

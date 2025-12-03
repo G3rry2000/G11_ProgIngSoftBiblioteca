@@ -8,14 +8,18 @@ import biblioteca.Archivio;
 import biblioteca.GestioneUtenti.Utente;
 import biblioteca.GestioneLibri.Libro;
 
-import java.util.Map;
-import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.LinkedList;
 /**
  *
  * @author Utente
  */
 public class ArchivioCronologiaPrestiti implements Archivio{
-   Map<Integer,Prestito> libri= new LinkedHashMap<>();
+   private List<Prestito> cronologia;
+   
+   public ArchivioCronologiaPrestiti(){
+   this.cronologia= new LinkedList<>();
+   }
     
    @Override
    public void leggiDaFile(String filename){
@@ -28,11 +32,16 @@ public class ArchivioCronologiaPrestiti implements Archivio{
     
    public void aggiungiPrestito(Prestito p){
    }
-   public void rimuoviPrestito(Prestito p){}
-   public Prestito ricercaPrestito(Utente utente, Libro libro){
+   public Prestito rimuoviPrestito(Prestito p){
    return null;
    }
-   public Map<Integer,Prestito> visualizzaCronologia(){ //DA CONTROLLARE
+   public List<Prestito> ricercaPrestitoUtente(Utente utente){
+   return null;
+   }
+    public List<Prestito> ricercaPrestitoLibro(Libro libro){
+   return null;
+   }
+   public List<Prestito> visualizzaCronologia(){ 
    return null;
    }
    

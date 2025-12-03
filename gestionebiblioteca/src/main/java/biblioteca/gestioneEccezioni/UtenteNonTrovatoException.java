@@ -9,7 +9,7 @@ package biblioteca.gestioneEccezioni;
  *
  * @author Utente
  */
-public class UtenteNonTrovatoException extends Exception{
+public class UtenteNonTrovatoException extends BibliotecaException{
 
     /**
      * Creates a new instance of <code>UtenteNonTrovatoException</code> without

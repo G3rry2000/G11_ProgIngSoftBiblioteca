@@ -15,6 +15,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.collections.ObservableList;
 
 /**
  * FXML Controller class
@@ -24,11 +25,11 @@ import javafx.scene.control.TextField;
 public class UtentiViewController implements Initializable {
 
     @FXML
-    private Menu HomeID;
-    @FXML
     private Menu LibriID;
     @FXML
     private Menu PrestitiID;
+    @FXML
+    private Menu HomeID;
     @FXML
     private TextField txtNome;
     @FXML
@@ -50,23 +51,25 @@ public class UtentiViewController implements Initializable {
     @FXML
     private TableColumn<Utente, String> colCognome;
     @FXML
-    private TableColumn<Utente, String> colMatricola;
+    private TableColumn<Utente, Integer> colMatricola;
     @FXML
     private TableColumn<Utente, String> colEmail;
     @FXML
     private Button viewButton;
 
+    private ArchivioUtenti archivioUtenti;
+    
+    private ObservableList<Utente> listaUtenti;
     /**
      * Initializes the controller class.
      */
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
 
-    @FXML
-    private void clickHome(ActionEvent event) {
-    }
 
     @FXML
     private void clickLibri(ActionEvent event) {
@@ -77,19 +80,26 @@ public class UtentiViewController implements Initializable {
     }
 
     @FXML
-    private void addUtente(ActionEvent event) {
+    private void clickHome(ActionEvent event) {
+    }
+
+
+
+    @FXML
+    private void onAggiungiUtente(ActionEvent event) {
     }
 
     @FXML
-    private void removeUtenti(ActionEvent event) {
+    private void onRimuoviUtente(ActionEvent event) {
     }
 
     @FXML
-    private void searchUtenti(ActionEvent event) {
+    private void onRicercaUtente(ActionEvent event) {
     }
 
     @FXML
-    private void viewUtenti(ActionEvent event) {
+    private void onVisualizzaUtenti(ActionEvent event) {
     }
+
     
 }

@@ -94,14 +94,19 @@
                             <RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Label text="ISBN" GridPane.rowIndex="1" />
+                              <Label style="-fx-background-color: verde;" text="ISBN" GridPane.rowIndex="1" />
                               <Label text="Matricola" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                               <TextField fx:id="textISBN" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <TextField fx:id="txtMatricola" GridPane.columnIndex="4" GridPane.rowIndex="1" />
                               <Label text="Ricerca Libro" />
                               <Label text="Ricerca Utente" GridPane.columnIndex="3" />
-                              <Button fx:id="searchButton" mnemonicParsing="false" onAction="#searchPrestito" prefHeight="31.0" prefWidth="44.0" text="RIC" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                              <Button fx:id="addButton" mnemonicParsing="false" onAction="#addPrestito" text="AGG" GridPane.columnIndex="5" />
+                              <Button fx:id="addButton" mnemonicParsing="false" onAction="#onAggiungiPrestito" text="AGG" GridPane.columnIndex="5" />
+                              <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                                 <children>
+                                    <Button fx:id="searchButton" mnemonicParsing="false" onAction="#onRicercaPrestito" prefHeight="31.0" prefWidth="45.0" text="RIC" />
+                                    <Button fx:id="backButton" mnemonicParsing="false" onAction="#onRestituzioneLibro" prefHeight="31.0" prefWidth="53.0" text="REST" />
+                                 </children>
+                              </HBox>
                            </children>
                         </GridPane>
                      </children>
@@ -122,8 +127,8 @@
                         <TableColumn fx:id="colNumCopie" prefWidth="94.0" text="Numero Copie" />
                     </columns>
                   </TableView>
-                  <Button fx:id="viewButton" layoutX="162.0" layoutY="160.0" mnemonicParsing="false" onAction="#viewPrestiti" text="Visualizza Prestiti" />
-                  <Button fx:id="cronButton" layoutX="345.0" layoutY="160.0" mnemonicParsing="false" onAction="#viewCron" text="Cronologia" />
+                  <Button fx:id="viewButton" layoutX="162.0" layoutY="160.0" mnemonicParsing="false" onAction="#onVisualizzaPrestito" text="Visualizza Prestiti" />
+                  <Button fx:id="cronButton" layoutX="345.0" layoutY="160.0" mnemonicParsing="false" onAction="#onVisualizzaCronologia" text="Cronologia" />
                </children>
             </AnchorPane>
         </items>
