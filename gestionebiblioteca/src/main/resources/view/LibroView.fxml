@@ -23,6 +23,7 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #f7fbff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca.GestioneLibri.LibroViewController">
+
    <top>
       <VBox prefHeight="78.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -39,23 +40,27 @@
                   <Label text="Schermata: Libri" />
                </children>
             </HBox>
-            <MenuBar prefHeight="28.0" prefWidth="600.0" style="-fx-background-color: trasparante;">
+
+            <MenuBar prefHeight="28.0" prefWidth="600.0" style="-fx-background-color: transparent;">
                <menus>
                   <Menu fx:id="HomeID" mnemonicParsing="false" onAction="#ClickHome" text="Home">
                      <items>
                         <MenuItem mnemonicParsing="false" text="Close" />
                      </items>
                   </Menu>
+
                   <Menu fx:id="UtentiID" mnemonicParsing="false" onAction="#clickUtenti" text="Utenti">
                      <items>
                         <MenuItem mnemonicParsing="false" text="Delete" />
                      </items>
                   </Menu>
+
                   <Menu mnemonicParsing="false" text="Libri">
                      <items>
                         <MenuItem mnemonicParsing="false" text="About" />
                      </items>
                   </Menu>
+
                   <Menu mnemonicParsing="false" onAction="#clickPrestiti" text="Prestiti">
                      <items>
                         <MenuItem mnemonicParsing="false" text="About" />
@@ -66,19 +71,28 @@
          </children>
       </VBox>
    </top>
+
    <center>
       <SplitPane dividerPositions="0.39297658862876256" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+
          <items>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="310.0" prefWidth="262.0" style="-fx-background-color: ffffff; -fx-background-radius: 8;" styleClass="form-card">
+
+            <!-- BOX FORM -->
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="310.0" prefWidth="262.0" style="-fx-background-color: #ffffff; -fx-background-radius: 8;" styleClass="form-card">
                <children>
+
                   <VBox prefHeight="200.0" prefWidth="100.0" spacing="12.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="12.0">
+
                      <children>
+
                         <Label styleClass="titolo-sezione" text="Aggiungi / Cerca Libro" />
+
                         <GridPane prefHeight="182.0" prefWidth="207.0">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                            </columnConstraints>
+
                            <rowConstraints>
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -86,56 +100,79 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
+
                            <children>
                               <Label text="Titolo" />
                               <Label text="Autori" GridPane.rowIndex="1" />
                               <Label text="ISBN" GridPane.rowIndex="2" />
+
                               <TextField fx:id="txtTitolo" GridPane.columnIndex="1" />
                               <TextField fx:id="txtAutori" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <TextField fx:id="txtISBN" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
                               <Label text="Numero copie" GridPane.rowIndex="3" />
                               <TextField fx:id="txtCopie" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <Label prefHeight="21.0" prefWidth="135.0" text="Anno di pubblicazione" GridPane.rowIndex="4" />
+
+                              <Label text="Anno di pubblicazione" GridPane.rowIndex="4" />
                               <TextField fx:id="txtAnno" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                            </children>
                         </GridPane>
+
                      </children>
                   </VBox>
+
+                  <!-- Bottoni con icone corrette -->
                   <HBox alignment="CENTER_LEFT" layoutX="2.0" layoutY="226.0" prefHeight="47.0" prefWidth="227.0" spacing="10.0">
+
                      <children>
-                        <Button fx:id="addButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onAggiungiLibro" prefHeight="31.0" prefWidth="52.0" style="-fx-background-color: #2c3e50;" styleClass="icon-btn" HBox.hgrow="ALWAYS">
+
+                        <Button fx:id="addButton" onAction="#onAggiungiLibro" prefHeight="31.0" prefWidth="52.0" style="-fx-background-color: #2c3e50;" styleClass="icon-btn" HBox.hgrow="ALWAYS">
                            <graphic>
                               <ImageView fitHeight="26.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../../../../../../Desktop/peppi.png" />
+                                    <Image url="@image/peppi.png" />
                                  </image>
                               </ImageView>
-                           </graphic></Button>
-                        <Button fx:id="removeButton" mnemonicParsing="false" onAction="#onRimuoviLibro" prefHeight="31.0" prefWidth="51.0" style="-fx-background-color: #2c3e50;" styleClass="icon-btn" HBox.hgrow="ALWAYS">
+                           </graphic>
+                        </Button>
+
+                        <Button fx:id="removeButton" onAction="#onRimuoviLibro" prefHeight="31.0" prefWidth="51.0" style="-fx-background-color: #2c3e50;" styleClass="icon-btn" HBox.hgrow="ALWAYS">
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../../../../../../Desktop/deb.png" />
+                                    <Image url="@image/deb.png" />
                                  </image>
                               </ImageView>
-                           </graphic></Button>
-                        <Button fx:id="searchButton" mnemonicParsing="false" onAction="#onRicercaLibro" prefHeight="31.0" prefWidth="49.0" style="-fx-background-color: #2c3e50;" styleClass="icon-btn" HBox.hgrow="ALWAYS">
+                           </graphic>
+                        </Button>
+
+                        <Button fx:id="searchButton" onAction="#onRicercaLibro" prefHeight="31.0" prefWidth="49.0" style="-fx-background-color: #2c3e50;" styleClass="icon-btn" HBox.hgrow="ALWAYS">
                            <graphic>
                               <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../../../../../../Desktop/pipsi.png" />
+                                    <Image url="@image/pipsi.png" />
                                  </image>
                               </ImageView>
-                           </graphic></Button>
+                           </graphic>
+                        </Button>
+
                      </children>
+
                   </HBox>
+
                </children>
             </AnchorPane>
+
+            <!-- BOX TABELLA -->
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="310.0" prefWidth="324.0">
                <children>
+
                   <VBox layoutY="-2.0" prefHeight="593.0" prefWidth="724.0" spacing="8.0" AnchorPane.bottomAnchor="-4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="-2.0">
+
                      <children>
+
                         <Label prefHeight="31.0" prefWidth="104.0" text="Risultati Ricerca" />
+
                         <TableView fx:id="libroTable" prefHeight="200.0" prefWidth="300.0">
                            <columns>
                               <TableColumn fx:id="colTitolo" prefWidth="93.0" text="Titolo" />
@@ -145,14 +182,21 @@
                               <TableColumn fx:id="colAnno" prefWidth="110.0" text="Anno" />
                            </columns>
                         </TableView>
-                        <Button fx:id="viewButton" mnemonicParsing="false" onAction="#onVisualizzaLibri" style="-fx-background-color: #2c3e50;" text="Visualizza Libri" />
+
+                        <Button fx:id="viewButton" onAction="#onVisualizzaLibri" style="-fx-background-color: #2c3e50;" text="Visualizza Libri" />
+
                      </children>
+
                   </VBox>
+
                </children>
             </AnchorPane>
+
          </items>
+
       </SplitPane>
    </center>
+
    <bottom>
       <HBox alignment="CENTER" prefHeight="20.0" prefWidth="600.0" BorderPane.alignment="CENTER_RIGHT">
          <padding>
@@ -163,8 +207,10 @@
          </children>
       </HBox>
    </bottom>
+
    <stylesheets>
-      <URL value="@../../../../../../../../../Desktop/stylelibri.css" />
-      <URL value="@../../../../../../../../../Desktop/style.css" />
+      <URL value="@/view/css/stylelibri.css" />
+      <URL value="@/view/css/style.css" />
    </stylesheets>
+
 </BorderPane>

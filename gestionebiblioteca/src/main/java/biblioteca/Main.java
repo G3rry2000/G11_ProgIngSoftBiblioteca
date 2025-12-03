@@ -1,25 +1,22 @@
 package biblioteca;
 
+import java.io.IOException;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
 
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) {
-        Button btn = new Button("Clicca qui");
+    public void start(Stage primaryStage) throws IOException {
+        FXMLLoader loader = new FXMLLoader (getClass().getResource("/view/HomeView.fxml"));
+        
+        Scene scene = new Scene(loader.load());
 
-        btn.setOnAction(e -> {
-            System.out.println("Hello World");
-        });
-
-        StackPane root = new StackPane(btn);
-        Scene scene = new Scene(root, 300, 200);
-
-        primaryStage.setTitle("Test JavaFX 8");
+        primaryStage.setTitle("Biblioteca - Home");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

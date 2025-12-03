@@ -103,7 +103,7 @@
                            <graphic>
                               <ImageView fitHeight="21.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../../../../../../Desktop/peppi.png" />
+                                    <Image url="@image/peppi.png" />
                                  </image>
                               </ImageView>
                            </graphic></Button>
@@ -111,7 +111,7 @@
                            <graphic>
                               <ImageView fitHeight="22.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../../../../../../Desktop/deb.png" />
+                                    <Image url="@image/deb.png" />
                                  </image>
                               </ImageView>
                            </graphic></Button>
@@ -119,7 +119,7 @@
                            <graphic>
                               <ImageView fitHeight="22.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../../../../../../Desktop/pepis.png" />
+                                    <Image url="@image/pipsi.png" />
                                  </image>
                               </ImageView>
                            </graphic></Button>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="521.0" prefWidth="721.0" stylesheets="@css/stylehome.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca.GestioneHome.HomeViewController">
+   <top>
+      <VBox prefHeight="100.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0" styleClass="tool-bar">
+               <children>
+                  <Label styleClass="menu-btn" text="Gestione Biblioteca    " />
+                  <Label styleClass="menu-btn" text="SchermataHome" />
+               </children>
+            </HBox>
+            <MenuBar prefHeight="86.0" prefWidth="600.0">
+              <menus>
+                <Menu mnemonicParsing="false" text="Home" />
+                <Menu fx:id="LibriID" mnemonicParsing="false" onAction="#clickLibri" text="Libri" />
+                <Menu fx:id="UtentiID" mnemonicParsing="false" onAction="#clickUtenti" text="Utenti" />
+                  <Menu fx:id="PrestitiID" mnemonicParsing="false" onAction="#clickPrestiti" text="Prestiti" />
+              </menus>
+            </MenuBar>
+         </children>
+      </VBox>
+   </top>
+   <bottom>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" styleClass="footer-label" text="Biblioteca Universitaria" textAlignment="CENTER" />
+         </children>
+      </HBox>
+   </bottom>
+   <center>
+      <ImageView fitHeight="305.0" fitWidth="347.0" opacity="0.43" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+         <image>
+            <Image url="@image/logo_unisa.png" />
+         </image>
+      </ImageView>
+   </center>
+</BorderPane>
