@@ -59,6 +59,9 @@ public class LibroViewController {
     private Menu UtentiID;
     
     private ArchivioLibri archivioLibri;
+    
+    private LibriService libroService;
+
     private ObservableList<Libro> listaLibri;
     
     public void initialize(URL url, ResourceBundle rb){

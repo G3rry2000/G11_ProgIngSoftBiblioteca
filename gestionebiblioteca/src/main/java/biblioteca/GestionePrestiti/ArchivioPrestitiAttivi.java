@@ -28,15 +28,15 @@ public class ArchivioPrestitiAttivi implements Archivio{
    @Override
    public void scriviSuFile(String filename){
    }
-   public void aggiungiPrestito(Prestito p){
+   public void aggiungiPrestitoAttivo(Prestito p){
    }
-   public Prestito rimuoviPrestito(Prestito p){
+   public Prestito rimuoviPrestitoAttivo(Prestito p){
    return null;
    }
-   public Prestito ricercaPrestito(Utente utente, Libro libro){
+   public Prestito ricercaPrestitoAttivo(Utente utente, Libro libro){
    return null;
    }
-   public List<Prestito> visualizzaPrestitiAttivi(){ 
+   public List<Prestito> getPrestitiAttivi(){ 
    return null;
    }
    

@@ -38,7 +38,7 @@ public class ArchivioUtenti implements Archivio{
    public Utente modificaUtente(Utente u){ 
    return null;
    }
-   public Set<Utente> visualizzaUtenti(){ 
+   public Set<Utente> getUtenti(){ 
    return null;
    }
 }
