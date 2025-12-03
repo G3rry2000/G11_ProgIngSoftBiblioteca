@@ -10,6 +10,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -19,7 +21,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #f7fbff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca.GestionePrestiti.PrestitiViewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #f7fbff;" stylesheets="@../../../../../../../../../Desktop/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca.GestionePrestiti.PrestitiViewController">
    <top>
       <VBox prefHeight="78.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -28,7 +30,7 @@
                   <Insets bottom="8.0" left="12.0" right="12.0" top="8.0" />
                </padding>
                <children>
-                  <Label style="-fx-font-size: 22; -fx-font-weight: bold;" text="Gestione Biblioteca      " textFill="#0b3d91">
+                  <Label style="-fx-font-size: 22; -fx-font-weight: bold;" text="Gestione Biblioteca      " textFill="#1ca38f">
                      <font>
                         <Font size="22.0" />
                      </font>
@@ -74,7 +76,7 @@
       </HBox>
    </bottom>
    <center>
-      <SplitPane dividerPositions="0.27734375" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="283.0" prefWidth="580.0" BorderPane.alignment="CENTER">
+      <SplitPane dividerPositions="0.27734375" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="664.0" prefWidth="1001.0" BorderPane.alignment="CENTER">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="96.0" prefWidth="598.0">
                <children>
@@ -84,51 +86,64 @@
                           <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.0" minWidth="10.0" prefWidth="88.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="116.0" minWidth="10.0" prefWidth="108.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="89.0" minWidth="0.0" prefWidth="10.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="189.0" minWidth="10.0" prefWidth="177.0" />
                           </columnConstraints>
                           <rowConstraints>
-                              <RowConstraints maxHeight="29.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
-                            <RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="29.0" minHeight="6.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="48.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="17.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Label style="-fx-background-color: verde;" text="ISBN" GridPane.rowIndex="1" />
-                              <Label text="Matricola" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                              <TextField fx:id="textISBN" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <TextField fx:id="txtMatricola" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                              <Label text="Ricerca Libro" />
-                              <Label text="Ricerca Utente" GridPane.columnIndex="3" />
-                              <Button fx:id="addButton" mnemonicParsing="false" onAction="#onAggiungiPrestito" text="AGG" GridPane.columnIndex="5" />
-                              <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
-                                 <children>
-                                    <Button fx:id="searchButton" mnemonicParsing="false" onAction="#onRicercaPrestito" prefHeight="31.0" prefWidth="45.0" text="RIC" />
-                                    <Button fx:id="backButton" mnemonicParsing="false" onAction="#onRestituzioneLibro" prefHeight="31.0" prefWidth="53.0" text="REST" />
-                                 </children>
-                              </HBox>
+                              <Label prefHeight="38.0" prefWidth="101.0" styleClass="label-grande" text="Ricerca Libro" GridPane.rowIndex="1" />
+                              <Label prefHeight="34.0" prefWidth="107.0" styleClass="label-grande" text="Ricerca Utente" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                              <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
                            </children>
                         </GridPane>
                      </children>
                   </HBox>
+                  <Label layoutX="1.0" layoutY="102.0" style="-fx-background-color: verde;" styleClass="label-grande" text="ISBN" />
+                  <TextField fx:id="textISBN" layoutX="70.0" layoutY="97.0" />
+                  <Label layoutX="289.0" layoutY="102.0" prefHeight="34.0" prefWidth="80.0" styleClass="label-grande" text="Matricola" />
+                  <TextField fx:id="txtMatricola" layoutX="379.0" layoutY="98.0" />
+                  <Button fx:id="searchButton" layoutX="577.0" layoutY="95.0" mnemonicParsing="false" onAction="#onRicercaPrestito" prefHeight="31.0" prefWidth="45.0" style="-fx-background-color: #2c3e50;">
+                     <graphic>
+                        <ImageView fitHeight="26.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../../../../Desktop/pipsi.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <Button fx:id="backButton" layoutX="645.0" layoutY="96.0" mnemonicParsing="false" onAction="#onRestituzioneLibro" prefHeight="40.0" prefWidth="149.0" style="-fx-background-color: #2c3e50;" text="RESTITUZIONE" />
+                  <Button fx:id="addButton" layoutX="936.0" layoutY="141.0" mnemonicParsing="false" onAction="#onAggiungiPrestito" prefHeight="10.0" prefWidth="31.0" style="-fx-background-color: #2c3e50;" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="22.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../../../../../Desktop/peppi.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="260.0" prefWidth="578.0">
                <children>
-                  <TableView fx:id="prestitoTable" prefHeight="152.0" prefWidth="579.0">
+                  <TableView fx:id="prestitoTable" prefHeight="368.0" prefWidth="1000.0">
                     <columns>
-                      <TableColumn fx:id="colID" prefWidth="63.0" text="ID" />
-                      <TableColumn fx:id="colNome" prefWidth="87.0" text="Nome" />
-                        <TableColumn fx:id="colCognome" prefWidth="75.0" text="Cognome" />
-                        <TableColumn fx:id="colMatricola" prefWidth="75.0" text="Matricola" />
-                        <TableColumn fx:id="colTitolo" prefWidth="75.0" text="Titolo" />
-                        <TableColumn fx:id="colAutori" prefWidth="75.0" text="Autori" />
-                        <TableColumn fx:id="colISBN" minWidth="9.0" prefWidth="56.0" text="ISBN" />
-                        <TableColumn fx:id="colNumCopie" prefWidth="94.0" text="Numero Copie" />
+                      <TableColumn fx:id="colID" text="ID" />
+                      <TableColumn fx:id="colNome" prefWidth="88.0" text="Nome" />
+                        <TableColumn fx:id="colCognome" prefWidth="83.0" text="Cognome" />
+                        <TableColumn fx:id="colMatricola" prefWidth="83.0" text="Matricola" />
+                        <TableColumn fx:id="colTitolo" prefWidth="72.0" text="Titolo" />
+                        <TableColumn fx:id="colAutori" prefWidth="73.0" text="Autori" />
+                        <TableColumn fx:id="colISBN" minWidth="9.0" prefWidth="67.0" text="ISBN" />
+                        <TableColumn fx:id="colNumCopie" prefWidth="125.0" text="Numero Copie" />
                     </columns>
                   </TableView>
-                  <Button fx:id="viewButton" layoutX="162.0" layoutY="160.0" mnemonicParsing="false" onAction="#onVisualizzaPrestito" text="Visualizza Prestiti" />
-                  <Button fx:id="cronButton" layoutX="345.0" layoutY="160.0" mnemonicParsing="false" onAction="#onVisualizzaCronologia" text="Cronologia" />
+                  <Button fx:id="viewButton" layoutY="368.0" mnemonicParsing="false" onAction="#onVisualizzaPrestito" prefHeight="35.0" prefWidth="161.0" style="-fx-background-color: #2c3e50;" text="Visualizza Prestiti" />
+                  <Button fx:id="cronButton" layoutX="161.0" layoutY="368.0" mnemonicParsing="false" onAction="#onVisualizzaCronologia" style="-fx-background-color: #2c3e50;" text="Cronologia" />
                </children>
             </AnchorPane>
         </items>

@@ -10,6 +10,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -19,7 +21,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #f7fbff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca.GestioneUtenti.UtentiViewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="614.0" prefWidth="863.0" style="-fx-background-color: #f7fbff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca.GestioneUtenti.UtentiViewController">
    <top>
       <VBox prefHeight="78.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -28,7 +30,7 @@
                   <Insets bottom="8.0" left="12.0" right="12.0" top="8.0" />
                </padding>
                <children>
-                  <Label style="-fx-font-size: 22; -fx-font-weight: bold;" text="Gestione Biblioteca      " textFill="#0b3d91">
+                  <Label style="-fx-font-size: 22; -fx-font-weight: bold;" text="Gestione Biblioteca      " textFill="#1ca38f">
                      <font>
                         <Font size="22.0" />
                      </font>
@@ -97,36 +99,57 @@
                   </VBox>
                   <HBox alignment="CENTER_LEFT" layoutX="2.0" layoutY="212.0" prefHeight="47.0" prefWidth="227.0" spacing="10.0">
                      <children>
-                        <Button fx:id="addButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onAggiungiUtente" prefHeight="31.0" prefWidth="53.0" text="AGG" HBox.hgrow="ALWAYS" />
-                        <Button fx:id="removeButton" mnemonicParsing="false" onAction="#onRimuoviUtente" prefHeight="31.0" prefWidth="55.0" text="RIM" HBox.hgrow="ALWAYS" />
-                        <Button fx:id="searchButton" mnemonicParsing="false" onAction="#onRicercaUtente" prefHeight="31.0" prefWidth="67.0" text="RIC" HBox.hgrow="ALWAYS" />
+                        <Button fx:id="addButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onAggiungiUtente" prefHeight="31.0" prefWidth="53.0" HBox.hgrow="ALWAYS">
+                           <graphic>
+                              <ImageView fitHeight="21.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../../../../../Desktop/peppi.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                        <Button fx:id="removeButton" mnemonicParsing="false" onAction="#onRimuoviUtente" prefHeight="31.0" prefWidth="55.0" HBox.hgrow="ALWAYS">
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../../../../../Desktop/deb.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                        <Button fx:id="searchButton" mnemonicParsing="false" onAction="#onRicercaUtente" prefHeight="31.0" prefWidth="67.0" HBox.hgrow="ALWAYS">
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../../../../../Desktop/pepis.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
                      </children>
                   </HBox>
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="310.0" prefWidth="324.0">
                <children>
-                  <VBox prefHeight="232.0" prefWidth="335.0" spacing="8.0" AnchorPane.bottomAnchor="43.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="12.0">
+                  <VBox layoutX="-1.0" prefHeight="498.0" prefWidth="522.0" spacing="8.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <Label text="Risultati Ricerca" />
                         <TableView fx:id="utenteTable" prefHeight="200.0" prefWidth="300.0">
                           <columns>
-                            <TableColumn fx:id="colNome" prefWidth="75.0" text="Nome" />
-                            <TableColumn fx:id="colCognome" prefWidth="75.0" text="Cognome" />
-                              <TableColumn fx:id="colMatricola" prefWidth="75.0" text="Matricola" />
-                              <TableColumn fx:id="colEmail" prefWidth="63.0" text="Email" />
+                            <TableColumn fx:id="colNome" prefWidth="113.0" text="Nome" />
+                            <TableColumn fx:id="colCognome" prefWidth="91.0" text="Cognome" />
+                              <TableColumn fx:id="colMatricola" prefWidth="100.0" text="Matricola" />
+                              <TableColumn fx:id="colEmail" prefWidth="190.0" text="Email" />
                           </columns>
                         </TableView>
+                        <Button fx:id="viewButton" mnemonicParsing="false" onAction="#onVisualizzaUtenti" text="Visualizza Utenti" />
                      </children>
                   </VBox>
-                  <Button fx:id="viewButton" layoutX="115.0" layoutY="244.0" mnemonicParsing="false" onAction="#onVisualizzaUtenti" text="Visualizza Utenti" />
                </children>
             </AnchorPane>
         </items>
       </SplitPane>
    </center>
    <bottom>
-      <HBox alignment="CENTER" prefHeight="20.0" prefWidth="600.0" BorderPane.alignment="CENTER_RIGHT">
+      <HBox alignment="CENTER" prefHeight="8.0" prefWidth="849.0" BorderPane.alignment="CENTER_RIGHT">
          <padding>
             <Insets top="10.0" />
          </padding>
