@@ -1,0 +1,71 @@
+/* 1. GESTIONE DEL PANNELLO DIVISO (SplitPane) */
+/* Rimuove i bordi e lo sfondo del contenitore principale */
+.split-pane {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+/* Rende INVISIBILE la barra divisoria tra sinistra e destra */
+/* E aggiunge spazio (padding) affinché le due parti non si tocchino */
+.split-pane > .split-pane-divider {
+    -fx-background-color: transparent;
+    -fx-padding: 0 10px; 
+}
+
+/* 2. LA "CARD" DEL MODULO (Sinistra) */
+/* Crea il box bianco con l'ombra che conterrà i campi di input */
+.form-card {
+    -fx-background-color: white;
+    -fx-background-radius: 5px;
+    /* Ombra leggera stile "foglio sollevato" */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 8, 0, 0, 2);
+    -fx-padding: 20px;
+    -fx-border-color: #e0e0e0;
+    -fx-border-radius: 5px;
+}
+
+/* 3. TITOLI DELLE SEZIONI ("Aggiungi/Cerca Libro", "Risultati") */
+.titolo-sezione {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2980b9; /* Azzurro Corporate */
+    
+    /* Una linea grigia sottile sotto il titolo per separarlo */
+    -fx-border-color: transparent transparent #e0e0e0 transparent;
+    -fx-border-width: 0 0 1px 0;
+    -fx-padding: 0 0 10px 0;
+    -fx-margin: 0 0 15px 0;
+}
+
+/* 4. PULSANTI PICCOLI (Toolbar: +, X, Cerca) */
+/* Stile specifico per i bottoni quadrati, per non farli enormi */
+.icon-btn {
+    -fx-background-color: #ecf0f1; /* Grigio molto chiaro di base */
+    -fx-text-fill: #2c3e50;        /* Icona scura */
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-border-color: #bdc3c7;
+    -fx-border-radius: 4px;
+    
+    /* Dimensioni fisse per farli quadrati */
+    -fx-min-width: 35px;
+    -fx-min-height: 35px;
+    -fx-padding: 5px;
+    -fx-font-size: 14px;
+}
+
+/* Hover generico (diventa azzurrino) */
+.icon-btn:hover {
+    -fx-background-color: #d6eaf8; 
+    -fx-border-color: #2980b9;
+    -fx-text-fill: #2980b9;
+}
+
+/* 5. STILE SPECIALE PER IL BOTTONE "CANCELLA" (La X) */
+/* Lo facciamo diventare rosso quando ci passi sopra */
+.icon-btn-danger:hover {
+    -fx-background-color: #fadbd8; /* Rosso chiaro sfondo */
+    -fx-border-color: #c0392b;     /* Bordo rosso */
+    -fx-text-fill: #c0392b;        /* Testo rosso */
+}

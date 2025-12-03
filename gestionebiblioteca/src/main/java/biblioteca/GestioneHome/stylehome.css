@@ -1,0 +1,65 @@
+/* 1. SFONDO GENERALE */
+/* Mantiene lo stesso grigio professionale delle altre schermate */
+.root {
+    -fx-background-color: #f4f6f8;
+    -fx-font-family: "Segoe UI", "Helvetica", sans-serif;
+}
+
+/* 2. IL TITOLO PRINCIPALE ("Gestione Biblioteca") */
+.titolo-principale {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50; /* Blu Notte (lo stesso dell'header tabella) */
+    -fx-padding: 20px 0 10px 0;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.1), 2, 0, 1, 1);
+}
+
+/* 3. MENU DI NAVIGAZIONE (Home, Libri, Utenti...) */
+/* Trasformiamo i bottoni in "Link" eleganti senza sfondo */
+.menu-btn {
+    -fx-background-color: transparent; /* Niente sfondo blu */
+    -fx-text-fill: #546e7a;            /* Grigio Bluastro (lo stesso delle label) */
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+    -fx-border-width: 0 0 3px 0;       /* Predispone una linea sotto */
+    -fx-padding: 10px 20px;
+}
+
+/* Quando passi il mouse sopra il menu */
+.menu-btn:hover {
+    -fx-text-fill: #2980b9;            /* Diventa Blu acceso */
+    -fx-background-color: #e3f2fd;     /* Sfondo azzurrino leggerissimo */
+    -fx-border-color: transparent transparent #2980b9 transparent; /* Appare la linea blu sotto */
+}
+
+/* Quando il pulsante è premuto */
+.menu-btn:pressed {
+    -fx-background-color: #bbdefb;
+}
+
+/* 4. CARD CENTRALE (Contenitore del Logo) */
+/* Crea un box bianco dietro al logo per farlo sembrare un "quadro" */
+.logo-card {
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+    /* Ombra morbida per effetto sollevato */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 20, 0, 0, 10);
+    -fx-padding: 50px;
+    -fx-alignment: CENTER;
+    -fx-max-width: 600px; /* Evita che diventi troppo largo */
+}
+
+/* 5. FOOTER (Scritta in basso "Biblioteca Universitaria") */
+.footer-label {
+    -fx-text-fill: #b0bec5; /* Grigio chiaro discreto */
+    -fx-font-size: 12px;
+    -fx-font-weight: normal;
+    -fx-padding: 20px;
+}
+
+/* Rende trasparente il contenitore dietro ai pulsanti del menu */
+.tool-bar, .hbox-menu { 
+    -fx-background-color: transparent; 
+}
