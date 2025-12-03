@@ -1,0 +1,113 @@
+
+
+/* 1. FONT E SFONDO BASE */
+.root {
+    -fx-background-color: #f4f6f8;
+    -fx-font-family: "Segoe UI", "Helvetica", sans-serif;
+}
+
+/* 2. CLASSE SPECIALE PER LE SCRITTE GRANDI 
+   (Ricerca, ISBN, Matricola) */
+.label-grande {
+    -fx-font-size: 30px;       
+    -fx-font-weight: bold;     /* Grassetto */
+    -fx-text-fill: #2c3e50;    /* Blu scuro professionale */
+    -fx-padding: 0 0 5px 0;
+}
+
+/* 3. CLASSE PER LE ETICHETTE NORMALI (Menu, info varie) */
+.label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #546e7a;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+/* 4. TABELLA (Dati) */
+.table-view {
+    -fx-background-color: white;
+    -fx-table-cell-border-color: transparent;
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 5, 0, 0, 2);
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #2c3e50; 
+    -fx-background-radius: 5px 5px 0 0;
+    -fx-border-width: 0;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-size: 45px; 
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px; 
+    -fx-alignment: CENTER_LEFT;
+}
+
+.table-view .filler {
+    -fx-background-color: #2c3e50;
+    -fx-background-radius: 0 5px 0 0;
+}
+
+/* Celle e Font Tecnico per i dati */
+.table-cell, .text-field {
+    -fx-font-family: "Consolas", "Courier New", monospace;
+    -fx-font-size: 14px; 
+    -fx-padding: 10px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-text-fill: #333333;
+    -fx-border-color: transparent;
+}
+
+/* Righe alternate */
+.table-row-cell:odd { -fx-background-color: white; }
+.table-row-cell:even { -fx-background-color: #f8f9fa; }
+
+/* Selezione */
+.table-view:focused .table-row-cell:selected {
+    -fx-background-color: #e3f2fd;
+}
+.table-view:focused .table-row-cell:selected .table-cell {
+    -fx-text-fill: #1565c0;
+    -fx-font-weight: bold;
+}
+
+/* 5. INPUT TEXT (Caselle) */
+.text-field {
+    -fx-background-color: white;
+    -fx-text-fill: #333333;
+    -fx-border-color: #dce0e4;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+}
+.text-field:focused {
+    -fx-border-color: #2980b9;
+    -fx-background-color: #ffffff;
+}
+
+/* 6. PULSANTI */
+.button {
+    -fx-background-color: #2980b9;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-padding: 8px 16px;
+}
+.button:hover { -fx-background-color: #3498db; }
+.button:pressed { -fx-background-color: #1f618d; }
+
+/* 7. SCROLLBAR */
+.table-view .scroll-bar:vertical .thumb, 
+.table-view .scroll-bar:horizontal .thumb {
+    -fx-background-color: #bdc3c7;
+    -fx-background-radius: 10px;
+}
+.table-view .scroll-bar {
+    -fx-background-color: transparent;
+}
