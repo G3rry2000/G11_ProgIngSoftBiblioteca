@@ -15,8 +15,8 @@
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0" styleClass="tool-bar">
                <children>
-                  <Label styleClass="menu-btn" text="Gestione Biblioteca    " />
-                  <Label styleClass="menu-btn" text="SchermataHome" />
+                  <Label prefHeight="52.0" prefWidth="163.0" styleClass="titolo-principale" text="Gestione Biblioteca    " />
+                  <Label prefHeight="40.0" prefWidth="130.0" styleClass="titolo-principale" text="SchermataHome" />
                </children>
             </HBox>
             <MenuBar prefHeight="86.0" prefWidth="600.0">

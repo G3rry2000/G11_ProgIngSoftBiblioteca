@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -68,11 +70,11 @@
    <center>
       <SplitPane dividerPositions="0.39297658862876256" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="310.0" prefWidth="262.0" style="-fx-background-color: ffffff; -fx-background-radius: 8;">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="310.0" prefWidth="262.0" style="-fx-background-color: ffffff; -fx-background-radius: 8;" styleClass="form-card">
                <children>
                   <VBox prefHeight="200.0" prefWidth="100.0" spacing="12.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="12.0">
                      <children>
-                        <Label text="Aggiungi / Cerca Utente" />
+                        <Label styleClass="titolo-sezione" text="Aggiungi / Cerca Utente" />
                         <GridPane prefHeight="147.0" prefWidth="207.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -99,30 +101,37 @@
                   </VBox>
                   <HBox alignment="CENTER_LEFT" layoutX="2.0" layoutY="212.0" prefHeight="47.0" prefWidth="227.0" spacing="10.0">
                      <children>
-                        <Button fx:id="addButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onAggiungiUtente" prefHeight="31.0" prefWidth="53.0" HBox.hgrow="ALWAYS">
+                        <Button fx:id="addButton" minHeight="32.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#onAggiungiUtente" prefHeight="35.0" prefWidth="43.0" style="-fx-background-color: #2c3e50;" styleClass="icon-btn">
                            <graphic>
-                              <ImageView fitHeight="21.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="23.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@image/peppi.png" />
                                  </image>
                               </ImageView>
-                           </graphic></Button>
-                        <Button fx:id="removeButton" mnemonicParsing="false" onAction="#onRimuoviUtente" prefHeight="31.0" prefWidth="55.0" HBox.hgrow="ALWAYS">
+                           </graphic>
+                        </Button>
+                        <Button fx:id="removeButton" minHeight="29.0" mnemonicParsing="false" onAction="#onRimuoviUtente" prefHeight="35.0" prefWidth="44.0" style="-fx-background-color: #2c3e50;">
                            <graphic>
-                              <ImageView fitHeight="22.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@image/deb.png" />
                                  </image>
                               </ImageView>
-                           </graphic></Button>
-                        <Button fx:id="searchButton" mnemonicParsing="false" onAction="#onRicercaUtente" prefHeight="31.0" prefWidth="67.0" HBox.hgrow="ALWAYS">
+                           </graphic>
+                           <styleClass>
+                              <String fx:value="icon-btn" />
+                              <String fx:value="icon-btn-danger" />
+                           </styleClass>
+                        </Button>
+                        <Button fx:id="searchButton" mnemonicParsing="false" onAction="#onRicercaUtente" prefHeight="35.0" prefWidth="47.0" style="-fx-background-color: #2c3e50;" styleClass="icon-btn">
                            <graphic>
                               <ImageView fitHeight="22.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@image/pipsi.png" />
                                  </image>
                               </ImageView>
-                           </graphic></Button>
+                           </graphic>
+                        </Button>
                      </children>
                   </HBox>
                </children>
@@ -140,7 +149,7 @@
                               <TableColumn fx:id="colEmail" prefWidth="190.0" text="Email" />
                           </columns>
                         </TableView>
-                        <Button fx:id="viewButton" mnemonicParsing="false" onAction="#onVisualizzaUtenti" text="Visualizza Utenti" />
+                        <Button fx:id="viewButton" mnemonicParsing="false" onAction="#onVisualizzaUtenti" style="-fx-background-color: #2c3e50;" text="Visualizza Utenti" />
                      </children>
                   </VBox>
                </children>
@@ -158,4 +167,8 @@
          </children>
       </HBox>
    </bottom>
+   <stylesheets>
+      <URL value="@css/style.css" />
+      <URL value="@css/stylelibri.css" />
+   </stylesheets>
 </BorderPane>

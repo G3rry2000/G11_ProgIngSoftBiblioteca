@@ -27,9 +27,9 @@
 /* 3. TITOLI DELLE SEZIONI ("Aggiungi/Cerca Libro", "Risultati") */
 .titolo-sezione {
     -fx-font-family: "Segoe UI", sans-serif;
-    -fx-font-size: 18px;
+    -fx-font-size: 14px;
     -fx-font-weight: bold;
-    -fx-text-fill: #2980b9; /* Azzurro Corporate */
+    -fx-text-fill: #546e7a; /* Azzurro Corporate */
     
     /* Una linea grigia sottile sotto il titolo per separarlo */
     -fx-border-color: transparent transparent #e0e0e0 transparent;
