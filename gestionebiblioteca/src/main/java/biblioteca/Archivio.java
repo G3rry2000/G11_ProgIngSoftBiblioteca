@@ -5,12 +5,14 @@
  */
 package biblioteca;
 
+import java.io.IOException;
+
 /**
  *
  * @author Utente
  */
 public interface Archivio { //DA VALUTARE
     
-    void leggiDaFile(String filename);
-    void scriviSuFile(String filename); 
+    void leggiDaFile(String filename) throws IOException;
+    void scriviSuFile(String filename) throws IOException; 
 }
