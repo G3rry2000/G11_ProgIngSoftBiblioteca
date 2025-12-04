@@ -17,7 +17,7 @@
 
 /* 3. CLASSE PER LE ETICHETTE NORMALI (Menu, info varie) */
 .label {
-    -fx-font-size: 14px;
+    -fx-font-size: 17px;
     -fx-text-fill: #546e7a;
     -fx-font-family: "Segoe UI", sans-serif;
 }
