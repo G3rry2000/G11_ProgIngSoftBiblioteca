@@ -32,12 +32,12 @@
                   <Insets bottom="8.0" left="12.0" right="12.0" top="8.0" />
                </padding>
                <children>
-                  <Label style="-fx-font-size: 22; -fx-font-weight: bold;" text="Gestione biblioteca      " textFill="#1ca38f">
+                  <Label style="-fx-font-size: 22; -fx-font-weight: bold;" text="Gestione biblioteca      " textFill="#2c3e50">
                      <font>
                         <Font size="22.0" />
                      </font>
                   </Label>
-                  <Label text="Schermata: Libri" />
+                  <Label text="Schermata: Libri" textFill="#2c3e50" />
                </children>
             </HBox>
 
@@ -183,7 +183,7 @@
                            </columns>
                         </TableView>
 
-                        <Button fx:id="viewButton" onAction="#onVisualizzaLibri" style="-fx-background-color: #2c3e50;" text="Visualizza Libri" />
+                        <Button fx:id="viewButton" onAction="#onVisualizzaLibri" style="-fx-background-color: #2c3e50;" text="Visualizza Libri" textFill="#fffafa" />
 
                      </children>
 
@@ -207,10 +207,9 @@
          </children>
       </HBox>
    </bottom>
-
    <stylesheets>
-      <URL value="@/view/css/stylelibri.css" />
-      <URL value="@/view/css/style.css" />
+      <URL value="@css/stylelibri.css" />
+      <URL value="@css/style.css" />
    </stylesheets>
 
 </BorderPane>

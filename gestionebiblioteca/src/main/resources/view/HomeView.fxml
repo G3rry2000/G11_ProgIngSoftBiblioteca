@@ -38,7 +38,7 @@
       </HBox>
    </bottom>
    <center>
-      <ImageView fitHeight="305.0" fitWidth="347.0" opacity="0.43" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+      <ImageView fitHeight="295.0" fitWidth="496.0" opacity="0.51" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
          <image>
             <Image url="@image/logo_unisa.png" />
          </image>
