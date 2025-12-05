@@ -6,23 +6,32 @@
 package biblioteca.gestioneEccezioni;
 
 /**
- *
- * @author Utente
+ * @brief Eccezione sollevata quando un prestito richiesto non è presente nell'archivio.
+ * 
+ * Questa eccezione estende {@link BibliotecaException} e viene utilizzata
+ * per segnalare che il prestito richiesto non è stato trovato.
+ * 
+ * Offre due costruttori:
+ * - senza messaggio di dettaglio
+ * - con messaggio di dettaglio personalizzato
  */
 public class PrestitoNonTrovatoException extends BibliotecaException{
-
     /**
-     * Creates a new instance of <code>PrestitoNonTrovatoException</code>
-     * without detail message.
+     * @brief Costruttore di default.
+     * 
+     * Crea una nuova istanza di {@code PrestitoNonTrovatoException} senza messaggio di dettaglio.
+     * 
+     * @post l'eccezione viene inizializzata senza messaggio
      */
     public PrestitoNonTrovatoException() {
     }
-
     /**
-     * Constructs an instance of <code>PrestitoNonTrovatoException</code> with
-     * the specified detail message.
-     *
-     * @param msg the detail message.
+     * @brief Costruttore con messaggio di dettaglio.
+     * 
+     * Crea una nuova istanza di {@code PrestitoNonTrovatoException} con il messaggio di dettaglio specificato.
+     * 
+     * @param msg Il messaggio di dettaglio associato all'eccezione
+     * @post l'eccezione viene inizializzata con il messaggio fornito
      */
     public PrestitoNonTrovatoException(String msg) {
         super(msg);

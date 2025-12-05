@@ -1,7 +1,12 @@
 var searchData=
 [
   ['cancellazioneprestitoattivoexception_0',['CancellazionePrestitoAttivoException',['../classbiblioteca_1_1gestione_eccezioni_1_1_cancellazione_prestito_attivo_exception.html#a9a259bfacc8abd67ecd312d24da7a8a7',1,'biblioteca.gestioneEccezioni.CancellazionePrestitoAttivoException.CancellazionePrestitoAttivoException()'],['../classbiblioteca_1_1gestione_eccezioni_1_1_cancellazione_prestito_attivo_exception.html#afcf35c67bb0131fd850a248e112ba50d',1,'biblioteca.gestioneEccezioni.CancellazionePrestitoAttivoException.CancellazionePrestitoAttivoException(String msg)']]],
-  ['cercautentepercognome_1',['cercaUtentePerCognome',['../classbiblioteca_1_1_gestione_utenti_1_1_utenti_service.html#a57d82e3cf6f6e3a9eacda0a02d8405b2',1,'biblioteca::GestioneUtenti::UtentiService']]],
-  ['cercautentepermatricola_2',['cercaUtentePerMatricola',['../classbiblioteca_1_1_gestione_utenti_1_1_utenti_service.html#a85d0e7563f9cc5a0731b707dc5a74fa3',1,'biblioteca::GestioneUtenti::UtentiService']]],
-  ['compareto_3',['compareTo',['../classbiblioteca_1_1_gestione_utenti_1_1_utente.html#ae36c5055a25d007fc6a8e8682ebf7150',1,'biblioteca::GestioneUtenti::Utente']]]
+  ['cercalibroperautore_1',['cercaLibroPerAutore',['../classbiblioteca_1_1_gestione_libri_1_1_libri_service.html#a0ba19164a39abb715c3bb8914bc40fab',1,'biblioteca::GestioneLibri::LibriService']]],
+  ['cercalibroperisbn_2',['cercaLibroPerISBN',['../classbiblioteca_1_1_gestione_libri_1_1_libri_service.html#a373179991ba88a1829b4fa51558bffca',1,'biblioteca::GestioneLibri::LibriService']]],
+  ['cercalibropertitolo_3',['cercaLibroPerTitolo',['../classbiblioteca_1_1_gestione_libri_1_1_libri_service.html#a2e13c9f118249d1734a6cb8631cf0f3a',1,'biblioteca::GestioneLibri::LibriService']]],
+  ['cercaprestitoattivo_4',['cercaPrestitoAttivo',['../classbiblioteca_1_1_gestione_prestiti_1_1_prestiti_service.html#a8ef50851667342896525a090a25a891d',1,'biblioteca::GestionePrestiti::PrestitiService']]],
+  ['cercaprestitoutentecronologiaperutente_5',['cercaPrestitoUtenteCronologiaPerUtente',['../classbiblioteca_1_1_gestione_prestiti_1_1_prestiti_service.html#a2ba4b89803110bcac5b434a0f3404e4d',1,'biblioteca::GestionePrestiti::PrestitiService']]],
+  ['cercautentepercognome_6',['cercaUtentePerCognome',['../classbiblioteca_1_1_gestione_utenti_1_1_utenti_service.html#a57d82e3cf6f6e3a9eacda0a02d8405b2',1,'biblioteca::GestioneUtenti::UtentiService']]],
+  ['cercautentepermatricola_7',['cercaUtentePerMatricola',['../classbiblioteca_1_1_gestione_utenti_1_1_utenti_service.html#a85d0e7563f9cc5a0731b707dc5a74fa3',1,'biblioteca::GestioneUtenti::UtentiService']]],
+  ['compareto_8',['compareTo',['../classbiblioteca_1_1_gestione_libri_1_1_libro.html#ab7bad82cc1bb1932812fd6169a0884e1',1,'biblioteca.GestioneLibri.Libro.compareTo()'],['../classbiblioteca_1_1_gestione_utenti_1_1_utente.html#ae36c5055a25d007fc6a8e8682ebf7150',1,'biblioteca.GestioneUtenti.Utente.compareTo()']]]
 ];

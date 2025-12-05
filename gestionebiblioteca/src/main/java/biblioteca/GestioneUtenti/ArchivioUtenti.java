@@ -17,14 +17,12 @@ import java.io.IOException;
  * - operazioni di aggiungi, rimuovi, ricerca, modifica e visualizza
  * - salvataggio e caricamento da file
  * 
- * Tutti i controlli sono stati affidati alla classe {@see UtenteService}
+ * Tutti i controlli sono stati affidati alla classe {@link UtenteService}
  * 
  * @author Gerardo
  */
 public class ArchivioUtenti implements Archivio{
-    /**
-     * Insieme ordinato degli utenti
-     */
+    /** Insieme ordinato degli utenti */
    private Set<Utente> utenti;
    /**
     * @brief Costruttore: inizializza un TreeSet vuoto
@@ -77,7 +75,7 @@ public class ArchivioUtenti implements Archivio{
     * @return L'utente che è stato rimosso oppure null se non presente
     * 
     * @pre u !=null
-    * @pre l'utente non deve avere prestiti attivi(verifica delegata alla classe UtentiService).
+    * @pre l'utente non deve avere prestiti attivi(verifica delegata alla classe {@link UtentiService}).
     * @post se presente, l'utente viene rimosso dall'archivio.
     */
    public Utente rimuoviUtente(Utente u){
@@ -102,22 +100,22 @@ public class ArchivioUtenti implements Archivio{
     * @param matricola Matricola da cercare
     * @return Torna l'utente con la matricola data oppure null in caso di utente non trovato
     * 
-    * @pre matricola deve essere > 0.
+    * @pre matricola >0 
     * @post restituisce l'utente corrispondente
     */
-   public boolean ricercaMatricola(int matricola){
-   return true;
+   public Utente ricercaMatricola(int matricola){
+   return null;
    }
    /**
     * @brief Modifica un utente già presente.
     * @param u Utente aggiornato
     * @return Torna true se la modifica è avvenuta con successo, altrimenti false
     * 
-    * @pre u1=null
+    * @pre u!=null e utente già registrato
     * se esiste, l'utente viene sostituito con u
     */
-   public Utente modificaUtente(Utente u){ 
-   return null;
+   public boolean modificaUtente(Utente u){ 
+   return false;
    }
    /**
     * @brief Restituisce l'intero insieme degli utenti

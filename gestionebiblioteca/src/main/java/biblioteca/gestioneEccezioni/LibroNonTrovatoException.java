@@ -4,25 +4,33 @@
  * and open the template in the editor.
  */
 package biblioteca.gestioneEccezioni;
-
 /**
- *
- * @author Utente
+ * @brief Eccezione sollevata quando un libro non è presente nell'archivio.
+ * 
+ * Questa eccezione estende {@link BibliotecaException} e viene utilizzata
+ * per segnalare che il libro richiesto non è stato trovato in biblioteca.
+ * 
+ * Offre due costruttori:
+ * - senza messaggio di dettaglio
+ * - con messaggio di dettaglio personalizzato
  */
 public class LibroNonTrovatoException extends BibliotecaException{
-
     /**
-     * Creates a new instance of <code>LibroNonTrovatoException</code> without
-     * detail message.
+     * @brief Costruttore di default.
+     * 
+     * Crea una nuova istanza di {@code LibroNonTrovatoException} senza messaggio di dettaglio.
+     * 
+     * @post l'eccezione viene inizializzata senza messaggio
      */
     public LibroNonTrovatoException() {
     }
-
     /**
-     * Constructs an instance of <code>LibroNonTrovatoException</code> with the
-     * specified detail message.
-     *
-     * @param msg the detail message.
+     * @brief Costruttore con messaggio di dettaglio.
+     * 
+     * Crea una nuova istanza di {@code LibroNonTrovatoException} con il messaggio di dettaglio specificato.
+     * 
+     * @param msg Il messaggio di dettaglio associato all'eccezione
+     * @post l'eccezione viene inizializzata con il messaggio fornito
      */
     public LibroNonTrovatoException(String msg) {
         super(msg);

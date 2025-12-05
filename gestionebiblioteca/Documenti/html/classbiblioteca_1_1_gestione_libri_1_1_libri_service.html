@@ -92,29 +92,360 @@ $(function(){initNavTree('classbiblioteca_1_1_gestione_libri_1_1_libri_service.h
   <div class="headertitle"><div class="title">biblioteca.GestioneLibri.LibriService Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Service che esegue la validazione dei dati dei libri.  
+ <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a8ffb81b93b2ea3b9059832e70459b1bc" id="r_a8ffb81b93b2ea3b9059832e70459b1bc"><td class="memItemLeft" align="right" valign="top"><a id="a8ffb81b93b2ea3b9059832e70459b1bc" name="a8ffb81b93b2ea3b9059832e70459b1bc"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>LibriService</b> (<a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_archivio_libri.html">ArchivioLibri</a> archivioLibri)</td></tr>
-<tr class="memitem:a7a0e478a109851133ae6660bdea53bc7" id="r_a7a0e478a109851133ae6660bdea53bc7"><td class="memItemLeft" align="right" valign="top"><a id="a7a0e478a109851133ae6660bdea53bc7" name="a7a0e478a109851133ae6660bdea53bc7"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>registraLibro</b> (<a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_libro.html">Libro</a> l)</td></tr>
-<tr class="memitem:a3c2dcc635e61be6038949675ab2ddf8c" id="r_a3c2dcc635e61be6038949675ab2ddf8c"><td class="memItemLeft" align="right" valign="top"><a id="a3c2dcc635e61be6038949675ab2ddf8c" name="a3c2dcc635e61be6038949675ab2ddf8c"></a>
-<a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_libro.html">Libro</a>&#160;</td><td class="memItemRight" valign="bottom"><b>eliminaLibro</b> (<a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_libro.html">Libro</a> l)</td></tr>
-<tr class="memitem:a2e13c9f118249d1734a6cb8631cf0f3a" id="r_a2e13c9f118249d1734a6cb8631cf0f3a"><td class="memItemLeft" align="right" valign="top"><a id="a2e13c9f118249d1734a6cb8631cf0f3a" name="a2e13c9f118249d1734a6cb8631cf0f3a"></a>
-Set&lt; <a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_libro.html">Libro</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>cercaLibroPerTitolo</b> (String titolo)</td></tr>
-<tr class="memitem:a373179991ba88a1829b4fa51558bffca" id="r_a373179991ba88a1829b4fa51558bffca"><td class="memItemLeft" align="right" valign="top"><a id="a373179991ba88a1829b4fa51558bffca" name="a373179991ba88a1829b4fa51558bffca"></a>
-<a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_libro.html">Libro</a>&#160;</td><td class="memItemRight" valign="bottom"><b>cercaLibroPerISBN</b> (String ISBN)</td></tr>
-<tr class="memitem:a0ba19164a39abb715c3bb8914bc40fab" id="r_a0ba19164a39abb715c3bb8914bc40fab"><td class="memItemLeft" align="right" valign="top"><a id="a0ba19164a39abb715c3bb8914bc40fab" name="a0ba19164a39abb715c3bb8914bc40fab"></a>
-Set&lt; <a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_libro.html">Libro</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>cercaLibroPerAutore</b> (String autore)</td></tr>
-<tr class="memitem:a2e86e12d44cb2b49e72e2077044943a1" id="r_a2e86e12d44cb2b49e72e2077044943a1"><td class="memItemLeft" align="right" valign="top"><a id="a2e86e12d44cb2b49e72e2077044943a1" name="a2e86e12d44cb2b49e72e2077044943a1"></a>
-<a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_libro.html">Libro</a>&#160;</td><td class="memItemRight" valign="bottom"><b>aggiornaLibro</b> (<a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_libro.html">Libro</a> l)</td></tr>
-<tr class="memitem:aa782b545708b2be3dddd9baa1a3df542" id="r_aa782b545708b2be3dddd9baa1a3df542"><td class="memItemLeft" align="right" valign="top"><a id="aa782b545708b2be3dddd9baa1a3df542" name="aa782b545708b2be3dddd9baa1a3df542"></a>
-Set&lt; <a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_libro.html">Libro</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>visualizzaLibri</b> ()</td></tr>
+<tr class="memitem:a8ffb81b93b2ea3b9059832e70459b1bc" id="r_a8ffb81b93b2ea3b9059832e70459b1bc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8ffb81b93b2ea3b9059832e70459b1bc">LibriService</a> (<a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_archivio_libri.html">ArchivioLibri</a> archivioLibri)</td></tr>
+<tr class="memdesc:a8ffb81b93b2ea3b9059832e70459b1bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Costruttore del Service.  <br /></td></tr>
+<tr class="memitem:a7a0e478a109851133ae6660bdea53bc7" id="r_a7a0e478a109851133ae6660bdea53bc7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7a0e478a109851133ae6660bdea53bc7">registraLibro</a> (<a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_libro.html">Libro</a> l)  throws <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html">ValidazioneException</a>, <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_duplicato_exception.html">DuplicatoException</a></td></tr>
+<tr class="memdesc:a7a0e478a109851133ae6660bdea53bc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aggiunge un nuovo libro effettuando i dovuti controlli.  <br /></td></tr>
+<tr class="memitem:a3c2dcc635e61be6038949675ab2ddf8c" id="r_a3c2dcc635e61be6038949675ab2ddf8c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_libro.html">Libro</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3c2dcc635e61be6038949675ab2ddf8c">eliminaLibro</a> (<a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_libro.html">Libro</a> l)  throws <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html">ValidazioneException</a>, <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_cancellazione_prestito_attivo_exception.html">CancellazionePrestitoAttivoException</a></td></tr>
+<tr class="memdesc:a3c2dcc635e61be6038949675ab2ddf8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Elimina un libro esistente.  <br /></td></tr>
+<tr class="memitem:a2e13c9f118249d1734a6cb8631cf0f3a" id="r_a2e13c9f118249d1734a6cb8631cf0f3a"><td class="memItemLeft" align="right" valign="top">Set&lt; <a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_libro.html">Libro</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2e13c9f118249d1734a6cb8631cf0f3a">cercaLibroPerTitolo</a> (String titolo)  throws <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html">ValidazioneException</a>, <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_libro_non_trovato_exception.html">LibroNonTrovatoException</a></td></tr>
+<tr class="memdesc:a2e13c9f118249d1734a6cb8631cf0f3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cerca libro per titolo.  <br /></td></tr>
+<tr class="memitem:a373179991ba88a1829b4fa51558bffca" id="r_a373179991ba88a1829b4fa51558bffca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_libro.html">Libro</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a373179991ba88a1829b4fa51558bffca">cercaLibroPerISBN</a> (String ISBN)  throws <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_libro_non_trovato_exception.html">LibroNonTrovatoException</a>, <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html">ValidazioneException</a></td></tr>
+<tr class="memdesc:a373179991ba88a1829b4fa51558bffca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cerca un libro tramite l'ISBN.  <br /></td></tr>
+<tr class="memitem:a0ba19164a39abb715c3bb8914bc40fab" id="r_a0ba19164a39abb715c3bb8914bc40fab"><td class="memItemLeft" align="right" valign="top">Set&lt; <a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_libro.html">Libro</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ba19164a39abb715c3bb8914bc40fab">cercaLibroPerAutore</a> (String autore)  throws <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_libro_non_trovato_exception.html">LibroNonTrovatoException</a>, <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html">ValidazioneException</a></td></tr>
+<tr class="memdesc:a0ba19164a39abb715c3bb8914bc40fab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cerca libro per autore.  <br /></td></tr>
+<tr class="memitem:a7a1f3318c15a9f53d6134a90214e407b" id="r_a7a1f3318c15a9f53d6134a90214e407b"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7a1f3318c15a9f53d6134a90214e407b">aggiornaLibro</a> (<a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_libro.html">Libro</a> l)  throws <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html">ValidazioneException</a></td></tr>
+<tr class="memdesc:a7a1f3318c15a9f53d6134a90214e407b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aggiorna un libro esistente.  <br /></td></tr>
+<tr class="memitem:aa782b545708b2be3dddd9baa1a3df542" id="r_aa782b545708b2be3dddd9baa1a3df542"><td class="memItemLeft" align="right" valign="top">Set&lt; <a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_libro.html">Libro</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa782b545708b2be3dddd9baa1a3df542">visualizzaLibri</a> ()</td></tr>
+<tr class="memdesc:aa782b545708b2be3dddd9baa1a3df542"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restituisce l'insieme completo dei libri.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><dl class="section author"><dt>Author</dt><dd>vince </dd></dl>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<div class="textblock"><p>Service che esegue la validazione dei dati dei libri. </p>
+<p>Effettua i controlli su:</p><ul>
+<li>titolo, autore, anno di Pubblicazione e copie disponibili</li>
+<li>ISBN non vuoto, univoco e con formato valido</li>
+<li>numero di copie disponibile &gt;0</li>
+</ul>
+<p>Le operazioni vengono delegate a <a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_archivio_libri.html" title="Gestisce la collezione dei libri della biblioteca.">ArchivioLibri</a>. </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a8ffb81b93b2ea3b9059832e70459b1bc" name="a8ffb81b93b2ea3b9059832e70459b1bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ffb81b93b2ea3b9059832e70459b1bc">&#9670;&#160;</a></span>LibriService()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">biblioteca.GestioneLibri.LibriService.LibriService </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_archivio_libri.html">ArchivioLibri</a></td>          <td class="paramname"><span class="paramname"><em>archivioLibri</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Costruttore del Service. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">archivioLibri</td><td>archivio dei libri da usare come dati</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd>archivioLibri != null </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>this.archivioLibri==archivioLibri </dd></dl>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a7a1f3318c15a9f53d6134a90214e407b" name="a7a1f3318c15a9f53d6134a90214e407b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a1f3318c15a9f53d6134a90214e407b">&#9670;&#160;</a></span>aggiornaLibro()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">boolean biblioteca.GestioneLibri.LibriService.aggiornaLibro </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_libro.html">Libro</a></td>          <td class="paramname"><span class="paramname"><em>l</em></span></td><td>)</td>
+          <td> throws <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html">ValidazioneException</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Aggiorna un libro esistente. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td><a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_libro.html" title="Rappresenta un libro del sistema bibliotecario.">Libro</a> aggiornato </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true se aggiornamento riuscito, false altrimenti </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html" title="Eccezione sollevata quando i dati inseriti non sono validi.">ValidazioneException</a></td><td>se i dati inseriti non sono validi</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd>l!=null </dd></dl>
+
+</div>
+</div>
+<a id="a0ba19164a39abb715c3bb8914bc40fab" name="a0ba19164a39abb715c3bb8914bc40fab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ba19164a39abb715c3bb8914bc40fab">&#9670;&#160;</a></span>cercaLibroPerAutore()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Set&lt; <a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_libro.html">Libro</a> &gt; biblioteca.GestioneLibri.LibriService.cercaLibroPerAutore </td>
+          <td>(</td>
+          <td class="paramtype">String</td>          <td class="paramname"><span class="paramname"><em>autore</em></span></td><td>)</td>
+          <td> throws <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_libro_non_trovato_exception.html">LibroNonTrovatoException</a>, <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html">ValidazioneException</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Cerca libro per autore. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">autore</td><td>Autore da cercare </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Insieme dei libri con quell'autore </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html" title="Eccezione sollevata quando i dati inseriti non sono validi.">ValidazioneException</a></td><td>se l'autore non è valido </td></tr>
+    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_libro_non_trovato_exception.html" title="Eccezione sollevata quando un libro non è presente nell&#39;archivio.">LibroNonTrovatoException</a></td><td>se nessun libro è stato trovato</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd>autore != null &amp;&amp; !autore.isEmpty() </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>trova l'insieme dei libri trovati </dd></dl>
+
+</div>
+</div>
+<a id="a373179991ba88a1829b4fa51558bffca" name="a373179991ba88a1829b4fa51558bffca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a373179991ba88a1829b4fa51558bffca">&#9670;&#160;</a></span>cercaLibroPerISBN()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_libro.html">Libro</a> biblioteca.GestioneLibri.LibriService.cercaLibroPerISBN </td>
+          <td>(</td>
+          <td class="paramtype">String</td>          <td class="paramname"><span class="paramname"><em>ISBN</em></span></td><td>)</td>
+          <td> throws <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_libro_non_trovato_exception.html">LibroNonTrovatoException</a>, <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html">ValidazioneException</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Cerca un libro tramite l'ISBN. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ISBN</td><td>ISBN da cercare </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>il libro trovato </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_libro_non_trovato_exception.html" title="Eccezione sollevata quando un libro non è presente nell&#39;archivio.">LibroNonTrovatoException</a></td><td>se il libro non esiste </td></tr>
+    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html" title="Eccezione sollevata quando i dati inseriti non sono validi.">ValidazioneException</a></td><td>se il libro non è valido</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd>ISBN univoco, ISBN != null &amp;&amp; !ISBN.isEmpty() </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>restituisce il libro con quel ISBN </dd></dl>
+
+</div>
+</div>
+<a id="a2e13c9f118249d1734a6cb8631cf0f3a" name="a2e13c9f118249d1734a6cb8631cf0f3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e13c9f118249d1734a6cb8631cf0f3a">&#9670;&#160;</a></span>cercaLibroPerTitolo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Set&lt; <a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_libro.html">Libro</a> &gt; biblioteca.GestioneLibri.LibriService.cercaLibroPerTitolo </td>
+          <td>(</td>
+          <td class="paramtype">String</td>          <td class="paramname"><span class="paramname"><em>titolo</em></span></td><td>)</td>
+          <td> throws <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html">ValidazioneException</a>, <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_libro_non_trovato_exception.html">LibroNonTrovatoException</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Cerca libro per titolo. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">titolo</td><td>Titolo da cercare </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Insieme dei libri con quel titolo </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html" title="Eccezione sollevata quando i dati inseriti non sono validi.">ValidazioneException</a></td><td>se il titolo non è valido </td></tr>
+    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_libro_non_trovato_exception.html" title="Eccezione sollevata quando un libro non è presente nell&#39;archivio.">LibroNonTrovatoException</a></td><td>se nessun libro è stato trovato</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd>titolo != null &amp;&amp; !titolo.isEmpty() </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>trova l'insieme dei libri trovati </dd></dl>
+
+</div>
+</div>
+<a id="a3c2dcc635e61be6038949675ab2ddf8c" name="a3c2dcc635e61be6038949675ab2ddf8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c2dcc635e61be6038949675ab2ddf8c">&#9670;&#160;</a></span>eliminaLibro()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_libro.html">Libro</a> biblioteca.GestioneLibri.LibriService.eliminaLibro </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_libro.html">Libro</a></td>          <td class="paramname"><span class="paramname"><em>l</em></span></td><td>)</td>
+          <td> throws <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html">ValidazioneException</a>, <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_cancellazione_prestito_attivo_exception.html">CancellazionePrestitoAttivoException</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Elimina un libro esistente. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>Dati del libro da eliminare </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_libro.html" title="Rappresenta un libro del sistema bibliotecario.">Libro</a> da eliminare </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html" title="Eccezione sollevata quando i dati inseriti non sono validi.">ValidazioneException</a></td><td>se i campi forniti non sono validi </td></tr>
+    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_cancellazione_prestito_attivo_exception.html" title="Eccezione sollevata quando si tenta di cancellare un prestito che è ancora attivo.">CancellazionePrestitoAttivoException</a></td><td>se il libro ha prestiti attivi</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd>l != null </dd>
+<dd>
+il libro non deve avere prestiti attivi </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>libro viene rimosso se esiste </dd></dl>
+
+</div>
+</div>
+<a id="a7a0e478a109851133ae6660bdea53bc7" name="a7a0e478a109851133ae6660bdea53bc7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a0e478a109851133ae6660bdea53bc7">&#9670;&#160;</a></span>registraLibro()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void biblioteca.GestioneLibri.LibriService.registraLibro </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_libro.html">Libro</a></td>          <td class="paramname"><span class="paramname"><em>l</em></span></td><td>)</td>
+          <td> throws <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html">ValidazioneException</a>, <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_duplicato_exception.html">DuplicatoException</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Aggiunge un nuovo libro effettuando i dovuti controlli. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td><a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_libro.html" title="Rappresenta un libro del sistema bibliotecario.">Libro</a> da registrare </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html" title="Eccezione sollevata quando i dati inseriti non sono validi.">ValidazioneException</a></td><td>se i dati non sono validi </td></tr>
+    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_duplicato_exception.html" title="Eccezione sollevata quando si tenta di aggiungere un elemento già presente nell&#39;archivio.">DuplicatoException</a></td><td>se esiste già un utente con lo stesso ISBN</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd>l != null </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>il libro viene aggiunto all'archivio </dd></dl>
+
+</div>
+</div>
+<a id="aa782b545708b2be3dddd9baa1a3df542" name="aa782b545708b2be3dddd9baa1a3df542"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa782b545708b2be3dddd9baa1a3df542">&#9670;&#160;</a></span>visualizzaLibri()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Set&lt; <a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_libro.html">Libro</a> &gt; biblioteca.GestioneLibri.LibriService.visualizzaLibri </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Restituisce l'insieme completo dei libri. </p>
+<dl class="section return"><dt>Returns</dt><dd>Set ordinato dei libri </dd></dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>C:/Users/Utente/Desktop/ProgettoIngSoft/gestionebiblioteca/src/main/java/biblioteca/GestioneLibri/<b>LibriService.java</b></li>
 </ul>
 </div><!-- contents -->

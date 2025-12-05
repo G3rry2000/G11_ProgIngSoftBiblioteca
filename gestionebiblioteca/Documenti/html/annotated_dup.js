@@ -13,21 +13,21 @@ var annotated_dup =
         [ "ValidazioneException", "classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html", "classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception" ]
       ] ],
       [ "GestioneHome", null, [
-        [ "HomeViewController", "classbiblioteca_1_1_gestione_home_1_1_home_view_controller.html", null ]
+        [ "HomeViewController", "classbiblioteca_1_1_gestione_home_1_1_home_view_controller.html", "classbiblioteca_1_1_gestione_home_1_1_home_view_controller" ]
       ] ],
       [ "GestioneLibri", null, [
-        [ "ArchivioLibri", "classbiblioteca_1_1_gestione_libri_1_1_archivio_libri.html", null ],
-        [ "LibriService", "classbiblioteca_1_1_gestione_libri_1_1_libri_service.html", null ],
-        [ "Libro", "classbiblioteca_1_1_gestione_libri_1_1_libro.html", null ],
-        [ "LibroViewController", "classbiblioteca_1_1_gestione_libri_1_1_libro_view_controller.html", null ]
+        [ "ArchivioLibri", "classbiblioteca_1_1_gestione_libri_1_1_archivio_libri.html", "classbiblioteca_1_1_gestione_libri_1_1_archivio_libri" ],
+        [ "LibriService", "classbiblioteca_1_1_gestione_libri_1_1_libri_service.html", "classbiblioteca_1_1_gestione_libri_1_1_libri_service" ],
+        [ "Libro", "classbiblioteca_1_1_gestione_libri_1_1_libro.html", "classbiblioteca_1_1_gestione_libri_1_1_libro" ],
+        [ "LibroViewController", "classbiblioteca_1_1_gestione_libri_1_1_libro_view_controller.html", "classbiblioteca_1_1_gestione_libri_1_1_libro_view_controller" ]
       ] ],
       [ "GestionePrestiti", null, [
-        [ "ArchivioCronologiaPrestiti", "classbiblioteca_1_1_gestione_prestiti_1_1_archivio_cronologia_prestiti.html", null ],
-        [ "ArchivioPrestitiAttivi", "classbiblioteca_1_1_gestione_prestiti_1_1_archivio_prestiti_attivi.html", null ],
-        [ "PrestitiService", "classbiblioteca_1_1_gestione_prestiti_1_1_prestiti_service.html", null ],
-        [ "PrestitiViewController", "classbiblioteca_1_1_gestione_prestiti_1_1_prestiti_view_controller.html", null ],
-        [ "Prestito", "classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html", null ],
-        [ "StatoPrestiti", "enumbiblioteca_1_1_gestione_prestiti_1_1_stato_prestiti.html", null ]
+        [ "ArchivioCronologiaPrestiti", "classbiblioteca_1_1_gestione_prestiti_1_1_archivio_cronologia_prestiti.html", "classbiblioteca_1_1_gestione_prestiti_1_1_archivio_cronologia_prestiti" ],
+        [ "ArchivioPrestitiAttivi", "classbiblioteca_1_1_gestione_prestiti_1_1_archivio_prestiti_attivi.html", "classbiblioteca_1_1_gestione_prestiti_1_1_archivio_prestiti_attivi" ],
+        [ "PrestitiService", "classbiblioteca_1_1_gestione_prestiti_1_1_prestiti_service.html", "classbiblioteca_1_1_gestione_prestiti_1_1_prestiti_service" ],
+        [ "PrestitiViewController", "classbiblioteca_1_1_gestione_prestiti_1_1_prestiti_view_controller.html", "classbiblioteca_1_1_gestione_prestiti_1_1_prestiti_view_controller" ],
+        [ "Prestito", "classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html", "classbiblioteca_1_1_gestione_prestiti_1_1_prestito" ],
+        [ "StatoPrestiti", "enumbiblioteca_1_1_gestione_prestiti_1_1_stato_prestiti.html", "enumbiblioteca_1_1_gestione_prestiti_1_1_stato_prestiti" ]
       ] ],
       [ "GestioneUtenti", null, [
         [ "ArchivioUtenti", "classbiblioteca_1_1_gestione_utenti_1_1_archivio_utenti.html", "classbiblioteca_1_1_gestione_utenti_1_1_archivio_utenti" ],
@@ -35,7 +35,7 @@ var annotated_dup =
         [ "UtentiService", "classbiblioteca_1_1_gestione_utenti_1_1_utenti_service.html", "classbiblioteca_1_1_gestione_utenti_1_1_utenti_service" ],
         [ "UtentiViewController", "classbiblioteca_1_1_gestione_utenti_1_1_utenti_view_controller.html", "classbiblioteca_1_1_gestione_utenti_1_1_utenti_view_controller" ]
       ] ],
-      [ "Archivio", "interfacebiblioteca_1_1_archivio.html", null ],
-      [ "Main", "classbiblioteca_1_1_main.html", null ]
+      [ "Archivio", "interfacebiblioteca_1_1_archivio.html", "interfacebiblioteca_1_1_archivio" ],
+      [ "Main", "classbiblioteca_1_1_main.html", "classbiblioteca_1_1_main" ]
     ] ]
 ];

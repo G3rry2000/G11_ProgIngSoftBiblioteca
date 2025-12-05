@@ -92,26 +92,42 @@ $(function(){initNavTree('classbiblioteca_1_1gestione_eccezioni_1_1_validazione_
   <div class="headertitle"><div class="title">biblioteca.gestioneEccezioni.ValidazioneException Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Eccezione sollevata quando i dati inseriti non sono validi.  
+ <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for biblioteca.gestioneEccezioni.ValidazioneException:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.png" usemap="#biblioteca_2EgestioneEccezioni_2EValidazioneException_map" alt=""/>
   <map id="biblioteca_2EgestioneEccezioni_2EValidazioneException_map" name="biblioteca_2EgestioneEccezioni_2EValidazioneException_map">
-<area href="classbiblioteca_1_1gestione_eccezioni_1_1_biblioteca_exception.html" alt="biblioteca.gestioneEccezioni.BibliotecaException" shape="rect" coords="0,56,297,80"/>
+<area href="classbiblioteca_1_1gestione_eccezioni_1_1_biblioteca_exception.html" title="Classe base astratta per tutte le eccezioni della biblioteca." alt="biblioteca.gestioneEccezioni.BibliotecaException" shape="rect" coords="0,56,297,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aa0e7ae6c91532c7184c41e1896d92ed1" id="r_aa0e7ae6c91532c7184c41e1896d92ed1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa0e7ae6c91532c7184c41e1896d92ed1">ValidazioneException</a> ()</td></tr>
+<tr class="memdesc:aa0e7ae6c91532c7184c41e1896d92ed1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Costruttore di default.  <br /></td></tr>
 <tr class="memitem:a3cf7521fdcb071f5253966113045c59e" id="r_a3cf7521fdcb071f5253966113045c59e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3cf7521fdcb071f5253966113045c59e">ValidazioneException</a> (String msg)</td></tr>
+<tr class="memdesc:a3cf7521fdcb071f5253966113045c59e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Costruttore con messaggio di dettaglio.  <br /></td></tr>
 <tr class="inherit_header pub_methods_classbiblioteca_1_1gestione_eccezioni_1_1_biblioteca_exception"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classbiblioteca_1_1gestione_eccezioni_1_1_biblioteca_exception')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_biblioteca_exception.html">biblioteca.gestioneEccezioni.BibliotecaException</a></td></tr>
 <tr class="memitem:af2744f8f84a0b63304fd46f83bab52aa inherit pub_methods_classbiblioteca_1_1gestione_eccezioni_1_1_biblioteca_exception" id="r_af2744f8f84a0b63304fd46f83bab52aa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_biblioteca_exception.html#af2744f8f84a0b63304fd46f83bab52aa">BibliotecaException</a> ()</td></tr>
+<tr class="memdesc:af2744f8f84a0b63304fd46f83bab52aa inherit pub_methods_classbiblioteca_1_1gestione_eccezioni_1_1_biblioteca_exception"><td class="mdescLeft">&#160;</td><td class="mdescRight">Costruttore di default.  <br /></td></tr>
 <tr class="memitem:ae85c2df9f7413131afeff7b0300b979b inherit pub_methods_classbiblioteca_1_1gestione_eccezioni_1_1_biblioteca_exception" id="r_ae85c2df9f7413131afeff7b0300b979b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_biblioteca_exception.html#ae85c2df9f7413131afeff7b0300b979b">BibliotecaException</a> (String msg)</td></tr>
+<tr class="memdesc:ae85c2df9f7413131afeff7b0300b979b inherit pub_methods_classbiblioteca_1_1gestione_eccezioni_1_1_biblioteca_exception"><td class="mdescLeft">&#160;</td><td class="mdescRight">Costruttore con messaggio di dettaglio.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Utente </dd></dl>
+<div class="textblock"><p>Eccezione sollevata quando i dati inseriti non sono validi. </p>
+<p>Questa eccezione estende <code><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_biblioteca_exception.html">BibliotecaException</a></code> e viene utilizzata per segnalare errori di validazione dei campi inseriti dall'utente.</p>
+<p>Può essere lanciata, ad esempio, quando:</p><ul>
+<li>un campo obbligatorio è vuoto</li>
+<li>un formato non è corretto (es. email, matricola, ISBN)</li>
+</ul>
+<p>Offre due costruttori:</p><ul>
+<li>senza messaggio di dettaglio</li>
+<li>con messaggio di dettaglio personalizzato </li>
+</ul>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aa0e7ae6c91532c7184c41e1896d92ed1" name="aa0e7ae6c91532c7184c41e1896d92ed1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa0e7ae6c91532c7184c41e1896d92ed1">&#9670;&#160;</a></span>ValidazioneException() <span class="overload">[1/2]</span></h2>
@@ -135,7 +151,10 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Creates a new instance of <code><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html">ValidazioneException</a></code> without detail message. </p>
+
+<p>Costruttore di default. </p>
+<p>Crea una nuova istanza di <code class="JavaDocCode">ValidazioneException</code> senza messaggio di dettaglio.</p>
+<dl class="section post"><dt>Postcondition</dt><dd>l'eccezione viene inizializzata senza messaggio </dd></dl>
 
 </div>
 </div>
@@ -161,13 +180,16 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Constructs an instance of <code><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html">ValidazioneException</a></code> with the specified detail message.</p>
+
+<p>Costruttore con messaggio di dettaglio. </p>
+<p>Crea una nuova istanza di <code class="JavaDocCode">ValidazioneException</code> con il messaggio di dettaglio specificato.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">msg</td><td>the detail message. </td></tr>
+    <tr><td class="paramname">msg</td><td>Il messaggio di dettaglio associato all'eccezione </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section post"><dt>Postcondition</dt><dd>l'eccezione viene inizializzata con il messaggio fornito </dd></dl>
 
 </div>
 </div>

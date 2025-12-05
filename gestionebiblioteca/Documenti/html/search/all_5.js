@@ -1,9 +1,21 @@
 var searchData=
 [
-  ['getcognome_0',['getCognome',['../classbiblioteca_1_1_gestione_utenti_1_1_utente.html#ab9cffe70213b80555b1d18181038ef4b',1,'biblioteca::GestioneUtenti::Utente']]],
-  ['getemail_1',['getEmail',['../classbiblioteca_1_1_gestione_utenti_1_1_utente.html#a2572b95e2ef1573c5051d759f74e5efe',1,'biblioteca::GestioneUtenti::Utente']]],
-  ['getmatricola_2',['getMatricola',['../classbiblioteca_1_1_gestione_utenti_1_1_utente.html#ae43ad572271471b91af139486265cc0e',1,'biblioteca::GestioneUtenti::Utente']]],
-  ['getnome_3',['getNome',['../classbiblioteca_1_1_gestione_utenti_1_1_utente.html#a520b8f87b59e22b84c2f7ddc1259db42',1,'biblioteca::GestioneUtenti::Utente']]],
-  ['getprestitiattivi_4',['getPrestitiAttivi',['../classbiblioteca_1_1_gestione_utenti_1_1_utente.html#adc4e2c4558dd7770b6ce6dc470c1eebc',1,'biblioteca::GestioneUtenti::Utente']]],
-  ['getutenti_5',['getUtenti',['../classbiblioteca_1_1_gestione_utenti_1_1_archivio_utenti.html#a2205141f1e3f11f26d1f663e661c43af',1,'biblioteca::GestioneUtenti::ArchivioUtenti']]]
+  ['getannopubblicazione_0',['getAnnoPubblicazione',['../classbiblioteca_1_1_gestione_libri_1_1_libro.html#a664309d68818a8600007b0c35a02006e',1,'biblioteca::GestioneLibri::Libro']]],
+  ['getautore_1',['getAutore',['../classbiblioteca_1_1_gestione_libri_1_1_libro.html#a8493a06e69590365a1605c4f5e90d0f3',1,'biblioteca::GestioneLibri::Libro']]],
+  ['getcognome_2',['getCognome',['../classbiblioteca_1_1_gestione_utenti_1_1_utente.html#ab9cffe70213b80555b1d18181038ef4b',1,'biblioteca::GestioneUtenti::Utente']]],
+  ['getcopiedisponibili_3',['getCopieDisponibili',['../classbiblioteca_1_1_gestione_libri_1_1_libro.html#af9039195aa5e7a8993a7f5c99862c217',1,'biblioteca::GestioneLibri::Libro']]],
+  ['getcronologia_4',['getCronologia',['../classbiblioteca_1_1_gestione_prestiti_1_1_archivio_cronologia_prestiti.html#a26f0199d72ab618ee5b6ca2100a4658e',1,'biblioteca::GestionePrestiti::ArchivioCronologiaPrestiti']]],
+  ['getdatafine_5',['getDataFine',['../classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html#a6c5fcca2d6788f00c31741d0cfe31f5a',1,'biblioteca::GestionePrestiti::Prestito']]],
+  ['getdatainizio_6',['getDataInizio',['../classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html#a3729fe7933ca236d7fbb790d8bd9af33',1,'biblioteca::GestionePrestiti::Prestito']]],
+  ['getemail_7',['getEmail',['../classbiblioteca_1_1_gestione_utenti_1_1_utente.html#a2572b95e2ef1573c5051d759f74e5efe',1,'biblioteca::GestioneUtenti::Utente']]],
+  ['getisbn_8',['getISBN',['../classbiblioteca_1_1_gestione_libri_1_1_libro.html#a88dce55f7eeb0a04bcd3ddfea85d90d3',1,'biblioteca::GestioneLibri::Libro']]],
+  ['getlibri_9',['getLibri',['../classbiblioteca_1_1_gestione_libri_1_1_archivio_libri.html#a632dc817626be65ea8acb613db193a62',1,'biblioteca::GestioneLibri::ArchivioLibri']]],
+  ['getlibro_10',['getLibro',['../classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html#a21bd7e9f585e6969c52a4471146f44a8',1,'biblioteca::GestionePrestiti::Prestito']]],
+  ['getmatricola_11',['getMatricola',['../classbiblioteca_1_1_gestione_utenti_1_1_utente.html#ae43ad572271471b91af139486265cc0e',1,'biblioteca::GestioneUtenti::Utente']]],
+  ['getnome_12',['getNome',['../classbiblioteca_1_1_gestione_utenti_1_1_utente.html#a520b8f87b59e22b84c2f7ddc1259db42',1,'biblioteca::GestioneUtenti::Utente']]],
+  ['getprestitiattivi_13',['getPrestitiAttivi',['../classbiblioteca_1_1_gestione_prestiti_1_1_archivio_prestiti_attivi.html#aff04d9c1e3a683bc60455b176fce7529',1,'biblioteca.GestionePrestiti.ArchivioPrestitiAttivi.getPrestitiAttivi()'],['../classbiblioteca_1_1_gestione_utenti_1_1_utente.html#adc4e2c4558dd7770b6ce6dc470c1eebc',1,'biblioteca.GestioneUtenti.Utente.getPrestitiAttivi()']]],
+  ['getstato_14',['getStato',['../classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html#a00865f5abf51219074c7b0a66ef6f1fd',1,'biblioteca::GestionePrestiti::Prestito']]],
+  ['gettitolo_15',['getTitolo',['../classbiblioteca_1_1_gestione_libri_1_1_libro.html#ad8dda4132db6bdd4448ddcc5171dcc47',1,'biblioteca::GestioneLibri::Libro']]],
+  ['getutente_16',['getUtente',['../classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html#a3fba9d2cc4ba0a6080b73d243f6353c3',1,'biblioteca::GestionePrestiti::Prestito']]],
+  ['getutenti_17',['getUtenti',['../classbiblioteca_1_1_gestione_utenti_1_1_archivio_utenti.html#a2205141f1e3f11f26d1f663e661c43af',1,'biblioteca::GestioneUtenti::ArchivioUtenti']]]
 ];

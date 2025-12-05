@@ -149,7 +149,7 @@ Public Member Functions</h2></td></tr>
 <p>Costruttore del Service. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">archivioUtenti</td><td>archivio da usare come dati</td></tr>
+    <tr><td class="paramname">archivioUtenti</td><td>archivio degli utenti da usare come dati</td></tr>
   </table>
   </dd>
 </dl>
@@ -192,7 +192,7 @@ Public Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>true se aggiornamento riuscito, false altrimenti </dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html">ValidazioneException</a></td><td>se i dati inseriti non sono validi</td></tr>
+    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html" title="Eccezione sollevata quando i dati inseriti non sono validi.">ValidazioneException</a></td><td>se i dati inseriti non sono validi</td></tr>
   </table>
   </dd>
 </dl>
@@ -233,13 +233,13 @@ Public Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Insieme degli utenti con quel cognome </dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html">ValidazioneException</a></td><td>se il cognome è vuoto </td></tr>
-    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_utente_non_trovato_exception.html">UtenteNonTrovatoException</a></td><td>se nessun utente è stato trovato</td></tr>
+    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html" title="Eccezione sollevata quando i dati inseriti non sono validi.">ValidazioneException</a></td><td>se il cognome non è vuoto </td></tr>
+    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_utente_non_trovato_exception.html" title="Eccezione sollevata quando un utente richiesto non è presente nell&#39;archivio.">UtenteNonTrovatoException</a></td><td>se nessun utente è stato trovato</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>cognome != null &amp;&amp; !cognome.isEmpty( </dd></dl>
-<dl class="section post"><dt>Postcondition</dt><dd>trova l'insieme degli utenti trovati </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>trova l'insieme degli utenti corrispondenti </dd></dl>
 
 </div>
 </div>
@@ -276,12 +276,12 @@ Public Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>l'utente trovato </dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_utente_non_trovato_exception.html">UtenteNonTrovatoException</a></td><td>se la matricola non esiste </td></tr>
-    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html">ValidazioneException</a></td><td>se la matricola non è valida</td></tr>
+    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_utente_non_trovato_exception.html" title="Eccezione sollevata quando un utente richiesto non è presente nell&#39;archivio.">UtenteNonTrovatoException</a></td><td>se la matricola non esiste </td></tr>
+    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html" title="Eccezione sollevata quando i dati inseriti non sono validi.">ValidazioneException</a></td><td>se la matricola non è valida</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>matricola &gt;0 </dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>matricola univoca </dd></dl>
 <dl class="section post"><dt>Postcondition</dt><dd>restituisce l'utente con quella matricola </dd></dl>
 
 </div>
@@ -312,21 +312,19 @@ Public Member Functions</h2></td></tr>
 <p>Elimina un utente esistente. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">u</td><td>Dati dell'utente da eliminare </td></tr>
+    <tr><td class="paramname">u</td><td><a class="el" href="classbiblioteca_1_1_gestione_utenti_1_1_utente.html" title="Rappresenta un utente del sistema bibliotecario.">Utente</a> da eliminare </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>l'utente eliminato </dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html">ValidazioneException</a></td><td>se i campi forniti non sono validi </td></tr>
-    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_cancellazione_prestito_attivo_exception.html">CancellazionePrestitoAttivoException</a></td><td>se l'utente ha prestiti attivi</td></tr>
+    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html" title="Eccezione sollevata quando i dati inseriti non sono validi.">ValidazioneException</a></td><td>se i campi forniti non sono validi </td></tr>
+    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_cancellazione_prestito_attivo_exception.html" title="Eccezione sollevata quando si tenta di cancellare un prestito che è ancora attivo.">CancellazionePrestitoAttivoException</a></td><td>se l'utente ha prestiti attivi</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>u!= null </dd>
-<dd>
-l'utente non deve avere prestiti attivi </dd></dl>
+<p>u != null </p><dl class="section pre"><dt>Precondition</dt><dd>l'utente non deve avere prestiti attivi </dd></dl>
 <dl class="section post"><dt>Postcondition</dt><dd>utente viene rimosso se esiste </dd></dl>
 
 </div>
@@ -363,14 +361,12 @@ l'utente non deve avere prestiti attivi </dd></dl>
 </dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html">ValidazioneException</a></td><td>se i dati non sono validi </td></tr>
-    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_duplicato_exception.html">DuplicatoException</a></td><td>se esuste guà un utente con la stesas matricola</td></tr>
+    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html" title="Eccezione sollevata quando i dati inseriti non sono validi.">ValidazioneException</a></td><td>se i dati non sono validi </td></tr>
+    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_duplicato_exception.html" title="Eccezione sollevata quando si tenta di aggiungere un elemento già presente nell&#39;archivio.">DuplicatoException</a></td><td>se esiste guà un utente con la stessa matricola</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>u != null </dd>
-<dd>
-tutti i campi di u validi </dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>u != null </dd></dl>
 <dl class="section post"><dt>Postcondition</dt><dd>l'utente viene aggiunto all'archivio </dd></dl>
 
 </div>

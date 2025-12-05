@@ -38,12 +38,12 @@ public class Utente implements Comparable<Utente>{
     
     /** 
      * @brief Costruttore della classe Utente
-     * @param nome Nome dell'utente. 
-     * @param cognome Cognome dell'utente. 
-     * @param matricola Matricola univoca dell'utente. 
+     * @param nome Nome dell'utente
+     * @param cognome Cognome dell'utente
+     * @param matricola Matricola univoca dell'utente
      * @param email Email dell'utente
      * 
-     * @pre {@see UtenteService} deve garantire tutti i controlli sui dati.
+     * @pre {@see UtenteService} deve garantire tutti i controlli sui dati
      * @post L'utente è inizializzato con lista dei prestiti vuota
      * 
      */
@@ -153,7 +153,7 @@ public class Utente implements Comparable<Utente>{
     }
     
     /**
-     * @return Una rappresentazione leggibile dell'utente
+     *@return Una rappresentazione leggibile dell'utente
      */
     @Override
     public String toString(){

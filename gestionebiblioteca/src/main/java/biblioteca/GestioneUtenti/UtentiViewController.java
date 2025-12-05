@@ -115,7 +115,7 @@ public class UtentiViewController implements Initializable {
     private void onRimuoviUtente(ActionEvent event) {
     }
      /**
-     * @brief Esegue una ricerca utenti sui campi compilato cognome e matricola
+     * @brief Esegue una ricerca utenti sui campi compilando cognome o matricola
      */
     @FXML
     private void onRicercaUtente(ActionEvent event) {

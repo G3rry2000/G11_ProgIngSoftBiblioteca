@@ -1,8 +1,20 @@
 var searchData=
 [
-  ['registrautente_0',['registraUtente',['../classbiblioteca_1_1_gestione_utenti_1_1_utenti_service.html#a927f2472b5ecd20ae5ab5bb242796f59',1,'biblioteca::GestioneUtenti::UtentiService']]],
-  ['ricercacognome_1',['ricercaCognome',['../classbiblioteca_1_1_gestione_utenti_1_1_archivio_utenti.html#abb184098699df50ab9071ee96f7c5a12',1,'biblioteca::GestioneUtenti::ArchivioUtenti']]],
-  ['ricercamatricola_2',['ricercaMatricola',['../classbiblioteca_1_1_gestione_utenti_1_1_archivio_utenti.html#a79420a10fac1f05f0dfac7bf96ca3447',1,'biblioteca::GestioneUtenti::ArchivioUtenti']]],
-  ['rimuoviprestitoattivo_3',['rimuoviPrestitoAttivo',['../classbiblioteca_1_1_gestione_utenti_1_1_utente.html#a49e92de77dfa6d6c1960cebb5b3ac85a',1,'biblioteca::GestioneUtenti::Utente']]],
-  ['rimuoviutente_4',['rimuoviUtente',['../classbiblioteca_1_1_gestione_utenti_1_1_archivio_utenti.html#a3a607cbdd79bca9babc1d6f6fb10a512',1,'biblioteca::GestioneUtenti::ArchivioUtenti']]]
+  ['registralibro_0',['registraLibro',['../classbiblioteca_1_1_gestione_libri_1_1_libri_service.html#a7a0e478a109851133ae6660bdea53bc7',1,'biblioteca::GestioneLibri::LibriService']]],
+  ['registraprestitoattivo_1',['registraPrestitoAttivo',['../classbiblioteca_1_1_gestione_prestiti_1_1_prestiti_service.html#a5bd27f736c4a2b277273d28882844204',1,'biblioteca::GestionePrestiti::PrestitiService']]],
+  ['registraprestitocronologia_2',['registraPrestitoCronologia',['../classbiblioteca_1_1_gestione_prestiti_1_1_prestiti_service.html#ac273fa65df0b58399a439f3ff184a041',1,'biblioteca::GestionePrestiti::PrestitiService']]],
+  ['registrautente_3',['registraUtente',['../classbiblioteca_1_1_gestione_utenti_1_1_utenti_service.html#a927f2472b5ecd20ae5ab5bb242796f59',1,'biblioteca::GestioneUtenti::UtentiService']]],
+  ['ricercaautore_4',['ricercaAutore',['../classbiblioteca_1_1_gestione_libri_1_1_archivio_libri.html#a0b81eaf01371669e78f122f7d80bf4ad',1,'biblioteca::GestioneLibri::ArchivioLibri']]],
+  ['ricercacognome_5',['ricercaCognome',['../classbiblioteca_1_1_gestione_utenti_1_1_archivio_utenti.html#abb184098699df50ab9071ee96f7c5a12',1,'biblioteca::GestioneUtenti::ArchivioUtenti']]],
+  ['ricercaisbn_6',['ricercaISBN',['../classbiblioteca_1_1_gestione_libri_1_1_archivio_libri.html#a3627a9c8ea0b8e95ac4d55e1bbf6f48a',1,'biblioteca::GestioneLibri::ArchivioLibri']]],
+  ['ricercamatricola_7',['ricercaMatricola',['../classbiblioteca_1_1_gestione_utenti_1_1_archivio_utenti.html#af8d29d6e9e078fd1d1059875dc5cae9f',1,'biblioteca::GestioneUtenti::ArchivioUtenti']]],
+  ['ricercaprestitoattivo_8',['ricercaPrestitoAttivo',['../classbiblioteca_1_1_gestione_prestiti_1_1_archivio_prestiti_attivi.html#aaed59edb6c046d383f6ece97b2c3da26',1,'biblioteca::GestionePrestiti::ArchivioPrestitiAttivi']]],
+  ['ricercaprestitolibrocronologia_9',['ricercaPrestitoLibroCronologia',['../classbiblioteca_1_1_gestione_prestiti_1_1_archivio_cronologia_prestiti.html#a81863b9378457a0faac8158216623334',1,'biblioteca::GestionePrestiti::ArchivioCronologiaPrestiti']]],
+  ['ricercaprestitolibrocronologiaperlibro_10',['ricercaPrestitoLibroCronologiaPerLibro',['../classbiblioteca_1_1_gestione_prestiti_1_1_prestiti_service.html#a42b4ac5c38e323094a49a5cc43c0abf2',1,'biblioteca::GestionePrestiti::PrestitiService']]],
+  ['ricercaprestitoutentecronologia_11',['ricercaPrestitoUtenteCronologia',['../classbiblioteca_1_1_gestione_prestiti_1_1_archivio_cronologia_prestiti.html#a2c55670fd3ec95c8caf28c6fe8d4fb4a',1,'biblioteca::GestionePrestiti::ArchivioCronologiaPrestiti']]],
+  ['ricercatitolo_12',['ricercaTitolo',['../classbiblioteca_1_1_gestione_libri_1_1_archivio_libri.html#a71b50baf2320e122c40c17e5c643799c',1,'biblioteca::GestioneLibri::ArchivioLibri']]],
+  ['rimuovilibro_13',['rimuoviLibro',['../classbiblioteca_1_1_gestione_libri_1_1_archivio_libri.html#af65f3983d6deb0876c693d024de56bd8',1,'biblioteca::GestioneLibri::ArchivioLibri']]],
+  ['rimuoviprestitoattivo_14',['rimuoviPrestitoAttivo',['../classbiblioteca_1_1_gestione_prestiti_1_1_archivio_prestiti_attivi.html#a5a2f2d191549d2e2503309db6ea7e713',1,'biblioteca.GestionePrestiti.ArchivioPrestitiAttivi.rimuoviPrestitoAttivo()'],['../classbiblioteca_1_1_gestione_utenti_1_1_utente.html#a49e92de77dfa6d6c1960cebb5b3ac85a',1,'biblioteca.GestioneUtenti.Utente.rimuoviPrestitoAttivo()']]],
+  ['rimuoviprestitocronologia_15',['rimuoviPrestitoCronologia',['../classbiblioteca_1_1_gestione_prestiti_1_1_archivio_cronologia_prestiti.html#a7ca5bd32cc08a17133a0a92e8a159878',1,'biblioteca::GestionePrestiti::ArchivioCronologiaPrestiti']]],
+  ['rimuoviutente_16',['rimuoviUtente',['../classbiblioteca_1_1_gestione_utenti_1_1_archivio_utenti.html#a3a607cbdd79bca9babc1d6f6fb10a512',1,'biblioteca::GestioneUtenti::ArchivioUtenti']]]
 ];

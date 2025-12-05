@@ -92,33 +92,453 @@ $(function(){initNavTree('classbiblioteca_1_1_gestione_prestiti_1_1_prestiti_ser
   <div class="headertitle"><div class="title">biblioteca.GestionePrestiti.PrestitiService Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Service che esegue la validazione dei dati dei prestiti.  
+ <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac78ebf9f737a491fb38234c9612c03be" id="r_ac78ebf9f737a491fb38234c9612c03be"><td class="memItemLeft" align="right" valign="top"><a id="ac78ebf9f737a491fb38234c9612c03be" name="ac78ebf9f737a491fb38234c9612c03be"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>PrestitiService</b> (<a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_archivio_libri.html">ArchivioLibri</a> archivioLibri, <a class="el" href="classbiblioteca_1_1_gestione_utenti_1_1_archivio_utenti.html">ArchivioUtenti</a> archivioUtenti, <a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_archivio_prestiti_attivi.html">ArchivioPrestitiAttivi</a> archivioPrestitiAttivi, <a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_archivio_cronologia_prestiti.html">ArchivioCronologiaPrestiti</a> archivioCronologia)</td></tr>
-<tr class="memitem:a5bd27f736c4a2b277273d28882844204" id="r_a5bd27f736c4a2b277273d28882844204"><td class="memItemLeft" align="right" valign="top"><a id="a5bd27f736c4a2b277273d28882844204" name="a5bd27f736c4a2b277273d28882844204"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>registraPrestitoAttivo</b> (<a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html">Prestito</a> p)</td></tr>
-<tr class="memitem:ae3e2abe2c25aff7bf6e86c3e50d93aca" id="r_ae3e2abe2c25aff7bf6e86c3e50d93aca"><td class="memItemLeft" align="right" valign="top"><a id="ae3e2abe2c25aff7bf6e86c3e50d93aca" name="ae3e2abe2c25aff7bf6e86c3e50d93aca"></a>
-<a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html">Prestito</a>&#160;</td><td class="memItemRight" valign="bottom"><b>eliminaPrestitoAttivo</b> (<a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html">Prestito</a> p)</td></tr>
-<tr class="memitem:a8ef50851667342896525a090a25a891d" id="r_a8ef50851667342896525a090a25a891d"><td class="memItemLeft" align="right" valign="top"><a id="a8ef50851667342896525a090a25a891d" name="a8ef50851667342896525a090a25a891d"></a>
-<a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html">Prestito</a>&#160;</td><td class="memItemRight" valign="bottom"><b>cercaPrestitoAttivo</b> (<a class="el" href="classbiblioteca_1_1_gestione_utenti_1_1_utente.html">Utente</a> utente, <a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_libro.html">Libro</a> libro)</td></tr>
-<tr class="memitem:a7107c70f6bcd14c5e9c7c32873dc2129" id="r_a7107c70f6bcd14c5e9c7c32873dc2129"><td class="memItemLeft" align="right" valign="top"><a id="a7107c70f6bcd14c5e9c7c32873dc2129" name="a7107c70f6bcd14c5e9c7c32873dc2129"></a>
-List&lt; <a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html">Prestito</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>visualizzaPrestitiAttivi</b> ()</td></tr>
-<tr class="memitem:ac273fa65df0b58399a439f3ff184a041" id="r_ac273fa65df0b58399a439f3ff184a041"><td class="memItemLeft" align="right" valign="top"><a id="ac273fa65df0b58399a439f3ff184a041" name="ac273fa65df0b58399a439f3ff184a041"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>registraPrestitoCronologia</b> (<a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html">Prestito</a> p)</td></tr>
-<tr class="memitem:ad7687b4c647b3fcc8f58bde0cf4b009d" id="r_ad7687b4c647b3fcc8f58bde0cf4b009d"><td class="memItemLeft" align="right" valign="top"><a id="ad7687b4c647b3fcc8f58bde0cf4b009d" name="ad7687b4c647b3fcc8f58bde0cf4b009d"></a>
-<a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html">Prestito</a>&#160;</td><td class="memItemRight" valign="bottom"><b>eliminaPrestitoCronologia</b> (<a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html">Prestito</a> p)</td></tr>
-<tr class="memitem:a2ba4b89803110bcac5b434a0f3404e4d" id="r_a2ba4b89803110bcac5b434a0f3404e4d"><td class="memItemLeft" align="right" valign="top"><a id="a2ba4b89803110bcac5b434a0f3404e4d" name="a2ba4b89803110bcac5b434a0f3404e4d"></a>
-List&lt; <a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html">Prestito</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>cercaPrestitoUtenteCronologiaPerUtente</b> (<a class="el" href="classbiblioteca_1_1_gestione_utenti_1_1_utente.html">Utente</a> utente)</td></tr>
-<tr class="memitem:a42b4ac5c38e323094a49a5cc43c0abf2" id="r_a42b4ac5c38e323094a49a5cc43c0abf2"><td class="memItemLeft" align="right" valign="top"><a id="a42b4ac5c38e323094a49a5cc43c0abf2" name="a42b4ac5c38e323094a49a5cc43c0abf2"></a>
-List&lt; <a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html">Prestito</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>ricercaPrestitoLibroCronologiaPerLibro</b> (<a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_libro.html">Libro</a> libro)</td></tr>
-<tr class="memitem:a61b0684c7a396b618f360681b6ddc81b" id="r_a61b0684c7a396b618f360681b6ddc81b"><td class="memItemLeft" align="right" valign="top"><a id="a61b0684c7a396b618f360681b6ddc81b" name="a61b0684c7a396b618f360681b6ddc81b"></a>
-List&lt; <a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html">Prestito</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>visualizzaCronologia</b> ()</td></tr>
+<tr class="memitem:ac78ebf9f737a491fb38234c9612c03be" id="r_ac78ebf9f737a491fb38234c9612c03be"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac78ebf9f737a491fb38234c9612c03be">PrestitiService</a> (<a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_archivio_libri.html">ArchivioLibri</a> archivioLibri, <a class="el" href="classbiblioteca_1_1_gestione_utenti_1_1_archivio_utenti.html">ArchivioUtenti</a> archivioUtenti, <a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_archivio_prestiti_attivi.html">ArchivioPrestitiAttivi</a> archivioPrestitiAttivi, <a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_archivio_cronologia_prestiti.html">ArchivioCronologiaPrestiti</a> archivioCronologia)</td></tr>
+<tr class="memdesc:ac78ebf9f737a491fb38234c9612c03be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Costruttore del Service.  <br /></td></tr>
+<tr class="memitem:a5bd27f736c4a2b277273d28882844204" id="r_a5bd27f736c4a2b277273d28882844204"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5bd27f736c4a2b277273d28882844204">registraPrestitoAttivo</a> (<a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html">Prestito</a> p)  throws <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html">ValidazioneException</a>, <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_libro_non_disponibile_exception.html">LibroNonDisponibileException</a>, <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_limite_prestito_superato_exception.html">LimitePrestitoSuperatoException</a></td></tr>
+<tr class="memdesc:a5bd27f736c4a2b277273d28882844204"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aggiunge un nuovo prestito attivo effettuando i dovuti controlli.  <br /></td></tr>
+<tr class="memitem:ae3e2abe2c25aff7bf6e86c3e50d93aca" id="r_ae3e2abe2c25aff7bf6e86c3e50d93aca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html">Prestito</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae3e2abe2c25aff7bf6e86c3e50d93aca">eliminaPrestitoAttivo</a> (<a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html">Prestito</a> p)  throws <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html">ValidazioneException</a></td></tr>
+<tr class="memdesc:ae3e2abe2c25aff7bf6e86c3e50d93aca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Elimina un prestito attivo esistente (libro restituito).  <br /></td></tr>
+<tr class="memitem:a8ef50851667342896525a090a25a891d" id="r_a8ef50851667342896525a090a25a891d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html">Prestito</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8ef50851667342896525a090a25a891d">cercaPrestitoAttivo</a> (<a class="el" href="classbiblioteca_1_1_gestione_utenti_1_1_utente.html">Utente</a> utente, <a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_libro.html">Libro</a> libro)  throws <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html">ValidazioneException</a>, <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_prestito_non_trovato_exception.html">PrestitoNonTrovatoException</a></td></tr>
+<tr class="memdesc:a8ef50851667342896525a090a25a891d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cerca prestito attivo per dati (matricola) utente e dati (ISBN) libro.  <br /></td></tr>
+<tr class="memitem:a7107c70f6bcd14c5e9c7c32873dc2129" id="r_a7107c70f6bcd14c5e9c7c32873dc2129"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html">Prestito</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7107c70f6bcd14c5e9c7c32873dc2129">visualizzaPrestitiAttivi</a> ()</td></tr>
+<tr class="memdesc:a7107c70f6bcd14c5e9c7c32873dc2129"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restituisce l'insieme completo dei prestiti attivi.  <br /></td></tr>
+<tr class="memitem:ac273fa65df0b58399a439f3ff184a041" id="r_ac273fa65df0b58399a439f3ff184a041"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac273fa65df0b58399a439f3ff184a041">registraPrestitoCronologia</a> (<a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html">Prestito</a> p)  throws <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html">ValidazioneException</a></td></tr>
+<tr class="memdesc:ac273fa65df0b58399a439f3ff184a041"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aggiunge un nuovo prestito effettuando i dovuti controlli.  <br /></td></tr>
+<tr class="memitem:ad7687b4c647b3fcc8f58bde0cf4b009d" id="r_ad7687b4c647b3fcc8f58bde0cf4b009d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html">Prestito</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad7687b4c647b3fcc8f58bde0cf4b009d">eliminaPrestitoCronologia</a> (<a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html">Prestito</a> p)  throws <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html">ValidazioneException</a></td></tr>
+<tr class="memdesc:ad7687b4c647b3fcc8f58bde0cf4b009d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Elimina un prestito esistente.  <br /></td></tr>
+<tr class="memitem:a2ba4b89803110bcac5b434a0f3404e4d" id="r_a2ba4b89803110bcac5b434a0f3404e4d"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html">Prestito</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2ba4b89803110bcac5b434a0f3404e4d">cercaPrestitoUtenteCronologiaPerUtente</a> (<a class="el" href="classbiblioteca_1_1_gestione_utenti_1_1_utente.html">Utente</a> utente)  throws <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html">ValidazioneException</a>, <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_prestito_non_trovato_exception.html">PrestitoNonTrovatoException</a></td></tr>
+<tr class="memdesc:a2ba4b89803110bcac5b434a0f3404e4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cerca prestito per dati (matricola) utente.  <br /></td></tr>
+<tr class="memitem:a42b4ac5c38e323094a49a5cc43c0abf2" id="r_a42b4ac5c38e323094a49a5cc43c0abf2"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html">Prestito</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a42b4ac5c38e323094a49a5cc43c0abf2">ricercaPrestitoLibroCronologiaPerLibro</a> (<a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_libro.html">Libro</a> libro)  throws <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html">ValidazioneException</a>, <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_prestito_non_trovato_exception.html">PrestitoNonTrovatoException</a></td></tr>
+<tr class="memdesc:a42b4ac5c38e323094a49a5cc43c0abf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cerca prestito per dati (ISBN) libro.  <br /></td></tr>
+<tr class="memitem:a61b0684c7a396b618f360681b6ddc81b" id="r_a61b0684c7a396b618f360681b6ddc81b"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html">Prestito</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a61b0684c7a396b618f360681b6ddc81b">visualizzaCronologia</a> ()</td></tr>
+<tr class="memdesc:a61b0684c7a396b618f360681b6ddc81b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restituisce l'insieme completo della cronologia dei prestiti.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><dl class="section author"><dt>Author</dt><dd>vince </dd></dl>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<div class="textblock"><p>Service che esegue la validazione dei dati dei prestiti. </p>
+<p>Effettua i controlli su:</p><ul>
+<li>utente, libro, dataInizio, dataFine e lo stato</li>
+<li>l'utente non ha superato il limite di Prestiti consetito (minore di 3)</li>
+<li>il numero di copie non è minore di 0 Le operazioni vengono delegate a <a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_archivio_prestiti_attivi.html" title="Gestisce la collezione dei prestiti attivi della biblioteca.">ArchivioPrestitiAttivi</a> e <a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_archivio_cronologia_prestiti.html" title="Gestisce la collezione della cronologia dei prestiti della biblioteca.">ArchivioCronologiaPrestiti</a>. </li>
+</ul>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ac78ebf9f737a491fb38234c9612c03be" name="ac78ebf9f737a491fb38234c9612c03be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac78ebf9f737a491fb38234c9612c03be">&#9670;&#160;</a></span>PrestitiService()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">biblioteca.GestionePrestiti.PrestitiService.PrestitiService </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_archivio_libri.html">ArchivioLibri</a></td>          <td class="paramname"><span class="paramname"><em>archivioLibri</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classbiblioteca_1_1_gestione_utenti_1_1_archivio_utenti.html">ArchivioUtenti</a></td>          <td class="paramname"><span class="paramname"><em>archivioUtenti</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_archivio_prestiti_attivi.html">ArchivioPrestitiAttivi</a></td>          <td class="paramname"><span class="paramname"><em>archivioPrestitiAttivi</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_archivio_cronologia_prestiti.html">ArchivioCronologiaPrestiti</a></td>          <td class="paramname"><span class="paramname"><em>archivioCronologia</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Costruttore del Service. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">archivioLibri</td><td>archivio dei libri da usare come dati </td></tr>
+    <tr><td class="paramname">archivioUtenti</td><td>archivio degli utenti da usare come dati </td></tr>
+    <tr><td class="paramname">archivioPrestitiAttivi</td><td>archivio dei prestiti attivi da usare come dati </td></tr>
+    <tr><td class="paramname">archivioCronologia</td><td>archivio della cronologia dei prestiti da usare come dati</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd>archivioLibri != null, archivioUtenti != null,archivioPrestitiAttivi!= null, archivioCronologia != null </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>this.archivioLibri==archivioLibri, this.archivioUtenti==archivioUtenti, this.archivioPrestitiAttivi==archivioPrestitiAttivi, this.archivioCronologia==archivioCronologia </dd></dl>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a8ef50851667342896525a090a25a891d" name="a8ef50851667342896525a090a25a891d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ef50851667342896525a090a25a891d">&#9670;&#160;</a></span>cercaPrestitoAttivo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html">Prestito</a> biblioteca.GestionePrestiti.PrestitiService.cercaPrestitoAttivo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classbiblioteca_1_1_gestione_utenti_1_1_utente.html">Utente</a></td>          <td class="paramname"><span class="paramname"><em>utente</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_libro.html">Libro</a></td>          <td class="paramname"><span class="paramname"><em>libro</em></span>&#160;) throws <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html">ValidazioneException</a>, <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_prestito_non_trovato_exception.html">PrestitoNonTrovatoException</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Cerca prestito attivo per dati (matricola) utente e dati (ISBN) libro. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">utente</td><td>Dati (matricola) di utente </td></tr>
+    <tr><td class="paramname">libro</td><td>Dati (ISBN) di libro</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Il prestito attivo per matricola e ISBN </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html" title="Eccezione sollevata quando i dati inseriti non sono validi.">ValidazioneException</a></td><td>se i dati non sono validi </td></tr>
+    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_prestito_non_trovato_exception.html" title="Eccezione sollevata quando un prestito richiesto non è presente nell&#39;archivio.">PrestitoNonTrovatoException</a></td><td>se nessun prestito è stato trovato</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd>utente != null &amp;&amp; libro != null </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>trova il prestito attivo corrispondente </dd></dl>
+
+</div>
+</div>
+<a id="a2ba4b89803110bcac5b434a0f3404e4d" name="a2ba4b89803110bcac5b434a0f3404e4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ba4b89803110bcac5b434a0f3404e4d">&#9670;&#160;</a></span>cercaPrestitoUtenteCronologiaPerUtente()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt; <a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html">Prestito</a> &gt; biblioteca.GestionePrestiti.PrestitiService.cercaPrestitoUtenteCronologiaPerUtente </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classbiblioteca_1_1_gestione_utenti_1_1_utente.html">Utente</a></td>          <td class="paramname"><span class="paramname"><em>utente</em></span></td><td>)</td>
+          <td> throws <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html">ValidazioneException</a>, <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_prestito_non_trovato_exception.html">PrestitoNonTrovatoException</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Cerca prestito per dati (matricola) utente. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">utente</td><td>Dati (matricola) di utente</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>L'insieme dei prestiti per utente </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html" title="Eccezione sollevata quando i dati inseriti non sono validi.">ValidazioneException</a></td><td>se i dati non sono validi </td></tr>
+    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_prestito_non_trovato_exception.html" title="Eccezione sollevata quando un prestito richiesto non è presente nell&#39;archivio.">PrestitoNonTrovatoException</a></td><td>se nessun prestito è stato trovato</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd>utente != null </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>trova l'insieme dei prestiti corrispondenti </dd></dl>
+
+</div>
+</div>
+<a id="ae3e2abe2c25aff7bf6e86c3e50d93aca" name="ae3e2abe2c25aff7bf6e86c3e50d93aca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3e2abe2c25aff7bf6e86c3e50d93aca">&#9670;&#160;</a></span>eliminaPrestitoAttivo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html">Prestito</a> biblioteca.GestionePrestiti.PrestitiService.eliminaPrestitoAttivo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html">Prestito</a></td>          <td class="paramname"><span class="paramname"><em>p</em></span></td><td>)</td>
+          <td> throws <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html">ValidazioneException</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Elimina un prestito attivo esistente (libro restituito). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td>Dati del prestito attivo da eliminare </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html" title="Rappresenta un prestito del sistema bibliotecario.">Prestito</a> attivo da eliminare </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html" title="Eccezione sollevata quando i dati inseriti non sono validi.">ValidazioneException</a></td><td>se i campi forniti non sono validi</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd>p != null </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>prestito viene rimosso se esiste </dd></dl>
+
+</div>
+</div>
+<a id="ad7687b4c647b3fcc8f58bde0cf4b009d" name="ad7687b4c647b3fcc8f58bde0cf4b009d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7687b4c647b3fcc8f58bde0cf4b009d">&#9670;&#160;</a></span>eliminaPrestitoCronologia()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html">Prestito</a> biblioteca.GestionePrestiti.PrestitiService.eliminaPrestitoCronologia </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html">Prestito</a></td>          <td class="paramname"><span class="paramname"><em>p</em></span></td><td>)</td>
+          <td> throws <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html">ValidazioneException</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Elimina un prestito esistente. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td>Dati del prestito da eliminare</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html" title="Rappresenta un prestito del sistema bibliotecario.">Prestito</a> da eliminare </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html" title="Eccezione sollevata quando i dati inseriti non sono validi.">ValidazioneException</a></td><td>se i campi forniti non sono validi</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd>p != null </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>prestito viene rimosso se esiste </dd></dl>
+
+</div>
+</div>
+<a id="a5bd27f736c4a2b277273d28882844204" name="a5bd27f736c4a2b277273d28882844204"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5bd27f736c4a2b277273d28882844204">&#9670;&#160;</a></span>registraPrestitoAttivo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void biblioteca.GestionePrestiti.PrestitiService.registraPrestitoAttivo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html">Prestito</a></td>          <td class="paramname"><span class="paramname"><em>p</em></span></td><td>)</td>
+          <td> throws <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html">ValidazioneException</a>, <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_libro_non_disponibile_exception.html">LibroNonDisponibileException</a>, <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_limite_prestito_superato_exception.html">LimitePrestitoSuperatoException</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Aggiunge un nuovo prestito attivo effettuando i dovuti controlli. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td><a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html" title="Rappresenta un prestito del sistema bibliotecario.">Prestito</a> da registrare </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html" title="Eccezione sollevata quando i dati inseriti non sono validi.">ValidazioneException</a></td><td>se i dati non sono validi </td></tr>
+    <tr><td class="paramname">LibroNonDisponibile</td><td>se il libro non è attualmente disponibile (NumeroCopie &gt;0) </td></tr>
+    <tr><td class="paramname">LimitePrestitoSuperato</td><td>se l'utente ha suparato il limite prestito consentito (PrestitiAttivi positivo &lt;3)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd>p != null </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>il prestito attivo viene aggiunto all'archivio </dd></dl>
+
+</div>
+</div>
+<a id="ac273fa65df0b58399a439f3ff184a041" name="ac273fa65df0b58399a439f3ff184a041"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac273fa65df0b58399a439f3ff184a041">&#9670;&#160;</a></span>registraPrestitoCronologia()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void biblioteca.GestionePrestiti.PrestitiService.registraPrestitoCronologia </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html">Prestito</a></td>          <td class="paramname"><span class="paramname"><em>p</em></span></td><td>)</td>
+          <td> throws <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html">ValidazioneException</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Aggiunge un nuovo prestito effettuando i dovuti controlli. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td><a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html" title="Rappresenta un prestito del sistema bibliotecario.">Prestito</a> da registrare </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html" title="Eccezione sollevata quando i dati inseriti non sono validi.">ValidazioneException</a></td><td>se i dati non sono validi</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd>p != null &amp;&amp; </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>il prestito viene aggiunto all'archivio </dd></dl>
+
+</div>
+</div>
+<a id="a42b4ac5c38e323094a49a5cc43c0abf2" name="a42b4ac5c38e323094a49a5cc43c0abf2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42b4ac5c38e323094a49a5cc43c0abf2">&#9670;&#160;</a></span>ricercaPrestitoLibroCronologiaPerLibro()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt; <a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html">Prestito</a> &gt; biblioteca.GestionePrestiti.PrestitiService.ricercaPrestitoLibroCronologiaPerLibro </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_libro.html">Libro</a></td>          <td class="paramname"><span class="paramname"><em>libro</em></span></td><td>)</td>
+          <td> throws <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html">ValidazioneException</a>, <a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_prestito_non_trovato_exception.html">PrestitoNonTrovatoException</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Cerca prestito per dati (ISBN) libro. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">libro</td><td>Dati (ISBN) di libto</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>L'insieme dei prestiti per libro </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html" title="Eccezione sollevata quando i dati inseriti non sono validi.">ValidazioneException</a></td><td>se i dati non sono validi </td></tr>
+    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_prestito_non_trovato_exception.html" title="Eccezione sollevata quando un prestito richiesto non è presente nell&#39;archivio.">PrestitoNonTrovatoException</a></td><td>se nessun prestito è stato trovato</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd>libro != null </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>trova l'insieme dei prestiti corrispondenti </dd></dl>
+
+</div>
+</div>
+<a id="a61b0684c7a396b618f360681b6ddc81b" name="a61b0684c7a396b618f360681b6ddc81b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61b0684c7a396b618f360681b6ddc81b">&#9670;&#160;</a></span>visualizzaCronologia()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt; <a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html">Prestito</a> &gt; biblioteca.GestionePrestiti.PrestitiService.visualizzaCronologia </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Restituisce l'insieme completo della cronologia dei prestiti. </p>
+<dl class="section return"><dt>Returns</dt><dd>Set ordinato della cronologia dei prestiti </dd></dl>
+
+</div>
+</div>
+<a id="a7107c70f6bcd14c5e9c7c32873dc2129" name="a7107c70f6bcd14c5e9c7c32873dc2129"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7107c70f6bcd14c5e9c7c32873dc2129">&#9670;&#160;</a></span>visualizzaPrestitiAttivi()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt; <a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html">Prestito</a> &gt; biblioteca.GestionePrestiti.PrestitiService.visualizzaPrestitiAttivi </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Restituisce l'insieme completo dei prestiti attivi. </p>
+<dl class="section return"><dt>Returns</dt><dd>Set ordinato dei prestiti attivi </dd></dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>C:/Users/Utente/Desktop/ProgettoIngSoft/gestionebiblioteca/src/main/java/biblioteca/GestionePrestiti/<b>PrestitiService.java</b></li>
 </ul>
 </div><!-- contents -->

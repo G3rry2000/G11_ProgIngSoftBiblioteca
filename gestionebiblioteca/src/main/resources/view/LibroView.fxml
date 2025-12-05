@@ -62,7 +62,7 @@
                      </items>
                   </Menu>
 
-                  <Menu mnemonicParsing="false" onAction="#clickPrestiti" text="Prestiti">
+                  <Menu fx:id="PrestitiID" mnemonicParsing="false" onAction="#clickPrestiti" text="Prestiti">
                      <items>
                         <MenuItem mnemonicParsing="false" text="About" />
                      </items>
