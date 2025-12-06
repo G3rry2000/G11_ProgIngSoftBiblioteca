@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package biblioteca.GestioneUtenti;
 import biblioteca.Archivio;
 import java.util.TreeSet;
@@ -17,9 +12,8 @@ import java.io.IOException;
  * - operazioni di aggiungi, rimuovi, ricerca, modifica e visualizza
  * - salvataggio e caricamento da file
  * 
- * Tutti i controlli sono stati affidati alla classe {@link UtenteService}
+ * Tutti i controlli sono stati affidati alla classe {@link UtentiService}
  * 
- * @author Gerardo
  */
 public class ArchivioUtenti implements Archivio{
     /** Insieme ordinato degli utenti */
@@ -58,7 +52,7 @@ public class ArchivioUtenti implements Archivio{
    }
    /**
     * @brief Aggiunge un nuovo utente all'archivio
-    * Non effettua controlli vengono delegati a @see UtentiService
+    * Non effettua controlli, che vengono delegati a {@link UtentiService}.
     * 
     * @param u Utente da aggiungere
     * 
@@ -112,7 +106,7 @@ public class ArchivioUtenti implements Archivio{
     * @return Torna true se la modifica è avvenuta con successo, altrimenti false
     * 
     * @pre u!=null e utente già registrato
-    * se esiste, l'utente viene sostituito con u
+    * @post se esiste, l'utente viene sostituito con u
     */
    public boolean modificaUtente(Utente u){ 
    return false;

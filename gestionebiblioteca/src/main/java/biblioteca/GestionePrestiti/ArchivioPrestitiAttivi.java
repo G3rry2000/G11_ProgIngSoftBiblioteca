@@ -25,7 +25,7 @@ import java.io.IOException;
  * @author Gerardo
  */
 public class ArchivioPrestitiAttivi implements Archivio{
-    /** Insieme ordinato per inserimento dei prestiti */
+    /** Lista in ordine di inserimento dei prestiti attivi */
    private List<Prestito> prestitiAttivi;
     /**
     * @brief Costruttore: inizializza una LinkedList vuota
@@ -96,7 +96,7 @@ public class ArchivioPrestitiAttivi implements Archivio{
    }
     /**
     * @brief Restituisce l'intero insieme dei prestiti attivi
-    * @return Set ordinato per inserimento dei prestiti attivi
+    * @return lista dei prestiti attivi in ordine di inserimento    
     */
    public List<Prestito> getPrestitiAttivi(){ 
    return null;

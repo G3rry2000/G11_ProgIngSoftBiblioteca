@@ -7,26 +7,32 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
+
 /**
+ * @class Main
  * @brief Classe principale dell'applicazione Biblioteca.
  * 
- * Questa classe estende {@link Application} e rappresenta il punto di ingresso
- * dell'applicazione JavaFX. Si occupa di caricare la scena iniziale
+ * Estende {@link Application} e rappresenta il punto di avvio dell'applicazione
+ * JavaFX. Si occupa di caricare la scena iniziale
  * dalla vista FXML {@code HomeView.fxml} e di mostrare la finestra principale.
  * 
  * L'applicazione utilizza {@link FXMLLoader} per caricare la GUI e
  * {@link Stage} per visualizzare la finestra principale.
  */
 public class Main extends Application {
-     /**
-     * @brief Metodo principale per avviare l'interfaccia grafica.
-     * 
-     * Questo metodo viene chiamato automaticamente da JavaFX al lancio dell'applicazione.
-     * Carica la vista principale {@code HomeView.fxml} e la mostra nella finestra principale.
-     * 
-     * @param primaryStage La finestra principale dell'applicazione
-     * @throws IOException Se si verifica un errore durante il caricamento della FXML
-     * @post La finestra principale viene visualizzata con la scena caricata da {@code HomeView.fxml}
+    
+    /**
+     * @brief Inizializza e mostra l'interfaccia grafica principale.
+     *
+     * Metodo richiamato automaticamente dal framework JavaFX all'avvio
+     * dell'applicazione. Carica la vista principale tramite
+     * {@code HomeView.fxml}, crea la scena associata e visualizza la finestra.
+     *
+     * @param primaryStage La finestra principale dell'applicazione.
+     * @throws IOException Se il file FXML non può essere caricato correttamente.
+     *
+     * @pre primaryStage != null
+     * @post La finestra principale è visibile e contiene la scena caricata da {@code HomeView.fxml}.
      */
     @Override
     public void start(Stage primaryStage) throws IOException {
@@ -38,6 +44,8 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+    
+    
     /**
      * @brief Metodo di avvio dell'applicazione.
      * 

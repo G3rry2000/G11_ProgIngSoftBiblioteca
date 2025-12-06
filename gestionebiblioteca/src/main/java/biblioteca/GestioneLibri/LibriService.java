@@ -37,7 +37,7 @@ public class LibriService {
      * @brief Aggiunge un nuovo libro effettuando i dovuti controlli
      * @param l Libro da registrare
      * @throws ValidazioneException se i dati non sono validi
-     * @throws DuplicatoException se esiste già un utente con lo stesso ISBN
+     * @throws DuplicatoException se esiste già un libro con lo stesso ISBN
      * 
      * @pre l != null 
      * @post il libro viene aggiunto all'archivio
@@ -47,7 +47,7 @@ public class LibriService {
      /**
      * @brief Elimina un libro esistente
      * @param l Dati del libro da eliminare
-     * @return Libro da eliminare
+     * @return Il libro eliminato (oppure null)
      * @throws ValidazioneException se i campi forniti non sono validi
      * @throws CancellazionePrestitoAttivoException se il libro ha prestiti attivi
      * 
@@ -78,7 +78,7 @@ public class LibriService {
      * @throws LibroNonTrovatoException se il libro non esiste
      * @throws ValidazioneException se il libro non è valido
      * 
-     * @pre ISBN univoco, ISBN != null && !ISBN.isEmpty()
+     * @pre  ISBN != null && !ISBN.isEmpty()
      * @post restituisce il libro con quel ISBN
      */
     public Libro cercaLibroPerISBN(String ISBN) throws LibroNonTrovatoException, ValidazioneException{
@@ -92,7 +92,7 @@ public class LibriService {
      * @throws LibroNonTrovatoException se nessun libro è stato trovato
      * 
      * @pre autore != null && !autore.isEmpty()
-     * @post trova l'insieme dei libri trovati
+     * @post restituisce un insieme di libri corrispondenti
      */
     public Set<Libro> cercaLibroPerAutore(String autore)throws LibroNonTrovatoException, ValidazioneException{
     return null;
@@ -104,6 +104,7 @@ public class LibriService {
     * @throws ValidazioneException se i dati inseriti non sono validi
     * 
     * @pre l!=null
+    * @post se il libro esiste viene aggiornato
     */
     public boolean aggiornaLibro(Libro l) throws ValidazioneException{
     return true;
@@ -111,6 +112,8 @@ public class LibriService {
     /**
     * @brief Restituisce l'insieme completo dei libri
     * @return Set ordinato dei libri
+    * 
+    * @post restituisce una copia dell’archivio
     */ 
    public Set<Libro> visualizzaLibri(){ 
    return null;

@@ -1,39 +1,43 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package biblioteca;
 
 import java.io.IOException;
 
 /**
- * @brief Interfaccia per la gestione di archivi persistenti.
- * 
- * Questa interfaccia definisce i metodi di base per leggere e scrivere dati su file.
- * Le classi che implementano {@code Archivio} devono fornire l'implementazione
- * per la persistenza dei dati.
+ * @interface Archivio
+ * @brief Interfaccia per la gestione della persistenza dei dati.
+ *
+ * Definisce le operazioni fondamentali per leggere e scrivere i dati
+ * di un archivio su file. Le classi che implementano questa interfaccia
+ * devono fornire un meccanismo concreto di persistenza.
  */
-public interface Archivio { //DA VALUTARE
-    
+public interface Archivio {
+
     /**
      * @brief Carica i dati dell'archivio da un file di testo.
-     * 
-     * @param filename Il percorso del file da cui leggere i dati
-     * @throws IOException Se si verifica un errore di lettura dal file
-     * 
+     *
+     * Legge il contenuto del file indicato e popola la struttura dati
+     * dell’archivio. L’implementazione deve definire il formato dei dati.
+     *
+     * @param filename Percorso del file da cui leggere i dati.
+     * @throws IOException Se si verifica un errore di I/O durante la lettura.
+     *
      * @pre filename != null && !filename.isEmpty()
-     * @post I dati dell'archivio vengono caricati dal file specificato
+     * @post I dati dell’archivio sono aggiornati con le informazioni contenute nel file.
      */
     void leggiDaFile(String filename) throws IOException;
-     /**
+
+    /**
      * @brief Salva i dati dell'archivio su un file di testo.
-     * 
-     * @param filename Il percorso del file su cui scrivere i dati
-     * @throws IOException Se si verifica un errore di scrittura sul file
-     * 
+     *
+     * Scrive sul file specificato lo stato corrente dell’archivio.
+     * L’implementazione deve garantire che il formato sia coerente
+     * con quello utilizzato per la lettura.
+     *
+     * @param filename Percorso del file su cui salvare i dati.
+     * @throws IOException Se si verifica un errore di I/O durante la scrittura.
+     *
      * @pre filename != null && !filename.isEmpty()
-     * @post I dati dell'archivio vengono salvati nel file specificato
+     * @post Il file contiene una copia persistente dei dati dell’archivio.
      */
-    void scriviSuFile(String filename) throws IOException; 
+    void scriviSuFile(String filename) throws IOException;
 }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package biblioteca.GestioneUtenti;
 import biblioteca.gestioneEccezioni.*;
 
@@ -30,7 +25,7 @@ public class UtentiService {
      * @brief Costruttore del Service 
      * @param archivioUtenti archivio degli utenti da usare come dati
      * 
-     * @pre archivioutenti != null
+     * @pre archivioUtenti != null
      * @post this.archivioUtenti ==archivioUtenti
      */
     public UtentiService(ArchivioUtenti archivioUtenti){
@@ -40,9 +35,9 @@ public class UtentiService {
      * @brief Aggiunge un nuovo utente effettuando i dovuti controlli
      * @param u Utente da registrare
      * @throws ValidazioneException se i dati non sono validi
-     * @throws DuplicatoException se esiste guà un utente con la stessa matricola
+     * @throws DuplicatoException se esiste già un utente con la stessa matricola
      * 
-     * @pre u != null 
+     * @pre u != null
      * @post l'utente viene aggiunto all'archivio
      */
     public void registraUtente(Utente u) throws ValidazioneException, DuplicatoException{
@@ -54,7 +49,7 @@ public class UtentiService {
      * @throws ValidazioneException se i campi forniti non sono validi
      * @throws CancellazionePrestitoAttivoException se l'utente ha prestiti attivi
      * 
-     * u != null 
+     * @pre u != null 
      * @pre l'utente non deve avere prestiti attivi
      * @post utente viene rimosso se esiste
      */

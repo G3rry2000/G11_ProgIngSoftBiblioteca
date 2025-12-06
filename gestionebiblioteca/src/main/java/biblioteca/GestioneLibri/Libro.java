@@ -37,6 +37,8 @@ public class Libro implements Comparable<Libro>{
      * @param copieDisponibili Numero di copie disponibili
      * 
      * @pre {@link LibriService} deve garantire tutti i controlli sui dati
+     * 
+     * @pre I dati passati devono essere validi (controllo delegato a LibriService)
      * @post Il libro è inizializzato
      * 
      */

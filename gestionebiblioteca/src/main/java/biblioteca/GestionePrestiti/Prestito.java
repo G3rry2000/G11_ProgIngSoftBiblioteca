@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package biblioteca.GestionePrestiti;
 import biblioteca.GestioneUtenti.Utente;
 import biblioteca.GestioneLibri.Libro;
@@ -39,8 +35,7 @@ public class Prestito {
      * @param dataInizio Data di inizio prestito
      * @param dataFine Data di fine prestito, restituzione libro
      * 
-     * @pre {@link PrestitoService} deve garantire tutti i controlli sui dati
-     * @pre stato del prestito attivo
+     * @pre I dati passati devono essere validi (controllo gestito da PrestitoService)     * @pre stato del prestito attivo
      * @post Il prestito è inizializzato
      */
     public Prestito(Utente utente,Libro libro, LocalDate dataInizio, LocalDate dataFine){
@@ -129,7 +124,7 @@ public class Prestito {
      * 
      * @param dataInizio Nuova data di inizio.
      * @pre dataInizio != null 
-     * @post La data di inizio prestito viene aggiornato
+     * @post La data di inizio prestito viene aggiornata
      */
     public void setDataInizio(LocalDate dataInizio) {
         this.dataInizio = dataInizio;
@@ -145,7 +140,7 @@ public class Prestito {
      * 
      * @param dataFine Nuova data fine prestito.
      * @pre dataFine != null 
-     * @post La data di fine prestito viene aggiornato
+     * @post La data di fine prestito viene aggiornata
      */
     public void setDataFine(LocalDate dataFine) {
         this.dataFine = dataFine;

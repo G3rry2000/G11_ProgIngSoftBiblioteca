@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package biblioteca.GestionePrestiti;
 
 import biblioteca.GestioneLibri.ArchivioLibri;
@@ -85,7 +81,7 @@ public class PrestitiViewController {
     private ObservableList<Prestito> listaPrestiti;
      /**
      * @brief Metodo di inizializzazione del controller
-     * 
+     * Inizializza archivi, configura tabella e popola colonne.
      * Viene eseguito automaticamente all'avvio della schermata
      */
     public void initialize(URL url, ResourceBundle rb){
@@ -118,19 +114,19 @@ public class PrestitiViewController {
     private void onAggiungiPrestito(ActionEvent event) {
     }
      /**
-     * @brief Esegue una ricerca presito sui campi compilando ISBN e matricola
+     * @brief Esegue una ricerca prestito sui campi compilando ISBN e matricola
      */
     @FXML
     private void onRicercaPrestito(ActionEvent event) {
     }
      /**
-     * @brief Rimuove un nuovo prestito attivo dall'archivio utilizzando i dati inseriti nei campi testo (ISBN e matricola)
+     * @brief Rimuove un prestito attivo dall'archivio utilizzando i dati inseriti nei campi testo (ISBN e matricola)
      */
     @FXML
     private void onRestituzioneLibro(ActionEvent event) {
     }
      /**
-     * @brief Mostra l'intero elenco degi prestiti attivi presenti nell’archivio.
+     * @brief Mostra l'intero elenco degli prestiti attivi presenti nell’archivio.
      */
     @FXML
     private void onVisualizzaPrestito(ActionEvent event) {

@@ -34,6 +34,7 @@ public class ArchivioCronologiaPrestiti implements Archivio{
    public ArchivioCronologiaPrestiti(){
    this.cronologia= new LinkedList<>();
    }
+   
     /**
     * @brief Carica la cronologia dei prestiti da un file di testo
     * 
@@ -45,6 +46,8 @@ public class ArchivioCronologiaPrestiti implements Archivio{
     */
    @Override
    public void leggiDaFile(String filename) throws IOException{
+   }
+   
     /**
     * @brief Salva la cronologia dei prestiti nel file specificato
     * 
@@ -54,10 +57,10 @@ public class ArchivioCronologiaPrestiti implements Archivio{
     * @pre filename!=null && !filename.isEmpty()
     * @post il file contiene tutta la cronologia dei prestiti memorizzati
     */
-   }
    @Override
    public void scriviSuFile(String filename)throws IOException{
    }
+   
     /**
     * @brief Aggiunge un nuovo prestito attivo all'archivio
     * Non effettua controlli vengono delegati a @see PrestitoService
@@ -69,6 +72,7 @@ public class ArchivioCronologiaPrestiti implements Archivio{
     */
    public void aggiungiPrestitoCronologia(Prestito p){
    }
+   
     /**
     * @brief Rimuove un prestito dall'archivio
     * 
@@ -81,6 +85,7 @@ public class ArchivioCronologiaPrestiti implements Archivio{
    public Prestito rimuoviPrestitoCronologia(Prestito p){
    return null;
    }
+   
     /**
     * @brief Cerca tutti i prestiti tramite  matricola (campo di utente)
     * 
@@ -88,11 +93,12 @@ public class ArchivioCronologiaPrestiti implements Archivio{
     * @return l'insieme dei prestiti con la matricola cercata
     * 
     * @pre utente!= null
-    * @post restituisce l'insieme dei presiti corrispondenti
+    * @post restituisce la lista dei prestiti corrispondenti
     */
    public List<Prestito> ricercaPrestitoUtenteCronologia(Utente utente){
    return null;
    }
+   
     /**
     * @brief Cerca tutti i prestiti tramite  ISBN (campo di libro)
     * 
@@ -105,9 +111,10 @@ public class ArchivioCronologiaPrestiti implements Archivio{
     public List<Prestito> ricercaPrestitoLibroCronologia(Libro libro){
    return null;
    }
+    
     /**
     * @brief Restituisce l'intero insieme deilla cronologia dei prestiti
-    * @return Set ordinato per inserimento della cronologia dei prestiti
+    * @return Restituisce la lista dei prestiti in ordine di inserimento.
     */ 
    public List<Prestito> getCronologia(){ 
    return null;

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package biblioteca.GestioneUtenti;
 
 import java.net.URL;
@@ -27,7 +23,7 @@ import javafx.collections.ObservableList;
  * - rimozione utenti
  * - visualizzazione dell’elenco degli utenti
  *
- * Tutti i controlli vengono delegati a {@link UtentiService}.
+ * Tutti i controlli sono stati affidati alla classe {@link UtentiService}.
  *
  */
 public class UtentiViewController implements Initializable {
@@ -109,7 +105,7 @@ public class UtentiViewController implements Initializable {
     private void onAggiungiUtente(ActionEvent event) {
     }
     /**
-     * @brief Rimuove un nuovo utente utilizzando i dati inseriti nei campi testo.
+     * @brief Rimuove un utente utilizzando i dati inseriti nei campi testo.
      */
     @FXML
     private void onRimuoviUtente(ActionEvent event) {

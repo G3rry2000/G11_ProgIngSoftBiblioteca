@@ -1,10 +1,4 @@
 
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package biblioteca.GestioneUtenti;
 import biblioteca.GestionePrestiti.Prestito;
 import java.util.List;
@@ -17,7 +11,6 @@ import java.util.ArrayList;
  * e le operazioni per gestire la lista dei prestiti attivi.
  * Tutti i controlli sono stati affidati alla classe {@see UtenteService}
  * 
- * @author Gerardo
  */
 public class Utente implements Comparable<Utente>{
     
@@ -43,7 +36,7 @@ public class Utente implements Comparable<Utente>{
      * @param matricola Matricola univoca dell'utente
      * @param email Email dell'utente
      * 
-     * @pre {@see UtenteService} deve garantire tutti i controlli sui dati
+     * @pre Tutti i controlli sono stati affidati alla classe {@link UtentiService}.
      * @post L'utente è inizializzato con lista dei prestiti vuota
      * 
      */
@@ -102,7 +95,7 @@ public class Utente implements Comparable<Utente>{
      *@brief Imposta una nuova matricola
      * 
      * @param matricola Nuova matricola.
-     * @pre Il paramentro matricola è univoco e > 0
+     * @pre matricola > 0; l’univocità è garantita da UtentiService
      * @post La matricola viene aggiornata
      */
     public void setMatricola(int matricola) {

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package biblioteca.GestionePrestiti;
 
 import biblioteca.GestioneLibri.ArchivioLibri;
@@ -51,8 +46,8 @@ public class PrestitiService {
      * @brief Aggiunge un nuovo prestito attivo effettuando i dovuti controlli
      * @param p Prestito da registrare
      * @throws ValidazioneException se i dati non sono validi
-     * @throws LibroNonDisponibile se il libro non è attualmente disponibile (NumeroCopie >0)
-     * @throws LimitePrestitoSuperato se l'utente ha suparato il limite prestito consentito (PrestitiAttivi positivo <3)
+     * @throws LibroNonDisponibileException se il libro non è attualmente disponibile (NumeroCopie >0)
+     * @throws LimitePrestitoSuperatoException se l'utente ha già 3 prestiti attivi
      * 
      * @pre p != null 
      * @post il prestito attivo viene aggiunto all'archivio
@@ -62,8 +57,7 @@ public class PrestitiService {
       /**
      * @brief Elimina un prestito attivo esistente (libro restituito)
      * @param p Dati del prestito attivo da eliminare
-     * @return Prestito attivo da eliminare
-     * @throws ValidazioneException se i campi forniti non sono validi
+     * @return il prestito eliminato oppure null se non presente     * @throws ValidazioneException se i campi forniti non sono validi
      * 
      * @pre p != null 
      * @post prestito viene rimosso se esiste
@@ -88,7 +82,7 @@ public class PrestitiService {
    }
     /**
     * @brief Restituisce l'insieme completo dei prestiti attivi
-    * @return Set ordinato dei prestiti attivi
+    * @return lista dei prestiti attivi
     */ 
    public List<Prestito> visualizzaPrestitiAttivi(){ 
    return null;
@@ -98,7 +92,7 @@ public class PrestitiService {
      * @param p Prestito da registrare
      * @throws ValidazioneException se i dati non sono validi
      * 
-     * @pre p != null && 
+     * @pre p != null && i dati del prestito sono validi
      * @post il prestito viene aggiunto all'archivio
      */
    public void registraPrestitoCronologia(Prestito p) throws ValidazioneException{
@@ -107,8 +101,7 @@ public class PrestitiService {
      * @brief Elimina un prestito esistente
      * @param p Dati del prestito da eliminare
      * 
-     * @return Prestito da eliminare
-     * @throws ValidazioneException se i campi forniti non sono validi
+     * @return il prestito eliminato oppure null se non presente     * @throws ValidazioneException se i campi forniti non sono validi
      * 
      * @pre p != null 
      * @post prestito viene rimosso se esiste
@@ -132,7 +125,7 @@ public class PrestitiService {
    }
         /**
      * @brief Cerca prestito per dati (ISBN) libro
-     * @param libro Dati (ISBN) di libto
+     * @param libro Dati (ISBN) di libro
      * 
      * @return L'insieme dei prestiti per libro
      * @throws ValidazioneException se i dati non sono validi
@@ -146,7 +139,7 @@ public class PrestitiService {
    }
      /**
     * @brief Restituisce l'insieme completo della cronologia dei prestiti
-    * @return Set ordinato della cronologia dei prestiti
+    * @return lista dei prestiti attivi
     */ 
    public List<Prestito> visualizzaCronologia(){ 
    return null;

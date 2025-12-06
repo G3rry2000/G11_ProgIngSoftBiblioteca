@@ -103,29 +103,37 @@ public class LibroViewController {
      * @brief Torna alla schermata Home.
      */
     @FXML
-    private void ClickHome(ActionEvent event) {
+    private void clickHome(ActionEvent event) {
     }
     //------------OPERAZIONI UTENTI ------------
      /**
      * @brief Aggiunge un nuovo libro utilizzando i dati inseriti nei campi testo.
+     * 
+     * @pre I campi del libro devono essere compilati in modo valido.
      */
     @FXML
     private void onAggiungiLibro(ActionEvent event) {
     }
     /**
-     * @brief Rimuove un nuovo libro utilizzando i dati inseriti nei campi testo.
+     * @brief Rimuove un libro utilizzando i dati inseriti nei campi testo.
+     * 
+     * @pre ISBN o altri identificatori devono essere compilati correttamente.
      */
     @FXML
     private void onRimuoviLibro(ActionEvent event) {
     }
      /**
      * @brief Esegue una ricerca libro sui campi compilando titolo, autore o ISBN
+     * 
+     * @pre Almeno un campo tra titolo, autore o ISBN deve essere compilato.
      */
     @FXML
     private void onRicercaLibro(ActionEvent event) {
     }
     /**
      * @brief Mostra l'intero elenco dei libri presenti nell’archivio.
+     * 
+     * @post La tabella mostra tutti i libri correnti dell’archivio.
      */
     @FXML
     private void onVisualizzaLibri(ActionEvent event) {

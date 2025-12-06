@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package biblioteca.GestioneLibri;
 import biblioteca.Archivio;
 import java.util.TreeSet;
@@ -13,13 +8,13 @@ import java.io.IOException;
  * @brief Gestisce la collezione dei libri della biblioteca
  * 
  * Questa classe si occupa della sola gestione dati:
- * - memorizzazione dei libri tramite TreeSet
+ * - memorizzazione dei libri tramite {@link TreeSet}
+ *   per garantire ordinamento naturale secondo il confronto definito in {@link Libro}.
  * - operazioni di aggiungi, rimuovi, ricerca, modifica e visualizza
  * - salvataggio e caricamento da file
  * 
  * Tutti i controlli sono stati affidati alla classe {@link LibriService}
  * 
- * @author Gerardo
  */
 public class ArchivioLibri implements Archivio{
    /** Insieme ordinato dei libri */
@@ -59,8 +54,7 @@ public class ArchivioLibri implements Archivio{
    }
     /**
     * @brief Aggiunge un nuovo libro all'archivio
-    * Non effettua controlli vengono delegati a {@link LibriService}
-    * 
+    * Non effettua controlli, che vengono delegati a {@link LibriService}.    * 
     * @param l Libro da aggiungere
     * 
     * @pre l!=null 
@@ -75,7 +69,6 @@ public class ArchivioLibri implements Archivio{
     * @return Il libro che è stato rimosso oppure null se non presente
     * 
     * @pre l !=null
-    * @pre il libro non deve avere prestiti attivi (verifica delegata alla classe {@link LibriService}).
     * @post se presente, il libro viene rimosso dall'archivio.
     */
    public Libro rimuoviLibro(Libro l){
@@ -100,7 +93,7 @@ public class ArchivioLibri implements Archivio{
     * @return il libro con l'ISBN dato oppure null in caso di libro non trovato
     * 
     * @pre ISBN!= null && !ISBN.isEmpty()
-    * @post restituisce il libro corrispondente
+    * @post restituisce l'insieme dei libri corrispondenti
     */
    public Libro ricercaISBN(String ISBN){ 
    return null;
@@ -112,7 +105,7 @@ public class ArchivioLibri implements Archivio{
     * @return  l'insieme dei libri con l'autore dato oppure un insieme vuoto in caso di libro non trovato
     * 
     * @pre autore!= null && !autore.isEmpty()
-    * @post restituisce il libro corrispondente
+    * @post restituisce l'insieme dei libri corrispondenti
     */
    public Set<Libro> ricercaAutore(String autore){   
    return null;
