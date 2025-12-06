@@ -93,7 +93,7 @@ $(function(){initNavTree('interfacebiblioteca_1_1_archivio.html','','interfacebi
 </div><!--header-->
 <div class="contents">
 
-<p>Interfaccia per la gestione di archivi persistenti.  
+<p>Interfaccia per la gestione della persistenza dei dati.  
  <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for biblioteca.Archivio:</div>
@@ -116,8 +116,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ae0998896decd7df2e7cc9740d498ec22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Salva i dati dell'archivio su un file di testo.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Interfaccia per la gestione di archivi persistenti. </p>
-<p>Questa interfaccia definisce i metodi di base per leggere e scrivere dati su file. Le classi che implementano <code class="JavaDocCode">Archivio</code> devono fornire l'implementazione per la persistenza dei dati. </p>
+<div class="textblock"><p>Interfaccia per la gestione della persistenza dei dati. </p>
+<p>Definisce le operazioni fondamentali per leggere e scrivere i dati di un archivio su file. Le classi che implementano questa interfaccia devono fornire un meccanismo concreto di persistenza. </p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="a35d40ebb74109b37d3df47f43410eee0" name="a35d40ebb74109b37d3df47f43410eee0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a35d40ebb74109b37d3df47f43410eee0">&#9670;&#160;</a></span>leggiDaFile()</h2>
@@ -135,20 +135,21 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Carica i dati dell'archivio da un file di testo. </p>
+<p>Legge il contenuto del file indicato e popola la struttura dati dell’archivio. L’implementazione deve definire il formato dei dati.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">filename</td><td>Il percorso del file da cui leggere i dati </td></tr>
+    <tr><td class="paramname">filename</td><td>Percorso del file da cui leggere i dati. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname">IOException</td><td>Se si verifica un errore di lettura dal file</td></tr>
+    <tr><td class="paramname">IOException</td><td>Se si verifica un errore di I/O durante la lettura.</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>filename != null &amp;&amp; !filename.isEmpty() </dd></dl>
-<dl class="section post"><dt>Postcondition</dt><dd>I dati dell'archivio vengono caricati dal file specificato </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>I dati dell’archivio sono aggiornati con le informazioni contenute nel file. </dd></dl>
 
 <p>Implemented in <a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_archivio_libri.html#a3279f14ca4f5c662ed55e649f5e57280">biblioteca.GestioneLibri.ArchivioLibri</a>, <a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_archivio_cronologia_prestiti.html#aeee0cc7b086cd481baf37d2038e7f556">biblioteca.GestionePrestiti.ArchivioCronologiaPrestiti</a>, <a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_archivio_prestiti_attivi.html#a79c80b6adf1223622867dbc10feabb27">biblioteca.GestionePrestiti.ArchivioPrestitiAttivi</a>, and <a class="el" href="classbiblioteca_1_1_gestione_utenti_1_1_archivio_utenti.html#ae69efb86d03db52d7e36c061236dee4f">biblioteca.GestioneUtenti.ArchivioUtenti</a>.</p>
 
@@ -170,20 +171,21 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Salva i dati dell'archivio su un file di testo. </p>
+<p>Scrive sul file specificato lo stato corrente dell’archivio. L’implementazione deve garantire che il formato sia coerente con quello utilizzato per la lettura.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">filename</td><td>Il percorso del file su cui scrivere i dati </td></tr>
+    <tr><td class="paramname">filename</td><td>Percorso del file su cui salvare i dati. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname">IOException</td><td>Se si verifica un errore di scrittura sul file</td></tr>
+    <tr><td class="paramname">IOException</td><td>Se si verifica un errore di I/O durante la scrittura.</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>filename != null &amp;&amp; !filename.isEmpty() </dd></dl>
-<dl class="section post"><dt>Postcondition</dt><dd>I dati dell'archivio vengono salvati nel file specificato </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>Il file contiene una copia persistente dei dati dell’archivio. </dd></dl>
 
 <p>Implemented in <a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_archivio_libri.html#a7d26071a386d9af481716e1b3fe8f225">biblioteca.GestioneLibri.ArchivioLibri</a>, <a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_archivio_cronologia_prestiti.html#a50c70e59daa656a3c465a4537eacf75f">biblioteca.GestionePrestiti.ArchivioCronologiaPrestiti</a>, <a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_archivio_prestiti_attivi.html#a0375f556df12b1d3d7c84649d330e3d6">biblioteca.GestionePrestiti.ArchivioPrestitiAttivi</a>, and <a class="el" href="classbiblioteca_1_1_gestione_utenti_1_1_archivio_utenti.html#a1d6444fb5da448700375c37296aee76a">biblioteca.GestioneUtenti.ArchivioUtenti</a>.</p>
 

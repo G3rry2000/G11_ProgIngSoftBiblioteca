@@ -301,7 +301,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html" title="Rappresenta un prestito del sistema bibliotecario.">Prestito</a> attivo da eliminare </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>il prestito eliminato oppure null se non presente * </dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html" title="Eccezione sollevata quando i dati inseriti non sono validi.">ValidazioneException</a></td><td>se i campi forniti non sono validi</td></tr>
@@ -343,7 +343,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html" title="Rappresenta un prestito del sistema bibliotecario.">Prestito</a> da eliminare </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>il prestito eliminato oppure null se non presente * </dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html" title="Eccezione sollevata quando i dati inseriti non sono validi.">ValidazioneException</a></td><td>se i campi forniti non sono validi</td></tr>
@@ -388,8 +388,8 @@ Public Member Functions</h2></td></tr>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html" title="Eccezione sollevata quando i dati inseriti non sono validi.">ValidazioneException</a></td><td>se i dati non sono validi </td></tr>
-    <tr><td class="paramname">LibroNonDisponibile</td><td>se il libro non è attualmente disponibile (NumeroCopie &gt;0) </td></tr>
-    <tr><td class="paramname">LimitePrestitoSuperato</td><td>se l'utente ha suparato il limite prestito consentito (PrestitiAttivi positivo &lt;3)</td></tr>
+    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_libro_non_disponibile_exception.html" title="Eccezione sollevata quando si tenta di prestare un libro che non è disponibile.">LibroNonDisponibileException</a></td><td>se il libro non è attualmente disponibile (NumeroCopie &gt;0) </td></tr>
+    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_limite_prestito_superato_exception.html" title="Eccezione sollevata quando un utente supera il limite massimo di prestiti attivi.">LimitePrestitoSuperatoException</a></td><td>se l'utente ha già 3 prestiti attivi</td></tr>
   </table>
   </dd>
 </dl>
@@ -434,7 +434,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>p != null &amp;&amp; </dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>p != null &amp;&amp; i dati del prestito sono validi </dd></dl>
 <dl class="section post"><dt>Postcondition</dt><dd>il prestito viene aggiunto all'archivio </dd></dl>
 
 </div>
@@ -465,7 +465,7 @@ Public Member Functions</h2></td></tr>
 <p>Cerca prestito per dati (ISBN) libro. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">libro</td><td>Dati (ISBN) di libto</td></tr>
+    <tr><td class="paramname">libro</td><td>Dati (ISBN) di libro</td></tr>
   </table>
   </dd>
 </dl>
@@ -506,7 +506,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Restituisce l'insieme completo della cronologia dei prestiti. </p>
-<dl class="section return"><dt>Returns</dt><dd>Set ordinato della cronologia dei prestiti </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>lista dei prestiti attivi </dd></dl>
 
 </div>
 </div>
@@ -534,7 +534,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Restituisce l'insieme completo dei prestiti attivi. </p>
-<dl class="section return"><dt>Returns</dt><dd>Set ordinato dei prestiti attivi </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>lista dei prestiti attivi </dd></dl>
 
 </div>
 </div>

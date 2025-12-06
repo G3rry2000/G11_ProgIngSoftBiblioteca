@@ -198,6 +198,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>l!=null </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>se il libro esiste viene aggiornato </dd></dl>
 
 </div>
 </div>
@@ -240,7 +241,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>autore != null &amp;&amp; !autore.isEmpty() </dd></dl>
-<dl class="section post"><dt>Postcondition</dt><dd>trova l'insieme dei libri trovati </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>restituisce un insieme di libri corrispondenti </dd></dl>
 
 </div>
 </div>
@@ -282,7 +283,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>ISBN univoco, ISBN != null &amp;&amp; !ISBN.isEmpty() </dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>ISBN != null &amp;&amp; !ISBN.isEmpty() </dd></dl>
 <dl class="section post"><dt>Postcondition</dt><dd>restituisce il libro con quel ISBN </dd></dl>
 
 </div>
@@ -360,7 +361,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classbiblioteca_1_1_gestione_libri_1_1_libro.html" title="Rappresenta un libro del sistema bibliotecario.">Libro</a> da eliminare </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Il libro eliminato (oppure null) </dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html" title="Eccezione sollevata quando i dati inseriti non sono validi.">ValidazioneException</a></td><td>se i campi forniti non sono validi </td></tr>
@@ -408,7 +409,7 @@ il libro non deve avere prestiti attivi </dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html" title="Eccezione sollevata quando i dati inseriti non sono validi.">ValidazioneException</a></td><td>se i dati non sono validi </td></tr>
-    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_duplicato_exception.html" title="Eccezione sollevata quando si tenta di aggiungere un elemento già presente nell&#39;archivio.">DuplicatoException</a></td><td>se esiste già un utente con lo stesso ISBN</td></tr>
+    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_duplicato_exception.html" title="Eccezione sollevata quando si tenta di aggiungere un elemento già presente nell&#39;archivio.">DuplicatoException</a></td><td>se esiste già un libro con lo stesso ISBN</td></tr>
   </table>
   </dd>
 </dl>
@@ -441,7 +442,8 @@ il libro non deve avere prestiti attivi </dd></dl>
 </div><div class="memdoc">
 
 <p>Restituisce l'insieme completo dei libri. </p>
-<dl class="section return"><dt>Returns</dt><dd>Set ordinato dei libri </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Set ordinato dei libri</dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>restituisce una copia dell’archivio </dd></dl>
 
 </div>
 </div>

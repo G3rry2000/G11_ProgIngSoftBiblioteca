@@ -100,10 +100,10 @@ public class LibroViewController {
     private void clickPrestiti(ActionEvent event) {
     }
      /**
-     * @brief Torna alla schermata Home.
+     * @brief Apre la sezione Home.
      */
     @FXML
-    private void clickHome(ActionEvent event) {
+    private void ClickHome(ActionEvent event) {
     }
     //------------OPERAZIONI UTENTI ------------
      /**
@@ -137,9 +137,5 @@ public class LibroViewController {
      */
     @FXML
     private void onVisualizzaLibri(ActionEvent event) {
-    }
-    
-    
-    
-    
+    }    
 }

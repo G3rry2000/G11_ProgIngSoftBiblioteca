@@ -101,7 +101,7 @@ Inheritance diagram for biblioteca.GestionePrestiti.ArchivioCronologiaPrestiti:<
  <div class="center">
   <img src="classbiblioteca_1_1_gestione_prestiti_1_1_archivio_cronologia_prestiti.png" usemap="#biblioteca_2EGestionePrestiti_2EArchivioCronologiaPrestiti_map" alt=""/>
   <map id="biblioteca_2EGestionePrestiti_2EArchivioCronologiaPrestiti_map" name="biblioteca_2EGestionePrestiti_2EArchivioCronologiaPrestiti_map">
-<area href="interfacebiblioteca_1_1_archivio.html" title="Interfaccia per la gestione di archivi persistenti." alt="biblioteca.Archivio" shape="rect" coords="0,0,309,24"/>
+<area href="interfacebiblioteca_1_1_archivio.html" title="Interfaccia per la gestione della persistenza dei dati." alt="biblioteca.Archivio" shape="rect" coords="0,0,309,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -112,7 +112,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aeee0cc7b086cd481baf37d2038e7f556" id="r_aeee0cc7b086cd481baf37d2038e7f556"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeee0cc7b086cd481baf37d2038e7f556">leggiDaFile</a> (String filename)  throws IOException</td></tr>
 <tr class="memdesc:aeee0cc7b086cd481baf37d2038e7f556"><td class="mdescLeft">&#160;</td><td class="mdescRight">Carica la cronologia dei prestiti da un file di testo.  <br /></td></tr>
 <tr class="memitem:a50c70e59daa656a3c465a4537eacf75f" id="r_a50c70e59daa656a3c465a4537eacf75f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a50c70e59daa656a3c465a4537eacf75f">scriviSuFile</a> (String filename)  throws IOException</td></tr>
-<tr class="memdesc:a50c70e59daa656a3c465a4537eacf75f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Salva i dati dell'archivio su un file di testo.  <br /></td></tr>
+<tr class="memdesc:a50c70e59daa656a3c465a4537eacf75f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Salva la cronologia dei prestiti nel file specificato.  <br /></td></tr>
 <tr class="memitem:a0f92470372078318dc9f93c8d5f71262" id="r_a0f92470372078318dc9f93c8d5f71262"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0f92470372078318dc9f93c8d5f71262">aggiungiPrestitoCronologia</a> (<a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html">Prestito</a> p)</td></tr>
 <tr class="memdesc:a0f92470372078318dc9f93c8d5f71262"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aggiunge un nuovo prestito attivo all'archivio Non effettua controlli vengono delegati a.  <br /></td></tr>
 <tr class="memitem:a7ca5bd32cc08a17133a0a92e8a159878" id="r_a7ca5bd32cc08a17133a0a92e8a159878"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html">Prestito</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7ca5bd32cc08a17133a0a92e8a159878">rimuoviPrestitoCronologia</a> (<a class="el" href="classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html">Prestito</a> p)</td></tr>
@@ -223,7 +223,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Restituisce l'intero insieme deilla cronologia dei prestiti. </p>
-<dl class="section return"><dt>Returns</dt><dd>Set ordinato per inserimento della cronologia dei prestiti </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Restituisce la lista dei prestiti in ordine di inserimento. </dd></dl>
 
 </div>
 </div>
@@ -265,21 +265,6 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd>filename!=null &amp;&amp; !filename.isEmpty() </dd></dl>
 <dl class="section post"><dt>Postcondition</dt><dd>cronologia prestiti contiene la cronologia dei prestiti letti dal file </dd></dl>
-<p>Salva la cronologia dei prestiti nel file specificato</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">filename</td><td>Nome del file su cui scrivere </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">IOException</td><td>se si verificano errori di scrittura</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section pre"><dt>Precondition</dt><dd>filename!=null &amp;&amp; !filename.isEmpty() </dd></dl>
-<dl class="section post"><dt>Postcondition</dt><dd>il file contiene tutta la cronologia dei prestiti memorizzati</dd></dl>
 
 <p>Implements <a class="el" href="interfacebiblioteca_1_1_archivio.html#a35d40ebb74109b37d3df47f43410eee0">biblioteca.Archivio</a>.</p>
 
@@ -353,7 +338,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>l'insieme dei prestiti con la matricola cercata</dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd>utente!= null </dd></dl>
-<dl class="section post"><dt>Postcondition</dt><dd>restituisce l'insieme dei presiti corrispondenti </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>restituisce la lista dei prestiti corrispondenti </dd></dl>
 
 </div>
 </div>
@@ -416,21 +401,21 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Salva i dati dell'archivio su un file di testo. </p>
+<p>Salva la cronologia dei prestiti nel file specificato. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">filename</td><td>Il percorso del file su cui scrivere i dati </td></tr>
+    <tr><td class="paramname">filename</td><td>Nome del file su cui scrivere </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname">IOException</td><td>Se si verifica un errore di scrittura sul file</td></tr>
+    <tr><td class="paramname">IOException</td><td>se si verificano errori di scrittura</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>filename != null &amp;&amp; !filename.isEmpty() </dd></dl>
-<dl class="section post"><dt>Postcondition</dt><dd>I dati dell'archivio vengono salvati nel file specificato </dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>filename!=null &amp;&amp; !filename.isEmpty() </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>il file contiene tutta la cronologia dei prestiti memorizzati </dd></dl>
 
 <p>Implements <a class="el" href="interfacebiblioteca_1_1_archivio.html#ae0998896decd7df2e7cc9740d498ec22">biblioteca.Archivio</a>.</p>
 

@@ -153,7 +153,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd>archivioutenti != null </dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>archivioUtenti != null </dd></dl>
 <dl class="section post"><dt>Postcondition</dt><dd>this.archivioUtenti ==archivioUtenti </dd></dl>
 
 </div>
@@ -324,7 +324,9 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<p>u != null </p><dl class="section pre"><dt>Precondition</dt><dd>l'utente non deve avere prestiti attivi </dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>u != null </dd>
+<dd>
+l'utente non deve avere prestiti attivi </dd></dl>
 <dl class="section post"><dt>Postcondition</dt><dd>utente viene rimosso se esiste </dd></dl>
 
 </div>
@@ -362,7 +364,7 @@ Public Member Functions</h2></td></tr>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html" title="Eccezione sollevata quando i dati inseriti non sono validi.">ValidazioneException</a></td><td>se i dati non sono validi </td></tr>
-    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_duplicato_exception.html" title="Eccezione sollevata quando si tenta di aggiungere un elemento già presente nell&#39;archivio.">DuplicatoException</a></td><td>se esiste guà un utente con la stessa matricola</td></tr>
+    <tr><td class="paramname"><a class="el" href="classbiblioteca_1_1gestione_eccezioni_1_1_duplicato_exception.html" title="Eccezione sollevata quando si tenta di aggiungere un elemento già presente nell&#39;archivio.">DuplicatoException</a></td><td>se esiste già un utente con la stessa matricola</td></tr>
   </table>
   </dd>
 </dl>

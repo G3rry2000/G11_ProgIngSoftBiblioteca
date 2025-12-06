@@ -101,7 +101,7 @@ Inheritance diagram for biblioteca.GestioneUtenti.ArchivioUtenti:</div>
  <div class="center">
   <img src="classbiblioteca_1_1_gestione_utenti_1_1_archivio_utenti.png" usemap="#biblioteca_2EGestioneUtenti_2EArchivioUtenti_map" alt=""/>
   <map id="biblioteca_2EGestioneUtenti_2EArchivioUtenti_map" name="biblioteca_2EGestioneUtenti_2EArchivioUtenti_map">
-<area href="interfacebiblioteca_1_1_archivio.html" title="Interfaccia per la gestione di archivi persistenti." alt="biblioteca.Archivio" shape="rect" coords="0,0,233,24"/>
+<area href="interfacebiblioteca_1_1_archivio.html" title="Interfaccia per la gestione della persistenza dei dati." alt="biblioteca.Archivio" shape="rect" coords="0,0,233,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -114,7 +114,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1d6444fb5da448700375c37296aee76a" id="r_a1d6444fb5da448700375c37296aee76a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d6444fb5da448700375c37296aee76a">scriviSuFile</a> (String filename)  throws IOException</td></tr>
 <tr class="memdesc:a1d6444fb5da448700375c37296aee76a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Salva gli utenti nel file specificato.  <br /></td></tr>
 <tr class="memitem:af02878cfac35cc97309325523011ec48" id="r_af02878cfac35cc97309325523011ec48"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af02878cfac35cc97309325523011ec48">aggiungiUtente</a> (<a class="el" href="classbiblioteca_1_1_gestione_utenti_1_1_utente.html">Utente</a> u)</td></tr>
-<tr class="memdesc:af02878cfac35cc97309325523011ec48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aggiunge un nuovo utente all'archivio Non effettua controlli vengono delegati a.  <br /></td></tr>
+<tr class="memdesc:af02878cfac35cc97309325523011ec48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Aggiunge un nuovo utente all'archivio Non effettua controlli, che vengono delegati a <code><a class="el" href="classbiblioteca_1_1_gestione_utenti_1_1_utenti_service.html">UtentiService</a></code>.  <br /></td></tr>
 <tr class="memitem:a3a607cbdd79bca9babc1d6f6fb10a512" id="r_a3a607cbdd79bca9babc1d6f6fb10a512"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classbiblioteca_1_1_gestione_utenti_1_1_utente.html">Utente</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3a607cbdd79bca9babc1d6f6fb10a512">rimuoviUtente</a> (<a class="el" href="classbiblioteca_1_1_gestione_utenti_1_1_utente.html">Utente</a> u)</td></tr>
 <tr class="memdesc:a3a607cbdd79bca9babc1d6f6fb10a512"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rimuove un utente dall'archivio.  <br /></td></tr>
 <tr class="memitem:abb184098699df50ab9071ee96f7c5a12" id="r_abb184098699df50ab9071ee96f7c5a12"><td class="memItemLeft" align="right" valign="top">Set&lt; <a class="el" href="classbiblioteca_1_1_gestione_utenti_1_1_utente.html">Utente</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abb184098699df50ab9071ee96f7c5a12">ricercaCognome</a> (String cognome)</td></tr>
@@ -133,8 +133,7 @@ Public Member Functions</h2></td></tr>
 <li>operazioni di aggiungi, rimuovi, ricerca, modifica e visualizza</li>
 <li>salvataggio e caricamento da file</li>
 </ul>
-<p>Tutti i controlli sono stati affidati alla classe <code><a class="el" href="">UtenteService</a></code></p>
-<dl class="section author"><dt>Author</dt><dd>Gerardo </dd></dl>
+<p>Tutti i controlli sono stati affidati alla classe <code><a class="el" href="classbiblioteca_1_1_gestione_utenti_1_1_utenti_service.html">UtentiService</a></code> </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ae6da1296bc76461adf299806b7f88830" name="ae6da1296bc76461adf299806b7f88830"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae6da1296bc76461adf299806b7f88830">&#9670;&#160;</a></span>ArchivioUtenti()</h2>
@@ -188,8 +187,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Aggiunge un nuovo utente all'archivio Non effettua controlli vengono delegati a. </p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classbiblioteca_1_1_gestione_utenti_1_1_utenti_service.html" title="Service che esegue la validazione dei dati degli utenti.">UtentiService</a></dd></dl>
+<p>Aggiunge un nuovo utente all'archivio Non effettua controlli, che vengono delegati a <code><a class="el" href="classbiblioteca_1_1_gestione_utenti_1_1_utenti_service.html">UtentiService</a></code>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">u</td><td><a class="el" href="classbiblioteca_1_1_gestione_utenti_1_1_utente.html" title="Rappresenta un utente del sistema bibliotecario.">Utente</a> da aggiungere</td></tr>
@@ -303,7 +301,8 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Torna true se la modifica è avvenuta con successo, altrimenti false</dd></dl>
-<dl class="section pre"><dt>Precondition</dt><dd>u!=null e utente già registrato se esiste, l'utente viene sostituito con u </dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>u!=null e utente già registrato </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>se esiste, l'utente viene sostituito con u </dd></dl>
 
 </div>
 </div>

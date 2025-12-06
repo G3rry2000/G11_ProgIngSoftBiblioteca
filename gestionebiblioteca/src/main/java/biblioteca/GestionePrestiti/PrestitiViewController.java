@@ -13,7 +13,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-
+import java.time.LocalDate;
 /**
  * @class PrestitiViewController
  * @brief Controller della vista FXML dedicata alla gestione dei prestiti.
@@ -67,9 +67,17 @@ public class PrestitiViewController {
     @FXML
     private TableColumn<Prestito, String> colAutori;
     @FXML
-    private TableColumn<Prestito, String> colISBN;
+    private TableColumn<Prestito, String> colEmail;
     @FXML
-    private TableColumn<Prestito, Integer> colNumCopie;
+    private TableColumn<Prestito, String> colSBN;
+    @FXML
+    private TableColumn<Prestito, Integer> colCopie;
+    @FXML
+    private TableColumn<Prestito, LocalDate> colDataInizio;
+    @FXML
+    private TableColumn<Prestito, LocalDate> colDataFine;
+    @FXML
+    private TableColumn<Prestito, StatoPrestiti> colStato;
      // ------------- LOGICA --------------
     private ArchivioPrestitiAttivi archivioPrestitiAttivi;
     private ArchivioCronologiaPrestiti archivioCronologiaPrestiti;

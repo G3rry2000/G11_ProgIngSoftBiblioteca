@@ -12,7 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.collections.ObservableList;
-
+import java.time.LocalDate;
 /**
  * @class UtentiViewController
  * @brief Controller della vista FXML dedicata alla gestione degli utenti.
@@ -63,6 +63,10 @@ public class UtentiViewController implements Initializable {
     private TableColumn<Utente, Integer> colMatricola;
     @FXML
     private TableColumn<Utente, String> colEmail;
+    @FXML
+    private TableColumn<Utente, String> colPrestiti;
+    @FXML
+    private TableColumn<Utente, LocalDate> colDataRest;
   // ------------- LOGICA --------------
     private ArchivioUtenti archivioUtenti;
     
@@ -91,12 +95,6 @@ public class UtentiViewController implements Initializable {
     @FXML
     private void clickPrestiti(ActionEvent event) {
     }
-     /**
-     * @brief Torna alla schermata Home.
-     */
-    @FXML
-    private void clickHome(ActionEvent event) {
-    }
     //------------OPERAZIONI UTENTI ------------
      /**
      * @brief Aggiunge un nuovo utente utilizzando i dati inseriti nei campi testo.
@@ -121,6 +119,10 @@ public class UtentiViewController implements Initializable {
      */
     @FXML
     private void onVisualizzaUtenti(ActionEvent event) {
+    }
+
+    @FXML
+    private void ClickHome(ActionEvent event) {
     }
 
     

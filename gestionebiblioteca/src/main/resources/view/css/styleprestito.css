@@ -1,5 +1,5 @@
 /* ======================================= */
-/* BASE LAYOUT – COERENTE CON HOME */
+/* BASE LAYOUT – COERENTE CON LIBRI        */
 /* ======================================= */
 
 .root {
@@ -72,7 +72,7 @@
 }
 
 /* ======================================= */
-/* FORM CARD */
+/* FORM CARD                               */
 /* ======================================= */
 
 .form-card {
@@ -83,7 +83,7 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.10), 10, 0, 0, 4);
 }
 
-/* Sezione titolo */
+/* TITOLI SEZIONI */
 .titolo-sezione {
     -fx-font-size: 20px;
     -fx-font-weight: 700;
@@ -92,8 +92,8 @@
     -fx-padding: 0 0 10 0;
 }
 
-/* TextField */
-.text-field {
+/* TEXTFIELD */
+.text-field, .text-input {
     -fx-background-color: white;
     -fx-border-radius: 6;
     -fx-background-radius: 6;
@@ -101,12 +101,12 @@
     -fx-font-size: 16px;
     -fx-padding: 6 10;
 }
-.text-field:focused {
+.text-input:focused {
     -fx-border-color: #3498db;
 }
 
 /* ======================================= */
-/* BOTTONI */
+/* BOTTONI                                 */
 /* ======================================= */
 
 .action-btn {
@@ -139,7 +139,7 @@
 }
 
 /* ======================================= */
-/* TABLEVIEW */
+/* TABLEVIEW                               */
 /* ======================================= */
 
 .table-view {
@@ -173,7 +173,6 @@
     -fx-font-weight: 600;
 }
 
-/* NO BLUE BAR A DESTRA */
 .table-view .filler {
     -fx-background-color: transparent;
 }

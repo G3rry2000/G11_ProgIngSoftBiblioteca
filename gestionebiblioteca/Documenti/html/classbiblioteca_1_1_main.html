@@ -105,7 +105,7 @@ Inheritance diagram for biblioteca.Main:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:af45a38582ae55ca9abd4995f1953d8cc" id="r_af45a38582ae55ca9abd4995f1953d8cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af45a38582ae55ca9abd4995f1953d8cc">start</a> (Stage primaryStage)  throws IOException </td></tr>
-<tr class="memdesc:af45a38582ae55ca9abd4995f1953d8cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Metodo principale per avviare l'interfaccia grafica.  <br /></td></tr>
+<tr class="memdesc:af45a38582ae55ca9abd4995f1953d8cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inizializza e mostra l'interfaccia grafica principale.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -114,7 +114,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Classe principale dell'applicazione Biblioteca. </p>
-<p>Questa classe estende <code><a class="el" href="">Application</a></code> e rappresenta il punto di ingresso dell'applicazione JavaFX. Si occupa di caricare la scena iniziale dalla vista FXML <code class="JavaDocCode">HomeView.fxml</code> e di mostrare la finestra principale.</p>
+<p>Estende <code><a class="el" href="">Application</a></code> e rappresenta il punto di avvio dell'applicazione JavaFX. Si occupa di caricare la scena iniziale dalla vista FXML <code class="JavaDocCode">HomeView.fxml</code> e di mostrare la finestra principale.</p>
 <p>L'applicazione utilizza <code><a class="el" href="">FXMLLoader</a></code> per caricare la GUI e <code><a class="el" href="">Stage</a></code> per visualizzare la finestra principale. </p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="ab194a4ef8283fb97c74a96ce9bee8335" name="ab194a4ef8283fb97c74a96ce9bee8335"></a>
@@ -174,21 +174,22 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Metodo principale per avviare l'interfaccia grafica. </p>
-<p>Questo metodo viene chiamato automaticamente da JavaFX al lancio dell'applicazione. Carica la vista principale <code class="JavaDocCode">HomeView.fxml</code> e la mostra nella finestra principale.</p>
+<p>Inizializza e mostra l'interfaccia grafica principale. </p>
+<p>Metodo richiamato automaticamente dal framework JavaFX all'avvio dell'applicazione. Carica la vista principale tramite <code class="JavaDocCode">HomeView.fxml</code>, crea la scena associata e visualizza la finestra.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">primaryStage</td><td>La finestra principale dell'applicazione </td></tr>
+    <tr><td class="paramname">primaryStage</td><td>La finestra principale dell'applicazione. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname">IOException</td><td>Se si verifica un errore durante il caricamento della FXML </td></tr>
+    <tr><td class="paramname">IOException</td><td>Se il file FXML non può essere caricato correttamente.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section post"><dt>Postcondition</dt><dd>La finestra principale viene visualizzata con la scena caricata da <code class="JavaDocCode">HomeView.fxml</code> </dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd>primaryStage != null </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>La finestra principale è visibile e contiene la scena caricata da <code class="JavaDocCode">HomeView.fxml</code>. </dd></dl>
 
 </div>
 </div>
