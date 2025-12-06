@@ -38,7 +38,9 @@ public class PrestitiViewController {
     @FXML
     private TextField textISBN;
     @FXML
-    private TextField txtMatricola;
+    private TextField txtMatricola1;
+    @FXML
+    private TextField txtDataRestituzione;
     // --------------- BOTTONI --------------------
     @FXML
     private Button searchButton;
