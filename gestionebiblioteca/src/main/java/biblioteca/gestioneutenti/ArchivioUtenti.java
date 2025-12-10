@@ -1,8 +1,15 @@
 package biblioteca.gestioneutenti;
 import biblioteca.Archivio;
+import biblioteca.gestionelibri.Libro;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.TreeSet;
 import java.util.Set;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Scanner;
 /**
  * @class ArchivioUtenti
  * @brief Gestisce la collezione degli utenti della biblioteca
@@ -26,30 +33,78 @@ public class ArchivioUtenti implements Archivio{
         this.utenti= new TreeSet<>(); 
    }
    
-   /**
-    * @brief Carica gli utenti da un file di testo
-    * 
-    * @param filename Nome del file da cui leggere
-    * @throws IOException se si verificano errori di lettura
-    * 
-    * @pre filename!=null && !filename.isEmpty()
-    * @post utenti contiene gli utenti letti dal file 
-    */
+/**
+ * @brief Carica gli utenti dal file specificato.
+ *
+ * Il formato previsto per ogni riga (dopo l'intestazione) è:
+ * nome;cognome;matricola;email
+ *
+ * La prima riga del file viene ignorata poiché contiene l'intestazione.
+ *
+ * @param filename Nome del file da cui leggere i dati.
+ * @throws IOException Se si verificano errori di lettura.
+ *
+ * @pre filename != null && !filename.isEmpty()
+ * @post L'archivio contiene tutti gli utenti presenti nel file.
+ */
    @Override
    public void leggiDaFile(String filename) throws IOException{
+       
+        try (Scanner scanner = new Scanner(new BufferedReader( new FileReader(filename)))) {
+        
+        //  Salta la prima riga (intestazione)
+        if (scanner.hasNextLine()) {
+            scanner.nextLine();
+        }
+
+        //Lettura righe successive
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            if (line.trim().isEmpty()) continue;
+
+            String[] parti = line.split(";");
+            if (parti.length < 4) continue;
+
+            String nome = parti[0];
+            String cognome = parti[1];
+            int matricola = Integer.parseInt(parti[2]);
+            String email = parti[3];
+            
+            Utente u = new Utente(nome, cognome, matricola, email);
+            utenti.add(u);
+            
+            }
+       }
+    
    }
-   /**
-    * @brief Salva gli utenti nel file specificato
-    * 
-    * @param filename Nome del file su cui scrivere
-    * @throws IOException se si verificano errori di scrittura
-    * 
-    * @pre filename!=null && !filename.isEmpty()
-    * @post il file contiene tutti gli utenti memorizzati.
-    */
+/**
+ * @brief Salva tutti gli utenti sul file specificato.
+ *
+ * Ogni libro viene scritto in una riga nel formato:
+ * nome;cognome;email;matricola;
+ *
+ * La prima riga del file contiene l'intestazione con i nomi dei campi.
+ *
+ * @param filename Nome del file su cui salvare i dati.
+ * @throws IOException Se si verificano errori di scrittura.
+ *
+ * @pre filename != null && !filename.isEmpty()
+ * @post Il file contiene l'intestazione e tutti gli utenti memorizzati nell'archivio.
+ */
    @Override
-   public void scriviSuFile(String filename)throws IOException{
-   }
+   public void scriviSuFile(String filename) throws IOException{
+       try(PrintWriter pw = new PrintWriter( new BufferedWriter ( new FileWriter (filename)))){
+           pw.println("NOME;COGNOME;EMAIL;MATRICOLA");
+           for(Utente u: utenti){
+               pw.println(
+                       u.getNome() + ";" +
+                       u.getCognome() + ";" +
+                       u.getMatricola() + ";" + 
+                       u.getEmail()
+                    );
+            }   
+        }
+   } 
    /**
     * @brief Aggiunge un nuovo utente all'archivio
     * Non effettua controlli, che vengono delegati a {@link UtentiService}.

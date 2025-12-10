@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="720.0" prefWidth="1200.0" styleClass="root" stylesheets="@css/styleprestito.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca.GestionePrestiti.PrestitiViewController">
+<BorderPane prefHeight="720.0" prefWidth="1200.0" styleClass="root" stylesheets="@css/styleprestito.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca.gestioneprestiti.PrestitiViewController">
 
     <!-- HEADER -->
     <top>

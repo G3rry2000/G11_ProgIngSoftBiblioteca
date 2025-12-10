@@ -3,6 +3,13 @@ import biblioteca.Archivio;
 import java.util.TreeSet;
 import java.util.Set;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.Scanner;
+
 /**
  * @class ArchivioLibri
  * @brief Gestisce la collezione dei libri della biblioteca
@@ -28,30 +35,77 @@ public class ArchivioLibri implements Archivio{
    this.libri= new TreeSet<>();
    }
    
-    /**
-    * @brief Carica i libri da un file di testo
-    * 
-    * @param filename Nome del file da cui leggere
-    * @throws IOException se si verificano errori di lettura
-    * 
-    * @pre filename!=null && !filename.isEmpty()
-    * @post libri contiene i libri letti dal file 
-    */
+/**
+ * @brief Carica i libri dal file specificato.
+ *
+ * Il formato previsto per ogni riga (dopo l'intestazione) è:
+ * titolo;autore;annoPubblicazione;isbn;copieDisponibili
+ *
+ * La prima riga del file viene ignorata poiché contiene l'intestazione.
+ *
+ * @param filename Nome del file da cui leggere i dati.
+ * @throws IOException Se si verificano errori di lettura.
+ *
+ * @pre filename != null && !filename.isEmpty()
+ * @post L'archivio contiene tutti i libri presenti nel file.
+ */
    @Override
    public void leggiDaFile(String filename)throws IOException{
+       try (Scanner scanner = new Scanner(new BufferedReader( new FileReader(filename)))) {
+
+        //  Salta la prima riga (intestazione)
+        if (scanner.hasNextLine()) {
+            scanner.nextLine();
+        }
+
+        //Lettura righe successive
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            if (line.trim().isEmpty()) continue;
+
+            String[] parti = line.split(";");
+            if (parti.length < 5) continue;
+
+            String titolo = parti[0];
+            String autore = parti[1];
+            int anno = Integer.parseInt(parti[2]);
+            String isbn = parti[3];
+            int copie = Integer.parseInt(parti[4]);
+
+            Libro l = new Libro(titolo, autore, anno, isbn, copie);
+            libri.add(l);
+            }
+       }
    }
-    /**
-    * @brief Salva i libri nel file specificato
-    * 
-    * @param filename Nome del file su cui scrivere
-    * @throws IOException se si verificano errori di scrittura
-    * 
-    * @pre filename!=null && !filename.isEmpty()
-    * @post il file contiene tutti i libri memorizzati.
-    */
+/**
+ * @brief Salva tutti i libri sul file specificato.
+ *
+ * Ogni libro viene scritto in una riga nel formato:
+ * titolo;autore;annoPubblicazione;isbn;copieDisponibili
+ *
+ * La prima riga del file contiene l'intestazione con i nomi dei campi.
+ *
+ * @param filename Nome del file su cui salvare i dati.
+ * @throws IOException Se si verificano errori di scrittura.
+ *
+ * @pre filename != null && !filename.isEmpty()
+ * @post Il file contiene l'intestazione e tutti i libri memorizzati nell'archivio.
+ */
    @Override
    public void scriviSuFile(String filename) throws IOException{
-   }
+       try(PrintWriter pw = new PrintWriter( new BufferedWriter ( new FileWriter (filename)))){
+           pw.println("TITOLO;AUTORE;ANNODIPUBBLICAZIONE;ISBN;COPIEDISPONIBILI");
+           for(Libro l: libri){
+               pw.println(
+                       l.getTitolo() + ";" +
+                       l.getAutore() + ";" +
+                       l.getAnnoPubblicazione() + ";" + 
+                       l.getISBN() + ";" +
+                       l.getCopieDisponibili()
+                    );
+            }   
+        }
+   }      
     /**
     * @brief Aggiunge un nuovo libro all'archivio
     * Non effettua controlli, che vengono delegati a {@link LibriService}.    * 
@@ -61,6 +115,7 @@ public class ArchivioLibri implements Archivio{
     * @post libri contiene il libro l
     */
    public void aggiungiLibro(Libro l){
+       libri.add(l);
    }
       /**
     * @brief Rimuove un libro dall'archivio
@@ -72,7 +127,8 @@ public class ArchivioLibri implements Archivio{
     * @post se presente, il libro viene rimosso dall'archivio.
     */
    public Libro rimuoviLibro(Libro l){
-   return null;
+    boolean r = libri.remove(l);
+    return r ? l : null;
    }
     /**
     * @brief Cerca tutti i libri che hanno un determinato titolo
@@ -84,7 +140,15 @@ public class ArchivioLibri implements Archivio{
     * @post restituisce l'insieme dei libri corrispondenti
     */
    public Set<Libro> ricercaTitolo(String titolo){
-   return null;
+     Set<Libro> risultato = new TreeSet<>();
+    
+    for (Libro l : libri) {
+        if (l.getTitolo().equalsIgnoreCase(titolo)) {
+            risultato.add(l);
+        }
+    }
+    
+    return risultato;
    }
     /**
     * @brief Cerca se esiste un libro con un determinato ISBN
@@ -96,7 +160,12 @@ public class ArchivioLibri implements Archivio{
     * @post restituisce l'insieme dei libri corrispondenti
     */
    public Libro ricercaISBN(String ISBN){ 
-   return null;
+        for (Libro l : libri) {
+            if (l.getISBN().equalsIgnoreCase(ISBN)) {
+                return l;
+            }
+        }
+    return null;
    }
     /**
     * @brief Cerca se esiste un libro con un determinato autore.
@@ -108,7 +177,15 @@ public class ArchivioLibri implements Archivio{
     * @post restituisce l'insieme dei libri corrispondenti
     */
    public Set<Libro> ricercaAutore(String autore){   
-   return null;
+     Set<Libro> risultato = new TreeSet<>();
+
+    for (Libro l : libri) {
+        if (l.getAutore().equalsIgnoreCase(autore)) {
+            risultato.add(l);
+        }
+    }
+
+    return risultato;
    }
     /**
     * @brief Modifica un libro già presente.
@@ -118,15 +195,30 @@ public class ArchivioLibri implements Archivio{
     * @pre l!=null e libro già registrato
     * se esiste, il libro viene sostituito con l
     */
-   public boolean modificaLibro(Libro l){
-      return true;
-   }
+    public boolean modificaLibro(Libro l) {
+        if (l == null) return false;
+
+        Libro daRimuovere = null;
+
+        for (Libro corrente : libri) {
+            if (corrente.getISBN().equalsIgnoreCase(l.getISBN())) {
+                daRimuovere = corrente;
+                break;
+            }
+        }
+
+        if (daRimuovere == null) return false;
+
+        libri.remove(daRimuovere);
+        libri.add(l);
+        return true;
+    }
     /**
     * @brief Restituisce l'intero insieme dei libri
     * @return Set ordinato dei libri
     */
    public Set<Libro> getLibri(){ 
-   return null;
+        return libri;
    }
   
 }
