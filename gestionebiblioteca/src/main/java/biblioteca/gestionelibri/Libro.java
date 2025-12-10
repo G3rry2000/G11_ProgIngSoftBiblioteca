@@ -136,12 +136,12 @@ public class Libro implements Comparable<Libro>{
      */
     @Override 
     public String toString(){
-    StringBuffer sb= new StringBuffer();
-    sb.append("---->LIBRO \n").append("Titolo: ").append(titolo).append("Autore: ").append(autore)
-            .append("Anno di pubblicazione: ").append(annoPubblicazione).append("ISBN: ").append(ISBN)
-            .append("Copie disponibili: ").append(copieDisponibili);
-    
-    return sb.toString();
+        StringBuffer sb= new StringBuffer();
+        sb.append("---->Libro \n").append("Titolo: ").append(titolo).append("Autore: ").append(autore)
+                .append("Anno di pubblicazione: ").append(annoPubblicazione).append("ISBN: ").append(ISBN)
+                .append("Copie disponibili: ").append(copieDisponibili);
+
+        return sb.toString();
     }
     
      /**
@@ -154,9 +154,7 @@ public class Libro implements Comparable<Libro>{
         if(this.getClass() != o.getClass()) return false;
         
         Libro l= (Libro)o;
-        if(l.ISBN.equals(this.ISBN)) return true;
-        
-        return false;
+        return l.ISBN.equals(this.ISBN);
     }
      /**
      * @brief hash coerente con equals(basato sull'ISBN)

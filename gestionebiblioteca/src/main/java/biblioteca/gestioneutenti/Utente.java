@@ -128,6 +128,8 @@ public class Utente implements Comparable<Utente>{
      * @post prestitiAttivi contiene p
      */
     public void aggiungiPrestitoAttivo(Prestito p){
+        
+        //DA FARE
     }
     /**
      * @brief Rimuove un prestito attivo
@@ -137,6 +139,8 @@ public class Utente implements Comparable<Utente>{
      * @post prestitiAttivi non contiene più p
      */
     public void rimuoviPrestitoAttivo(Prestito p){
+        
+        //DA FARE
     }
     /**
      * @return lista dei prestiti attivi
@@ -150,7 +154,18 @@ public class Utente implements Comparable<Utente>{
      */
     @Override
     public String toString(){
-    return null;
+        StringBuffer sb= new StringBuffer();
+        sb.append("---->Utente \n").append("Nome: ").append(nome).append("Cognome: ").append(cognome)
+            .append("Matricola: ").append(matricola).append("Email: ").append(email)
+                .append("Lista di libri presi in prestito: ");
+        
+        if (prestitiAttivi.size()==0)
+            sb.append("Nessun libro in prestito.");
+        
+        for(Prestito p : prestitiAttivi){
+            sb.append(p.getLibro().getTitolo());
+        }
+        return sb.toString();
     }
     
     /**
@@ -158,14 +173,21 @@ public class Utente implements Comparable<Utente>{
      */
     @Override
     public boolean equals(Object o){
-        return true;
+       
+       if(o == null) return false; 
+       if (this == o) return true;
+       if (this.getClass() != o.getClass()) return false;
+       Utente u = (Utente) o;
+       return this.matricola == u.matricola; 
+        
     }
     /**
      * @brief hash coerente con equals(basato sulla matricola)
      */
     @Override
     public int hashCode(){
-    return 0;
+        int code= cognome == null ? 0 : cognome.hashCode();
+        return code;
     }
     /**
      * @brief Ordina per cognome, a parità di cognome, per nome.
@@ -173,7 +195,9 @@ public class Utente implements Comparable<Utente>{
      */
     @Override
     public int compareTo(Utente u1){
-    return 0;
+        int cmp = this.cognome.compareToIgnoreCase(u1.cognome);
+        if (cmp != 0) return cmp;
+        return this.nome.compareToIgnoreCase(u1.nome);
     }
     
     
