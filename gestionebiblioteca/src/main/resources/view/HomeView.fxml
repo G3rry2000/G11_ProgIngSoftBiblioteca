@@ -2,8 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.effect.GaussianBlur?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -13,57 +11,52 @@
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane prefHeight="720.0" prefWidth="1200.0" stylesheets="@css/stylehome.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="biblioteca.GestioneHome.HomeViewController">
-            
+
     <top>
-        <VBox alignment="TOP_CENTER" BorderPane.alignment="CENTER">
+        <VBox alignment="TOP_CENTER">
             
+            <!-- HEADER -->
             <HBox alignment="CENTER_LEFT" prefHeight="70.0" styleClass="header-bar">
                 <children>
                     <Label styleClass="titolo-principale" text="Gestione Biblioteca">
-                        <HBox.margin>
-                            <Insets left="40.0" /> </HBox.margin>
+                        <HBox.margin><Insets left="40.0" /></HBox.margin>
                     </Label>
-                    <Label styleClass="titolo-secondario" text="Home" />
+                    <Label prefHeight="30.0" prefWidth="87.0" styleClass="titolo-secondario" text="Home" />
                 </children>
             </HBox>
+         <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="1219.0" spacing="20.0">
+            <children>
+               <Label styleClass="nav-item-current" text="Home">
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
+               </Label>
+               <Label fx:id="libriID" onMouseClicked="#clickLibri" styleClass="nav-item" text="Libri" />
+               <Label fx:id="utentiID" onMouseClicked="#clickUtenti" styleClass="nav-item" text="Utenti" />
+               <Label fx:id="prestitiID" onMouseClicked="#clickPrestiti" styleClass="nav-item" text="Prestiti" />
+            </children>
+            <VBox.margin>
+               <Insets />
+            </VBox.margin>
+         </HBox>
 
-            <MenuBar prefHeight="40.0" styleClass="menu-bar">
-                <menus>
-                    <Menu mnemonicParsing="false" styleClass="menu-btn-current" text="Home" />
-                    
-                    <Menu fx:id="LibriID" mnemonicParsing="false" onAction="#clickLibri" styleClass="menu-btn" text="Libri" />
-                    
-                    <Menu fx:id="UtentiID" mnemonicParsing="false" onAction="#clickUtenti" styleClass="menu-btn" text="Utenti" />
-                    
-                    <Menu fx:id="PrestitiID" mnemonicParsing="false" onAction="#clickPrestiti" styleClass="menu-btn" text="Prestiti" />
-                </menus>
-            </MenuBar>
         </VBox>
     </top>
 
     <bottom>
-        <VBox alignment="CENTER" prefHeight="40.0" BorderPane.alignment="CENTER">
+        <VBox alignment="CENTER" prefHeight="40.0">
             <children>
-                <Label styleClass="footer-label" text=" 2025 Biblioteca Universitaria - Gestione Home" />
+                <Label styleClass="footer-label" text="2025 Biblioteca Universitaria - Gestione Home" />
             </children>
         </VBox>
     </bottom>
 
     <center>
-        <StackPane alignment="CENTER" BorderPane.alignment="CENTER">
+        <StackPane alignment="CENTER" stylesheets="@css/stylehome.css">
             <ImageView fitHeight="450.0" fitWidth="600.0" opacity="0.7" pickOnBounds="true" preserveRatio="true" styleClass="logo-impact">
-                
-                <effect>
-                    <GaussianBlur radius="5.0" /> 
-                </effect>
-                
-                <image>
-                    <Image url="@image/logo_unisa.png" />
-                </image>
+                <effect><GaussianBlur radius="5.0" /></effect>
+                <image><Image url="@image/logo_unisa.png" /></image>
             </ImageView>
-            
-            <VBox alignment="CENTER" spacing="15.0" />
-            
         </StackPane>
     </center>
 

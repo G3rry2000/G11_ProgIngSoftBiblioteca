@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -54,31 +55,31 @@ public class Libro implements Comparable<Libro>{
      * @return Il titolo del libro
      */
     public String getTitolo() {
-        return null;  
+        return titolo;  
     }
          /**
      * @return L'autore del libro
      */
     public String getAutore() {
-        return null;
+        return autore;
     }
          /**
      * @return L'anno di pubblicazione del libro
      */
     public int getAnnoPubblicazione() {
-        return 0;
+        return annoPubblicazione;
     }
      /**
      * @return ISBN del libro
      */
     public String getISBN() {
-        return null;
+        return ISBN;
     }
      /**
      * @return Le copie disponibili
      */
     public int getCopieDisponibili() {
-        return 0;
+        return copieDisponibili;
     }
      /**
      *@brief Imposta un nuovo titolo per il libro
@@ -88,6 +89,7 @@ public class Libro implements Comparable<Libro>{
      * @post Il titolo viene aggiornato
      */
     public void setTitolo(String titolo) {
+        this.titolo=titolo;
     }
         /**
      *@brief Imposta un nuovo autore per il libro
@@ -97,6 +99,7 @@ public class Libro implements Comparable<Libro>{
      * @post L'autore viene aggiornato
      */
     public void setAutore(String autore) {
+        this.autore=autore;
     }
         /**
      *@brief Imposta un nuovo anno di pubblicazione per il libro
@@ -106,6 +109,7 @@ public class Libro implements Comparable<Libro>{
      * @post L'anno di pubblicazione viene aggiornato
      */
     public void setAnnoPubblicazione(int annoPubblicazione) {
+        this.annoPubblicazione=annoPubblicazione;
     }
      /**
      *@brief Imposta un nuovo ISBN per il libro
@@ -115,6 +119,7 @@ public class Libro implements Comparable<Libro>{
      * @post L'ISBN viene aggiornato
      */
     public void setISBN(String ISBN) {
+        this.ISBN=ISBN;
     }
         /**
      *@brief Imposta un nuovo numero di copie disponibili per il libro
@@ -124,13 +129,19 @@ public class Libro implements Comparable<Libro>{
      * @post Il numero di copie disponibili viene aggiornato
      */
     public void setCopieDisponibili(int copieDisponibili) {
+        this.copieDisponibili = copieDisponibili;
     }
      /**
      *@return Una rappresentazione leggibile del libro
      */
     @Override 
     public String toString(){
-    return null;
+    StringBuffer sb= new StringBuffer();
+    sb.append("---->LIBRO \n").append("Titolo: ").append(titolo).append("Autore: ").append(autore)
+            .append("Anno di pubblicazione: ").append(annoPubblicazione).append("ISBN: ").append(ISBN)
+            .append("Copie disponibili: ").append(copieDisponibili);
+    
+    return sb.toString();
     }
     
      /**
@@ -138,6 +149,13 @@ public class Libro implements Comparable<Libro>{
      */
     @Override
     public boolean equals(Object o){ 
+        if(o == null) return false;
+        if(this==o) return true;
+        if(this.getClass() != o.getClass()) return false;
+        
+        Libro l= (Libro)o;
+        if(l.ISBN.equals(this.ISBN)) return true;
+        
         return false;
     }
      /**
@@ -145,7 +163,8 @@ public class Libro implements Comparable<Libro>{
      */
     @Override
     public int hashCode() {
-        return 0;
+        int code= ISBN == null ? 0 : ISBN.hashCode();
+        return code;
     }
      /**
      * @brief Ordina i libri per titolo
@@ -153,6 +172,6 @@ public class Libro implements Comparable<Libro>{
      */
     @Override
     public int compareTo(Libro o){
-    return 0;
+        return this.titolo.compareTo(o.titolo);
     }
 }

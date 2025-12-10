@@ -1,108 +1,113 @@
-/* 1. SFONDO GENERALE */
+/* =======================================================
+   1. SFONDO GENERALE
+   ======================================================= */
 .root {
-    -fx-background-color: #f0f3f6; /* Grigio/Azzurro chiarissimo (BASE) */
+    -fx-background-color: #f0f3f6; /* Azzurro/Grigio chiarissimo */
     -fx-font-family: "Poppins", "Segoe UI", sans-serif;
 }
 
-/* 2. HEADER (TOOLBAR) */
+/* =======================================================
+   2. HEADER SUPERIORE (Titoli)
+   ======================================================= */
 .header-bar {
-    -fx-background-color: #ffffff; /* Bianco puro */
-    -fx-padding: 10px 0;
-    /* Ombra morbida e leggera */
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5);
+    -fx-background-color: #ffffff;
+    -fx-padding: 12px 0;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.10), 8, 0, 0, 4);
 }
 
+/* Titolo "Gestione Biblioteca" */
 .titolo-principale {
-    -fx-font-size: 26px; 
-    -fx-font-weight: 700; 
-    -fx-text-fill: #1a237e; /* Blu Profondo (Colore istituzionale) */
-    -fx-padding: 0 15px 0 0;
+    -fx-font-size: 26px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #1a237e;       /* Blu profondo */
+    -fx-padding: 0 20px 0 0;
 }
 
+/* Titolo sezione corrente (Home, Libri, Utenti, Prestiti) */
 .titolo-secondario {
     -fx-font-size: 20px;
-    -fx-font-weight: 300; 
-    -fx-text-fill: #607d8b; /* Grigio Chiaro */
+    -fx-font-weight: 300;
+    -fx-text-fill: #607d8b;
     -fx-padding: 0 0 0 15px;
-    -fx-border-color: transparent transparent transparent #e0e0e0; 
+    -fx-border-color: transparent transparent transparent #e0e0e0;
     -fx-border-width: 0 0 0 1px;
 }
 
+/* =======================================================
+   3. NAVBAR SEMPLICE (le 4 LABEL)
+   ======================================================= */
 
-/* 3. MENU BAR (Navigazione) */
-.menu-bar {
-    -fx-background-color: #ffffff; /* Bianco puro */
+/* Contenitore della navbar */
+.nav-bar {
+    -fx-background-color: #ffffff;
+    -fx-padding: 12px 40px;
+    -fx-spacing: 40px;
     -fx-border-color: #e0e0e0;
-    -fx-border-width: 0 0 1px 0; /* Linea sottile per separare */
-    -fx-padding: 0;
+    -fx-border-width: 0 0 1px 0; /* linea sottile inferiore */
+    -fx-alignment: CENTER_LEFT;
 }
 
-/* Stile dei Menu come Pulsanti (AUMENTATO IL PADDING PER INGRANDIRE IL MENU) */
-.menu-btn .label,
-.menu-btn-current .label {
-    -fx-text-fill: #455a64; /* Grigio scuro per leggibilità */
-    -fx-font-size: 18px; /* Carattere più grande */
+/* Etichette base della navbar */
+.nav-item {
+    -fx-text-fill: #455a64;
+    -fx-font-size: 18px;
     -fx-font-weight: 600;
-    -fx-padding: 18px 30px; /* AUMENTATO: Rende il Menu Bar molto più alto e impattante */
+    -fx-padding: 6px 4px;
+    -fx-cursor: hand;
+    -fx-transition: all 0.2s ease-in-out;
 }
 
-/* Stato Normale/Default */
-.menu-btn {
-    -fx-background-color: transparent; 
-    -fx-cursor: hand;
-    -fx-border-color: transparent;
+.nav-item:hover {
+    -fx-text-fill: #1e88e5;
+    -fx-scale-x: 1.03;
+    -fx-scale-y: 1.03;
+    -fx-effect: dropshadow(gaussian, rgba(52,152,219,0.25), 6, 0.2, 0, 0);
+}
+
+.nav-item-current {
+    -fx-text-fill: #0d47a1;
+    -fx-font-size: 18px;
+    -fx-font-weight: 700;
+    -fx-padding: 6px 4px;
+    -fx-border-color: transparent transparent #3498db transparent;
     -fx-border-width: 0 0 3px 0;
 }
-
-/* Stato Corrente (Home) */
-.menu-btn-current {
-    -fx-border-color: transparent transparent #3498db transparent; /* Linea Blu Accesso */
-    -fx-background-color: #e3f2fd; /* Sfondo Azzurrino molto chiaro */
+.nav-static {
+    -fx-text-fill: #607d8b;
+    -fx-font-size: 18px;
+    -fx-font-weight: 600;
+    -fx-padding: 6px 4px;
 }
 
-/* Stato Hover */
-.menu-btn:hover {
-    -fx-text-fill: #3498db; /* Testo Blu Accesso */
-    -fx-background-color: #f5f5f5; /* Sfondo Grigio Chiaro per l'hover */
-    -fx-border-color: transparent transparent #3498db transparent; 
+/* =======================================================
+   4. FOOTER
+   ======================================================= */
+.footer-label {
+    -fx-text-fill: #90a4ae;
+    -fx-font-size: 12px;
+    -fx-padding: 10px 0;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 1px 0 0 0;
 }
 
-/* Voci del MenuItem (il sottomenu a tendina) */
-.context-menu {
-    -fx-background-color: white; 
-    -fx-border-color: #b0bec5;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 5, 0, 0, 2);
+/* =======================================================
+   5. LOGO CENTRALE (Home)
+   ======================================================= */
+.logo-impact {
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.10), 5, 0, 0, 1);
 }
 
-.menu-item:hover {
-    -fx-background-color: #e3f2fd; /* Azzurro chiaro */
-}
-
-.menu-item .label {
-    -fx-text-fill: #455a64;
-}
-
-/* 4. SEZIONE CENTRALE (Testo Benvenuto) */
+/* Titolo Home grande */
 .welcome-title {
-    -fx-font-size: 60px; 
+    -fx-font-size: 60px;
     -fx-font-weight: 800;
-    -fx-text-fill: #1a237e; /* Blu Profondo (Stesso del titolo principale) */
-    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 1); 
+    -fx-text-fill: #1a237e;
 }
 
+/* Sottotitolo Home */
 .welcome-subtitle {
     -fx-font-size: 24px;
     -fx-font-weight: 400;
-    -fx-text-fill: #455a64; 
-}
-
-/* 5. FOOTER (Scritta in basso) */
-.footer-label {
-    -fx-text-fill: #90a4ae; 
-    -fx-font-size: 12px;
-    -fx-font-weight: normal;
-    -fx-padding: 10px 0;
-    -fx-background-color: #ffffff; /* Bianco pulito */
-    -fx-border-color: #e0e0e0;
-    -fx-border-width: 1px 0 0 0;
+    -fx-text-fill: #455a64;
 }

@@ -25,14 +25,14 @@ var hierarchy =
         [ "biblioteca.gestioneEccezioni.ValidazioneException", "classbiblioteca_1_1gestione_eccezioni_1_1_validazione_exception.html", null ]
       ] ]
     ] ],
-    [ "biblioteca.GestioneHome.HomeViewController", "classbiblioteca_1_1_gestione_home_1_1_home_view_controller.html", null ],
     [ "Initializable", null, [
+      [ "biblioteca.GestioneHome.HomeViewController", "classbiblioteca_1_1_gestione_home_1_1_home_view_controller.html", null ],
+      [ "biblioteca.GestioneLibri.LibroViewController", "classbiblioteca_1_1_gestione_libri_1_1_libro_view_controller.html", null ],
+      [ "biblioteca.GestionePrestiti.PrestitiViewController", "classbiblioteca_1_1_gestione_prestiti_1_1_prestiti_view_controller.html", null ],
       [ "biblioteca.GestioneUtenti.UtentiViewController", "classbiblioteca_1_1_gestione_utenti_1_1_utenti_view_controller.html", null ]
     ] ],
     [ "biblioteca.GestioneLibri.LibriService", "classbiblioteca_1_1_gestione_libri_1_1_libri_service.html", null ],
-    [ "biblioteca.GestioneLibri.LibroViewController", "classbiblioteca_1_1_gestione_libri_1_1_libro_view_controller.html", null ],
     [ "biblioteca.GestionePrestiti.PrestitiService", "classbiblioteca_1_1_gestione_prestiti_1_1_prestiti_service.html", null ],
-    [ "biblioteca.GestionePrestiti.PrestitiViewController", "classbiblioteca_1_1_gestione_prestiti_1_1_prestiti_view_controller.html", null ],
     [ "biblioteca.GestionePrestiti.Prestito", "classbiblioteca_1_1_gestione_prestiti_1_1_prestito.html", null ],
     [ "biblioteca.GestionePrestiti.StatoPrestiti", "enumbiblioteca_1_1_gestione_prestiti_1_1_stato_prestiti.html", null ],
     [ "biblioteca.GestioneUtenti.UtentiService", "classbiblioteca_1_1_gestione_utenti_1_1_utenti_service.html", null ]

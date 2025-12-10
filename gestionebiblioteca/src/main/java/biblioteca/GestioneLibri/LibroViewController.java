@@ -5,17 +5,24 @@
  */
 package biblioteca.GestioneLibri;
 
-
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Menu;
+import javafx.scene.control.Label;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.event.Event;
+import java.io.IOException;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.collections.ObservableList;
+import javafx.fxml.Initializable;
 
 /**
  * @class LibroViewController
@@ -29,7 +36,14 @@ import javafx.collections.ObservableList;
  *
  * Tutti i controlli vengono delegati a {@link LibriService}.
  */
-public class LibroViewController {
+public class LibroViewController implements Initializable{
+    //--------------- MENU ---------------
+    @FXML
+    private Label homeID;
+    @FXML
+    private Label utentiID;
+    @FXML
+    private Label prestitiID;
      // ------------------ CAMPI INPUT ---------------
     @FXML
     private TextField txtTitolo;
@@ -63,13 +77,6 @@ public class LibroViewController {
     private TableColumn<Libro, Integer> colNumCopie;
     @FXML
     private TableColumn<Libro, Integer> colAnno;
-    // ----------------MENU --------------
-    @FXML
-    private Menu HomeID;
-    @FXML
-    private Menu UtentiID;
-    @FXML
-    private Menu PrestitiID;
     
     // ------------- LOGICA --------------
     private ArchivioLibri archivioLibri;
@@ -77,34 +84,82 @@ public class LibroViewController {
     private LibriService libroService;
 
     private ObservableList<Libro> listaLibri;
+
      /**
      *@brief Metodo di inizializzazione del controller
      * 
      * Viene eseguito automaticamente all'avvio della schermata
      */
+    @Override
     public void initialize(URL url, ResourceBundle rb){
         //inizializzaione archivio e tabella
     }
-
+     /** @brief Restituisce lo stage (finestra) attualmente associato alla vista.
+     * Viene utilizzato principalmente per effettuare cambi di scena senza
+     * ripetere codice in ogni metodo di navigazione, migliorando la pulizia
+     * e la manutenibilità del controller.
+     *
+     * @return Lo {@link Stage} corrente della finestra in cui è caricata la vista
+     */
+    private Stage getStage(Label label) {
+        return (Stage) label.getScene().getWindow();
+    }
     // ------------NAVIGAZIONE MENU ------------
-     /**
-     * @brief Apre la sezione Utenti.
+    /**
+     * @brief Apre la sezione Home.
+     * 
+     * @param event Evento del click generato dall'interazione dell'utente.
+     *
+     * @pre event != null
      */
     @FXML
-    private void clickUtenti(ActionEvent event) {
+    private void clickHome(MouseEvent event) {
+        try {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/HomeView.fxml"));
+        Stage stage = getStage((Label) event.getSource());
+        stage.setScene(new Scene(root));
+        stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    /**
+     * @brief Apre la sezione Utenti.
+     * 
+     * @param event Evento del click generato dall'interazione dell'utente.
+     *
+     * @pre event != null
+     */
+    @FXML
+    private void clickUtenti(MouseEvent event) {
+         try {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/UtentiView.fxml"));
+        Stage stage = getStage((Label) event.getSource());
+        stage.setScene(new Scene(root));
+        stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     /**
      * @brief Apre la sezione Prestiti.
+     * 
+     * @param event Evento del click generato dall'interazione dell'utente.
+     *
+     * @pre event != null
      */
     @FXML
-    private void clickPrestiti(ActionEvent event) {
+    private void clickPrestiti(MouseEvent event) {
+        try {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/PrestitiView.fxml"));
+        Stage stage = getStage((Label) event.getSource());
+        stage.setScene(new Scene(root));
+        stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-     /**
-     * @brief Apre la sezione Home.
-     */
-    @FXML
-    private void ClickHome(ActionEvent event) {
-    }
+
     //------------OPERAZIONI UTENTI ------------
      /**
      * @brief Aggiunge un nuovo libro utilizzando i dati inseriti nei campi testo.

@@ -6,14 +6,22 @@ import biblioteca.GestioneUtenti.ArchivioUtenti;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
-import javafx.scene.control.Menu;
+import javafx.scene.control.Label;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.event.Event;
+import java.io.IOException;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.collections.ObservableList;
 import java.time.LocalDate;
+import javafx.fxml.Initializable;
 /**
  * @class PrestitiViewController
  * @brief Controller della vista FXML dedicata alla gestione dei prestiti.
@@ -26,14 +34,14 @@ import java.time.LocalDate;
  *
  * Tutti i controlli vengono delegati a {@link PrestitiService}.
  */
-public class PrestitiViewController {
+public class PrestitiViewController implements Initializable{
     // ----------------MENU --------------
     @FXML
-    private Menu utentiID;
+    private Label utentiID;
     @FXML
-    private Menu LibriID;
+    private Label homeID;
     @FXML
-    private Menu HomeID;
+    private Label libriID;
     // ------------------ CAMPI INPUT ---------------
     @FXML
     private TextField textISBN;
@@ -94,27 +102,74 @@ public class PrestitiViewController {
      * Inizializza archivi, configura tabella e popola colonne.
      * Viene eseguito automaticamente all'avvio della schermata
      */
+    @Override
     public void initialize(URL url, ResourceBundle rb){
         //inizializzaione archivio e tabella
     }
-     // ------------NAVIGAZIONE MENU ------------
-     /**
-     * @brief Apre la sezione Utenti.
+    /** @brief Restituisce lo stage (finestra) attualmente associato alla vista.
+     * Viene utilizzato principalmente per effettuare cambi di scena senza
+     * ripetere codice in ogni metodo di navigazione, migliorando la pulizia
+     * e la manutenibilità del controller.
+     *
+     * @return Lo {@link Stage} corrente della finestra in cui è caricata la vista
      */
-    @FXML
-    private void clickUtenti(ActionEvent event) {
+    private Stage getStage(Label label) {
+        return (Stage) label.getScene().getWindow();
     }
-     /**
-     * @brief Apre la sezione Libri.
-     */
-    @FXML
-    private void clickLibri(ActionEvent event) {
-    }
-     /**
+    // ------------NAVIGAZIONE MENU ------------
+    /**
      * @brief Apre la sezione Home.
+     * 
+     * @param event Evento del click generato dall'interazione dell'utente.
+     *
+     * @pre event != null
      */
     @FXML
-    private void clickHome(ActionEvent event) {
+    private void clickHome(MouseEvent event) {
+        try {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/HomeView.fxml"));
+        Stage stage = getStage((Label) event.getSource());
+        stage.setScene(new Scene(root));
+        stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    /**
+     * @brief Apre la sezione Libri.
+     * 
+     * @param event Evento del click generato dall'interazione dell'utente.
+     *
+     * @pre event != null
+     */
+    @FXML
+    private void clickLibri(MouseEvent event) {
+        try {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/LibroView.fxml"));
+        Stage stage = getStage((Label) event.getSource());
+        stage.setScene(new Scene(root));
+        stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    /**
+     * @brief Apre la sezione Utenti.
+     * 
+     * @param event Evento del click generato dall'interazione dell'utente.
+     *
+     * @pre event != null
+     */
+    @FXML
+    private void clickUtenti(MouseEvent event) {
+        try {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/UtentiView.fxml"));
+        Stage stage = getStage((Label) event.getSource());
+        stage.setScene(new Scene(root));
+        stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
      //------------OPERAZIONI UTENTI ------------
      /**
@@ -147,6 +202,8 @@ public class PrestitiViewController {
     @FXML
     private void onVisualizzaCronologia(ActionEvent event) {
     }
+
+
 
 
 

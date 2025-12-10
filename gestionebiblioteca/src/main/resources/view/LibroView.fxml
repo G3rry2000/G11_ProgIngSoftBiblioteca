@@ -3,8 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -37,19 +35,18 @@
                     <Label styleClass="titolo-secondario" text="Libri" />
                 </children>
             </HBox>
-
-            <!-- MENU BAR -->
-            <MenuBar styleClass="menu-bar">
-                <menus>
-                    <Menu fx:id="HomeID" mnemonicParsing="false" onAction="#ClickHome" styleClass="menu-btn" text="Home" />
-
-                    <Menu fx:id="UtentiID" mnemonicParsing="false" onAction="#clickUtenti" styleClass="menu-btn" text="Utenti" />
-
-                    <Menu mnemonicParsing="false" styleClass="menu-btn-current" text="Libri" />
-
-                    <Menu fx:id="PrestitiID" mnemonicParsing="false" onAction="#clickPrestiti" styleClass="menu-btn" text="Prestiti" />
-                </menus>
-            </MenuBar>
+         <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="1219.0" spacing="20.0">
+            <children>
+               <Label fx:id="homeID" onMouseClicked="#clickHome" styleClass="nav-item" text="Home">
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
+               </Label>
+               <Label styleClass="nav-item-current" text="Libri" />
+               <Label fx:id="utentiID" onMouseClicked="#clickUtenti" styleClass="nav-item" text="Utenti" />
+               <Label fx:id="prestitiID" onMouseClicked="#clickPrestiti" styleClass="nav-item" text="Prestiti" />
+            </children>
+         </HBox>
 
         </VBox>
     </top>
