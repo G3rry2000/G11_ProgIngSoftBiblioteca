@@ -142,10 +142,10 @@
 
                         <TableView fx:id="utenteTable" VBox.vgrow="ALWAYS">
                             <columns>
-                                <TableColumn fx:id="colNome" prefWidth="150" text="Nome" />
-                                <TableColumn fx:id="colCognome" prefWidth="150" text="Cognome" />
-                                <TableColumn fx:id="colMatricola" prefWidth="200" text="Matricola" />
-                                <TableColumn fx:id="colEmail" prefWidth="150" text="Email" />
+                                <TableColumn fx:id="colNome" onEditCommit="#onModificaNome" prefWidth="150" text="Nome" />
+                                <TableColumn fx:id="colCognome" onEditCommit="#onModificaCognome" prefWidth="150" text="Cognome" />
+                                <TableColumn fx:id="colMatricola" onEditCommit="#onModificaMatricola" onEditStart="#onOriginaleMatricola" prefWidth="200" text="Matricola" />
+                                <TableColumn fx:id="colEmail" onEditCommit="#onModificaEmail" prefWidth="150" text="Email" />
                                 <TableColumn fx:id="colPrestiti" prefWidth="120" text="Prestiti" />
                                 <TableColumn fx:id="colDataRest" prefWidth="150" text="Data Restituzione" />
                             </columns>
