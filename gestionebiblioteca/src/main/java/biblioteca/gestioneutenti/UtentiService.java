@@ -60,7 +60,7 @@ public class UtentiService {
     if(u.getEmail() == null || u.getEmail().trim().isEmpty()){
         throw new ValidazioneException("email non valida");
     }
-    if(!u.getEmail().endsWith("unisa.it")){
+    if(!u.getEmail().endsWith("@unisa.it")){
         throw new ValidazioneException("l'email deve essere istituzionale");
     }
     

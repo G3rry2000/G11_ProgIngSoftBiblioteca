@@ -94,7 +94,7 @@ public class ArchivioUtenti implements Archivio{
    @Override
    public void scriviSuFile(String filename) throws IOException{
        try(PrintWriter pw = new PrintWriter( new BufferedWriter ( new FileWriter (filename)))){
-           pw.println("NOME;COGNOME;EMAIL;MATRICOLA");
+           pw.println("NOME;COGNOME;MATRICOLA;EMAIL");
            for(Utente u: utenti){
                pw.println(
                        u.getNome() + ";" +
@@ -115,6 +115,7 @@ public class ArchivioUtenti implements Archivio{
     * @post utenti contiene l'utente u
     */
    public void aggiungiUtente(Utente u){
+       utenti.add(u);
    }
    
    /**
@@ -128,7 +129,8 @@ public class ArchivioUtenti implements Archivio{
     * @post se presente, l'utente viene rimosso dall'archivio.
     */
    public Utente rimuoviUtente(Utente u){
-   return null;
+   boolean rimosso = utenti.remove(u);
+   return rimosso ? u : null;
    }
    
    /**
@@ -141,7 +143,15 @@ public class ArchivioUtenti implements Archivio{
     * @post restituisce l'insieme degli utenti corrispondenti.
     */
    public Set<Utente> ricercaCognome(String cognome){
-   return null;
+   Set<Utente> risultato = new TreeSet<>();
+   
+   for(Utente u : risultato){
+       if(u.getCognome().equals(cognome)){
+           risultato.add(u);
+       }
+   }
+   
+   return risultato;
    }
       /**
     * @brief Cerca se esiste un utente con una determinata matricola.
@@ -153,24 +163,19 @@ public class ArchivioUtenti implements Archivio{
     * @post restituisce l'utente corrispondente
     */
    public Utente ricercaMatricola(int matricola){
+   for(Utente u : utenti){
+       if(u.getMatricola() == matricola){
+           return u;
+       }
+   }
    return null;
    }
-   /**
-    * @brief Modifica un utente già presente.
-    * @param u Utente aggiornato
-    * @return Torna true se la modifica è avvenuta con successo, altrimenti false
-    * 
-    * @pre u!=null e utente già registrato
-    * @post se esiste, l'utente viene sostituito con u
-    */
-   public boolean modificaUtente(Utente u){ 
-   return false;
-   }
+   
    /**
     * @brief Restituisce l'intero insieme degli utenti
     * @return Set ordinato degli utenti
     */
    public Set<Utente> getUtenti(){ 
-   return null;
+       return utenti;
    }
 }
