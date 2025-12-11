@@ -131,6 +131,28 @@ public void initialize(URL url, ResourceBundle rb) {
 
     // Imposta dati nella tabella
     libroTable.setItems(listaLibri);
+     //   BINDINGS 
+
+    // Aggiungi
+    addButton.disableProperty().bind(
+        txtTitolo.textProperty().isEmpty()
+            .or(txtAutori.textProperty().isEmpty())
+            .or(txtAnno.textProperty().isEmpty())
+            .or(txtISBN.textProperty().isEmpty())
+            .or(txtCopie.textProperty().isEmpty())
+    );
+
+    // Elimina
+    removeButton.disableProperty().bind(
+        libroTable.getSelectionModel().selectedItemProperty().isNull()
+    );
+
+    // Cerca
+    searchButton.disableProperty().bind(
+        txtTitolo.textProperty().isEmpty()
+            .and(txtAutori.textProperty().isEmpty())
+            .and(txtISBN.textProperty().isEmpty())
+    );
 }
 
      /** @brief Restituisce lo stage (finestra) attualmente associato alla vista.
@@ -224,6 +246,12 @@ public void initialize(URL url, ResourceBundle rb) {
         listaLibri.setAll(libroService.visualizzaLibri());
 
         alertConferma("Libro aggiunto correttamente.");
+        // Svuota i campi dopo l'inserimento
+        txtTitolo.clear();
+        txtAutori.clear();
+        txtAnno.clear();
+        txtISBN.clear();
+        txtCopie.clear();
 
     } catch (ValidazioneException e) {
         alertErrore("Errore: " + e.getMessage());

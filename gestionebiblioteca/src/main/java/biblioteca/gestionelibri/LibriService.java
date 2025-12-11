@@ -111,8 +111,7 @@ public class LibriService {
  * @pre Almeno uno tra titolo, autore o ISBN deve essere compilato.
  * @post Restituisce l'insieme dei libri trovati secondo il criterio di ricerca applicato.
  */
-public Set<Libro> ricercaLibro(String titolo, String autore, String isbn)
-        throws ValidazioneException, LibroNonTrovatoException {
+public Set<Libro> ricercaLibro(String titolo, String autore, String isbn) throws ValidazioneException, LibroNonTrovatoException {
 
     titolo = titolo == null ? "" : titolo.trim();
     autore = autore == null ? "" : autore.trim();
@@ -165,12 +164,7 @@ public Set<Libro> ricercaLibro(String titolo, String autore, String isbn)
  * @pre libro != null
  * @post Le modifiche vengono salvate nell’archivio, se valide.
  */
-public void modificaLibro(Libro libro, String isbnOriginale)
-        throws ValidazioneException, DuplicatoException {
-
-    if (libro == null) {
-        throw new ValidazioneException("Il libro non può essere nullo.");
-    }
+public void modificaLibro(Libro libro, String isbnOriginale) throws ValidazioneException, DuplicatoException {
 
     // --- Controllo campi vuoti ---
     if (libro.getTitolo() == null || libro.getTitolo().trim().isEmpty())
