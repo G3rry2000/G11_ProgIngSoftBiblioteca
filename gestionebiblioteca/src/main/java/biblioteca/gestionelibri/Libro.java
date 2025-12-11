@@ -169,7 +169,10 @@ public class Libro implements Comparable<Libro>{
      * @param o altro libro
      */
     @Override
-    public int compareTo(Libro o){
-        return this.titolo.compareTo(o.titolo);
+    public int compareTo(Libro l){
+        int cmp = this.titolo.compareTo(l.titolo);
+        if (cmp != 0) return cmp;
+        return this.ISBN.compareTo(l.ISBN);
     }
+
 }

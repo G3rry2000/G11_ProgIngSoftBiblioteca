@@ -188,32 +188,6 @@ public class ArchivioLibri implements Archivio{
     return risultato;
    }
     /**
-    * @brief Modifica un libro già presente.
-    * @param l Libro aggiornato
-    * @return Torna true se la modifica è avvenuta con successo, altrimenti false
-    * 
-    * @pre l!=null e libro già registrato
-    * se esiste, il libro viene sostituito con l
-    */
-    public boolean modificaLibro(Libro l) {
-        if (l == null) return false;
-
-        Libro daRimuovere = null;
-
-        for (Libro corrente : libri) {
-            if (corrente.getISBN().equalsIgnoreCase(l.getISBN())) {
-                daRimuovere = corrente;
-                break;
-            }
-        }
-
-        if (daRimuovere == null) return false;
-
-        libri.remove(daRimuovere);
-        libri.add(l);
-        return true;
-    }
-    /**
     * @brief Restituisce l'intero insieme dei libri
     * @return Set ordinato dei libri
     */
