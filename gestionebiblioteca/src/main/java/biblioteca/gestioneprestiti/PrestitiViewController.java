@@ -1,6 +1,6 @@
-
 package biblioteca.gestioneprestiti;
 
+import biblioteca.gestioneeccezioni.BibliotecaException;
 import biblioteca.gestionelibri.ArchivioLibri;
 import biblioteca.gestioneutenti.ArchivioUtenti;
 import java.net.URL;
@@ -21,7 +21,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.collections.ObservableList;
 import java.time.LocalDate;
+import java.util.Set;
+import javafx.collections.FXCollections;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.cell.PropertyValueFactory;
 /**
  * @class PrestitiViewController
  * @brief Controller della vista FXML dedicata alla gestione dei prestiti.
@@ -88,7 +92,8 @@ public class PrestitiViewController implements Initializable{
     private TableColumn<Prestito, LocalDate> colDataFine;
     @FXML
     private TableColumn<Prestito, StatoPrestiti> colStato;
-     // ------------- LOGICA --------------
+    
+    // ------------- LOGICA --------------
     private ArchivioPrestitiAttivi archivioPrestitiAttivi;
     private ArchivioCronologiaPrestiti archivioCronologiaPrestiti;
     private ArchivioLibri archivioLibri;
@@ -103,8 +108,30 @@ public class PrestitiViewController implements Initializable{
      * Viene eseguito automaticamente all'avvio della schermata
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb){
-        //inizializzaione archivio e tabella
+    public void initialize(URL url, ResourceBundle rb) {
+
+        prestitiService = new PrestitiService(
+                new ArchivioLibri(),
+                new ArchivioUtenti(),
+                new ArchivioPrestitiAttivi(),
+                new ArchivioCronologiaPrestiti()
+        );
+
+        listaPrestiti = FXCollections.observableArrayList();
+        listaPrestiti.setAll(prestitiService.visualizzaPrestitiAttivi());
+
+        colID.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colDataInizio.setCellValueFactory(new PropertyValueFactory<>("dataInizio"));
+        colDataFine.setCellValueFactory(new PropertyValueFactory<>("dataFine"));
+        colStato.setCellValueFactory(new PropertyValueFactory<>("stato"));
+
+        prestitoTable.setItems(listaPrestiti);
+
+        addButton.disableProperty().bind(
+                textISBN.textProperty().isEmpty()
+                        .or(txtMatricola1.textProperty().isEmpty())
+                        .or(txtDataRestituzione.textProperty().isEmpty())
+        );
     }
     /** @brief Restituisce lo stage (finestra) attualmente associato alla vista.
      * Viene utilizzato principalmente per effettuare cambi di scena senza
@@ -127,10 +154,10 @@ public class PrestitiViewController implements Initializable{
     @FXML
     private void clickHome(MouseEvent event) {
         try {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/HomeView.fxml"));
-        Stage stage = getStage((Label) event.getSource());
-        stage.setScene(new Scene(root));
-        stage.show();
+            Parent root = FXMLLoader.load(getClass().getResource("/view/HomeView.fxml"));
+            Stage stage = getStage((Label) event.getSource());
+            stage.setScene(new Scene(root));
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -145,10 +172,10 @@ public class PrestitiViewController implements Initializable{
     @FXML
     private void clickLibri(MouseEvent event) {
         try {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/LibroView.fxml"));
-        Stage stage = getStage((Label) event.getSource());
-        stage.setScene(new Scene(root));
-        stage.show();
+            Parent root = FXMLLoader.load(getClass().getResource("/view/LibroView.fxml"));
+            Stage stage = getStage((Label) event.getSource());
+            stage.setScene(new Scene(root));
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -163,10 +190,10 @@ public class PrestitiViewController implements Initializable{
     @FXML
     private void clickUtenti(MouseEvent event) {
         try {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/UtentiView.fxml"));
-        Stage stage = getStage((Label) event.getSource());
-        stage.setScene(new Scene(root));
-        stage.show();
+            Parent root = FXMLLoader.load(getClass().getResource("/view/UtentiView.fxml"));
+            Stage stage = getStage((Label) event.getSource());
+            stage.setScene(new Scene(root));
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -177,33 +204,93 @@ public class PrestitiViewController implements Initializable{
      */
     @FXML
     private void onAggiungiPrestito(ActionEvent event) {
+        try {
+            int matricola = Integer.parseInt(txtMatricola1.getText());
+            LocalDate dataFine = LocalDate.parse(txtDataRestituzione.getText());
+
+            prestitiService.registraPrestito(
+                    textISBN.getText(),
+                    matricola,
+                    dataFine
+            );
+
+            listaPrestiti.setAll(prestitiService.visualizzaPrestitiAttivi());
+            alertInfo("Prestito registrato correttamente.");
+
+            textISBN.clear();
+            txtMatricola1.clear();
+            txtDataRestituzione.clear();
+
+        } catch (NumberFormatException e) {
+            alertErrore("La matricola deve essere un numero.");
+        } catch (BibliotecaException e) {
+            alertErrore(e.getMessage());
+        }
     }
-     /**
-     * @brief Esegue una ricerca prestito sui campi compilando ISBN e matricola
-     */
-    @FXML
-    private void onRicercaPrestito(ActionEvent event) {
-    }
+    
+    /**
+    * @brief Esegue la ricerca nella cronologia dei prestiti
+    *        per matricola utente o per ISBN libro.
+    */
+   @FXML
+   private void onRicercaPrestito(ActionEvent event) {
+        //DA FARE
+   }
+   
      /**
      * @brief Rimuove un prestito attivo dall'archivio utilizzando i dati inseriti nei campi testo (ISBN e matricola)
      */
     @FXML
     private void onRestituzioneLibro(ActionEvent event) {
+        Prestito selezionato = prestitoTable.getSelectionModel().getSelectedItem();
+
+        if (selezionato == null) {
+            alertErrore("Seleziona un prestito dalla tabella.");
+            return;
+        }
+
+        try {
+            prestitiService.eliminaPrestitoAttivo(selezionato);
+            listaPrestiti.setAll(prestitiService.visualizzaPrestitiAttivi());
+            alertInfo("Libro restituito correttamente.");
+        } catch (BibliotecaException e) {
+            alertErrore(e.getMessage());
+        }
     }
      /**
      * @brief Mostra l'intero elenco degli prestiti attivi presenti nell’archivio.
      */
     @FXML
     private void onVisualizzaPrestito(ActionEvent event) {
+        listaPrestiti.setAll(prestitiService.visualizzaPrestitiAttivi());
+
     }
      /**
      * @brief Mostra l'intero elenco della cronologia dei prestiti nell’archivio.
      */
     @FXML
     private void onVisualizzaCronologia(ActionEvent event) {
+        listaPrestiti.setAll(prestitiService.visualizzaCronologia());
+
     }
 
+    // ---------------- ALERT ----------------
 
+    private void alertInfo(String msg) {
+        Alert a = new Alert(Alert.AlertType.INFORMATION);
+        a.setTitle("Info");
+        a.setHeaderText(null);
+        a.setContentText(msg);
+        a.showAndWait();
+    }
+
+    private void alertErrore(String msg) {
+        Alert a = new Alert(Alert.AlertType.ERROR);
+        a.setTitle("Errore");
+        a.setHeaderText(null);
+        a.setContentText(msg);
+        a.showAndWait();
+    }
 
 
 

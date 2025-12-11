@@ -22,7 +22,6 @@ import java.io.IOException;
  * 
  * Tutti i controlli sono stati affidati alla classe {@link PrestitoService}
  * 
- * @author Gerardo
  */
 public class ArchivioCronologiaPrestiti implements Archivio{
    /** Insieme ordinato per inserimento della cronologia dei prestiti */

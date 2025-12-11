@@ -10,7 +10,6 @@ import java.time.LocalDate;
  * Questa classe contiene solo i dati del prestito
  * Tutti i controlli sono stati affidati alla classe {@link PrestitoService}
  * 
- * @author Gerardo
  */
 public class Prestito {
     /** Identificativo del prestito*/

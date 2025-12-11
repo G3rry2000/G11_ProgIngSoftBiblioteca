@@ -1,9 +1,3 @@
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package biblioteca.gestionelibri;
 /**
  * @class Libro
@@ -12,7 +6,6 @@ package biblioteca.gestionelibri;
  * Questa classe contiene i dati del libro
  * Tutti i controlli sono stati affidati alla classe {@link LibriService}
  * 
- * @author Gerardo
  */
 
 

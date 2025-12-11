@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package biblioteca.gestioneprestiti;
 import biblioteca.Archivio;
 import biblioteca.gestionelibri.Libro;
@@ -22,7 +17,6 @@ import java.io.IOException;
  * 
  * Tutti i controlli sono stati affidati alla classe {@link PrestitoService}
  * 
- * @author Gerardo
  */
 public class ArchivioPrestitiAttivi implements Archivio{
     /** Lista in ordine di inserimento dei prestiti attivi */

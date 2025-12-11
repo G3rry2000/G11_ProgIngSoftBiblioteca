@@ -8,6 +8,7 @@ import biblioteca.gestionelibri.ArchivioLibri;
 import biblioteca.gestionelibri.Libro;
 import biblioteca.gestioneutenti.ArchivioUtenti;
 import biblioteca.gestioneutenti.Utente;
+import java.time.LocalDate;
 import java.util.List;
 /**
  * @class PrestitiService
@@ -45,51 +46,138 @@ public class PrestitiService {
         this.archivioPrestitiAttivi = archivioPrestitiAttivi;
         this.archivioCronologia = archivioCronologia;
     }
-     /**
-     * @brief Aggiunge un nuovo prestito attivo effettuando i dovuti controlli
-     * @param p Prestito da registrare
-     * @throws ValidazioneException se i dati non sono validi
-     * @throws LibroNonDisponibileException se il libro non è attualmente disponibile (NumeroCopie >0)
-     * @throws LimitePrestitoSuperatoException se l'utente ha già 3 prestiti attivi
-     * 
-     * @pre p != null 
-     * @post il prestito attivo viene aggiunto all'archivio
-     */
-    public void registraPrestitoAttivo(Prestito p) throws ValidazioneException, LibroNonDisponibileException, LimitePrestitoSuperatoException{
-   }
-      /**
-     * @brief Elimina un prestito attivo esistente (libro restituito)
-     * @param p Dati del prestito attivo da eliminare
-     * @return il prestito eliminato oppure null se non presente     * @throws ValidazioneException se i campi forniti non sono validi
-     * 
-     * @pre p != null 
-     * @post prestito viene rimosso se esiste
-     */
-   public Prestito eliminaPrestitoAttivo(Prestito p)throws ValidazioneException{
-   return null;
-   }
-   /**
-     * @brief Cerca prestito attivo per dati (matricola) utente e dati (ISBN) libro
-     * @param utente Dati (matricola) di utente
-     * @param libro Dati (ISBN) di libro
-     * 
-     * @return Il prestito attivo per matricola e ISBN
-     * @throws ValidazioneException se i dati non sono validi
-     * @throws PrestitoNonTrovatoException se nessun prestito è stato trovato
-     * 
-     * @pre utente != null  &&  libro != null 
-     * @post trova il prestito attivo corrispondente
-    */
-   public Prestito cercaPrestitoAttivo(Utente utente, Libro libro)throws ValidazioneException, PrestitoNonTrovatoException{
-   return null;
-   }
     /**
-    * @brief Restituisce l'insieme completo dei prestiti attivi
-    * @return lista dei prestiti attivi
-    */ 
-   public List<Prestito> visualizzaPrestitiAttivi(){ 
-   return null;
-   }
+ * @brief Aggiunge un nuovo prestito attivo effettuando i dovuti controlli.
+ *
+ * Il metodo verifica:
+ * - la validità dei parametri forniti
+ * - l'esistenza di utente e libro
+ * - che l'utente non abbia superato il limite massimo di 3 prestiti attivi
+ * - che il libro abbia almeno una copia disponibile
+ * 
+ * In caso di esito positivo, il prestito viene registrato come ATTIVO
+ * e il numero di copie disponibili del libro viene decrementato.
+ *
+ * @param isbn ISBN del libro da prestare
+ * @param matricola Matricola dell'utente (intero)
+ * @param dataFine Data prevista di restituzione del libro
+ *
+ * @throws ValidazioneException se i dati forniti non sono validi
+ * @throws LibroNonDisponibileException se il libro non ha copie disponibili
+ * @throws LimitePrestitoSuperatoException se l'utente ha già 3 prestiti attivi
+ *
+ * @pre isbn != null && !isbn.isEmpty()
+ * @pre matricola > 0
+ * @pre dataFine != null
+ * @post il prestito attivo viene aggiunto all'archivio dei prestiti attivi
+ */
+public void registraPrestito(String isbn, int matricola, LocalDate dataFine)
+        throws ValidazioneException, LibroNonDisponibileException, LimitePrestitoSuperatoException {
+
+    if (isbn == null || isbn.trim().isEmpty() || matricola <= 0 || dataFine == null) {
+        throw new ValidazioneException("Dati del prestito non validi.");
+    }
+
+    Libro libro = archivioLibri.ricercaISBN(isbn);
+    Utente utente = archivioUtenti.ricercaMatricola(matricola);
+
+    // Controllo limite massimo prestiti
+    if (contaPrestitiAttiviUtente(utente) >= 3) {
+        throw new LimitePrestitoSuperatoException(
+                "L'utente ha già raggiunto il numero massimo di prestiti consentiti."
+        );
+    }
+
+    // Controllo disponibilità libro
+    if (libro.getCopieDisponibili() <= 0) {
+        throw new LibroNonDisponibileException("Libro non disponibile.");
+    }
+
+    Prestito p = new Prestito(
+            utente,
+            libro,
+            LocalDate.now(),
+            dataFine
+    );
+
+    libro.setCopieDisponibili(libro.getCopieDisponibili() - 1);
+    archivioPrestitiAttivi.aggiungiPrestitoAttivo(p);
+}
+/**
+ * @brief Elimina un prestito attivo esistente (restituzione del libro).
+ *
+ * Il metodo rimuove il prestito dall'archivio dei prestiti attivi,
+ * incrementa il numero di copie disponibili del libro e
+ * inserisce il prestito nella cronologia impostando lo stato a CHIUSO.
+ *
+ * @param p Prestito attivo da eliminare
+ * @return Il prestito eliminato oppure null se non presente
+ *
+ * @throws ValidazioneException se il prestito fornito è nullo
+ *
+ * @pre p != null
+ * @post se presente, il prestito viene rimosso dai prestiti attivi
+ *       e aggiunto alla cronologia
+ */
+public Prestito eliminaPrestitoAttivo(Prestito p) throws ValidazioneException {
+
+    if (p == null) {
+        throw new ValidazioneException("Prestito nullo.");
+    }
+
+    Prestito rimosso = archivioPrestitiAttivi.rimuoviPrestitoAttivo(p);
+
+    if (rimosso != null) {
+        Libro libro = rimosso.getLibro();
+        libro.setCopieDisponibili(libro.getCopieDisponibili() + 1);
+
+        rimosso.setStato(StatoPrestiti.CHIUSO);
+        archivioCronologia.aggiungiPrestitoCronologia(rimosso);
+    }
+
+    return rimosso;
+}
+
+/**
+ * @brief Cerca un prestito attivo tramite utente e libro.
+ *
+ * @param utente Utente identificato tramite matricola
+ * @param libro Libro identificato tramite ISBN
+ *
+ * @return Il prestito attivo corrispondente
+ *
+ * @throws ValidazioneException se i parametri forniti non sono validi
+ * @throws PrestitoNonTrovatoException se nessun prestito viene trovato
+ *
+ * @pre utente != null && libro != null
+ * @post viene restituito il prestito attivo corrispondente
+ */
+public Prestito cercaPrestitoAttivo(Utente utente, Libro libro)
+        throws ValidazioneException, PrestitoNonTrovatoException {
+
+    if (utente == null || libro == null) {
+        throw new ValidazioneException("Utente o libro non valido.");
+    }
+
+    Prestito p = archivioPrestitiAttivi.ricercaPrestitoAttivo(utente, libro);
+
+    if (p == null) {
+        throw new PrestitoNonTrovatoException("Prestito non trovato.");
+    }
+
+    return p;
+}
+/**
+ * @brief Restituisce l'elenco completo dei prestiti attivi.
+ *
+ * @return Lista dei prestiti attivi presenti in archivio
+ *
+ * @post la lista restituita rappresenta lo stato corrente
+ *       dell'archivio dei prestiti attivi
+ */
+public List<Prestito> visualizzaPrestitiAttivi() {
+    return archivioPrestitiAttivi.getPrestitiAttivi();
+}
      /**
      * @brief Aggiunge un nuovo prestito effettuando i dovuti controlli
      * @param p Prestito da registrare
@@ -99,6 +187,12 @@ public class PrestitiService {
      * @post il prestito viene aggiunto all'archivio
      */
    public void registraPrestitoCronologia(Prestito p) throws ValidazioneException{
+        
+        if (p == null) {
+            throw new ValidazioneException("Prestito nullo.");
+        }
+
+        archivioCronologia.aggiungiPrestitoCronologia(p);
    }
      /**
      * @brief Elimina un prestito esistente
@@ -110,7 +204,11 @@ public class PrestitiService {
      * @post prestito viene rimosso se esiste
      */
    public Prestito eliminaPrestitoCronologia(Prestito p) throws ValidazioneException{
-   return null;
+        if (p == null) {
+            throw new ValidazioneException("Prestito nullo.");
+        }
+
+        return archivioCronologia.rimuoviPrestitoCronologia(p);
    }
      /**
      * @brief Cerca prestito per dati (matricola) utente
@@ -124,7 +222,18 @@ public class PrestitiService {
      * @post trova l'insieme dei prestiti corrispondenti
     */
    public List<Prestito> cercaPrestitoUtenteCronologiaPerUtente(Utente utente) throws ValidazioneException, PrestitoNonTrovatoException{
-   return null;
+        
+       if (utente == null) {
+            throw new ValidazioneException("Utente non valido.");
+        }
+
+        List<Prestito> risultati = archivioCronologia.ricercaPrestitoUtenteCronologia(utente);
+
+        if (risultati.isEmpty()) {
+            throw new PrestitoNonTrovatoException("Nessun prestito trovato per l'utente.");
+        }
+
+        return risultati;
    }
         /**
      * @brief Cerca prestito per dati (ISBN) libro
@@ -138,14 +247,44 @@ public class PrestitiService {
      * @post trova l'insieme dei prestiti corrispondenti
     */
     public List<Prestito> ricercaPrestitoLibroCronologiaPerLibro(Libro libro) throws ValidazioneException, PrestitoNonTrovatoException{
-   return null;
+        
+        if (libro == null) {
+            throw new ValidazioneException("Libro non valido.");
+        }
+
+        List<Prestito> risultati = archivioCronologia.ricercaPrestitoLibroCronologia(libro);
+
+        if (risultati.isEmpty()) {
+            throw new PrestitoNonTrovatoException("Nessun prestito trovato per il libro.");
+        }
+
+        return risultati;
    }
      /**
     * @brief Restituisce l'insieme completo della cronologia dei prestiti
     * @return lista dei prestiti attivi
     */ 
    public List<Prestito> visualizzaCronologia(){ 
-   return null;
+        return archivioCronologia.getCronologia();
    }
-    
+
+    /**
+     * @brief Conta il numero di prestiti attivi associati a un determinato utente.
+     *
+     * @param utente Utente di cui si vogliono contare i prestiti attivi
+     * @return Il numero di prestiti attivi associati all'utente
+     *
+     * @pre utente != null
+     * @post il valore restituito è >= 0 e rappresenta il numero di prestiti
+     *       attualmente attivi per l'utente specificato
+     */
+    private int contaPrestitiAttiviUtente(Utente utente) {
+        int count = 0;
+        for (Prestito p : archivioPrestitiAttivi.getPrestitiAttivi()) {
+            if (p.getUtente().equals(utente)) {
+                count++;
+            }
+        }
+        return count;
+    }
 }
