@@ -106,7 +106,7 @@
                                 <graphic>
                                     <ImageView fitHeight="24" fitWidth="24" preserveRatio="true">
                                         <image>
-                                            <Image url="@image/peppi.png" />
+                                            <Image url="@image/addfileinterfacesymbolofpapersheetwithtextlinesandplussign_79821%20(1).png" />
                                         </image>
                                     </ImageView>
                                 </graphic>
@@ -117,7 +117,7 @@
                                 <graphic>
                                     <ImageView fitHeight="24" fitWidth="24" preserveRatio="true">
                                         <image>
-                                            <Image url="@image/deb.png" />
+                                            <Image url="@image/trashcan1_114647.png" />
                                         </image>
                                     </ImageView>
                                 </graphic>
@@ -128,7 +128,7 @@
                                 <graphic>
                                     <ImageView fitHeight="24" fitWidth="24" preserveRatio="true">
                                         <image>
-                                            <Image url="@image/pipsi.png" />
+                                            <Image url="@image/magnifier_icon-icons.com_67993.png" />
                                         </image>
                                     </ImageView>
                                 </graphic>
@@ -151,11 +151,11 @@
 
                         <TableView fx:id="libroTable" VBox.vgrow="ALWAYS">
                             <columns>
-                                <TableColumn fx:id="colTitolo" prefWidth="180" text="Titolo" />
-                                <TableColumn fx:id="colAutore" prefWidth="150" text="Autori" />
-                                <TableColumn fx:id="colISBN" prefWidth="150" text="ISBN" />
-                                <TableColumn fx:id="colNumCopie" prefWidth="133.0" text="Copie Totali" />
-                                <TableColumn fx:id="colAnno" prefWidth="136.0" text="Anno Pubbl." />
+                                <TableColumn fx:id="colTitolo" prefWidth="175.0" text="Titolo" />
+                                <TableColumn fx:id="colAutore" prefWidth="166.0" text="Autori" />
+                                <TableColumn fx:id="colISBN" prefWidth="138.0" text="ISBN" />
+                                <TableColumn fx:id="colNumCopie" prefWidth="135.0" text="Copie Totali" />
+                                <TableColumn fx:id="colAnno" prefWidth="159.0" text="Anno Pubbl." />
                             </columns>
                         </TableView>
 

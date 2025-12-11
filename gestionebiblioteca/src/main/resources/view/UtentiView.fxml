@@ -102,7 +102,7 @@
                             <Button fx:id="addButton" onAction="#onAggiungiUtente" styleClass="action-btn btn-green">
                                 <graphic>
                                     <ImageView fitHeight="24" fitWidth="24">
-                                        <image><Image url="@image/peppi.png" /></image>
+                                        <image><Image url="@image/addfileinterfacesymbolofpapersheetwithtextlinesandplussign_79821%20(1).png" /></image>
                                     </ImageView>
                                 </graphic>
                             </Button>
@@ -110,7 +110,7 @@
                             <Button fx:id="removeButton" onAction="#onRimuoviUtente" styleClass="action-btn btn-red">
                                 <graphic>
                                     <ImageView fitHeight="24" fitWidth="24">
-                                        <image><Image url="@image/deb.png" /></image>
+                                        <image><Image url="@image/trashcan1_114647.png" /></image>
                                     </ImageView>
                                 </graphic>
                             </Button>
@@ -118,7 +118,7 @@
                             <Button fx:id="searchButton" onAction="#onRicercaUtente" styleClass="action-btn btn-blue">
                                 <graphic>
                                     <ImageView fitHeight="24" fitWidth="24">
-                                        <image><Image url="@image/pipsi.png" /></image>
+                                        <image><Image url="@image/magnifier_icon-icons.com_67993.png" /></image>
                                     </ImageView>
                                 </graphic>
                             </Button>

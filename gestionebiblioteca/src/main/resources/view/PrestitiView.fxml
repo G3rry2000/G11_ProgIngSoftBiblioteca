@@ -87,7 +87,7 @@
                     <Button fx:id="searchButton" onAction="#onRicercaPrestito" styleClass="action-btn btn-blue">
                         <graphic>
                             <ImageView fitHeight="26" fitWidth="26" preserveRatio="true">
-                                <image><Image url="@image/pipsi.png" /></image>
+                                <image><Image url="@image/magnifier_icon-icons.com_67993.png" /></image>
                             </ImageView>
                         </graphic>
                     </Button>
@@ -97,7 +97,7 @@
                     <Button fx:id="addButton" onAction="#onAggiungiPrestito" styleClass="action-btn btn-green">
                         <graphic>
                             <ImageView fitHeight="24" fitWidth="24" preserveRatio="true">
-                                <image><Image url="@image/peppi.png" /></image>
+                                <image><Image url="@image/addfileinterfacesymbolofpapersheetwithtextlinesandplussign_79821%20(1).png" /></image>
                             </ImageView>
                         </graphic>
                     </Button>
