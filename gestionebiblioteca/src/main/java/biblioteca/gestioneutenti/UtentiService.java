@@ -3,6 +3,7 @@ import biblioteca.gestioneeccezioni.DuplicatoException;
 import biblioteca.gestioneeccezioni.ValidazioneException;
 import biblioteca.gestioneeccezioni.UtenteNonTrovatoException;
 import biblioteca.gestioneeccezioni.CancellazionePrestitoAttivoException;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.Set;
 
@@ -24,6 +25,7 @@ public class UtentiService {
      * Archivio degli utenti su cui operare
      */
     private ArchivioUtenti archivioUtenti;
+    private String filename = "utenti.csv";
     /**
      * @brief Costruttore del Service 
      * @param archivioUtenti archivio degli utenti da usare come dati
@@ -80,6 +82,11 @@ public class UtentiService {
     
     // --- Aggiunta all'archivio ---
     archivioUtenti.aggiungiUtente(u);
+        try {
+         archivioUtenti.scriviSuFile(filename);
+        } catch(IOException e) {
+         e.printStackTrace();
+        }
     }
     /**
      * @brief Elimina un utente esistente
@@ -96,7 +103,11 @@ public class UtentiService {
     if(u.getPrestitiAttivi()!= null && !u.getPrestitiAttivi().isEmpty()){
         throw new CancellazionePrestitoAttivoException("impossibile eliminare l'utente, ha ancora" + u.getPrestitiAttivi().size() + "pretiti attivi");
     }
-    
+        try {
+         archivioUtenti.scriviSuFile(filename);
+        } catch(IOException e) {
+         e.printStackTrace();
+        }
     return archivioUtenti.rimuoviUtente(u);
     }
 
@@ -199,6 +210,11 @@ public class UtentiService {
             if (esistente != null) {
                 throw new DuplicatoException("esiste già un utente con questa matricola");
             }
+        }
+        try {
+         archivioUtenti.scriviSuFile(filename);
+        } catch(IOException e) {
+         e.printStackTrace();
         }
     }
 

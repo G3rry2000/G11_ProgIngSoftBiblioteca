@@ -31,9 +31,14 @@ public class ArchivioLibri implements Archivio{
     * @brief Costruttore: inizializza un TreeSet vuoto
     * @post libri è inizializzato come nuovo TreeSet vuoto.
     */
-   public ArchivioLibri(){
-   this.libri= new TreeSet<>();
-   }
+public ArchivioLibri(String filename) {
+    this.libri = new TreeSet<>();
+    try {
+        leggiDaFile(filename);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
    
 /**
  * @brief Carica i libri dal file specificato.

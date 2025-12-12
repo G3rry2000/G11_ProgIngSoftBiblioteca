@@ -121,7 +121,7 @@
                         <TableColumn fx:id="colTitolo" prefWidth="103.0" text="Titolo" />
                         <TableColumn fx:id="colAutori" prefWidth="118.0" text="Autori" />
                         <TableColumn fx:id="colSBN" prefWidth="84.0" text="ISBN" />
-                  <TableColumn fx:id="colCopie" prefWidth="73.0" text="Copie" />
+                  <TableColumn fx:id="colAnnoP" prefWidth="84.0" text="Anno" />
                   <TableColumn fx:id="colDataInizio" prefWidth="84.0" text="Data Inizio" />
                   <TableColumn fx:id="colDataFine" prefWidth="86.0" text="Data Fine" />
                   <TableColumn fx:id="colStato" prefWidth="70.0" text="Stato" />

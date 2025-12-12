@@ -1,5 +1,6 @@
 package biblioteca.gestioneprestiti;
 
+import biblioteca.Main;
 import biblioteca.gestioneeccezioni.BibliotecaException;
 import biblioteca.gestionelibri.ArchivioLibri;
 import biblioteca.gestioneutenti.ArchivioUtenti;
@@ -26,6 +27,9 @@ import javafx.collections.FXCollections;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.cell.PropertyValueFactory;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
+
 /**
  * @class PrestitiViewController
  * @brief Controller della vista FXML dedicata alla gestione dei prestiti.
@@ -85,13 +89,13 @@ public class PrestitiViewController implements Initializable{
     @FXML
     private TableColumn<Prestito, String> colSBN;
     @FXML
-    private TableColumn<Prestito, Integer> colCopie;
-    @FXML
     private TableColumn<Prestito, LocalDate> colDataInizio;
     @FXML
     private TableColumn<Prestito, LocalDate> colDataFine;
     @FXML
     private TableColumn<Prestito, StatoPrestiti> colStato;
+    @FXML
+    private TableColumn<Prestito, Integer> colAnnoP;
     
     // ------------- LOGICA --------------
     private ArchivioPrestitiAttivi archivioPrestitiAttivi;
@@ -102,6 +106,7 @@ public class PrestitiViewController implements Initializable{
     private PrestitiService prestitiService;
     
     private ObservableList<Prestito> listaPrestiti;
+
      /**
      * @brief Metodo di inizializzazione del controller
      * Inizializza archivi, configura tabella e popola colonne.
@@ -110,12 +115,9 @@ public class PrestitiViewController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        prestitiService = new PrestitiService(
-                new ArchivioLibri(),
-                new ArchivioUtenti(),
-                new ArchivioPrestitiAttivi(),
-                new ArchivioCronologiaPrestiti()
-        );
+        prestitiService = new PrestitiService(Main.archivioLibri, Main.archivioUtenti,Main.archivioPrestitiAttivi, Main.archivioCronologia);
+                //new ArchivioCronologiaPrestiti(Main.archivioCronologia)
+       
 
         listaPrestiti = FXCollections.observableArrayList();
         listaPrestiti.setAll(prestitiService.visualizzaPrestitiAttivi());
@@ -124,7 +126,16 @@ public class PrestitiViewController implements Initializable{
         colDataInizio.setCellValueFactory(new PropertyValueFactory<>("dataInizio"));
         colDataFine.setCellValueFactory(new PropertyValueFactory<>("dataFine"));
         colStato.setCellValueFactory(new PropertyValueFactory<>("stato"));
+        
+        colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        colCognome.setCellValueFactory(new PropertyValueFactory<>("cognome"));
+        colMatricola.setCellValueFactory(new PropertyValueFactory<>("matricola"));
+        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
 
+        colTitolo.setCellValueFactory(new PropertyValueFactory<>("titolo"));
+        colAutori.setCellValueFactory(new PropertyValueFactory<>("autori"));
+        colSBN.setCellValueFactory(new PropertyValueFactory<>("ISBN"));
+        colAnnoP.setCellValueFactory(new PropertyValueFactory<>("anno"));
         prestitoTable.setItems(listaPrestiti);
 
         addButton.disableProperty().bind(
@@ -206,7 +217,8 @@ public class PrestitiViewController implements Initializable{
     private void onAggiungiPrestito(ActionEvent event) {
         try {
             String matricola = txtMatricola1.getText();
-            LocalDate dataFine = LocalDate.parse(txtDataRestituzione.getText());
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate dataFine = LocalDate.parse(txtDataRestituzione.getText(), formatter);
 
             prestitiService.registraPrestito(
                     textISBN.getText(),
@@ -220,9 +232,8 @@ public class PrestitiViewController implements Initializable{
             textISBN.clear();
             txtMatricola1.clear();
             txtDataRestituzione.clear();
-
-        } catch (NumberFormatException e) {
-            alertErrore("La matricola deve essere un numero.");
+        } catch (java.time.format.DateTimeParseException e) {
+            alertErrore("Formato data non valido! Usa il formato dd/MM/yyyy.");
         } catch (BibliotecaException e) {
             alertErrore(e.getMessage());
         }

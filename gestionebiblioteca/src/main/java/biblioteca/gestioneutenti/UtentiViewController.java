@@ -1,6 +1,7 @@
 
 package biblioteca.gestioneutenti;
 
+import biblioteca.Main;
 import biblioteca.gestioneeccezioni.BibliotecaException;
 import biblioteca.gestioneeccezioni.CancellazionePrestitoAttivoException;
 import biblioteca.gestioneeccezioni.DuplicatoException;
@@ -105,7 +106,7 @@ public class UtentiViewController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle rb) {
          // Inizializzazione service e lista
-        utenteService= new UtentiService( new ArchivioUtenti());
+        utenteService= new UtentiService( Main.archivioUtenti);
         listaUtenti= FXCollections.observableArrayList();
         listaUtenti.setAll(utenteService.visualizzaUtenti());
         

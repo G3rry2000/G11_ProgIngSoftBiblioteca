@@ -161,5 +161,37 @@ public class Prestito {
         this.stato = stato;
     }
     
-    
+    public String getTitolo() {
+        return libro.getTitolo();
+    }
+
+    public String getAutori() {
+        return libro.getAutore();
+    }
+
+    public String getISBN() {
+        return libro.getISBN();
+    }
+
+    public String getNome() {
+        return utente.getNome();
+    }
+
+    public String getCognome() {
+        return utente.getCognome();
+    }
+
+    public String getMatricola() {
+        return utente.getMatricola();
+    }
+
+    public String getEmail() {
+        return utente.getEmail();
+    }
+    public int getId(){
+    return id;
+    }
+    public int getAnno(){
+    return libro.getAnnoPubblicazione();
+    }
 }

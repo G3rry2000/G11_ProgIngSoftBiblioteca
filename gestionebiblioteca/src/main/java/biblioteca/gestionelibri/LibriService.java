@@ -6,7 +6,7 @@ import biblioteca.gestioneeccezioni.LibroNonTrovatoException;
 import java.time.Year;
 import java.util.Set;
 import java.util.Collections;
-
+import java.io.IOException;
 /**
  * @class LibriService
  * @brief Service che esegue la validazione dei dati dei libri.
@@ -23,6 +23,7 @@ public class LibriService {
      * Archivio dei libri su cui operare
      */
     private ArchivioLibri archivioLibri;
+
      /**
      * @brief Costruttore del Service 
      * @param archivioLibri archivio dei libri da usare come dati
@@ -68,6 +69,11 @@ public class LibriService {
 
     // --- Aggiunta all’archivio ---
     archivioLibri.aggiungiLibro(l);
+    try{
+    archivioLibri.scriviSuFile("libri.csv");
+    }catch(IOException e){
+        e.printStackTrace();
+    }
     }
      /**
      * @brief Elimina un libro esistente
@@ -84,6 +90,12 @@ public class LibriService {
     //MANCA IL CONTROLLO SUL PRESTITO ATTIVO.    
     // Elimina il libro dal tuo archivio
     Libro rimosso = archivioLibri.rimuoviLibro(l);
+    
+    try {
+        archivioLibri.scriviSuFile("libri.csv");
+    } catch(IOException e) {
+        e.printStackTrace();
+    }
     return rimosso;
     }
  /**
@@ -193,6 +205,12 @@ public void modificaLibro(Libro libro, String isbnOriginale) throws ValidazioneE
         if (esistente != null) {
             throw new DuplicatoException("Esiste già un libro con questo ISBN.");
         }
+    }
+    
+    try {
+        archivioLibri.scriviSuFile("libri.csv");
+    } catch(IOException e) {
+        e.printStackTrace();
     }
 }
 

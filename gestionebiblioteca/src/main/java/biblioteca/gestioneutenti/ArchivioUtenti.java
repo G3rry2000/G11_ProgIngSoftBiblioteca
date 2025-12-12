@@ -29,9 +29,15 @@ public class ArchivioUtenti implements Archivio{
     * @brief Costruttore: inizializza un TreeSet vuoto
     * @post utenti è inizializzato come nuovo TreeSet vuoto.
     */
-   public ArchivioUtenti(){
-        this.utenti= new TreeSet<>(); 
-   }
+public ArchivioUtenti(String filename) {
+    this.utenti = new TreeSet<>();
+
+    try {
+        leggiDaFile(filename);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
    
 /**
  * @brief Carica gli utenti dal file specificato.

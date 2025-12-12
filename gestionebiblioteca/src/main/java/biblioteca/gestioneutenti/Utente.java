@@ -129,8 +129,7 @@ public class Utente implements Comparable<Utente>{
      * @post prestitiAttivi contiene p
      */
     public void aggiungiPrestitoAttivo(Prestito p){
-        
-        //DA FARE
+        prestitiAttivi.add(p);
     }
     /**
      * @brief Rimuove un prestito attivo
@@ -140,8 +139,8 @@ public class Utente implements Comparable<Utente>{
      * @post prestitiAttivi non contiene più p
      */
     public void rimuoviPrestitoAttivo(Prestito p){
-        
-        //DA FARE
+        prestitiAttivi.remove(p);
+
     }
     /**
      * @return lista dei prestiti attivi

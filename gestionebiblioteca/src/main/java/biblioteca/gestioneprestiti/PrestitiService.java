@@ -8,6 +8,7 @@ import biblioteca.gestionelibri.ArchivioLibri;
 import biblioteca.gestionelibri.Libro;
 import biblioteca.gestioneutenti.ArchivioUtenti;
 import biblioteca.gestioneutenti.Utente;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 /**
@@ -77,12 +78,25 @@ public void registraPrestito(String isbn, String matricola, LocalDate dataFine)
     if (isbn == null || isbn.trim().isEmpty() || matricola == null || matricola.trim().isEmpty() || dataFine == null) {
         throw new ValidazioneException("Dati del prestito non validi.");
     }
+        LocalDate oggi = LocalDate.now();
+
+
+    if (dataFine.isBefore(oggi)) {
+        throw new ValidazioneException(
+                "La data di restituzione non può essere nel passato."
+        );
+    }
+    if (dataFine.isEqual(oggi)) {
+        throw new ValidazioneException(
+                "La restituzione deve avvenire almeno il giorno successivo."
+        );
+    }
 
     Libro libro = archivioLibri.ricercaISBN(isbn);
     Utente utente = archivioUtenti.ricercaMatricola(matricola);
 
     // Controllo limite massimo prestiti
-    if (contaPrestitiAttiviUtente(utente) >= 3) {
+    if (archivioPrestitiAttivi.contaPrestitiAttiviUtente(utente) >= 3) {
         throw new LimitePrestitoSuperatoException(
                 "L'utente ha già raggiunto il numero massimo di prestiti consentiti."
         );
@@ -96,12 +110,20 @@ public void registraPrestito(String isbn, String matricola, LocalDate dataFine)
     Prestito p = new Prestito(
             utente,
             libro,
-            LocalDate.now(),
+            oggi,
             dataFine
     );
 
     libro.setCopieDisponibili(libro.getCopieDisponibili() - 1);
     archivioPrestitiAttivi.aggiungiPrestitoAttivo(p);
+    
+    try {
+        archivioPrestitiAttivi.scriviSuFile("prestitiAttivi.csv");
+        archivioLibri.scriviSuFile("libri.csv");
+        archivioUtenti.scriviSuFile("utenti.csv");
+    } catch(IOException e) {
+        e.printStackTrace();
+    }
 }
 /**
  * @brief Elimina un prestito attivo esistente (restituzione del libro).
@@ -119,24 +141,46 @@ public void registraPrestito(String isbn, String matricola, LocalDate dataFine)
  * @post se presente, il prestito viene rimosso dai prestiti attivi
  *       e aggiunto alla cronologia
  */
-public Prestito eliminaPrestitoAttivo(Prestito p) throws ValidazioneException {
+    public Prestito eliminaPrestitoAttivo(Prestito p) throws ValidazioneException {
 
-    if (p == null) {
-        throw new ValidazioneException("Prestito nullo.");
+        if (p == null) {
+            throw new ValidazioneException("Prestito nullo.");
+        }
+
+        Prestito rimosso = archivioPrestitiAttivi.rimuoviPrestitoAttivo(p);
+
+        if (rimosso != null) {
+
+            // recupero il libro VERO dall'archivio
+            Libro libroArchivio = archivioLibri.ricercaISBN(
+                    rimosso.getLibro().getISBN()
+            );
+
+            if (libroArchivio == null) {
+                throw new IllegalStateException(
+                    "Libro non presente in ArchivioLibri"
+                );
+            }
+
+            // incremento copie SUL LIBRO GIUSTO
+            libroArchivio.setCopieDisponibili(
+                    libroArchivio.getCopieDisponibili() + 1
+            );
+
+            rimosso.setStato(StatoPrestiti.CHIUSO);
+            archivioCronologia.aggiungiPrestitoCronologia(rimosso);
+        }
+
+        try {
+            archivioPrestitiAttivi.scriviSuFile("prestitiAttivi.csv");
+            archivioLibri.scriviSuFile("libri.csv");
+            archivioUtenti.scriviSuFile("utenti.csv");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return rimosso;
     }
-
-    Prestito rimosso = archivioPrestitiAttivi.rimuoviPrestitoAttivo(p);
-
-    if (rimosso != null) {
-        Libro libro = rimosso.getLibro();
-        libro.setCopieDisponibili(libro.getCopieDisponibili() + 1);
-
-        rimosso.setStato(StatoPrestiti.CHIUSO);
-        archivioCronologia.aggiungiPrestitoCronologia(rimosso);
-    }
-
-    return rimosso;
-}
 
 /**
  * @brief Cerca un prestito attivo tramite utente e libro.
@@ -268,23 +312,4 @@ public List<Prestito> visualizzaPrestitiAttivi() {
         return archivioCronologia.getCronologia();
    }
 
-    /**
-     * @brief Conta il numero di prestiti attivi associati a un determinato utente.
-     *
-     * @param utente Utente di cui si vogliono contare i prestiti attivi
-     * @return Il numero di prestiti attivi associati all'utente
-     *
-     * @pre utente != null
-     * @post il valore restituito è >= 0 e rappresenta il numero di prestiti
-     *       attualmente attivi per l'utente specificato
-     */
-    private int contaPrestitiAttiviUtente(Utente utente) {
-        int count = 0;
-        for (Prestito p : archivioPrestitiAttivi.getPrestitiAttivi()) {
-            if (p.getUtente().equals(utente)) {
-                count++;
-            }
-        }
-        return count;
-    }
 }

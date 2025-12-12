@@ -1,5 +1,9 @@
 package biblioteca;
 
+import biblioteca.gestionelibri.ArchivioLibri;
+import biblioteca.gestioneutenti.ArchivioUtenti;
+import biblioteca.gestioneprestiti.ArchivioCronologiaPrestiti;
+import biblioteca.gestioneprestiti.ArchivioPrestitiAttivi;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -20,7 +24,10 @@ import javafx.fxml.FXMLLoader;
  * {@link Stage} per visualizzare la finestra principale.
  */
 public class Main extends Application {
-    
+    public static ArchivioLibri archivioLibri;
+    public static ArchivioUtenti archivioUtenti;
+    public static ArchivioPrestitiAttivi archivioPrestitiAttivi;
+    public static ArchivioCronologiaPrestiti archivioCronologia;
     /**
      * @brief Inizializza e mostra l'interfaccia grafica principale.
      *
@@ -36,6 +43,10 @@ public class Main extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws IOException {
+        archivioLibri = new ArchivioLibri("libri.csv");
+        archivioUtenti = new ArchivioUtenti("utenti.csv");
+        archivioPrestitiAttivi = new ArchivioPrestitiAttivi("prestitiAttivi.csv");
+        //archivioCronologia = new ArchivioCronologiaPrestiti("cronologia.csv");
         FXMLLoader loader = new FXMLLoader (getClass().getResource("/view/HomeView.fxml"));
         
         Scene scene = new Scene(loader.load());

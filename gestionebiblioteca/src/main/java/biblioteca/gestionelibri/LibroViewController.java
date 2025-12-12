@@ -1,4 +1,5 @@
 package biblioteca.gestionelibri;
+import biblioteca.Main;
 import biblioteca.gestioneeccezioni.*;
 
 import java.net.URL;
@@ -97,7 +98,9 @@ public class LibroViewController implements Initializable{
 public void initialize(URL url, ResourceBundle rb) {
 
     // Inizializzazione service e lista
-    libroService = new LibriService(new ArchivioLibri());
+    // crea il service UNA SOLA VOLTA
+
+    libroService = new LibriService(Main.archivioLibri);
     listaLibri = FXCollections.observableArrayList();
     listaLibri.setAll(libroService.visualizzaLibri());
 
