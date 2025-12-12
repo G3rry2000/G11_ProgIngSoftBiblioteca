@@ -3,6 +3,7 @@ package biblioteca.gestioneutenti;
 import biblioteca.gestioneprestiti.Prestito;
 import java.util.List;
 import java.util.ArrayList;
+import java.time.format.DateTimeFormatter;
 /**
  * @class Utente
  * @brief Rappresenta un utente del sistema bibliotecario
@@ -21,7 +22,7 @@ public class Utente implements Comparable<Utente>{
     private String cognome;
     
     /** Matricola univoca dell'utente */
-    private int matricola;
+    private String matricola;
     
     /** Email dell'utente */
     private String email;
@@ -40,7 +41,7 @@ public class Utente implements Comparable<Utente>{
      * @post L'utente è inizializzato con lista dei prestiti vuota
      * 
      */
-    public Utente(String nome,String cognome, int matricola, String email){
+    public Utente(String nome,String cognome, String matricola, String email){
         this.nome=nome;
         this.cognome=cognome;
         this.matricola=matricola;
@@ -87,7 +88,7 @@ public class Utente implements Comparable<Utente>{
     /**
      * @return La matricola dell'utente
      */
-    public int getMatricola() {
+    public String getMatricola() {
         return matricola;
     }
 
@@ -98,7 +99,7 @@ public class Utente implements Comparable<Utente>{
      * @pre matricola > 0; l’univocità è garantita da UtentiService
      * @post La matricola viene aggiornata
      */
-    public void setMatricola(int matricola) {
+    public void setMatricola(String matricola) {
         this.matricola = matricola;
     }
 
@@ -149,6 +150,39 @@ public class Utente implements Comparable<Utente>{
         return prestitiAttivi;
     }
     
+    public String getPrestitiTitolo(){
+     if (prestitiAttivi == null || prestitiAttivi.isEmpty()) {
+        return "Nessuno";
+    }
+    StringBuffer sb = new StringBuffer();
+    for(Prestito p : prestitiAttivi){
+        sb.append(p.getLibro().getTitolo()).append(", ");
+    }
+    // Rimuovi l’ultima virgola + spazio
+    sb.setLength(sb.length() - 2);
+    return sb.toString();
+    }
+    
+    public String getPrestitiDataRest(){
+        if (prestitiAttivi == null || prestitiAttivi.isEmpty()) {
+        return "Nessuna";
+    }
+
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+    StringBuilder sb = new StringBuilder();
+
+    for (Prestito p : prestitiAttivi) {
+        sb.append(p.getDataFine().format(formatter))
+          .append(", ");
+    }
+
+    // Rimuove ", " finale
+    sb.setLength(sb.length() - 2);
+
+    return sb.toString();
+    }
+    
     /**
      *@return Una rappresentazione leggibile dell'utente
      */
@@ -178,7 +212,7 @@ public class Utente implements Comparable<Utente>{
        if (this == o) return true;
        if (this.getClass() != o.getClass()) return false;
        Utente u = (Utente) o;
-       return this.matricola == u.matricola; 
+       return this.matricola.equals(u.matricola); 
         
     }
     /**
@@ -193,12 +227,17 @@ public class Utente implements Comparable<Utente>{
      * @brief Ordina per cognome, a parità di cognome, per nome.
      * @param u1 altro utente
      */
-    @Override
-    public int compareTo(Utente u1){
-        int cmp = this.cognome.compareToIgnoreCase(u1.cognome);
-        if (cmp != 0) return cmp;
-        return this.nome.compareToIgnoreCase(u1.nome);
-    }
+@Override
+public int compareTo(Utente u1) {
+
+    int cmp = this.cognome.compareToIgnoreCase(u1.cognome);
+    if (cmp != 0) return cmp;
+
+    cmp = this.nome.compareToIgnoreCase(u1.nome);
+    if (cmp != 0) return cmp;
+
+    return this.matricola.compareTo(u1.matricola); // <-- risolve il problema
+}
     
     
     

@@ -81,8 +81,7 @@ public class LibroViewController implements Initializable{
     @FXML
     private TableColumn<Libro, Integer> colAnno;
     
-    // ------------- LOGICA --------------
-
+    // ------------- LOGICA -------------
     
     private LibriService libroService;
 

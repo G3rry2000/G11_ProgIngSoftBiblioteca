@@ -71,10 +71,10 @@ public class PrestitiService {
  * @pre dataFine != null
  * @post il prestito attivo viene aggiunto all'archivio dei prestiti attivi
  */
-public void registraPrestito(String isbn, int matricola, LocalDate dataFine)
+public void registraPrestito(String isbn, String matricola, LocalDate dataFine)
         throws ValidazioneException, LibroNonDisponibileException, LimitePrestitoSuperatoException {
 
-    if (isbn == null || isbn.trim().isEmpty() || matricola <= 0 || dataFine == null) {
+    if (isbn == null || isbn.trim().isEmpty() || matricola == null || matricola.trim().isEmpty() || dataFine == null) {
         throw new ValidazioneException("Dati del prestito non validi.");
     }
 

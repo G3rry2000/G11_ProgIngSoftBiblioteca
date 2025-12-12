@@ -67,7 +67,7 @@ public class ArchivioUtenti implements Archivio{
 
             String nome = parti[0];
             String cognome = parti[1];
-            int matricola = Integer.parseInt(parti[2]);
+            String matricola = (parti[2]);
             String email = parti[3];
             
             Utente u = new Utente(nome, cognome, matricola, email);
@@ -145,7 +145,7 @@ public class ArchivioUtenti implements Archivio{
    public Set<Utente> ricercaCognome(String cognome){
    Set<Utente> risultato = new TreeSet<>();
    
-   for(Utente u : risultato){
+   for(Utente u : utenti){
        if(u.getCognome().equals(cognome)){
            risultato.add(u);
        }
@@ -162,9 +162,9 @@ public class ArchivioUtenti implements Archivio{
     * @pre matricola >0 
     * @post restituisce l'utente corrispondente
     */
-   public Utente ricercaMatricola(int matricola){
+   public Utente ricercaMatricola(String matricola){
    for(Utente u : utenti){
-       if(u.getMatricola() == matricola){
+       if(u.getMatricola().equals(matricola)){
            return u;
        }
    }

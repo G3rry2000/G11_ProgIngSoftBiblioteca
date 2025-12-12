@@ -205,7 +205,7 @@ public class PrestitiViewController implements Initializable{
     @FXML
     private void onAggiungiPrestito(ActionEvent event) {
         try {
-            int matricola = Integer.parseInt(txtMatricola1.getText());
+            String matricola = txtMatricola1.getText();
             LocalDate dataFine = LocalDate.parse(txtDataRestituzione.getText());
 
             prestitiService.registraPrestito(

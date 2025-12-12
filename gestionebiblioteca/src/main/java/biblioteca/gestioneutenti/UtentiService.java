@@ -50,17 +50,25 @@ public class UtentiService {
     if(u.getCognome() == null || u.getCognome().trim().isEmpty()){
         throw new ValidazioneException("cognome non valido");
     }
-    if(u.getMatricola() <= 0){
-        throw new ValidazioneException("matrciola non valida");
+    String matricola = u.getMatricola();
+
+    if (matricola == null || matricola.isEmpty()) {
+        throw new ValidazioneException("La matricola non può essere vuota");
     }
-    String stringaMatricola = String.valueOf(u.getMatricola());
-    if(stringaMatricola.length() != 10){
-        throw new ValidazioneException("la matricola deve avere 10 cifre");
+
+    // Controllo che ci siano solo numeri
+    if (!matricola.matches("\\d+")) {
+        throw new ValidazioneException("La matricola deve contenere solo cifre");
+    }
+
+    // Controllo la lunghezza esatta
+    if (matricola.length() != 10) {
+        throw new ValidazioneException("La matricola deve essere composta da 10 cifre");
     }
     if(u.getEmail() == null || u.getEmail().trim().isEmpty()){
         throw new ValidazioneException("email non valida");
     }
-    if(!u.getEmail().endsWith("@unisa.it")){
+    if(!u.getEmail().endsWith(".unisa.it")){
         throw new ValidazioneException("l'email deve essere istituzionale");
     }
     
@@ -84,7 +92,7 @@ public class UtentiService {
      * @pre l'utente non deve avere prestiti attivi
      * @post utente viene rimosso se esiste
      */
-    public Utente eliminaUtente(Utente u)throws ValidazioneException, CancellazionePrestitoAttivoException{
+    public Utente eliminaUtente(Utente u) throws CancellazionePrestitoAttivoException{
     if(u.getPrestitiAttivi()!= null && !u.getPrestitiAttivi().isEmpty()){
         throw new CancellazionePrestitoAttivoException("impossibile eliminare l'utente, ha ancora" + u.getPrestitiAttivi().size() + "pretiti attivi");
     }
@@ -109,11 +117,16 @@ public class UtentiService {
      * @pre Almeno uno tra cognome o matricola deve essere compilato.
      * @post Restituisce l'insieme degli utenti trovati secondo il criterio di ricerca applicato.
      */
-    public Set<Utente> ricercaUtente(String cognome, int matricola) throws ValidazioneException, UtenteNonTrovatoException{
+    public Set<Utente> ricercaUtente(String cognome, String matricola) throws ValidazioneException, UtenteNonTrovatoException{
      cognome = cognome == null ? "" : cognome.trim();
+     matricola = matricola == null ? "" : matricola.trim();
+     
+      if (cognome.isEmpty() && matricola.isEmpty()) {
+        throw new ValidazioneException("Inserire almeno un campo per la ricerca.");
+    }
      
      //PRIORITÀ 1: Matricola
-     if(matricola > 0){
+     if(!matricola.isEmpty()){
          Utente trovato = archivioUtenti.ricercaMatricola(matricola);
          if(trovato == null){
              throw new UtenteNonTrovatoException("Nessun utente con questa matricola.");
@@ -139,48 +152,56 @@ public class UtentiService {
      * @param utente L'utente già modificato(tramite tabella) da validare e salvare.
      * @param matricolaOriginale la matricola originale dell'utente prima della modifica
      * 
-     * @throws ValidazioneExcepri Se uno dei campu è inbvalido.
+     * @throws ValidazioneException Se uno dei campi non è valido.
      * @throws DuplicatoException Se un altro utente con la stessa matricola esiste già.
      * 
      * @pre utente != null
      * @post Le modificge vengono salvate nell'archivio, se valide.
      */  
-    public void modificaUtente(Utente utente, int matricolaOriginale) throws ValidazioneException,DuplicatoException{
-        if (utente == null){
+        public void modificaUtente(Utente utente, String matricolaOriginale) 
+            throws ValidazioneException, DuplicatoException {
+
+        if (utente == null) {
             throw new ValidazioneException("l'utente non può essere nullo.");
         }
-        
-        // --- Controllo campi vuoti ---
-        if(utente.getNome() == null || utente.getNome().trim().isEmpty()){
+
+        // --- Validazione solo sui campi effettivamente presenti ---
+        if (utente.getNome() == null || utente.getNome().trim().isEmpty()) {
             throw new ValidazioneException("il nome non può essere vuoto");
         }
-        
-         if(utente.getCognome() == null || utente.getCognome().trim().isEmpty()){
+
+        if (utente.getCognome() == null || utente.getCognome().trim().isEmpty()) {
             throw new ValidazioneException("il cognome non può essere vuoto");
         }
-          if(utente.getEmail() == null || utente.getEmail().trim().isEmpty()){
+
+        if (utente.getEmail() == null || utente.getEmail().trim().isEmpty()) {
             throw new ValidazioneException("l'email non può essere vuota");
         }
-          
-          // --- Controllo matricola valida ---
-          if(utente.getMatricola() <= 0){
-              throw new ValidazioneException("la matricola deve essere positiva");
-          }
-          String stringaMatricola = String.valueOf(utente.getMatricola());
-          if(stringaMatricola.length() != 10){
-              throw new ValidazioneException("la matricola deve essere di 10 cifre");
+
+        if (!utente.getEmail().endsWith(".unisa.it")) {
+            throw new ValidazioneException("l'email deve terminare con @unisa.it");
+        }
+
+        // --- Validazione matricola ---
+        String matricola = utente.getMatricola();
+
+        if (matricola == null || matricola.isEmpty()) {
+            throw new ValidazioneException("La matricola non può essere vuota");
+        }
+
+        if (!matricola.matches("\\d{10}")) {
+            throw new ValidazioneException("La matricola deve essere composta da 10 cifre");
+        }
+
+        // --- Controllo duplicati SOLO se modificata ---
+        if (!matricola.equals(matricolaOriginale)) {
+            Utente esistente = archivioUtenti.ricercaMatricola(matricola);
+            if (esistente != null) {
+                throw new DuplicatoException("esiste già un utente con questa matricola");
+            }
+        }
     }
-          if(!utente.getEmail().endsWith("@unisa.it")){
-        throw new ValidazioneException("l'email deve terminare con @unisa.it");
-    }
-          // --- Controllo matricola duplicata solo se modificata ---
-          if(utente.getMatricola() != matricolaOriginale){
-              Utente esistente = archivioUtenti.ricercaMatricola(utente.getMatricola());
-              if (esistente != null){
-                  throw new DuplicatoException("esiste già un untente con questa matricola");
-              }
-          }
-    }
+
     
     /**
      * @brief Restituisce l'insieme completo degli utenti

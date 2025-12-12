@@ -142,12 +142,12 @@
 
                         <TableView fx:id="utenteTable" VBox.vgrow="ALWAYS">
                             <columns>
-                                <TableColumn fx:id="colNome" onEditCommit="#onModificaNome" prefWidth="150" text="Nome" />
-                                <TableColumn fx:id="colCognome" onEditCommit="#onModificaCognome" prefWidth="150" text="Cognome" />
-                                <TableColumn fx:id="colMatricola" onEditCommit="#onModificaMatricola" onEditStart="#onOriginaleMatricola" prefWidth="200" text="Matricola" />
-                                <TableColumn fx:id="colEmail" onEditCommit="#onModificaEmail" prefWidth="150" text="Email" />
-                                <TableColumn fx:id="colPrestiti" prefWidth="120" text="Prestiti" />
-                                <TableColumn fx:id="colDataRest" prefWidth="150" text="Data Restituzione" />
+                                <TableColumn fx:id="colNome" onEditCommit="#onModificaNome" prefWidth="98.0" text="Nome" />
+                                <TableColumn fx:id="colCognome" onEditCommit="#onModificaCognome" prefWidth="96.0" text="Cognome" />
+                                <TableColumn fx:id="colMatricola" onEditCommit="#onModificaMatricola" onEditStart="#onOriginaleMatricola" prefWidth="115.0" text="Matricola" />
+                                <TableColumn fx:id="colEmail" onEditCommit="#onModificaEmail" prefWidth="91.0" text="Email" />
+                                <TableColumn fx:id="colPrestiti" minWidth="0.0" prefWidth="172.0" text="Prestiti" />
+                                <TableColumn fx:id="colDataRest" prefWidth="348.0" text="Data Restituzione" />
                             </columns>
                         </TableView>
 

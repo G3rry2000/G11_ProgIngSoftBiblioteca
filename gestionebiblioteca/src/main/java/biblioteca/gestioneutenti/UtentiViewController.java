@@ -30,6 +30,11 @@ import java.util.Set;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.converter.IntegerStringConverter;
+import javafx.util.converter.LocalDateStringConverter;
+import javafx.collections.FXCollections;
 /**
  * @class UtentiViewController
  * @brief Controller della vista FXML dedicata alla gestione degli utenti.
@@ -77,7 +82,7 @@ public class UtentiViewController implements Initializable{
     @FXML
     private TableColumn<Utente, String> colCognome;
     @FXML
-    private TableColumn<Utente, Integer> colMatricola;
+    private TableColumn<Utente, String> colMatricola;
     @FXML
     private TableColumn<Utente, String> colEmail;
     @FXML
@@ -85,13 +90,12 @@ public class UtentiViewController implements Initializable{
     @FXML
     private TableColumn<Utente, LocalDate> colDataRest;
   // ------------- LOGICA --------------
-    private ArchivioUtenti archivioUtenti;
     
     private UtentiService utenteService;
     
     private ObservableList<Utente> listaUtenti;
     
-       private Integer matricolaOriginale;
+       private String matricolaOriginale;
 
     /**
      * @brief Metodo di inizializzazione del controller
@@ -100,7 +104,50 @@ public class UtentiViewController implements Initializable{
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+         // Inizializzazione service e lista
+        utenteService= new UtentiService( new ArchivioUtenti());
+        listaUtenti= FXCollections.observableArrayList();
+        listaUtenti.setAll(utenteService.visualizzaUtenti());
+        
+        // La tabella deve essere editabile !
+        utenteTable.setEditable(true);
+        
+        //   CELL FACTORY
+        // Colonne STRINGA
+        colNome.setCellFactory(TextFieldTableCell.forTableColumn());
+        colCognome.setCellFactory(TextFieldTableCell.forTableColumn());
+        colEmail.setCellFactory(TextFieldTableCell.forTableColumn());        
+        colMatricola.setCellFactory(TextFieldTableCell.forTableColumn());
+        
+        //   VALUE FACTORY
+        colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        colCognome.setCellValueFactory(new PropertyValueFactory<>("cognome"));
+        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        colPrestiti.setCellValueFactory(new PropertyValueFactory<>("prestitiTitolo"));
+        colDataRest.setCellValueFactory(new PropertyValueFactory<>("prestitiDataRest"));
+        colMatricola.setCellValueFactory(new PropertyValueFactory<>("matricola"));
+        
+         // Imposta dati nella tabella
+        utenteTable.setItems(listaUtenti);
+        // BOTTTONE RICERCA
+        searchButton.disableProperty().bind(
+        txtCognome.textProperty().isEmpty()
+        .and(txtMatricola.textProperty().isEmpty())
+    );
+
+        // BOTTONE AGGIUNGI
+        addButton.disableProperty().bind(
+        txtNome.textProperty().isEmpty()
+        .or(txtCognome.textProperty().isEmpty())
+        .or(txtMatricola.textProperty().isEmpty())
+        .or(txtEmail.textProperty().isEmpty())
+    );
+
+        // BOTTONE ELIMINA
+        removeButton.disableProperty().bind(
+        utenteTable.getSelectionModel().selectedItemProperty().isNull()
+    );
+        
     }    
     /** @brief Restituisce lo stage (finestra) attualmente associato alla vista.
      * Viene utilizzato principalmente per effettuare cambi di scena senza
@@ -180,7 +227,7 @@ public class UtentiViewController implements Initializable{
         Utente nuovo = new Utente(
             txtNome.getText(),
             txtCognome.getText(),
-            Integer.parseInt(txtMatricola.getText()),
+            txtMatricola.getText(),
             txtEmail.getText()
         );
 
@@ -207,7 +254,7 @@ public class UtentiViewController implements Initializable{
      * @brief Rimuove un utente utilizzando i dati inseriti nei campi testo.
      */
     @FXML
-    private void onRimuoviUtente(ActionEvent event) throws ValidazioneException {
+    private void onRimuoviUtente(ActionEvent event) {
         try {
         Utente selezionato = utenteTable.getSelectionModel().getSelectedItem();
 
@@ -226,9 +273,9 @@ public class UtentiViewController implements Initializable{
      * @brief Esegue una ricerca utenti sui campi compilando cognome o matricola
      */
     @FXML
-    private void onRicercaUtente(ActionEvent event) {
+    private void onRicercaUtente(ActionEvent event){
     String cognome = txtCognome.getText().trim();
-    int matricola = Integer.parseInt(txtMatricola.getText());
+    String matricola = txtMatricola.getText().trim();
     try{
         Set<Utente> risultati = utenteService.ricercaUtente(cognome, matricola);
         utenteTable.getItems().setAll(risultati);
@@ -246,70 +293,6 @@ public class UtentiViewController implements Initializable{
          Set<Utente> tutti = utenteService.visualizzaUtenti();
         utenteTable.getItems().setAll(tutti);
     }
-    
-    private void onModificaNome(TableColumn.CellEditEvent<Utente, String> event) {
-        
-        Utente utente = event.getRowValue();
-            String vecchioNome = utente.getNome();
-            String nuovoNome = event.getNewValue();
-    try {
-        utente.setNome(nuovoNome);
-        utenteService.modificaUtente(utente, matricolaOriginale != null ? matricolaOriginale : utente.getMatricola());
-        listaUtenti.setAll(utenteService.visualizzaUtenti());
-    } catch (BibliotecaException e) {
-        // Ripristina il vecchio valore
-        utente.setNome(vecchioNome);
-        // Aggiorna la tabella graficamente
-        utenteTable.refresh();
-        alertErrore(e.getMessage());
-    }
-    }
-
-    private void onModificaCognome(TableColumn.CellEditEvent<Utente, String> event) {
-         
-        Utente utente = event.getRowValue();
-            String vecchioCognome = utente.getCognome();
-            String nuovoCognome = event.getNewValue();
-    try {
-        utente.setCognome(nuovoCognome);
-        utenteService.modificaUtente(utente, matricolaOriginale != null ? matricolaOriginale : utente.getMatricola());
-        listaUtenti.setAll(utenteService.visualizzaUtenti());
-    } catch (BibliotecaException e) {
-        // Ripristina il vecchio valore
-        utente.setNome(vecchioCognome);
-        // Aggiorna la tabella graficamente
-        utenteTable.refresh();
-        alertErrore(e.getMessage());
-    }
-        
-    }
-    
-    @FXML
-    private void onOriginaleMatricola(TableColumn.CellEditEvent<Utente, Integer> event) {
-        matricolaOriginale = event.getOldValue();
-    }
-
-
-    @FXML
-    private void onModificaEmail(TableColumn.CellEditEvent<Utente, Integer> event) {
-            Utente utente = event.getRowValue();
-        int vecchiaMatricola = utente.getMatricola();
-        int nuovaMatricola = event.getNewValue();
-    try {
-        utente.setMatricola(nuovaMatricola);
-        utenteService.modificaUtente(utente, matricolaOriginale);
-        listaUtenti.setAll(utenteService.visualizzaUtenti());
-    } catch (BibliotecaException e) {
-        // Ripristina il vecchio valore
-        utente.setMatricola(vecchiaMatricola);
-        // Aggiorna la tabella graficamente
-        utenteTable.refresh();
-        alertErrore(e.getMessage());
-    } finally {
-        matricolaOriginale = null;
-    }
-    }
-
     
     private void alertConferma(String messaggio) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -338,12 +321,82 @@ public class UtentiViewController implements Initializable{
         return result.isPresent() && result.get() == ButtonType.OK;
     }
 
-  
+    @FXML
+    private void onModificaNome(TableColumn.CellEditEvent<Utente, String> event) {
+            Utente utente = event.getRowValue();
+            String vecchioNome = utente.getNome();
+            String nuovoNome = event.getNewValue();
+    try {
+        utente.setNome(nuovoNome);
+        utenteService.modificaUtente(utente, matricolaOriginale != null ? matricolaOriginale : utente.getMatricola());
+        listaUtenti.setAll(utenteService.visualizzaUtenti());
+    } catch (BibliotecaException e) {
+        // Ripristina il vecchio valore
+        utente.setNome(vecchioNome);
+        // Aggiorna la tabella graficamente
+        utenteTable.refresh();
+        alertErrore(e.getMessage());
+    }
+    }
 
-    
+    @FXML
+    private void onModificaCognome(TableColumn.CellEditEvent<Utente, String> event) {
+            Utente utente = event.getRowValue();
+            String vecchioCognome = utente.getCognome();
+            String nuovoCognome = event.getNewValue();
+    try {
+        utente.setCognome(nuovoCognome);
+        utenteService.modificaUtente(utente, matricolaOriginale != null ? matricolaOriginale : utente.getMatricola());
+        listaUtenti.setAll(utenteService.visualizzaUtenti());
+    } catch (BibliotecaException e) {
+        // Ripristina il vecchio valore
+        utente.setCognome(vecchioCognome);
+        // Aggiorna la tabella graficamente
+        utenteTable.refresh();
+        alertErrore(e.getMessage());
+    }
+    }
 
-    
+    @FXML
+    private void onOriginaleMatricola(TableColumn.CellEditEvent<Utente, String> event) {
+        matricolaOriginale = event.getOldValue();
+    }
 
+    @FXML
+    private void onModificaMatricola(TableColumn.CellEditEvent<Utente, String> event) {
+        Utente utente = event.getRowValue();
+        String vecchiaMatricola = utente.getMatricola();
+        String nuovaMatricola = event.getNewValue();
+    try {
+        utente.setMatricola(nuovaMatricola);
+        utenteService.modificaUtente(utente, matricolaOriginale);
+        listaUtenti.setAll(utenteService.visualizzaUtenti());
+    } catch (BibliotecaException e) {
+        // Ripristina il vecchio valore
+        utente.setMatricola(vecchiaMatricola);
+        // Aggiorna la tabella graficamente
+        utenteTable.refresh();
+        alertErrore(e.getMessage());
+    } finally {
+        matricolaOriginale = null;
+    }
+    }
 
-    
+    @FXML
+    private void onModificaEmail(TableColumn.CellEditEvent<Utente, String> event) {
+            Utente utente = event.getRowValue();
+            String vecchiaMail = utente.getEmail();
+            String nuovaMail = event.getNewValue();
+    try {
+        utente.setEmail(nuovaMail);
+        utenteService.modificaUtente(utente, matricolaOriginale != null ? matricolaOriginale : utente.getMatricola());
+        listaUtenti.setAll(utenteService.visualizzaUtenti());
+    } catch (BibliotecaException e) {
+        // Ripristina il vecchio valore
+        utente.setEmail(vecchiaMail);
+        // Aggiorna la tabella graficamente
+        utenteTable.refresh();
+        alertErrore(e.getMessage());
+    }
+    }
 }
