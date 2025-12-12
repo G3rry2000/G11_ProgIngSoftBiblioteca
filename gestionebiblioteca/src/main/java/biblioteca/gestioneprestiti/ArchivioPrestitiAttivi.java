@@ -62,6 +62,7 @@ public class ArchivioPrestitiAttivi implements Archivio{
     * @post prestitiAttivi contiene il prestito p
     */
    public void aggiungiPrestitoAttivo(Prestito p){
+       prestitiAttivi.add(p);
    }
     /**
     * @brief Rimuove un prestito attivo dall'archivio
@@ -73,7 +74,8 @@ public class ArchivioPrestitiAttivi implements Archivio{
     * @post se presente, il prestito attivo viene rimosso dall'archivio.
     */
    public Prestito rimuoviPrestitoAttivo(Prestito p){
-   return null;
+   boolean rimosso = prestitiAttivi.remove(p);
+   return rimosso ? p : null;
    }
     /**
     * @brief Cerca tutti i prestiti attivi tramite ISBN (campo di libro) e matricola (campo di utente)
@@ -86,6 +88,11 @@ public class ArchivioPrestitiAttivi implements Archivio{
     * @post restituisce il prestito attivo corrispondente
     */
    public Prestito ricercaPrestitoAttivo(Utente utente, Libro libro){
+   for(Prestito p : prestitiAttivi){
+       if(p.getUtente().equals(utente) && p.getLibro().equals(libro)){
+           return p;
+       }
+   }
    return null;
    }
     /**
@@ -93,10 +100,6 @@ public class ArchivioPrestitiAttivi implements Archivio{
     * @return lista dei prestiti attivi in ordine di inserimento    
     */
    public List<Prestito> getPrestitiAttivi(){ 
-   return null;
+   return prestitiAttivi;
    }
-   
-   
-   //
-    
 }

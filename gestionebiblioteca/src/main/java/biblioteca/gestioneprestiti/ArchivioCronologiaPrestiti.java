@@ -70,6 +70,7 @@ public class ArchivioCronologiaPrestiti implements Archivio{
     * @post cronologia prestito contiene il prestito p
     */
    public void aggiungiPrestitoCronologia(Prestito p){
+       cronologia.add(p);
    }
    
     /**
@@ -82,7 +83,8 @@ public class ArchivioCronologiaPrestiti implements Archivio{
     * @post se presente, il prestito viene rimosso dall'archivio.
     */
    public Prestito rimuoviPrestitoCronologia(Prestito p){
-   return null;
+   boolean rimosso = cronologia.remove(p);
+   return rimosso ? p : null;
    }
    
     /**
@@ -95,7 +97,14 @@ public class ArchivioCronologiaPrestiti implements Archivio{
     * @post restituisce la lista dei prestiti corrispondenti
     */
    public List<Prestito> ricercaPrestitoUtenteCronologia(Utente utente){
-   return null;
+   List <Prestito> risultati = new LinkedList<>();
+   
+   for(Prestito p : cronologia){
+      if(p.getUtente().equals(utente)){
+          risultati.add(p);
+      }
+   }
+   return risultati;
    }
    
     /**
@@ -108,7 +117,14 @@ public class ArchivioCronologiaPrestiti implements Archivio{
     * @post restituisce l'insieme dei libri corrispondenti
     */
     public List<Prestito> ricercaPrestitoLibroCronologia(Libro libro){
-   return null;
+   List<Prestito> risultati = new LinkedList<>();
+   
+   for(Prestito p : cronologia){
+       if(p.getLibro().equals(libro)){
+           risultati.add(p);
+       }
+   }
+   return risultati;
    }
     
     /**
@@ -116,7 +132,7 @@ public class ArchivioCronologiaPrestiti implements Archivio{
     * @return Restituisce la lista dei prestiti in ordine di inserimento.
     */ 
    public List<Prestito> getCronologia(){ 
-   return null;
+   return cronologia;
    }
    
 }
