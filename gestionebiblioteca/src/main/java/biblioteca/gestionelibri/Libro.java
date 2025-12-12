@@ -43,6 +43,12 @@ public class Libro implements Comparable<Libro>{
          this.ISBN=ISBN;
          this.copieDisponibili=copieDisponibili;
     }
+        public Libro(String titolo, String autore, int annoPubblicazione, String ISBN) {
+         this.titolo=titolo;
+         this.autore=autore;
+         this.annoPubblicazione=annoPubblicazione;
+         this.ISBN=ISBN;
+    }
 
      /**
      * @return Il titolo del libro
