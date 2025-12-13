@@ -1,4 +1,5 @@
 package biblioteca.gestionelibri;
+
 /**
  * @class Libro
  * @brief Rappresenta un libro del sistema bibliotecario
@@ -7,7 +8,6 @@ package biblioteca.gestionelibri;
  * Tutti i controlli sono stati affidati alla classe {@link LibriService}
  * 
  */
-
 public class Libro implements Comparable<Libro>{
     
     /** Titolo del libro */

@@ -1,15 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package biblioteca.gestioneprestiti;
+
 import biblioteca.Archivio;
 import biblioteca.gestionelibri.ArchivioLibri;
 import biblioteca.gestioneutenti.Utente;
 import biblioteca.gestionelibri.Libro;
 import biblioteca.gestioneutenti.ArchivioUtenti;
-
 import java.util.List;
 import java.util.LinkedList;
 import java.io.IOException;
@@ -18,10 +13,8 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
 import java.util.Scanner;
 /**
  * @class ArchivioCronologiaPrestiti
@@ -197,8 +190,8 @@ public class ArchivioCronologiaPrestiti implements Archivio{
     * @post se presente, il prestito viene rimosso dall'archivio.
     */
    public Prestito rimuoviPrestitoCronologia(Prestito p){
-   boolean rimosso = cronologia.remove(p);
-   return rimosso ? p : null;
+        boolean rimosso = cronologia.remove(p);
+        return rimosso ? p : null;
    }
    
     /**
@@ -211,14 +204,14 @@ public class ArchivioCronologiaPrestiti implements Archivio{
     * @post restituisce la lista dei prestiti corrispondenti
     */
    public List<Prestito> ricercaPrestitoUtenteCronologia(Utente utente){
-   List <Prestito> risultati = new LinkedList<>();
+        List <Prestito> risultati = new LinkedList<>();
    
-   for(Prestito p : cronologia){
-      if(p.getUtente().equals(utente)){
-          risultati.add(p);
-      }
-   }
-   return risultati;
+        for(Prestito p : cronologia){
+        if(p.getUtente().equals(utente)){
+            risultati.add(p);
+            }
+        }
+        return risultati;
    }
    
     /**
@@ -231,23 +224,23 @@ public class ArchivioCronologiaPrestiti implements Archivio{
     * @post restituisce l'insieme dei libri corrispondenti
     */
     public List<Prestito> ricercaPrestitoLibroCronologia(Libro libro){
-   List<Prestito> risultati = new LinkedList<>();
-   
-   for(Prestito p : cronologia){
-       if(p.getLibro().equals(libro)){
-           risultati.add(p);
-       }
-   }
-   return risultati;
+        List<Prestito> risultati = new LinkedList<>();
+
+        for(Prestito p : cronologia){
+            if(p.getLibro().equals(libro)){
+                risultati.add(p);
+            }
+        }
+        return risultati;
    }
     public Prestito ricercaPrestitoUtenteLibro(Utente utente, Libro libro) {
-    for (Prestito p : cronologia) {
-        if (p.getUtente().equals(utente) &&
-            p.getLibro().equals(libro)) {
-            return p;
+        for (Prestito p : cronologia) {
+            if (p.getUtente().equals(utente) &&
+                p.getLibro().equals(libro)) {
+                return p;
+            }
         }
-    }
-    return null;
+        return null;
 }
     
     /**
@@ -255,7 +248,7 @@ public class ArchivioCronologiaPrestiti implements Archivio{
     * @return Restituisce la lista dei prestiti in ordine di inserimento.
     */ 
    public List<Prestito> getCronologia(){ 
-   return cronologia;
+        return cronologia;
    }
    
 }

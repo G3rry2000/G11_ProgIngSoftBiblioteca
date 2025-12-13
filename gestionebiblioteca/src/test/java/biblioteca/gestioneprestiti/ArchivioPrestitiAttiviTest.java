@@ -146,6 +146,48 @@ public class ArchivioPrestitiAttiviTest {
     public void testNonEsistePrestitoAttivoLibro() {
         assertFalse(archivio.esistePrestitoAttivoLibro(libro));
     }
+    
+    //VISUALIZZAZIONE
+    
+    @Test
+    public void testVisualizzaPrestitiAttiviConUnPrestito() {
+    archivio.aggiungiPrestitoAttivo(prestito);
+
+    List<Prestito> lista = archivio.getPrestitiAttivi();
+
+    assertNotNull(lista);
+    assertEquals(1, lista.size());
+    assertEquals(prestito, lista.get(0));
+    }
+
+    @Test
+    public void testVisualizzaPrestitiAttiviOrdineInserimento() {
+        Prestito prestito2 = new Prestito(
+                2,
+                utente,
+                libro,
+                LocalDate.now().plusDays(1),
+                LocalDate.now().plusDays(8),
+                StatoPrestiti.ATTIVO
+        );
+
+        archivio.aggiungiPrestitoAttivo(prestito);
+        archivio.aggiungiPrestitoAttivo(prestito2);
+
+        List<Prestito> lista = archivio.getPrestitiAttivi();
+
+        assertEquals(2, lista.size());
+        assertEquals(prestito, lista.get(0));
+        assertEquals(prestito2, lista.get(1));
+    }
+
+    @Test
+    public void testVisualizzaPrestitiAttiviVuoto() {
+        List<Prestito> lista = archivio.getPrestitiAttivi();
+
+        assertNotNull(lista);
+        assertTrue(lista.isEmpty());
+    }
 
     // ID
 

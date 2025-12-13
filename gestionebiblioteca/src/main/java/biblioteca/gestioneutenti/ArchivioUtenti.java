@@ -10,6 +10,7 @@ import java.util.Set;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
+
 /**
  * @class ArchivioUtenti
  * @brief Gestisce la collezione degli utenti della biblioteca
@@ -22,23 +23,23 @@ import java.util.Scanner;
  * Tutti i controlli sono stati affidati alla classe {@link UtentiService}
  * 
  */
-public class ArchivioUtenti implements Archivio{
-    /** Insieme ordinato degli utenti */
-   private Set<Utente> utenti;
-   /**
-    * @brief Costruttore: inizializza un TreeSet vuoto
-    * @post utenti è inizializzato come nuovo TreeSet vuoto.
-    */
-public ArchivioUtenti(String filename) {
-    this.utenti = new TreeSet<>();
+    public class ArchivioUtenti implements Archivio{
+        /** Insieme ordinato degli utenti */
+       private Set<Utente> utenti;
+       /**
+        * @brief Costruttore: inizializza un TreeSet vuoto
+        * @post utenti è inizializzato come nuovo TreeSet vuoto.
+        */
+    public ArchivioUtenti(String filename) {
+        this.utenti = new TreeSet<>();
 
-    try {
-        leggiDaFile(filename);
-    } catch (IOException e) {
-        e.printStackTrace();
+        try {
+            leggiDaFile(filename);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-}
-   
+
 /**
  * @brief Carica gli utenti dal file specificato.
  *
@@ -54,7 +55,7 @@ public ArchivioUtenti(String filename) {
  * @post L'archivio contiene tutti gli utenti presenti nel file.
  */
    @Override
-   public void leggiDaFile(String filename) throws IOException{
+    public void leggiDaFile(String filename) throws IOException{
        
         try (Scanner scanner = new Scanner(new BufferedReader( new FileReader(filename)))) {
         
@@ -135,8 +136,8 @@ public ArchivioUtenti(String filename) {
     * @post se presente, l'utente viene rimosso dall'archivio.
     */
    public Utente rimuoviUtente(Utente u){
-   boolean rimosso = utenti.remove(u);
-   return rimosso ? u : null;
+        boolean rimosso = utenti.remove(u);
+        return rimosso ? u : null;
    }
    
    /**
@@ -149,12 +150,12 @@ public ArchivioUtenti(String filename) {
     * @post restituisce l'insieme degli utenti corrispondenti.
     */
    public Set<Utente> ricercaCognome(String cognome){
-   Set<Utente> risultato = new TreeSet<>();
+        Set<Utente> risultato = new TreeSet<>();
    
-   for(Utente u : utenti){
-       if(u.getCognome().equals(cognome)){
-           risultato.add(u);
-       }
+        for(Utente u : utenti){
+            if(u.getCognome().equals(cognome)){
+                risultato.add(u);
+            }
    }
    
    return risultato;
@@ -169,12 +170,12 @@ public ArchivioUtenti(String filename) {
     * @post restituisce l'utente corrispondente
     */
    public Utente ricercaMatricola(String matricola){
-   for(Utente u : utenti){
-       if(u.getMatricola().equals(matricola)){
-           return u;
-       }
-   }
-   return null;
+        for(Utente u : utenti){
+            if(u.getMatricola().equals(matricola)){
+                return u;
+            }
+        }
+        return null;
    }
    
    /**

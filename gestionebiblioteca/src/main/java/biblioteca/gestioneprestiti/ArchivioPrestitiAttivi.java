@@ -1,14 +1,13 @@
 package biblioteca.gestioneprestiti;
+
 import biblioteca.Archivio;
 import biblioteca.gestionelibri.Libro;
 import biblioteca.gestioneutenti.Utente;
 import biblioteca.gestionelibri.ArchivioLibri;
 import biblioteca.gestioneutenti.ArchivioUtenti;
-import biblioteca.Main;
 import java.util.List;
 import java.util.LinkedList;
 import java.io.IOException;
-
 import java.util.Scanner;
 import java.io.PrintWriter;
 import java.io.BufferedReader;
@@ -32,8 +31,8 @@ import java.time.LocalDate;
  */
 public class ArchivioPrestitiAttivi implements Archivio{
     /** Lista in ordine di inserimento dei prestiti attivi */
-   private List<Prestito> prestitiAttivi;
-   private int prossimoId;
+    private List<Prestito> prestitiAttivi;
+    private int prossimoId;
     private ArchivioUtenti archivioUtenti;
     private ArchivioLibri archivioLibri;
     /**
@@ -41,16 +40,16 @@ public class ArchivioPrestitiAttivi implements Archivio{
     * @post prestiti è inizializzato come nuova LinkedList vuota.
     */
    public ArchivioPrestitiAttivi(String filename, ArchivioUtenti archivioUtenti, ArchivioLibri archivioLibri){
-   this.prestitiAttivi= new LinkedList<>();
-   prossimoId = 1;
-    this.archivioUtenti = archivioUtenti;
-    this.archivioLibri = archivioLibri;
-       try {
-        leggiDaFile(filename);
-        aggiornaProssimoId();
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
+        this.prestitiAttivi= new LinkedList<>();
+        prossimoId = 1;
+        this.archivioUtenti = archivioUtenti;
+        this.archivioLibri = archivioLibri;
+        try {
+            leggiDaFile(filename);
+            aggiornaProssimoId();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
    }
     /**
     * @brief Carica i prestiti attivi da un file di testo
@@ -170,8 +169,8 @@ public class ArchivioPrestitiAttivi implements Archivio{
     * @post se presente, il prestito attivo viene rimosso dall'archivio.
     */
    public Prestito rimuoviPrestitoAttivo(Prestito p){
-   boolean rimosso = prestitiAttivi.remove(p);
-   return rimosso ? p : null;
+        boolean rimosso = prestitiAttivi.remove(p);
+        return rimosso ? p : null;
    }
     /**
     * @brief Cerca tutti i prestiti attivi tramite ISBN (campo di libro) e matricola (campo di utente)
@@ -184,34 +183,34 @@ public class ArchivioPrestitiAttivi implements Archivio{
     * @post restituisce il prestito attivo corrispondente
     */
    public Prestito ricercaPrestitoAttivo(Utente utente, Libro libro){
-   for(Prestito p : prestitiAttivi){
-       if(p.getUtente().equals(utente) && p.getLibro().equals(libro)){
-           return p;
-       }
-   }
-   return null;
-   }
-        public List<Prestito> ricercaPrestitoAttivoUtente(Utente utente){
-     List <Prestito> risultati = new LinkedList<>();
-
-     for(Prestito p : prestitiAttivi){
-        if(p.getUtente().equals(utente)){
-            risultati.add(p);
+        for(Prestito p : prestitiAttivi){
+            if(p.getUtente().equals(utente) && p.getLibro().equals(libro)){
+                return p;
+            }
         }
-     }
-     return risultati;
-     }
+        return null;
+   }
+    public List<Prestito> ricercaPrestitoAttivoUtente(Utente utente){
+        List <Prestito> risultati = new LinkedList<>();
+
+        for(Prestito p : prestitiAttivi){
+           if(p.getUtente().equals(utente)){
+               risultati.add(p);
+           }
+        }
+        return risultati;
+    }
 
 
-      public List<Prestito> ricercaPrestitoAttivoLibro(Libro libro){
-     List<Prestito> risultati = new LinkedList<>();
+    public List<Prestito> ricercaPrestitoAttivoLibro(Libro libro){
+        List<Prestito> risultati = new LinkedList<>();
 
-     for(Prestito p : prestitiAttivi){
-         if(p.getLibro().equals(libro)){
-             risultati.add(p);
-         }
-     }
-     return risultati;
+        for(Prestito p : prestitiAttivi){
+            if(p.getLibro().equals(libro)){
+                risultati.add(p);
+            }
+        }
+        return risultati;
      }
       
     /**
@@ -219,18 +218,18 @@ public class ArchivioPrestitiAttivi implements Archivio{
     * @return lista dei prestiti attivi in ordine di inserimento    
     */
    public List<Prestito> getPrestitiAttivi(){ 
-   return prestitiAttivi;
+        return prestitiAttivi;
    }
    public int contaPrestitiAttiviUtente(Utente utente) {
-    int count = 0;
+        int count = 0;
 
-    for (Prestito p : prestitiAttivi) {
-        if (p.getUtente().getMatricola().equals(utente.getMatricola())) {
-            count++;
+        for (Prestito p : prestitiAttivi) {
+            if (p.getUtente().getMatricola().equals(utente.getMatricola())) {
+                count++;
+            }
         }
-    }
 
-    return count;
+        return count;
 }
    
    private void aggiornaProssimoId() {
@@ -245,15 +244,15 @@ public class ArchivioPrestitiAttivi implements Archivio{
     prossimoId = maxId + 1;
     }
    public int generaNuovoId() {
-    return prossimoId++;
+        return prossimoId++;
     }
    
    public boolean esistePrestitoAttivoLibro(Libro l) {
-    for (Prestito p : prestitiAttivi) {
-        if (p.getLibro().getISBN().equals(l.getISBN())) {
-            return true;
+        for (Prestito p : prestitiAttivi) {
+            if (p.getLibro().getISBN().equals(l.getISBN())) {
+                return true;
+            }
         }
-    }
-    return false;
+        return false;
 }
 }

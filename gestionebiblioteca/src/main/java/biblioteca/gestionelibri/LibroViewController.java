@@ -1,7 +1,7 @@
 package biblioteca.gestionelibri;
+
 import biblioteca.Main;
 import biblioteca.gestioneeccezioni.*;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -13,7 +13,6 @@ import javafx.collections.FXCollections;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.event.Event;
 import java.io.IOException;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.TableColumn;
@@ -173,10 +172,10 @@ public void initialize(URL url, ResourceBundle rb) {
     @FXML
     private void clickHome(MouseEvent event) {
         try {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/HomeView.fxml"));
-        Stage stage = getStage((Label) event.getSource());
-        stage.setScene(new Scene(root));
-        stage.show();
+            Parent root = FXMLLoader.load(getClass().getResource("/view/HomeView.fxml"));
+            Stage stage = getStage((Label) event.getSource());
+            stage.setScene(new Scene(root));
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -191,10 +190,10 @@ public void initialize(URL url, ResourceBundle rb) {
     @FXML
     private void clickUtenti(MouseEvent event) {
          try {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/UtentiView.fxml"));
-        Stage stage = getStage((Label) event.getSource());
-        stage.setScene(new Scene(root));
-        stage.show();
+            Parent root = FXMLLoader.load(getClass().getResource("/view/UtentiView.fxml"));
+            Stage stage = getStage((Label) event.getSource());
+            stage.setScene(new Scene(root));
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -209,10 +208,10 @@ public void initialize(URL url, ResourceBundle rb) {
     @FXML
     private void clickPrestiti(MouseEvent event) {
         try {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/PrestitiView.fxml"));
-        Stage stage = getStage((Label) event.getSource());
-        stage.setScene(new Scene(root));
-        stage.show();
+            Parent root = FXMLLoader.load(getClass().getResource("/view/PrestitiView.fxml"));
+            Stage stage = getStage((Label) event.getSource());
+            stage.setScene(new Scene(root));
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -228,7 +227,7 @@ public void initialize(URL url, ResourceBundle rb) {
     private void onAggiungiLibro(ActionEvent event) {
         try {
         // Creazione oggetto libro
-        Libro nuovo = new Libro(
+            Libro nuovo = new Libro(
             txtTitolo.getText(),
             txtAutori.getText(),
             Integer.parseInt(txtAnno.getText()),

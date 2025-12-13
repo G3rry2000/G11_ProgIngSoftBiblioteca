@@ -1,2 +1,6 @@
 ID;NOME;COGNOME;EMAIL;MATRICOLA;TITOLO;AUTORE;ANNO;ISBN;DATA_INIZIO;DATA_FINE;STATO
-
+6;Antonio;Marino;antonio.marino@studenti.unisa.it;2024000009;Il giovane Holden;J. D. Salinger;1951;8807901957;13/12/2025;02/02/2026;CHIUSO
+9;Giulia;Esposito;giulia.esposito@studenti.unisa.it;2024000004;Cime tempestose;Emily Brontë;1847;8807901726;13/12/2025;17/03/2026;CHIUSO
+10;Francesco;Romano;francesco.romano@studenti.unisa.it;2024000005;Il giovane Holden;J. D. Salinger;1951;8807901957;13/12/2025;30/12/2025;CHIUSO
+7;Antonio;Marino;antonio.marino@studenti.unisa.it;2024000009;Il grande Gatsby;F. Scott Fitzgerald;1925;8807900710;13/12/2025;15/03/2026;CHIUSO
+13;Ilaria;Palmieri;ilaria.palmieri@unisa.it;2018000004;La divina commedia;Dante Alighieri;1320;8807901350;13/12/2025;30/03/2026;CHIUSO

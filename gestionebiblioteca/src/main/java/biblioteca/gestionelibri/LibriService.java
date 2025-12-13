@@ -1,6 +1,5 @@
 package biblioteca.gestionelibri;
 
-import biblioteca.gestioneprestiti.Prestito;
 import biblioteca.gestioneprestiti.ArchivioPrestitiAttivi;
 import biblioteca.gestioneeccezioni.DuplicatoException;
 import biblioteca.gestioneeccezioni.ValidazioneException;
@@ -75,7 +74,7 @@ public class LibriService {
     // --- Aggiunta all’archivio ---
     archivioLibri.aggiungiLibro(l);
     try{
-    archivioLibri.scriviSuFile("libri.csv");
+        archivioLibri.scriviSuFile("libri.csv");
     }catch(IOException e){
         e.printStackTrace();
     }

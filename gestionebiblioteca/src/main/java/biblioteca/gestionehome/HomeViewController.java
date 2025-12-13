@@ -60,10 +60,10 @@ public class HomeViewController implements Initializable{
     @FXML
     private void clickLibri(MouseEvent event){
         try {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/LibroView.fxml"));
-        Stage stage = getStage((Label) event.getSource());
-        stage.setScene(new Scene(root));
-        stage.show();
+            Parent root = FXMLLoader.load(getClass().getResource("/view/LibroView.fxml"));
+            Stage stage = getStage((Label) event.getSource());
+            stage.setScene(new Scene(root));
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -78,10 +78,10 @@ public class HomeViewController implements Initializable{
     @FXML
     private void clickUtenti(MouseEvent event) {
          try {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/UtentiView.fxml"));
-        Stage stage = getStage((Label) event.getSource());
-        stage.setScene(new Scene(root));
-        stage.show();
+            Parent root = FXMLLoader.load(getClass().getResource("/view/UtentiView.fxml"));
+            Stage stage = getStage((Label) event.getSource());
+            stage.setScene(new Scene(root));
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -96,10 +96,10 @@ public class HomeViewController implements Initializable{
     @FXML
     private void clickPrestiti(MouseEvent event) {
         try {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/PrestitiView.fxml"));
-        Stage stage = getStage((Label) event.getSource());
-        stage.setScene(new Scene(root));
-        stage.show();
+            Parent root = FXMLLoader.load(getClass().getResource("/view/PrestitiView.fxml"));
+            Stage stage = getStage((Label) event.getSource());
+            stage.setScene(new Scene(root));
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }

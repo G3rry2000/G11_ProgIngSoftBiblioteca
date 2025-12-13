@@ -1,1 +1,10 @@
 ID;NOME;COGNOME;EMAIL;MATRICOLA;TITOLO;AUTORE;ANNO;ISBN;DATA_INIZIO;DATA_FINE;STATO
+1;Mario;Rossi;mario.rossi@studenti.unisa.it;2024000001;I Malavoglia;Giovanni Verga;1881;8807901210;13/12/2025;14/12/2025;ATTIVO
+2;Paolo;Conti;paolo.conti@unisa.it;2019000003;Il fu Mattia Pascal;Luigi Pirandello;1904;8807901105;13/12/2025;13/01/2026;ATTIVO
+3;Chiara;DeLuca;chiara.deluca@studenti.unisa.it;2024000006;Il conte di Montecristo;Alexandre Dumas;1844;8807901611;13/12/2025;21/02/2026;ATTIVO
+4;Elena;Russo;elena.russo@unisa.it;2019000002;Se questo è un uomo;Primo Levi;1947;8807881019;13/12/2025;15/01/2026;ATTIVO
+5;Antonio;Marino;antonio.marino@studenti.unisa.it;2024000009;Il giorno della civetta;Leonardo Sciascia;1961;8807900550;13/12/2025;30/01/2026;ATTIVO
+8;Paolo;Conti;paolo.conti@unisa.it;2019000003;Cime tempestose;Emily Brontë;1847;8807901726;13/12/2025;25/12/2025;ATTIVO
+11;Francesco;Romano;francesco.romano@studenti.unisa.it;2024000005;Fahrenheit 451;Ray Bradbury;1953;8807902043;13/12/2025;15/03/2026;ATTIVO
+12;Roberta;Vitale;roberta.vitale@unisa.it;2018000002;La divina commedia;Dante Alighieri;1320;8807901350;13/12/2025;18/05/2026;ATTIVO
+14;Antonio;Marino;antonio.marino@studenti.unisa.it;2024000009;I promessi sposi;Alessandro Manzoni;1840;8807900215;13/12/2025;14/06/2026;ATTIVO
