@@ -1,4 +1,7 @@
 package biblioteca.gestionelibri;
+
+import biblioteca.gestioneprestiti.Prestito;
+import biblioteca.gestioneprestiti.ArchivioPrestitiAttivi;
 import biblioteca.gestioneeccezioni.DuplicatoException;
 import biblioteca.gestioneeccezioni.ValidazioneException;
 import biblioteca.gestioneeccezioni.CancellazionePrestitoAttivoException;
@@ -23,6 +26,7 @@ public class LibriService {
      * Archivio dei libri su cui operare
      */
     private ArchivioLibri archivioLibri;
+    private ArchivioPrestitiAttivi archivioPrestitiAttivi;
 
      /**
      * @brief Costruttore del Service 
@@ -31,8 +35,9 @@ public class LibriService {
      * @pre archivioLibri != null
      * @post this.archivioLibri==archivioLibri
      */
-    public LibriService(ArchivioLibri archivioLibri){
+    public LibriService(ArchivioLibri archivioLibri, ArchivioPrestitiAttivi archivioPrestitiAttivi){
         this.archivioLibri = archivioLibri;
+        this.archivioPrestitiAttivi=archivioPrestitiAttivi;
     }
      /**
      * @brief Aggiunge un nuovo libro effettuando i dovuti controlli
@@ -85,18 +90,26 @@ public class LibriService {
      * @pre il libro non deve avere prestiti attivi
      * @post libro viene rimosso se esiste
      */
-    public Libro eliminaLibro(Libro l) throws CancellazionePrestitoAttivoException{
-    
-    //MANCA IL CONTROLLO SUL PRESTITO ATTIVO.    
-    // Elimina il libro dal tuo archivio
-    Libro rimosso = archivioLibri.rimuoviLibro(l);
-    
-    try {
-        archivioLibri.scriviSuFile("libri.csv");
-    } catch(IOException e) {
-        e.printStackTrace();
-    }
-    return rimosso;
+    public Libro eliminaLibro(Libro l) throws CancellazionePrestitoAttivoException {
+
+
+        // 🔴 REGOLA: non posso eliminare se ha prestiti attivi
+        if (archivioPrestitiAttivi.esistePrestitoAttivoLibro(l)) {
+            throw new CancellazionePrestitoAttivoException(
+                "Impossibile eliminare il libro: esistono prestiti attivi."
+            );
+        }
+
+        // ✅ eliminazione
+        Libro rimosso = archivioLibri.rimuoviLibro(l);
+
+        try {
+            archivioLibri.scriviSuFile("libri.csv");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return rimosso;
     }
  /**
  * @brief Esegue una ricerca libro in base ai campi forniti (titolo, autore, ISBN).

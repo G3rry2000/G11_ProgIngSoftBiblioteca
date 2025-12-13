@@ -162,36 +162,38 @@ public class Prestito {
     }
     
     public String getTitolo() {
-        return libro.getTitolo();
+        return libro != null ? libro.getTitolo() : "";
     }
 
     public String getAutori() {
-        return libro.getAutore();
+        return libro != null ? libro.getAutore() : "";
     }
 
     public String getISBN() {
-        return libro.getISBN();
+        return libro != null ? libro.getISBN() : "";
+    }
+
+    public int getAnno() {
+        return libro != null ? libro.getAnnoPubblicazione() : 0;
     }
 
     public String getNome() {
-        return utente.getNome();
+        return utente != null ? utente.getNome() : "";
     }
 
     public String getCognome() {
-        return utente.getCognome();
+        return utente != null ? utente.getCognome() : "";
     }
 
     public String getMatricola() {
-        return utente.getMatricola();
+        return utente != null ? utente.getMatricola() : "";
     }
 
     public String getEmail() {
-        return utente.getEmail();
+        return utente != null ? utente.getEmail() : "";
     }
-    public int getId(){
-    return id;
+
+    public int getId() {
+        return id;
     }
-    public int getAnno(){
-    return libro.getAnnoPubblicazione();
     }
-}

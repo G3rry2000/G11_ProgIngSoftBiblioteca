@@ -45,8 +45,10 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws IOException {
         archivioLibri = new ArchivioLibri("libri.csv");
         archivioUtenti = new ArchivioUtenti("utenti.csv");
-        archivioPrestitiAttivi = new ArchivioPrestitiAttivi("prestitiAttivi.csv");
-        //archivioCronologia = new ArchivioCronologiaPrestiti("cronologia.csv");
+        archivioPrestitiAttivi = new ArchivioPrestitiAttivi("prestitiAttivi.csv", archivioUtenti,archivioLibri);
+        archivioCronologia = new ArchivioCronologiaPrestiti("cronologia.csv",archivioUtenti,archivioLibri);
+        
+        
         FXMLLoader loader = new FXMLLoader (getClass().getResource("/view/HomeView.fxml"));
         
         Scene scene = new Scene(loader.load());

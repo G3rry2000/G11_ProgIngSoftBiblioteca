@@ -100,7 +100,7 @@ public void initialize(URL url, ResourceBundle rb) {
     // Inizializzazione service e lista
     // crea il service UNA SOLA VOLTA
 
-    libroService = new LibriService(Main.archivioLibri);
+    libroService = new LibriService(Main.archivioLibri, Main.archivioPrestitiAttivi);
     listaLibri = FXCollections.observableArrayList();
     listaLibri.setAll(libroService.visualizzaLibri());
 

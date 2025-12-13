@@ -29,6 +29,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
+import javafx.scene.control.TableRow;
 
 /**
  * @class PrestitiViewController
@@ -106,6 +107,8 @@ public class PrestitiViewController implements Initializable{
     private PrestitiService prestitiService;
     
     private ObservableList<Prestito> listaPrestiti;
+    
+    private boolean vistaCronologia = false;
 
      /**
      * @brief Metodo di inizializzazione del controller
@@ -116,8 +119,6 @@ public class PrestitiViewController implements Initializable{
     public void initialize(URL url, ResourceBundle rb) {
 
         prestitiService = new PrestitiService(Main.archivioLibri, Main.archivioUtenti,Main.archivioPrestitiAttivi, Main.archivioCronologia);
-                //new ArchivioCronologiaPrestiti(Main.archivioCronologia)
-       
 
         listaPrestiti = FXCollections.observableArrayList();
         listaPrestiti.setAll(prestitiService.visualizzaPrestitiAttivi());
@@ -137,6 +138,22 @@ public class PrestitiViewController implements Initializable{
         colSBN.setCellValueFactory(new PropertyValueFactory<>("ISBN"));
         colAnnoP.setCellValueFactory(new PropertyValueFactory<>("anno"));
         prestitoTable.setItems(listaPrestiti);
+        
+        //colora i prestiti in ritardo di rosso
+        prestitoTable.setRowFactory(tv -> new TableRow<Prestito>() {
+            @Override
+            protected void updateItem(Prestito p, boolean empty) {
+            super.updateItem(p, empty);
+
+                if (p == null || empty) {
+                    setStyle("");
+                } else if (p.getStato() == StatoPrestiti.RITARDO) {
+                    setStyle("-fx-background-color: #ffcccc;");
+                } else {
+                    setStyle("");
+                }
+            }
+                });
 
         addButton.disableProperty().bind(
                 textISBN.textProperty().isEmpty()
@@ -243,10 +260,28 @@ public class PrestitiViewController implements Initializable{
     * @brief Esegue la ricerca nella cronologia dei prestiti
     *        per matricola utente o per ISBN libro.
     */
-   @FXML
-   private void onRicercaPrestito(ActionEvent event) {
-        //DA FARE
-   }
+    @FXML
+    private void onRicercaPrestito(ActionEvent event) {
+        try {
+            if (vistaCronologia) {
+                listaPrestiti.setAll(
+                    prestitiService.ricercaPrestitiCronologia(
+                        txtMatricola1.getText(),
+                        textISBN.getText()
+                    )
+                );
+            } else {
+                listaPrestiti.setAll(
+                    prestitiService.ricercaPrestitiAttivi(
+                        txtMatricola1.getText(),
+                        textISBN.getText()
+                    )
+                );
+            }
+        } catch (BibliotecaException e) {
+            alertErrore(e.getMessage());
+        }
+    }
    
      /**
      * @brief Rimuove un prestito attivo dall'archivio utilizzando i dati inseriti nei campi testo (ISBN e matricola)
@@ -273,6 +308,7 @@ public class PrestitiViewController implements Initializable{
      */
     @FXML
     private void onVisualizzaPrestito(ActionEvent event) {
+        vistaCronologia = false;
         listaPrestiti.setAll(prestitiService.visualizzaPrestitiAttivi());
 
     }
@@ -281,6 +317,7 @@ public class PrestitiViewController implements Initializable{
      */
     @FXML
     private void onVisualizzaCronologia(ActionEvent event) {
+        vistaCronologia = true;
         listaPrestiti.setAll(prestitiService.visualizzaCronologia());
 
     }

@@ -101,7 +101,7 @@ public class UtentiService {
      */
     public Utente eliminaUtente(Utente u) throws CancellazionePrestitoAttivoException{
     if(u.getPrestitiAttivi()!= null && !u.getPrestitiAttivi().isEmpty()){
-        throw new CancellazionePrestitoAttivoException("impossibile eliminare l'utente, ha ancora" + u.getPrestitiAttivi().size() + "pretiti attivi");
+        throw new CancellazionePrestitoAttivoException("impossibile eliminare l'utente, ha ancora" + u.getPrestitiAttivi().size() + "prestiti attivi");
     }
         try {
          archivioUtenti.scriviSuFile(filename);

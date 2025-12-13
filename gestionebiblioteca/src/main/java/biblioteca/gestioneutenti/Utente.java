@@ -219,7 +219,7 @@ public class Utente implements Comparable<Utente>{
      */
     @Override
     public int hashCode(){
-        int code= cognome == null ? 0 : cognome.hashCode();
+        int code= matricola == null ? 0 : matricola.hashCode();
         return code;
     }
     /**

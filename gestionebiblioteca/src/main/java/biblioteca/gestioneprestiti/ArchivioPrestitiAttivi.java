@@ -2,6 +2,8 @@ package biblioteca.gestioneprestiti;
 import biblioteca.Archivio;
 import biblioteca.gestionelibri.Libro;
 import biblioteca.gestioneutenti.Utente;
+import biblioteca.gestionelibri.ArchivioLibri;
+import biblioteca.gestioneutenti.ArchivioUtenti;
 import biblioteca.Main;
 import java.util.List;
 import java.util.LinkedList;
@@ -31,14 +33,21 @@ import java.time.LocalDate;
 public class ArchivioPrestitiAttivi implements Archivio{
     /** Lista in ordine di inserimento dei prestiti attivi */
    private List<Prestito> prestitiAttivi;
+   private int prossimoId;
+    private ArchivioUtenti archivioUtenti;
+    private ArchivioLibri archivioLibri;
     /**
     * @brief Costruttore: inizializza una LinkedList vuota
     * @post prestiti è inizializzato come nuova LinkedList vuota.
     */
-   public ArchivioPrestitiAttivi(String filename){
+   public ArchivioPrestitiAttivi(String filename, ArchivioUtenti archivioUtenti, ArchivioLibri archivioLibri){
    this.prestitiAttivi= new LinkedList<>();
+   prossimoId = 1;
+    this.archivioUtenti = archivioUtenti;
+    this.archivioLibri = archivioLibri;
        try {
         leggiDaFile(filename);
+        aggiornaProssimoId();
     } catch (IOException e) {
         e.printStackTrace();
     }
@@ -85,12 +94,17 @@ public class ArchivioPrestitiAttivi implements Archivio{
                 LocalDate dataFine = LocalDate.parse(parti[10], formatter);
                 StatoPrestiti stato = StatoPrestiti.valueOf(parti[11]);
 
-                Utente u = new Utente(nome, cognome, email, matricola);
-                Libro l = new Libro(titolo, autore, anno, isbn);
+                Utente u = archivioUtenti.ricercaMatricola(matricola);
+                Libro l = archivioLibri.ricercaISBN(isbn);
+                
+                if (u == null || l == null) {
+                continue; // salta riga incoerente
+                }   
 
                 Prestito p = new Prestito(id, u, l, dataInizio, dataFine, stato);
 
                 prestitiAttivi.add(p);
+                u.aggiungiPrestitoAttivo(p);
             }
         }
     }
@@ -177,6 +191,29 @@ public class ArchivioPrestitiAttivi implements Archivio{
    }
    return null;
    }
+        public List<Prestito> ricercaPrestitoAttivoUtente(Utente utente){
+     List <Prestito> risultati = new LinkedList<>();
+
+     for(Prestito p : prestitiAttivi){
+        if(p.getUtente().equals(utente)){
+            risultati.add(p);
+        }
+     }
+     return risultati;
+     }
+
+
+      public List<Prestito> ricercaPrestitoAttivoLibro(Libro libro){
+     List<Prestito> risultati = new LinkedList<>();
+
+     for(Prestito p : prestitiAttivi){
+         if(p.getLibro().equals(libro)){
+             risultati.add(p);
+         }
+     }
+     return risultati;
+     }
+      
     /**
     * @brief Restituisce l'intero insieme dei prestiti attivi
     * @return lista dei prestiti attivi in ordine di inserimento    
@@ -194,5 +231,29 @@ public class ArchivioPrestitiAttivi implements Archivio{
     }
 
     return count;
+}
+   
+   private void aggiornaProssimoId() {
+    int maxId = 0;
+
+    for (Prestito p : prestitiAttivi) {
+        if (p.getId() > maxId) {
+            maxId = p.getId();
+        }
+    }
+
+    prossimoId = maxId + 1;
+    }
+   public int generaNuovoId() {
+    return prossimoId++;
+    }
+   
+   public boolean esistePrestitoAttivoLibro(Libro l) {
+    for (Prestito p : prestitiAttivi) {
+        if (p.getLibro().getISBN().equals(l.getISBN())) {
+            return true;
+        }
+    }
+    return false;
 }
 }

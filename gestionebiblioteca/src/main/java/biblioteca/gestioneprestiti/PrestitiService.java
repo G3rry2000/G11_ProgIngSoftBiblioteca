@@ -11,6 +11,7 @@ import biblioteca.gestioneutenti.Utente;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Collections;
 /**
  * @class PrestitiService
  * @brief Service che esegue la validazione dei dati dei prestiti.
@@ -106,16 +107,20 @@ public void registraPrestito(String isbn, String matricola, LocalDate dataFine)
     if (libro.getCopieDisponibili() <= 0) {
         throw new LibroNonDisponibileException("Libro non disponibile.");
     }
-
+int id = archivioPrestitiAttivi.generaNuovoId();
     Prestito p = new Prestito(
+            id,
             utente,
             libro,
             oggi,
-            dataFine
+            dataFine,
+            StatoPrestiti.ATTIVO
     );
 
     libro.setCopieDisponibili(libro.getCopieDisponibili() - 1);
     archivioPrestitiAttivi.aggiungiPrestitoAttivo(p);
+    Utente u = p.getUtente();
+    u.aggiungiPrestitoAttivo(p);
     
     try {
         archivioPrestitiAttivi.scriviSuFile("prestitiAttivi.csv");
@@ -169,12 +174,15 @@ public void registraPrestito(String isbn, String matricola, LocalDate dataFine)
 
             rimosso.setStato(StatoPrestiti.CHIUSO);
             archivioCronologia.aggiungiPrestitoCronologia(rimosso);
+            Utente u = rimosso.getUtente();
+            u.rimuoviPrestitoAttivo(rimosso);
         }
 
         try {
             archivioPrestitiAttivi.scriviSuFile("prestitiAttivi.csv");
             archivioLibri.scriviSuFile("libri.csv");
             archivioUtenti.scriviSuFile("utenti.csv");
+            archivioCronologia.scriviSuFile("cronologia.csv");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -182,35 +190,6 @@ public void registraPrestito(String isbn, String matricola, LocalDate dataFine)
         return rimosso;
     }
 
-/**
- * @brief Cerca un prestito attivo tramite utente e libro.
- *
- * @param utente Utente identificato tramite matricola
- * @param libro Libro identificato tramite ISBN
- *
- * @return Il prestito attivo corrispondente
- *
- * @throws ValidazioneException se i parametri forniti non sono validi
- * @throws PrestitoNonTrovatoException se nessun prestito viene trovato
- *
- * @pre utente != null && libro != null
- * @post viene restituito il prestito attivo corrispondente
- */
-public Prestito cercaPrestitoAttivo(Utente utente, Libro libro)
-        throws ValidazioneException, PrestitoNonTrovatoException {
-
-    if (utente == null || libro == null) {
-        throw new ValidazioneException("Utente o libro non valido.");
-    }
-
-    Prestito p = archivioPrestitiAttivi.ricercaPrestitoAttivo(utente, libro);
-
-    if (p == null) {
-        throw new PrestitoNonTrovatoException("Prestito non trovato.");
-    }
-
-    return p;
-}
 /**
  * @brief Restituisce l'elenco completo dei prestiti attivi.
  *
@@ -220,6 +199,11 @@ public Prestito cercaPrestitoAttivo(Utente utente, Libro libro)
  *       dell'archivio dei prestiti attivi
  */
 public List<Prestito> visualizzaPrestitiAttivi() {
+    for (Prestito p : archivioPrestitiAttivi.getPrestitiAttivi()) {
+        if (prestitoInRitardo(p)) {
+            p.setStato(StatoPrestiti.RITARDO);
+        }
+    }
     return archivioPrestitiAttivi.getPrestitiAttivi();
 }
      /**
@@ -255,61 +239,95 @@ public List<Prestito> visualizzaPrestitiAttivi() {
         return archivioCronologia.rimuoviPrestitoCronologia(p);
    }
      /**
-     * @brief Cerca prestito per dati (matricola) utente
-     * @param utente Dati (matricola) di utente
-     * 
-     * @return L'insieme dei prestiti per utente
-     * @throws ValidazioneException se i dati non sono validi
-     * @throws PrestitoNonTrovatoException se nessun prestito è stato trovato
-     * 
-     * @pre utente != null 
-     * @post trova l'insieme dei prestiti corrispondenti
-    */
-   public List<Prestito> cercaPrestitoUtenteCronologiaPerUtente(Utente utente) throws ValidazioneException, PrestitoNonTrovatoException{
-        
-       if (utente == null) {
-            throw new ValidazioneException("Utente non valido.");
-        }
-
-        List<Prestito> risultati = archivioCronologia.ricercaPrestitoUtenteCronologia(utente);
-
-        if (risultati.isEmpty()) {
-            throw new PrestitoNonTrovatoException("Nessun prestito trovato per l'utente.");
-        }
-
-        return risultati;
-   }
-        /**
-     * @brief Cerca prestito per dati (ISBN) libro
-     * @param libro Dati (ISBN) di libro
-     * 
-     * @return L'insieme dei prestiti per libro
-     * @throws ValidazioneException se i dati non sono validi
-     * @throws PrestitoNonTrovatoException se nessun prestito è stato trovato
-     * 
-     * @pre libro != null 
-     * @post trova l'insieme dei prestiti corrispondenti
-    */
-    public List<Prestito> ricercaPrestitoLibroCronologiaPerLibro(Libro libro) throws ValidazioneException, PrestitoNonTrovatoException{
-        
-        if (libro == null) {
-            throw new ValidazioneException("Libro non valido.");
-        }
-
-        List<Prestito> risultati = archivioCronologia.ricercaPrestitoLibroCronologia(libro);
-
-        if (risultati.isEmpty()) {
-            throw new PrestitoNonTrovatoException("Nessun prestito trovato per il libro.");
-        }
-
-        return risultati;
-   }
-     /**
     * @brief Restituisce l'insieme completo della cronologia dei prestiti
     * @return lista dei prestiti attivi
     */ 
    public List<Prestito> visualizzaCronologia(){ 
         return archivioCronologia.getCronologia();
    }
+   public List<Prestito> ricercaPrestitiAttivi(String matricola, String isbn)
+        throws ValidazioneException, PrestitoNonTrovatoException {
+    return ricercaPrestitiInterna(matricola, isbn, false);
+    }
+   public List<Prestito> ricercaPrestitiCronologia(String matricola, String isbn)
+        throws ValidazioneException, PrestitoNonTrovatoException {
+    return ricercaPrestitiInterna(matricola, isbn, true);
+}
+   
+    private List<Prestito> ricercaPrestitiInterna(
+         String matricola,
+         String isbn,
+         boolean cronologia)
+         throws ValidazioneException, PrestitoNonTrovatoException {
+
+     matricola = matricola == null ? "" : matricola.trim();
+     isbn = isbn == null ? "" : isbn.trim();
+
+     // ❌ NESSUN CAMPO
+     if (matricola.isEmpty() && isbn.isEmpty()) {
+         throw new ValidazioneException(
+             "Inserire una matricola oppure un ISBN."
+         );
+     }
+
+     // 🔍 CASO 1: MATRICOLA + ISBN
+     if (!matricola.isEmpty() && !isbn.isEmpty()) {
+
+         Utente u = archivioUtenti.ricercaMatricola(matricola);
+         Libro l = archivioLibri.ricercaISBN(isbn);
+
+         Prestito trovato = cronologia
+             ? archivioCronologia.ricercaPrestitoUtenteLibro(u, l)
+             : archivioPrestitiAttivi.ricercaPrestitoAttivo(u, l);
+
+         if (trovato == null) {
+             throw new PrestitoNonTrovatoException(
+                 "Nessun prestito trovato per questo utente e libro."
+             );
+         }
+
+         return Collections.singletonList(trovato);
+     }
+
+     // 🔍 CASO 2: SOLO MATRICOLA
+     if (!matricola.isEmpty()) {
+         Utente u = archivioUtenti.ricercaMatricola(matricola);
+
+         List<Prestito> risultati = cronologia
+             ? archivioCronologia.ricercaPrestitoUtenteCronologia(u)
+             : archivioPrestitiAttivi.ricercaPrestitoAttivoUtente(u);
+
+         if (risultati.isEmpty()) {
+             throw new PrestitoNonTrovatoException(
+                 "Nessun prestito trovato per questo utente."
+             );
+         }
+         return risultati;
+     }
+
+     // 🔍 CASO 3: SOLO ISBN
+     Libro l = archivioLibri.ricercaISBN(isbn);
+
+     List<Prestito> risultati = cronologia
+         ? archivioCronologia.ricercaPrestitoLibroCronologia(l)
+         : archivioPrestitiAttivi.ricercaPrestitoAttivoLibro(l);
+
+     if (risultati.isEmpty()) {
+         throw new PrestitoNonTrovatoException(
+             "Nessun prestito trovato per questo libro."
+         );
+     }
+
+     return risultati;
+ }
+
+    public boolean prestitoInRitardo(Prestito p) {
+
+         if (p == null) return false;
+
+         if (p.getStato() != StatoPrestiti.ATTIVO) return false;
+
+    return LocalDate.now().isAfter(p.getDataFine());
+    }
 
 }
