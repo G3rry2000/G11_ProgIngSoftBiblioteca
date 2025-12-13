@@ -8,7 +8,6 @@ package biblioteca.gestionelibri;
  * 
  */
 
-
 public class Libro implements Comparable<Libro>{
     
     /** Titolo del libro */

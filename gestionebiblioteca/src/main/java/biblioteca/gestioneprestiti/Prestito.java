@@ -14,8 +14,6 @@ import java.time.LocalDate;
 public class Prestito {
     /** Identificativo del prestito*/
     private final int id;
-    /** contatore per aggiornare l'id del prestito*/
-    private static int cont=0;
     /** dati dell'Utente*/
     private Utente utente;
     /** Dati del libro*/
@@ -27,24 +25,6 @@ public class Prestito {
     /** stato del prestito (attivo,ritardo,chiuso)*/
     private StatoPrestiti stato;
     
-    /**
-     * @brief Costruttore di inserimento della classe Prestito
-     * @param utente Dati dell'utente
-     * @param libro Dati del libro
-     * @param dataInizio Data di inizio prestito
-     * @param dataFine Data di fine prestito, restituzione libro
-     * 
-     * @pre I dati passati devono essere validi (controllo gestito da PrestitoService)     * @pre stato del prestito attivo
-     * @post Il prestito è inizializzato
-     */
-    public Prestito(Utente utente,Libro libro, LocalDate dataInizio, LocalDate dataFine){
-        this.id=++cont;
-        this.utente=utente;
-        this.libro=libro;
-        this.dataInizio= dataInizio;
-        this.dataFine= dataFine;
-        this.stato=StatoPrestiti.ATTIVO;
-    }
      /**
      * @brief Costruttore di caricamento da file della classe Prestito
      * @param id Identificativo del prestito
@@ -65,26 +45,14 @@ public class Prestito {
         this.dataFine=dataFine;
         this.stato=stato;
     }
-    /**
-    * @brief Imposta il valore del contatore degli ID
-    * Questo metodo viene utilizzato dopo aver caricato da file
-    * l'ultimo ID assegnato, così che il contatore interno non
-    * riparta da 0 ma continui correttamente dalla posizione salvata.
-    * 
-    * @param val l'ultimo ID letto da file (nuovo valore del contatore)
-    * 
-    * @pre val deve essere un intero >= 0 e rappresentare un ID valido
-    * già presente nei dati caricati.
-    * @post Il contatore interno della classe avrà valore pari a `val`.
-     */
-    public static void setContatore(int val){
-    }
+    
      /**
      * @return I dati dell'utente
      */
     public Utente getUtente() {
         return utente;
     }
+    
     /**
      *@brief Imposta un nuovo utente per il prestito
      * 
@@ -96,6 +64,7 @@ public class Prestito {
     public void setUtente(Utente utente) {
         this.utente = utente;
     }
+    
      /**
      * @return I dati del libro
      */

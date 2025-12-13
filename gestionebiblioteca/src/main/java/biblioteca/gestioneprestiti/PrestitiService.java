@@ -263,19 +263,22 @@ public List<Prestito> visualizzaPrestitiAttivi() {
      matricola = matricola == null ? "" : matricola.trim();
      isbn = isbn == null ? "" : isbn.trim();
 
-     // ❌ NESSUN CAMPO
+     // NESSUN CAMPO
      if (matricola.isEmpty() && isbn.isEmpty()) {
          throw new ValidazioneException(
              "Inserire una matricola oppure un ISBN."
          );
      }
 
-     // 🔍 CASO 1: MATRICOLA + ISBN
+     // CASO 1: MATRICOLA + ISBN
      if (!matricola.isEmpty() && !isbn.isEmpty()) {
 
          Utente u = archivioUtenti.ricercaMatricola(matricola);
          Libro l = archivioLibri.ricercaISBN(isbn);
-
+        if (u == null || l == null) {
+            throw new PrestitoNonTrovatoException("Utente o libro inesistente.");
+        }
+        
          Prestito trovato = cronologia
              ? archivioCronologia.ricercaPrestitoUtenteLibro(u, l)
              : archivioPrestitiAttivi.ricercaPrestitoAttivo(u, l);
@@ -289,7 +292,7 @@ public List<Prestito> visualizzaPrestitiAttivi() {
          return Collections.singletonList(trovato);
      }
 
-     // 🔍 CASO 2: SOLO MATRICOLA
+     // CASO 2: SOLO MATRICOLA
      if (!matricola.isEmpty()) {
          Utente u = archivioUtenti.ricercaMatricola(matricola);
 
@@ -305,7 +308,7 @@ public List<Prestito> visualizzaPrestitiAttivi() {
          return risultati;
      }
 
-     // 🔍 CASO 3: SOLO ISBN
+     // CASO 3: SOLO ISBN
      Libro l = archivioLibri.ricercaISBN(isbn);
 
      List<Prestito> risultati = cronologia

@@ -7,7 +7,6 @@ import biblioteca.gestioneeccezioni.CancellazionePrestitoAttivoException;
 import biblioteca.gestioneeccezioni.DuplicatoException;
 import biblioteca.gestioneeccezioni.UtenteNonTrovatoException;
 import biblioteca.gestioneeccezioni.ValidazioneException;
-import biblioteca.gestionelibri.Libro;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -18,7 +17,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.event.Event;
 import java.io.IOException;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.TableColumn;
@@ -33,8 +31,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.util.converter.IntegerStringConverter;
-import javafx.util.converter.LocalDateStringConverter;
 import javafx.collections.FXCollections;
 /**
  * @class UtentiViewController

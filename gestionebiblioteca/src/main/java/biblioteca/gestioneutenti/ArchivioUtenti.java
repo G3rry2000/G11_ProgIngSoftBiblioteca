@@ -1,6 +1,6 @@
 package biblioteca.gestioneutenti;
+
 import biblioteca.Archivio;
-import biblioteca.gestionelibri.Libro;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
