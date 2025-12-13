@@ -94,7 +94,17 @@ public void registraPrestito(String isbn, String matricola, LocalDate dataFine)
     }
 
     Libro libro = archivioLibri.ricercaISBN(isbn);
+    if (libro == null) {
+        throw new ValidazioneException(
+            "Nessun libro trovato con questo ISBN."
+        );
+    }
     Utente utente = archivioUtenti.ricercaMatricola(matricola);
+        if (utente == null) {
+        throw new ValidazioneException(
+            "Nessun utente trovato con questa matricola."
+        );
+    }
 
     // Controllo limite massimo prestiti
     if (archivioPrestitiAttivi.contaPrestitiAttiviUtente(utente) >= 3) {
@@ -245,10 +255,12 @@ public List<Prestito> visualizzaPrestitiAttivi() {
    public List<Prestito> visualizzaCronologia(){ 
         return archivioCronologia.getCronologia();
    }
+   
    public List<Prestito> ricercaPrestitiAttivi(String matricola, String isbn)
         throws ValidazioneException, PrestitoNonTrovatoException {
     return ricercaPrestitiInterna(matricola, isbn, false);
     }
+   
    public List<Prestito> ricercaPrestitiCronologia(String matricola, String isbn)
         throws ValidazioneException, PrestitoNonTrovatoException {
     return ricercaPrestitiInterna(matricola, isbn, true);
@@ -262,7 +274,41 @@ public List<Prestito> visualizzaPrestitiAttivi() {
 
      matricola = matricola == null ? "" : matricola.trim();
      isbn = isbn == null ? "" : isbn.trim();
+     // VALIDAZIONE MATRICOLA
+    if (!matricola.isEmpty()) {
 
+    // solo numeri
+    if (!matricola.matches("\\d+")) {
+        throw new ValidazioneException(
+            "La matricola deve contenere solo numeri."
+        );
+    }
+
+    // esattamente 8 cifre
+    if (matricola.length() != 10) {
+        throw new ValidazioneException(
+            "La matricola deve essere composta da 10 cifre."
+        );
+      }
+    }
+    
+    // VALIDAZIONE ISBN
+    if (!isbn.isEmpty()) {
+
+    // solo numeri
+    if (!isbn.matches("\\d+")) {
+        throw new ValidazioneException(
+            "L'ISBN deve contenere solo numeri."
+        );
+    }
+
+    // 10 o 13 cifre
+    if (isbn.length() != 10 && isbn.length() != 13) {
+        throw new ValidazioneException(
+            "L'ISBN deve essere composto da 10 o 13 cifre."
+        );
+      }   
+    }
      // NESSUN CAMPO
      if (matricola.isEmpty() && isbn.isEmpty()) {
          throw new ValidazioneException(
