@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['chiuso_0',['CHIUSO',['../enumbiblioteca_1_1_gestione_prestiti_1_1_stato_prestiti.html#ad14260ce7c56114a58ec6e5721c908bc',1,'biblioteca::GestionePrestiti::StatoPrestiti']]]
+  ['chiuso_0',['CHIUSO',['../enumbiblioteca_1_1gestioneprestiti_1_1_stato_prestiti.html#a40582c033a08d4cd32990a2eaf20288a',1,'biblioteca::gestioneprestiti::StatoPrestiti']]]
 ];

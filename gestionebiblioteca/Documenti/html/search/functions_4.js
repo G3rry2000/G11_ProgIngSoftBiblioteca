@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['eliminalibro_0',['eliminaLibro',['../classbiblioteca_1_1_gestione_libri_1_1_libri_service.html#a3c2dcc635e61be6038949675ab2ddf8c',1,'biblioteca::GestioneLibri::LibriService']]],
-  ['eliminaprestitoattivo_1',['eliminaPrestitoAttivo',['../classbiblioteca_1_1_gestione_prestiti_1_1_prestiti_service.html#ae3e2abe2c25aff7bf6e86c3e50d93aca',1,'biblioteca::GestionePrestiti::PrestitiService']]],
-  ['eliminaprestitocronologia_2',['eliminaPrestitoCronologia',['../classbiblioteca_1_1_gestione_prestiti_1_1_prestiti_service.html#ad7687b4c647b3fcc8f58bde0cf4b009d',1,'biblioteca::GestionePrestiti::PrestitiService']]],
-  ['eliminautente_3',['eliminaUtente',['../classbiblioteca_1_1_gestione_utenti_1_1_utenti_service.html#afb7a7c5325b4d6b0bf550afd39f8de0a',1,'biblioteca::GestioneUtenti::UtentiService']]],
-  ['equals_4',['equals',['../classbiblioteca_1_1_gestione_libri_1_1_libro.html#a60b7086d5a6ee9bd66f616eb4554f74b',1,'biblioteca.GestioneLibri.Libro.equals()'],['../classbiblioteca_1_1_gestione_utenti_1_1_utente.html#ac1589e896ecf94567f2b399b069f3476',1,'biblioteca.GestioneUtenti.Utente.equals()']]]
+  ['eliminalibro_0',['eliminaLibro',['../classbiblioteca_1_1gestionelibri_1_1_libri_service.html#a499b155bdcf2b5e6106e3732e7cab821',1,'biblioteca::gestionelibri::LibriService']]],
+  ['eliminaprestitoattivo_1',['eliminaPrestitoAttivo',['../classbiblioteca_1_1gestioneprestiti_1_1_prestiti_service.html#a910fd584da24823c0f091af1c7ba3d7e',1,'biblioteca::gestioneprestiti::PrestitiService']]],
+  ['eliminautente_2',['eliminaUtente',['../classbiblioteca_1_1gestioneutenti_1_1_utenti_service.html#a2e7c656512f7ae90c4624282b0f163a8',1,'biblioteca::gestioneutenti::UtentiService']]],
+  ['equals_3',['equals',['../classbiblioteca_1_1gestionelibri_1_1_libro.html#a1e2722428b840b201a50926f824ea32b',1,'biblioteca.gestionelibri.Libro.equals()'],['../classbiblioteca_1_1gestioneutenti_1_1_utente.html#a778c57eccf1542316d59ef471f6c97cf',1,'biblioteca.gestioneutenti.Utente.equals()']]],
+  ['esisteprestitoattivolibro_4',['esistePrestitoAttivoLibro',['../classbiblioteca_1_1gestioneprestiti_1_1_archivio_prestiti_attivi.html#acbaf9c2f0d6552dd435d46c487f69c68',1,'biblioteca::gestioneprestiti::ArchivioPrestitiAttivi']]]
 ];
