@@ -240,7 +240,8 @@ public void modificaLibro(Libro libro, String isbnOriginale) throws ValidazioneE
     //Controllo ISBN duplicato solo se modificato
     if (!isbn.equals(isbnOriginale)) {
         Libro esistente = archivioLibri.ricercaISBN(isbn);
-        if (esistente != null) {
+        // Se esiste ed è diverso dal libro che stiamo modificando
+        if (esistente != null && !esistente.equals(libro)) {
             throw new DuplicatoException("Esiste già un libro con questo ISBN.");
         }
     }

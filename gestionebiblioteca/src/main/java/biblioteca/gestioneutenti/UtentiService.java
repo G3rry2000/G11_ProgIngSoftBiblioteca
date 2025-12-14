@@ -238,8 +238,8 @@ public class UtentiService {
         // --- Controllo duplicati SOLO se modificata ---
         if (!matricola.equals(matricolaOriginale)) {
             Utente esistente = archivioUtenti.ricercaMatricola(matricola);
-            if (esistente != null) {
-                throw new DuplicatoException("esiste già un utente con questa matricola");
+            if (esistente != null && !esistente.equals(utente)) {
+                throw new DuplicatoException("Esiste già un utente con questa matricola");
             }
         }
         //Modifica all'archivio
