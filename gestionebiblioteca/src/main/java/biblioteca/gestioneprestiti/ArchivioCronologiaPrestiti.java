@@ -18,36 +18,46 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 /**
  * @class ArchivioCronologiaPrestiti
- * @brief Gestisce la collezione della cronologia dei prestiti della biblioteca
- * 
- * Questa classe si occupa della sola gestione dati:
- * - memorizzazione della cronologia dei prestiti tramite linkedlist
- * - operazioni di aggiungi, rimuovi, ricerca, modifica e visualizza
- * - salvataggio e caricamento da file
- * 
- * Tutti i controlli sono stati affidati alla classe {@link PrestitoService}
- * 
+ * @brief Gestisce la collezione della cronologia dei prestiti della biblioteca.
+ *
+ * Questa classe si occupa della sola gestione dei dati:
+ * - memorizzazione della cronologia dei prestiti tramite {@link LinkedList} in ordine di inserimento;
+ * - operazioni di aggiungi, rimuovi, ricerca, modifica e visualizza;
+ * - salvataggio e caricamento da file.
+ *
+ * Tutti i controlli e le regole di business sono affidati alla classe {@link PrestitoService}.
  */
 public class ArchivioCronologiaPrestiti implements Archivio{
-   /** Insieme ordinato per inserimento della cronologia dei prestiti */
-   private List<Prestito> cronologia;
-   private ArchivioUtenti archivioUtenti;
-   private ArchivioLibri archivioLibri;
+    /** Lista dei prestiti in ordine di inserimento */
+    private List<Prestito> cronologia;
+
+    /** Archivio utenti collegato per eventuali riferimenti o validazioni */
+    private ArchivioUtenti archivioUtenti;
+
+    /** Archivio libri collegato per eventuali riferimenti o validazioni */
+    private ArchivioLibri archivioLibri;
     /**
-    * @brief Costruttore: inizializza una LinkedList vuota
-    * @post cronologia è inizializzato come nuova LinkedList vuota.
-    */
+     * @brief Costruttore: inizializza una lista vuota e carica la cronologia da file.
+     *
+     * @param filename Nome del file CSV contenente la cronologia dei prestiti.
+     * @param archivioUtenti Riferimento all'archivio utenti.
+     * @param archivioLibri Riferimento all'archivio libri.
+     *
+     * @post La cronologia è inizializzata come {@link LinkedList} vuota,
+     *       e i dati presenti nel file sono caricati correttamente.
+     */
    public ArchivioCronologiaPrestiti(String filename, ArchivioUtenti archivioUtenti, ArchivioLibri archivioLibri){
-   this.cronologia= new LinkedList<>();   
-   this.archivioUtenti=archivioUtenti;
-   this.archivioLibri=archivioLibri;
+        this.cronologia= new LinkedList<>();   
+        this.archivioUtenti=archivioUtenti;
+        this.archivioLibri=archivioLibri;
 
    
        try {
-        leggiDaFile(filename);
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
+            leggiDaFile(filename);
+       } catch (IOException e) {
+            e.printStackTrace();
+        }
+       
    }
    
     /**
@@ -114,8 +124,6 @@ public class ArchivioCronologiaPrestiti implements Archivio{
             }
         }
     }
-
-   
     /**
     * @brief Salva la cronologia dei prestiti nel file specificato
     * 
@@ -125,15 +133,6 @@ public class ArchivioCronologiaPrestiti implements Archivio{
     * @pre filename!=null && !filename.isEmpty()
     * @post il file contiene tutta la cronologia dei prestiti memorizzati
     */
-/**
- * @brief Salva la cronologia dei prestiti nel file specificato
- *
- * @param filename Nome del file su cui scrivere
- * @throws IOException se si verificano errori di scrittura
- *
- * @pre filename != null && !filename.isEmpty()
- * @post il file contiene tutti i prestiti della cronologia
- */
     @Override
     public void scriviSuFile(String filename) throws IOException {
 
@@ -178,31 +177,17 @@ public class ArchivioCronologiaPrestiti implements Archivio{
     */
    public void aggiungiPrestitoCronologia(Prestito p){
        cronologia.add(p);
-   }
-   
+   }   
     /**
-    * @brief Rimuove un prestito dall'archivio
-    * 
-    * @param p prestito da rimuovere
-    * @return Il prestito che è stato rimosso oppure null se non presente
-    * 
-    * @pre p !=null
-    * @post se presente, il prestito viene rimosso dall'archivio.
-    */
-   public Prestito rimuoviPrestitoCronologia(Prestito p){
-        boolean rimosso = cronologia.remove(p);
-        return rimosso ? p : null;
-   }
-   
-    /**
-    * @brief Cerca tutti i prestiti tramite  matricola (campo di utente)
-    * 
-    * @param utente Dati (matricola) di utente
-    * @return l'insieme dei prestiti con la matricola cercata
-    * 
-    * @pre utente!= null
-    * @post restituisce la lista dei prestiti corrispondenti
-    */
+     * @brief Cerca tutti i prestiti nella cronologia associati a un determinato utente.
+     *
+     * @param utente Utente da cercare (matricola valida).
+     * @return Lista dei prestiti della cronologia relativi all'utente. La lista può essere vuota
+     *         se l'utente non ha prestiti nella cronologia.
+     *
+     * @pre utente != null
+     * @post Restituisce tutti i prestiti nella cronologia associati all'utente.
+     */
    public List<Prestito> ricercaPrestitoUtenteCronologia(Utente utente){
         List <Prestito> risultati = new LinkedList<>();
    
@@ -213,16 +198,16 @@ public class ArchivioCronologiaPrestiti implements Archivio{
         }
         return risultati;
    }
-   
     /**
-    * @brief Cerca tutti i prestiti tramite  ISBN (campo di libro)
-    * 
-    * @param libro Dati (ISBN) di libro
-    * @return l'insieme dei prestiti con l'ISBN cercata
-    * 
-    * @pre libro!= null
-    * @post restituisce l'insieme dei libri corrispondenti
-    */
+     * @brief Cerca tutti i prestiti nella cronologia associati a un determinato libro.
+     *
+     * @param libro Libro da cercare (ISBN valido).
+     * @return Lista dei prestiti della cronologia relativi al libro. La lista può essere vuota
+     *         se il libro non ha prestiti nella cronologia.
+     *
+     * @pre libro != null
+     * @post Restituisce tutti i prestiti nella cronologia associati al libro.
+     */
     public List<Prestito> ricercaPrestitoLibroCronologia(Libro libro){
         List<Prestito> risultati = new LinkedList<>();
 
@@ -232,7 +217,17 @@ public class ArchivioCronologiaPrestiti implements Archivio{
             }
         }
         return risultati;
-   }
+     }
+     /**
+     * @brief Cerca un prestito specifico nella cronologia tramite utente e libro.
+     *
+     * @param utente Utente da cercare.
+     * @param libro Libro da cercare.
+     * @return Il prestito corrispondente se trovato, altrimenti null.
+     *
+     * @pre utente != null && libro != null
+     * @post Restituisce il prestito nella cronologia associato a utente e libro se presente.
+     */
     public Prestito ricercaPrestitoUtenteLibro(Utente utente, Libro libro) {
         for (Prestito p : cronologia) {
             if (p.getUtente().equals(utente) &&

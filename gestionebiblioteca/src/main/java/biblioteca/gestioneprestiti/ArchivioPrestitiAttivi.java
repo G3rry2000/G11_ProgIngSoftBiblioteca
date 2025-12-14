@@ -19,37 +19,51 @@ import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 /**
  * @class ArchivioPrestitiAttivi
- * @brief Gestisce la collezione dei prestiti attivi della biblioteca
- * 
- * Questa classe si occupa della sola gestione dati:
- * - memorizzazione dei prestiti tramite linkedlist
- * - operazioni di aggiungi, rimuovi, ricerca, modifica e visualizza
- * - salvataggio e caricamento da file
- * 
- * Tutti i controlli sono stati affidati alla classe {@link PrestitoService}
- * 
+ * @brief Gestisce la collezione dei prestiti attivi della biblioteca.
+ *
+ * Questa classe si occupa della sola gestione dei dati:
+ * - memorizzazione dei prestiti attivi tramite {@link LinkedList} in ordine di inserimento;
+ * - operazioni di aggiungi, rimuovi, ricerca, modifica e visualizza;
+ * - salvataggio e caricamento da file.
+ *
+ * Tutti i controlli e le regole di business sono affidati alla classe {@link PrestitoService}.
  */
 public class ArchivioPrestitiAttivi implements Archivio{
     /** Lista in ordine di inserimento dei prestiti attivi */
     private List<Prestito> prestitiAttivi;
+
+    /** ID da assegnare al prossimo prestito creato */
     private int prossimoId;
+
+    /** Archivio utenti collegato per validazioni e riferimenti */
     private ArchivioUtenti archivioUtenti;
+
+    /** Archivio libri collegato per validazioni e riferimenti */
     private ArchivioLibri archivioLibri;
+    
     /**
-    * @brief Costruttore: inizializza una LinkedList vuota
-    * @post prestiti è inizializzato come nuova LinkedList vuota.
-    */
+     * @brief Costruttore: inizializza una lista vuota e carica i dati da file.
+     *
+     * @param filename Nome del file CSV contenente i prestiti attivi.
+     * @param archivioUtenti Riferimento all'archivio utenti.
+     * @param archivioLibri Riferimento all'archivio libri.
+     *
+     * @post La lista dei prestiti è inizializzata come {@link LinkedList} vuota,
+     *       i dati presenti nel file sono caricati e l'ID successivo è aggiornato.
+     */
    public ArchivioPrestitiAttivi(String filename, ArchivioUtenti archivioUtenti, ArchivioLibri archivioLibri){
         this.prestitiAttivi= new LinkedList<>();
         prossimoId = 1;
         this.archivioUtenti = archivioUtenti;
         this.archivioLibri = archivioLibri;
+        
         try {
             leggiDaFile(filename);
             aggiornaProssimoId();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
    }
     /**
     * @brief Carica i prestiti attivi da un file di testo
@@ -173,15 +187,18 @@ public class ArchivioPrestitiAttivi implements Archivio{
         return rimosso ? p : null;
    }
     /**
-    * @brief Cerca tutti i prestiti attivi tramite ISBN (campo di libro) e matricola (campo di utente)
-    * 
-    * @param utente Dati (matricola) di utente
-    * @param libro Dati (ISBN) di libro
-    * @return il prestito attivo con la matricola e ISBN cercato
-    * 
-    * @pre utente!= null &&  libro!= null 
-    * @post restituisce il prestito attivo corrispondente
-    */
+     * @brief Cerca un prestito attivo specifico tramite utente e libro.
+     *
+     * Verifica nella lista dei prestiti attivi se esiste un prestito che corrisponde
+     * all'utente e al libro forniti.
+     *
+     * @param utente Utente da cercare (matricola valida).
+     * @param libro Libro da cercare (ISBN valido).
+     * @return Il prestito attivo corrispondente, oppure null se non trovato.
+     *
+     * @pre utente != null && libro != null
+     * @post Restituisce il prestito attivo corrispondente all'utente e libro se presente.
+     */
    public Prestito ricercaPrestitoAttivo(Utente utente, Libro libro){
         for(Prestito p : prestitiAttivi){
             if(p.getUtente().equals(utente) && p.getLibro().equals(libro)){
@@ -190,6 +207,16 @@ public class ArchivioPrestitiAttivi implements Archivio{
         }
         return null;
    }
+      /**
+      * @brief Cerca tutti i prestiti attivi di un determinato utente.
+      *
+      * @param utente Utente di cui cercare i prestiti attivi.
+      * @return Lista dei prestiti attivi dell'utente. La lista può essere vuota se l'utente
+      *         non ha prestiti attivi.
+      *
+      * @pre utente != null
+      * @post Restituisce tutti i prestiti attivi associati all'utente.
+      */
     public List<Prestito> ricercaPrestitoAttivoUtente(Utente utente){
         List <Prestito> risultati = new LinkedList<>();
 
@@ -200,8 +227,16 @@ public class ArchivioPrestitiAttivi implements Archivio{
         }
         return risultati;
     }
-
-
+    /**
+     * @brief Cerca tutti i prestiti attivi di un determinato libro.
+     *
+     * @param libro Libro di cui cercare i prestiti attivi.
+     * @return Lista dei prestiti attivi associati al libro. La lista può essere vuota se
+     *         il libro non ha prestiti attivi.
+     *
+     * @pre libro != null
+     * @post Restituisce tutti i prestiti attivi associati al libro.
+     */
     public List<Prestito> ricercaPrestitoAttivoLibro(Libro libro){
         List<Prestito> risultati = new LinkedList<>();
 
@@ -231,7 +266,14 @@ public class ArchivioPrestitiAttivi implements Archivio{
 
         return count;
 }
-   
+    /**
+    * @brief Aggiorna l'ID del prossimo prestito da assegnare.
+    *
+    * Scansiona tutti i prestiti attivi e imposta {@link prossimoId} come
+    * il massimo ID trovato più uno.
+    *
+    * @post {@link prossimoId} è aggiornato al valore corretto per il prossimo prestito.
+    */
    private void aggiornaProssimoId() {
     int maxId = 0;
 
@@ -243,10 +285,26 @@ public class ArchivioPrestitiAttivi implements Archivio{
 
     prossimoId = maxId + 1;
     }
+    /**
+    * @brief Aggiorna l'ID del prossimo prestito da assegnare.
+    *
+    * Scansiona tutti i prestiti attivi e imposta {@link prossimoId} come
+    * il massimo ID trovato più uno.
+    *
+    * @post {@link prossimoId} è aggiornato al valore corretto per il prossimo prestito.
+    */
    public int generaNuovoId() {
         return prossimoId++;
     }
-   
+    /**
+    * @brief Verifica se esiste un prestito attivo per un determinato libro.
+    *
+    * @param l Libro da controllare.
+    * @return true se il libro è attualmente preso in prestito, false altrimenti.
+    *
+    * @pre l != null
+    * @post Restituisce true se esiste almeno un prestito attivo per il libro specificato.
+    */
    public boolean esistePrestitoAttivoLibro(Libro l) {
         for (Prestito p : prestitiAttivi) {
             if (p.getLibro().getISBN().equals(l.getISBN())) {

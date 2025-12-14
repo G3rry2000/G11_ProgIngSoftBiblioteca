@@ -22,22 +22,31 @@ import javafx.fxml.FXMLLoader;
  * {@link Stage} per visualizzare la finestra principale.
  */
 public class Main extends Application {
+    /** Archivio contenente i libri della biblioteca. */
     public static ArchivioLibri archivioLibri;
+
+    /** Archivio contenente gli utenti registrati. */
     public static ArchivioUtenti archivioUtenti;
+
+    /** Archivio dei prestiti attualmente attivi. */
     public static ArchivioPrestitiAttivi archivioPrestitiAttivi;
+
+    /** Archivio della cronologia dei prestiti conclusi. */
     public static ArchivioCronologiaPrestiti archivioCronologia;
     /**
      * @brief Inizializza e mostra l'interfaccia grafica principale.
      *
-     * Metodo richiamato automaticamente dal framework JavaFX all'avvio
-     * dell'applicazione. Carica la vista principale tramite
-     * {@code HomeView.fxml}, crea la scena associata e visualizza la finestra.
+     * Metodo richiamato automaticamente dal framework JavaFX
+     * all'avvio dell'applicazione. Inizializza gli archivi a partire
+     * dai file CSV, carica la vista principale tramite
+     * {@code HomeView.fxml}, crea la scena associata e visualizza
+     * la finestra principale.
      *
-     * @param primaryStage La finestra principale dell'applicazione.
+     * @param primaryStage Lo {@link Stage} principale dell'applicazione.
      * @throws IOException Se il file FXML non può essere caricato correttamente.
      *
      * @pre primaryStage != null
-     * @post La finestra principale è visibile e contiene la scena caricata da {@code HomeView.fxml}.
+     * @post La finestra principale è visibile e contiene la scena caricata. 
      */
     @Override
     public void start(Stage primaryStage) throws IOException {
@@ -51,7 +60,7 @@ public class Main extends Application {
         
         Scene scene = new Scene(loader.load());
 
-        primaryStage.setTitle("Biblioteca - Home");
+        primaryStage.setTitle(" Biblioteca ");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

@@ -87,16 +87,28 @@ public class UtentiViewController implements Initializable{
     private TableColumn<Utente, LocalDate> colDataRest;
   // ------------- LOGICA --------------
     
+    /** Service per la gestione degli utenti */
     private UtentiService utenteService;
     
+    /** Lista osservabile degli utenti per la TableView */
     private ObservableList<Utente> listaUtenti;
     
-       private String matricolaOriginale;
+    /** Memorizza la matricola originale durante l'editing in-place */
+    private String matricolaOriginale;
 
     /**
-     * @brief Metodo di inizializzazione del controller
-     * 
-     * Viene eseguito automaticamente all'avvio della schermata
+     * @brief Metodo di inizializzazione del controller utenti.
+     *
+     * Viene eseguito automaticamente all'avvio della schermata.
+     * Si occupa di:
+     * - inizializzare il {@link UtentiService} e la {@link ObservableList} degli utenti;
+     * - popolare la {@link TableView} con i dati correnti;
+     * - rendere le colonne editabili e impostare le cell factory e value factory;
+     * - configurare i binding dei pulsanti (aggiungi, elimina, ricerca) in base
+     *   allo stato dei campi di input e della selezione nella tabella.
+     *
+     * @post La tabella è popolata con gli utenti attuali e i pulsanti sono abilitati/disabilitati
+     *       correttamente in base ai dati inseriti nei campi di input.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -155,7 +167,9 @@ public class UtentiViewController implements Initializable{
     private Stage getStage(Label label) {
         return (Stage) label.getScene().getWindow();
     }
+    
         // ------------NAVIGAZIONE MENU ------------
+    
     /**
      * @brief Apre la sezione Home.
      * 
@@ -212,8 +226,16 @@ public class UtentiViewController implements Initializable{
     }
     
     //------------OPERAZIONI UTENTI ------------
+    
      /**
      * @brief Aggiunge un nuovo utente utilizzando i dati inseriti nei campi testo.
+     * 
+     * @pre Tutti i campi del nuovo utente devono essere compilati correttamente.
+     * @post Se i dati sono validi e non duplicati, l'utente viene aggiunto all'archivio,
+     *       la tabella viene aggiornata e i campi di input vengono svuotati.
+     * 
+     * @throws ValidazioneException Se uno o più campi del nuovo utente non sono validi.
+     * @throws DuplicatoException Se l'utente esiste già nell'archivio.
      */
     @FXML
     private void onAggiungiUtente(ActionEvent event) {
@@ -248,6 +270,12 @@ public class UtentiViewController implements Initializable{
    }
     /**
      * @brief Rimuove un utente utilizzando i dati inseriti nei campi testo.
+     *
+     * @pre Un utente deve essere selezionato nella tabella.
+     * @post Se l'utente non ha prestiti attivi, viene rimosso dall'archivio
+     *       e la tabella viene aggiornata.
+     * 
+     * @throws CancellazionePrestitoAttivoException Se l'utente ha ancora prestiti attivi.
      */
     @FXML
     private void onRimuoviUtente(ActionEvent event) {
@@ -267,6 +295,12 @@ public class UtentiViewController implements Initializable{
    }
      /**
      * @brief Esegue una ricerca utenti sui campi compilando cognome o matricola
+     * 
+     * @pre Almeno uno tra cognome o matricola deve essere compilato.
+     * @post La tabella viene popolata con gli utenti trovati secondo il criterio di ricerca.
+     * 
+     * @throws ValidazioneException Se entrambi i campi sono vuoti o non validi.
+     * @throws UtenteNonTrovatoException Se non vengono trovati utenti corrispondenti ai criteri.
      */
     @FXML
     private void onRicercaUtente(ActionEvent event){
@@ -283,40 +317,23 @@ public class UtentiViewController implements Initializable{
     }
     /**
      * @brief Mostra l'intero elenco degli utenti presenti nell’archivio.
+     * 
+     * @post La tabella {@link TableView} mostra tutti gli utenti correnti dell'archivio.
      */
     @FXML
     private void onVisualizzaUtenti(ActionEvent event) {
          Set<Utente> tutti = utenteService.visualizzaUtenti();
         utenteTable.getItems().setAll(tutti);
     }
-    
-    private void alertConferma(String messaggio) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Operazione completata");
-        alert.setHeaderText(null);
-        alert.setContentText(messaggio);
-        alert.showAndWait();
-    }
-     
-    private void alertErrore(String messaggio) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Errore");
-        alert.setHeaderText(null);
-        alert.setContentText(messaggio);
-        alert.showAndWait();
-    }
-    
-    private boolean alertConfermaEliminazione() {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Conferma eliminazione");
-        alert.setHeaderText("Sei sicuro?");
-        alert.setContentText("Vuoi davvero eliminare questo utente?");
-
-        Optional<ButtonType> result = alert.showAndWait();
-        //verifica che sia stato premuto un pulsante e che sia il bottone ok
-        return result.isPresent() && result.get() == ButtonType.OK;
-    }
-
+     /**
+     * @brief Gestisce la modifica del nome direttamente nella TableView.
+     *
+     * Recupera l'utente selezionato e il nuovo valore del nome, prova a salvare la modifica
+     * In caso di errore, ripristina il vecchio valore e mostra un messaggio di errore.
+     *
+     * @post Se non vengono sollevate eccezioni, il nome dell'utente è aggiornato
+     *       nell'archivio e la tabella della GUI riflette il cambiamento.
+     */
     @FXML
     private void onModificaNome(TableColumn.CellEditEvent<Utente, String> event) {
             Utente utente = event.getRowValue();
@@ -334,7 +351,15 @@ public class UtentiViewController implements Initializable{
         alertErrore(e.getMessage());
     }
     }
-
+     /**
+     * @brief Gestisce la modifica del cognome direttamente nella TableView.
+     *
+     * Recupera l'utente selezionato e il nuovo valore del cognome, prova a salvare la modifica
+     * In caso di errore, ripristina il vecchio valore e mostra un messaggio di errore.
+     *
+     * @post Se non vengono sollevate eccezioni, il cognome dell'utente è aggiornato
+     *       nell'archivio e la tabella della GUI riflette il cambiamento.
+     */
     @FXML
     private void onModificaCognome(TableColumn.CellEditEvent<Utente, String> event) {
             Utente utente = event.getRowValue();
@@ -357,7 +382,15 @@ public class UtentiViewController implements Initializable{
     private void onOriginaleMatricola(TableColumn.CellEditEvent<Utente, String> event) {
         matricolaOriginale = event.getOldValue();
     }
-
+     /**
+     * @brief Gestisce la modifica della matricola direttamente nella TableView.
+     *
+     * Recupera l'utente selezionato e il nuovo valore della matricola, prova a salvare la modifica
+     * In caso di errore, ripristina il vecchio valore e mostra un messaggio di errore.
+     *
+     * @post Se non vengono sollevate eccezioni, la matricola dell'utente è aggiornata
+     *       nell'archivio e la tabella della GUI riflette il cambiamento.
+     */
     @FXML
     private void onModificaMatricola(TableColumn.CellEditEvent<Utente, String> event) {
         Utente utente = event.getRowValue();
@@ -377,7 +410,15 @@ public class UtentiViewController implements Initializable{
         matricolaOriginale = null;
     }
     }
-
+     /**
+     * @brief Gestisce la modifica dell'email direttamente nella TableView.
+     *
+     * Recupera l'utente selezionato e il nuovo valore dell'email, prova a salvare la modifica
+     * In caso di errore, ripristina il vecchio valore e mostra un messaggio di errore.
+     *
+     * @post Se non vengono sollevate eccezioni, l'email dell'utente è aggiornata
+     *       nell'archivio e la tabella della GUI riflette il cambiamento.
+     */
     @FXML
     private void onModificaEmail(TableColumn.CellEditEvent<Utente, String> event) {
             Utente utente = event.getRowValue();
@@ -395,4 +436,48 @@ public class UtentiViewController implements Initializable{
         alertErrore(e.getMessage());
     }
     }
+    /**
+    * Mostra un alert informativo per confermare che un'operazione
+    * è stata completata correttamente.
+    *
+    * @param messaggio Testo da mostrare nel popup
+    */
+    private void alertConferma(String messaggio) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Operazione completata");
+        alert.setHeaderText(null);
+        alert.setContentText(messaggio);
+        alert.showAndWait();
+    }
+    /**
+    * Mostra un alert di errore quando si verifica un problema.
+    *
+    * @param messaggio Testo che descrive l'errore
+    */
+    private void alertErrore(String messaggio) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Errore");
+        alert.setHeaderText(null);
+        alert.setContentText(messaggio);
+        alert.showAndWait();
+    }
+    /**
+    * Mostra un alert di conferma per chiedere 
+    * se si desidera davvero eliminare un libro.
+    *
+    * @return true se ha premuto "OK",
+    *         false se ha premuto "Cancel" o ha chiuso la finestra.
+    */
+    private boolean alertConfermaEliminazione() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Conferma eliminazione");
+        alert.setHeaderText("Sei sicuro?");
+        alert.setContentText("Vuoi davvero eliminare questo utente?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        //verifica che sia stato premuto un pulsante e che sia il bottone ok
+        return result.isPresent() && result.get() == ButtonType.OK;
+    }
+
+    
 }

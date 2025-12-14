@@ -1,5 +1,6 @@
 package biblioteca.gestionelibri;
 
+import biblioteca.gestioneprestiti.Prestito;
 import biblioteca.gestioneprestiti.ArchivioPrestitiAttivi;
 import biblioteca.gestioneeccezioni.DuplicatoException;
 import biblioteca.gestioneeccezioni.ValidazioneException;
@@ -21,34 +22,50 @@ import java.io.IOException;
  * Le operazioni vengono delegate a ArchivioLibri.
  */
 public class LibriService {
-    /**
-     * Archivio dei libri su cui operare
-     */
+    /** Archivio dei libri su cui operare. */
     private ArchivioLibri archivioLibri;
+
+    /** Archivio dei prestiti attualmente attivi. */
     private ArchivioPrestitiAttivi archivioPrestitiAttivi;
 
-     /**
-     * @brief Costruttore del Service 
-     * @param archivioLibri archivio dei libri da usare come dati
-     * 
+    /**
+     * @brief Costruttore del servizio di gestione dei libri.
+     *
+     * Inizializza il service associando gli archivi necessari
+     * alla gestione dei libri e dei prestiti attivi.
+     *
+     * @param archivioLibri Archivio dei libri da utilizzare come sorgente dati.
+     * @param archivioPrestitiAttivi Archivio dei prestiti attivi associati ai libri.
+     *
      * @pre archivioLibri != null
-     * @post this.archivioLibri==archivioLibri
+     * @pre archivioPrestitiAttivi != null
+     * @post this.archivioLibri == archivioLibri
+     * @post this.archivioPrestitiAttivi == archivioPrestitiAttivi
      */
     public LibriService(ArchivioLibri archivioLibri, ArchivioPrestitiAttivi archivioPrestitiAttivi){
         this.archivioLibri = archivioLibri;
         this.archivioPrestitiAttivi=archivioPrestitiAttivi;
     }
-     /**
-     * @brief Aggiunge un nuovo libro effettuando i dovuti controlli
-     * @param l Libro da registrare
-     * @throws ValidazioneException se i dati non sono validi
-     * @throws DuplicatoException se esiste già un libro con lo stesso ISBN
-     * 
-     * @pre l != null 
-     * @post il libro viene aggiunto all'archivio
+    /**
+     * @brief Registra un nuovo libro nell'archivio effettuando i controlli di validità.
+     *
+     * Il metodo verifica la correttezza dei dati del libro (titolo, autore,
+     * ISBN, anno di pubblicazione e numero di copie disponibili) e controlla
+     * l'assenza di duplicati tramite ISBN. In caso di esito positivo,
+     * il libro viene aggiunto all'archivio e salvato su file.
+     *
+     * @param l Libro da registrare.
+     *
+     * @throws ValidazioneException Se uno o più campi del libro non sono validi.
+     * @throws DuplicatoException Se esiste già un libro con lo stesso ISBN.
+     *
+     * @pre l != null
+     * @post Il libro è presente nell'archivio libri.
+     * @post Lo stato dell'archivio è persistito sul file {@code libri.csv}.
      */
     public void registraLibro(Libro l) throws ValidazioneException, DuplicatoException{
-    // --- Validazioni ---
+        
+    //Validazioni
     if (l.getTitolo() == null || l.getTitolo().trim().isEmpty())
         throw new ValidazioneException("Titolo non valido.");
 
@@ -67,11 +84,11 @@ public class LibriService {
         throw new ValidazioneException("L'anno di pubblicazione non  valido");
     }
 
-    // --- Controllo duplicato ---
+    //Controllo duplicato
     Libro l1= archivioLibri.ricercaISBN(l.getISBN());
     if(l1!= null) throw new DuplicatoException("Esiste già un libro con questo ISBN.");
 
-    // --- Aggiunta all’archivio ---
+    //Aggiunta all'archivio
     archivioLibri.aggiungiLibro(l);
     try{
         archivioLibri.scriviSuFile("libri.csv");
@@ -79,29 +96,38 @@ public class LibriService {
         e.printStackTrace();
     }
     }
-     /**
-     * @brief Elimina un libro esistente
-     * @param l Dati del libro da eliminare
-     * @return Il libro eliminato (oppure null)
-     * @throws CancellazionePrestitoAttivoException se il libro ha prestiti attivi
-     * 
-     * @pre l != null 
-     * @pre il libro non deve avere prestiti attivi
-     * @post libro viene rimosso se esiste
+    /**
+     * @brief Elimina un libro dall'archivio.
+     *
+     * Rimuove un libro dall'archivio solo se non risultano prestiti
+     * attivi associati. In caso di eliminazione avvenuta con successo,
+     * l'archivio aggiornato viene salvato su file.
+     *
+     * @param l Libro da eliminare.
+     *
+     * @return Il libro rimosso dall'archivio, oppure {@code null} se il libro non era presente.
+     *
+     * @throws CancellazionePrestitoAttivoException
+     *         Se il libro ha uno o più prestiti attivi associati.
+     *
+     * @pre l != null
+     * @pre Non esistono prestiti attivi associati al libro.
+     * @post Se il libro esisteva, è stato rimosso dall'archivio.
+     * @post Lo stato dell'archivio è persistito sul file {@code libri.csv}.
      */
     public Libro eliminaLibro(Libro l) throws CancellazionePrestitoAttivoException {
 
 
-        // 🔴 REGOLA: non posso eliminare se ha prestiti attivi
+        //Non posso eliminare se ha prestiti attivi
         if (archivioPrestitiAttivi.esistePrestitoAttivoLibro(l)) {
             throw new CancellazionePrestitoAttivoException(
                 "Impossibile eliminare il libro: esistono prestiti attivi."
             );
         }
 
-        // ✅ eliminazione
+        // eliminazione
         Libro rimosso = archivioLibri.rimuoviLibro(l);
-
+        //Rimozione dall'archivio
         try {
             archivioLibri.scriviSuFile("libri.csv");
         } catch (IOException e) {
@@ -176,16 +202,16 @@ public Set<Libro> ricercaLibro(String titolo, String autore, String isbn) throws
  * sia negativo e che l'ISBN non sia duplicato.
  *
  * @param libro Il libro già modificato (tramite tabella) da validare e salvare.
- *
+ * @param isbnOriginale ISBN originale del libro, utilizzato per verificare la duplicazione solo in caso di modifica dell'ISBN.
  * @throws ValidazioneException Se uno dei campi è invalido.
  * @throws DuplicatoException Se un altro libro con lo stesso ISBN esiste già.
  *
  * @pre libro != null
- * @post Le modifiche vengono salvate nell’archivio, se valide.
+ * @post Se non vengono sollevate eccezioni, le modifiche al libro sono salvate nell'archivio e persistite su file.
  */
 public void modificaLibro(Libro libro, String isbnOriginale) throws ValidazioneException, DuplicatoException {
 
-    // --- Controllo campi vuoti ---
+    //Controllo campi vuoti
     if (libro.getTitolo() == null || libro.getTitolo().trim().isEmpty())
         throw new ValidazioneException("Il titolo non può essere vuoto.");
 
@@ -195,30 +221,30 @@ public void modificaLibro(Libro libro, String isbnOriginale) throws ValidazioneE
     if (libro.getISBN() == null || libro.getISBN().trim().isEmpty())
         throw new ValidazioneException("L'ISBN non può essere vuoto.");
 
-    // --- Controllo ISBN valido ---
+    //Controllo ISBN valido
     String isbn = libro.getISBN().trim();
     if (isbn.length() != 10 && isbn.length() != 13)
         throw new ValidazioneException("L'ISBN deve essere di 10 o 13 cifre.");
 
-    // --- Controllo anno ---
+    //Controllo anno
     int anno = libro.getAnnoPubblicazione();
     if (anno < 0 || anno > java.time.Year.now().getValue()) {
         throw new ValidazioneException("Anno di pubblicazione non valido");
     }
 
-    // --- Controllo copie ---
+    //Controllo copie
     if (libro.getCopieDisponibili() < 0) {
         throw new ValidazioneException("Il numero di copie non può essere negativo.");
     }
 
-    // --- Controllo ISBN duplicato solo se modificato ---
+    //Controllo ISBN duplicato solo se modificato
     if (!isbn.equals(isbnOriginale)) {
         Libro esistente = archivioLibri.ricercaISBN(isbn);
         if (esistente != null) {
             throw new DuplicatoException("Esiste già un libro con questo ISBN.");
         }
     }
-    
+    //Modifica all'archivio
     try {
         archivioLibri.scriviSuFile("libri.csv");
     } catch(IOException e) {

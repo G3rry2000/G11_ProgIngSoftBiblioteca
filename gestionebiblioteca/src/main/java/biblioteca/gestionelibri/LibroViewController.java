@@ -83,16 +83,26 @@ public class LibroViewController implements Initializable{
     
     // ------------- LOGICA -------------
     
+    /** Servizio per la gestione della logica applicativa dei libri. */
     private LibriService libroService;
 
+    /** Lista osservabile dei libri, utilizzata per il binding con la tabella GUI. */
     private ObservableList<Libro> listaLibri;
+
+    /** ISBN originale del libro selezionato, usato per il controllo dei duplicati in fase di modifica. */
     private String isbnOriginale;
 
-     /**
-     *@brief Metodo di inizializzazione del controller
-     * 
-     * Viene eseguito automaticamente all'avvio della schermata
-     */
+    /**
+     * @brief Metodo di inizializzazione del controller.
+     *
+     * Viene invocato automaticamente dal framework JavaFX al caricamento
+     * della vista FXML. Il metodo si occupa di:
+     * - inizializzare il {@link LibriService};
+     * - caricare l'elenco dei libri e popolare la {@link TableView};
+     * - configurare le {@code CellFactory} e le {@code ValueFactory} delle colonne;
+     * - impostare i {@code binding} per l'abilitazione dei pulsanti in base allo stato dell'interfaccia.
+     * @post La tabella dei libri è inizializzata, popolata e pronta per l'interazione dell'utente.
+     */ 
 @Override
 public void initialize(URL url, ResourceBundle rb) {
 
@@ -161,7 +171,9 @@ public void initialize(URL url, ResourceBundle rb) {
     private Stage getStage(Label label) {
         return (Stage) label.getScene().getWindow();
     }
+    
     // ------------NAVIGAZIONE MENU ------------
+    
     /**
      * @brief Apre la sezione Home.
      * 
@@ -218,10 +230,16 @@ public void initialize(URL url, ResourceBundle rb) {
     }
 
     //------------OPERAZIONI UTENTI ------------
+    
      /**
      * @brief Aggiunge un nuovo libro utilizzando i dati inseriti nei campi testo.
      * 
-     * @pre I campi del libro devono essere compilati in modo valido.
+     * @pre Tutti i campi testo relativi al libro ({@code txtTitolo, txtAutori, txtAnno, txtISBN, txtCopie})
+     *      devono essere compilati in modo corretto e coerente.
+     * @post Se non vengono sollevate eccezioni, il libro è aggiunto all'archivio
+     *       e la tabella nella GUI viene aggiornata.
+     * @throws ValidazioneException Se uno o più campi del libro non sono validi.
+     * @throws DuplicatoException Se esiste già un libro con lo stesso ISBN.
      */
     @FXML
     private void onAggiungiLibro(ActionEvent event) {
@@ -257,10 +275,13 @@ public void initialize(URL url, ResourceBundle rb) {
         
     }
     /**
-     * @brief Rimuove un libro utilizzando i dati inseriti nei campi testo.
-     * 
-     * @pre ISBN o altri identificatori devono essere compilati correttamente.
-     */
+    * @brief Rimuove un libro utilizzando i dati inseriti nei campi testo.
+    * 
+    * @pre Un libro deve essere selezionato nella tabella.
+    * @post Se non solleva eccezioni, il libro è rimosso dall'archivio
+    *       e la tabella della GUI è aggiornata.
+    * @throws CancellazionePrestitoAttivoException Se il libro ha prestiti attivi.
+    */ 
     @FXML
     private void onRimuoviLibro(ActionEvent event) {
     try {
@@ -280,7 +301,10 @@ public void initialize(URL url, ResourceBundle rb) {
      /**
      * @brief Esegue una ricerca libro sui campi compilando titolo, autore o ISBN
      * 
-     * @pre Almeno un campo tra titolo, autore o ISBN deve essere compilato.
+     * @pre Almeno uno tra i campi titolo, autore o ISBN deve essere compilato.
+     * @post La tabella {@link TableView} mostra i libri corrispondenti ai criteri.
+     * @throws ValidazioneException Se tutti i campi sono vuoti o non validi.
+     * @throws LibroNonTrovatoException Se non vengono trovati libri corrispondenti.
      */
     @FXML
     private void onRicercaLibro(ActionEvent event) {
@@ -296,29 +320,25 @@ public void initialize(URL url, ResourceBundle rb) {
          alertErrore("Errore: " + e1.getMessage());
         }
     }
-    /**    @FXML
-    private void onRicercaLibro(ActionEvent event) {
-    String titolo = txtTitolo.getText().trim();
-    String autore = txtAutori.getText().trim();
-    String isbn = txtISBN.getText().trim();
-    try{
-        Set<Libro> risultati = libroService.ricercaLibro(titolo, autore, isbn);
-        libroTable.getItems().setAll(risultati);
-        } catch (ValidazioneException e) {
-        mostraAlert("Errore di validazione", e.getMessage());
-        }catch(LibroNonTrovatoException l){
-        System.out.println("Errore. Libro non trovato");
-        }
-    }
+    /**    
      * @brief Mostra l'intero elenco dei libri presenti nell’archivio.
      * 
-     * @post La tabella mostra tutti i libri correnti dell’archivio.
+     * @post La tabella {@link TableView} mostra tutti i libri correnti dell'archivio.
      */
     @FXML
     private void onVisualizzaLibri(ActionEvent event) {
         Set<Libro> tutti = libroService.visualizzaLibri();
         libroTable.getItems().setAll(tutti);
     }
+     /**
+     * @brief Gestisce la modifica del titolo direttamente nella TableView.
+     *
+     * Recupera il libro selezionato e il nuovo valore del titolo, prova a salvare la modifica
+     * In caso di errore, ripristina il vecchio valore e mostra un messaggio di errore.
+     *
+     * @post Se non vengono sollevate eccezioni, il titolo del libro è aggiornato
+     *       nell'archivio e la tabella della GUI riflette il cambiamento.
+     */
        @FXML
     private void onModificaTitolo(TableColumn.CellEditEvent<Libro, String> event) {
             Libro libro = event.getRowValue();
@@ -336,7 +356,15 @@ public void initialize(URL url, ResourceBundle rb) {
         alertErrore(e.getMessage());
     }
     }
-
+     /**
+     * @brief Gestisce la modifica dell'autore direttamente nella TableView.
+     *
+     * Recupera il libro selezionato e il nuovo valore dell'autore, prova a salvare la modifica
+     * In caso di errore, ripristina il vecchio valore e mostra un messaggio di errore.
+     *
+     * @post Se non vengono sollevate eccezioni, l'autore del libro è aggiornato
+     *       nell'archivio e la tabella della GUI riflette il cambiamento.
+     */
     @FXML
     private void onModificaAutore(TableColumn.CellEditEvent<Libro, String> event) {
         Libro libro = event.getRowValue();
@@ -354,12 +382,29 @@ public void initialize(URL url, ResourceBundle rb) {
         alertErrore(e.getMessage());
     }
     }
-
+     /**
+     * @brief Memorizza l'ISBN originale del libro prima di una modifica.
+     *
+     * Questo metodo viene richiamato automaticamente quando si inizia
+     * l'editing della cella ISBN nella TableView. Salva il valore
+     * corrente in {@link #isbnOriginale} per poterlo usare in seguito
+     * durante la modifica.
+     *
+     * @post isbnOriginale contiene il valore precedente dell'ISBN.
+     */
     @FXML
     private void onOriginaleISBN(TableColumn.CellEditEvent<Libro, String> event) {
          isbnOriginale = event.getOldValue();
     }
-
+     /**
+     * @brief Gestisce la modifica dell'ISBN direttamente nella TableView.
+     *
+     * Recupera il libro selezionato e il nuovo valore dell'ISBN, prova a salvare la modifica
+     * In caso di errore, ripristina il vecchio valore e mostra un messaggio di errore.
+     *
+     * @post Se non vengono sollevate eccezioni, l'ISBN del libro è aggiornato
+     *       nell'archivio e la tabella della GUI riflette il cambiamento.
+     */
     @FXML
     private void onModificaISBN(TableColumn.CellEditEvent<Libro, String> event) {
         Libro libro = event.getRowValue();
@@ -379,7 +424,15 @@ public void initialize(URL url, ResourceBundle rb) {
         isbnOriginale = null;
     }
     }
-
+    /**
+     * @brief Gestisce la modifica delle copie direttamente nella TableView.
+     *
+     * Recupera il libro selezionato e il nuovo valore delle copie, prova a salvare la modifica
+     * In caso di errore, ripristina il vecchio valore e mostra un messaggio di errore.
+     *
+     * @post Se non vengono sollevate eccezioni, le copie del libro sono aggiornate
+     *       nell'archivio e la tabella della GUI riflette il cambiamento.
+     */
     @FXML
     private void onModificaCopie(TableColumn.CellEditEvent<Libro, Integer> event) {
         Libro libro = event.getRowValue();
@@ -397,7 +450,15 @@ public void initialize(URL url, ResourceBundle rb) {
         alertErrore(e.getMessage());
     }
     }
-
+    /**
+     * @brief Gestisce la modifica dell'anno direttamente nella TableView.
+     *
+     * Recupera il libro selezionato e il nuovo valore dell'anno, prova a salvare la modifica
+     * In caso di errore, ripristina il vecchio valore e mostra un messaggio di errore.
+     *
+     * @post Se non vengono sollevate eccezioni, l'anno del libro è aggiornato
+     *       nell'archivio e la tabella della GUI riflette il cambiamento.
+     */
     @FXML
     private void onModificaAnno(TableColumn.CellEditEvent<Libro, Integer> event) {
         Libro libro = event.getRowValue();

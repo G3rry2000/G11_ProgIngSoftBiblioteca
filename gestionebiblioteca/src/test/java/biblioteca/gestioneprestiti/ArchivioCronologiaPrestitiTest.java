@@ -73,7 +73,7 @@ public class ArchivioCronologiaPrestitiTest {
         assertEquals(1, archivio.getCronologia().size());
         assertTrue(archivio.getCronologia().contains(prestito));
     }
-
+    /*
     @Test
     public void testRimuoviPrestitoCronologiaPresente() {
         archivio.aggiungiPrestitoCronologia(prestito);
@@ -90,7 +90,7 @@ public class ArchivioCronologiaPrestitiTest {
 
         assertNull(rimosso);
     }
-
+    */
     // RICERCA
 
     @Test

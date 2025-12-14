@@ -149,6 +149,15 @@ public class Utente implements Comparable<Utente>{
         return prestitiAttivi;
     }
     
+     /**
+     * @brief Restituisce i titoli dei libri presenti nei prestiti attivi.
+     *
+     * Se non ci sono prestiti attivi, restituisce la stringa {@code "Nessuno"}.
+     * Altrimenti, concatena i titoli separati da una virgola e uno spazio.
+     *
+     * @return Una stringa contenente i titoli dei libri in prestito attivo,
+     *         oppure {@code "Nessuno"} se la lista è vuota o nulla.
+     */
     public String getPrestitiTitolo(){
      if (prestitiAttivi == null || prestitiAttivi.isEmpty()) {
         return "Nessuno";
@@ -162,6 +171,16 @@ public class Utente implements Comparable<Utente>{
     return sb.toString();
     }
     
+     /**
+     * @brief Restituisce le date di fine dei prestiti attivi.
+     *
+     * Se non ci sono prestiti attivi, restituisce la stringa {@code "Nessuna"}.
+     * Altrimenti, concatena le date formattate come {@code "dd/MM/yyyy"},
+     * separate da una virgola e uno spazio.
+     *
+     * @return Una stringa contenente le date di fine dei prestiti attivi,
+     *         oppure {@code "Nessuna"} se la lista è vuota o nulla.
+     */
     public String getPrestitiDataRest(){
         if (prestitiAttivi == null || prestitiAttivi.isEmpty()) {
         return "Nessuna";

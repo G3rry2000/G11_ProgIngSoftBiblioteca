@@ -129,39 +129,39 @@ public class Prestito {
     public void setStato(StatoPrestiti stato) {
         this.stato = stato;
     }
-    
+     /** @brief Restituisce il titolo del libro o stringa vuota se libro è null. */
     public String getTitolo() {
         return libro != null ? libro.getTitolo() : "";
     }
-
+    /** @brief Restituisce l'autore del libro o stringa vuota se libro è null. */
     public String getAutori() {
         return libro != null ? libro.getAutore() : "";
     }
-
+    /** @brief Restituisce l'ISBN del libro o stringa vuota se libro è null. */
     public String getISBN() {
         return libro != null ? libro.getISBN() : "";
     }
-
+    /** @brief Restituisce l'anno di pubblicazione del libro o 0 se libro è null. */
     public int getAnno() {
         return libro != null ? libro.getAnnoPubblicazione() : 0;
     }
-
+    /** @brief Restituisce il nome dell'utente o stringa vuota se utente è null. */
     public String getNome() {
         return utente != null ? utente.getNome() : "";
     }
-
+    /** @brief Restituisce il cognome dell'utente o stringa vuota se utente è null. */
     public String getCognome() {
         return utente != null ? utente.getCognome() : "";
     }
-
+    /** @brief Restituisce la matricola dell'utente o stringa vuota se utente è null. */
     public String getMatricola() {
         return utente != null ? utente.getMatricola() : "";
     }
-
+    /** @brief Restituisce l'email dell'utente o stringa vuota se utente è null. */
     public String getEmail() {
         return utente != null ? utente.getEmail() : "";
     }
-
+    /** @brief Restituisce l'id associato a questo oggetto. */
     public int getId() {
         return id;
     }

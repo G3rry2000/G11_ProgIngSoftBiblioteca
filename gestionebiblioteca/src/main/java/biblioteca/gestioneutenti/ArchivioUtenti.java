@@ -13,23 +13,27 @@ import java.util.Scanner;
 
 /**
  * @class ArchivioUtenti
- * @brief Gestisce la collezione degli utenti della biblioteca
- * 
- * Questa classe si occupa della sola gestione dati:
- * - memorizzazione degli utenti tramite TreeSet
- * - operazioni di aggiungi, rimuovi, ricerca, modifica e visualizza
- * - salvataggio e caricamento da file
- * 
- * Tutti i controlli sono stati affidati alla classe {@link UtentiService}
- * 
+ * @brief Gestisce la collezione degli utenti della biblioteca.
+ *
+ * Questa classe si occupa esclusivamente della gestione dei dati degli utenti:
+ * - memorizzazione degli utenti tramite {@link TreeSet} per garantire ordinamento naturale
+ *   secondo il confronto definito in {@link Utente};
+ * - operazioni di aggiunta, rimozione, ricerca, modifica e visualizzazione;
+ * - salvataggio e caricamento degli utenti da file.
+ *
+ * Tutti i controlli e le validazioni sono delegati alla classe {@link UtentiService}.
  */
     public class ArchivioUtenti implements Archivio{
         /** Insieme ordinato degli utenti */
        private Set<Utente> utenti;
-       /**
-        * @brief Costruttore: inizializza un TreeSet vuoto
-        * @post utenti è inizializzato come nuovo TreeSet vuoto.
-        */
+    /**
+     * @brief Costruttore: inizializza un archivio vuoto e lo popola da file.
+     *
+     * @param filename Nome del file da cui leggere gli utenti.
+     *
+     * @post L'insieme {@link #utenti} è inizializzato come nuovo {@link TreeSet}.
+     * @post Se il file esiste e può essere letto, {@link #utenti} contiene gli utenti letti dal file.
+     */
     public ArchivioUtenti(String filename) {
         this.utenti = new TreeSet<>();
 

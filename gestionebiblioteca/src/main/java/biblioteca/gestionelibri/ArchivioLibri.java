@@ -13,25 +13,32 @@ import java.util.Scanner;
 
 /**
  * @class ArchivioLibri
- * @brief Gestisce la collezione dei libri della biblioteca
- * 
- * Questa classe si occupa della sola gestione dati:
- * - memorizzazione dei libri tramite {@link TreeSet}
- *   per garantire ordinamento naturale secondo il confronto definito in {@link Libro}.
- * - operazioni di aggiungi, rimuovi, ricerca, modifica e visualizza
- * - salvataggio e caricamento da file
- * 
- * Tutti i controlli sono stati affidati alla classe {@link LibriService}
- * 
+ * @brief Gestione della collezione dei libri della biblioteca.
+ *
+ * La classe si occupa esclusivamente della gestione dei dati relativi ai libri:
+ * - memorizzazione dei libri tramite {@link TreeSet}, che garantisce
+ *   l'ordinamento naturale definito in {@link Libro};
+ * - operazioni di aggiunta, rimozione, ricerca, modifica e visualizzazione;
+ * - caricamento e salvataggio dei dati su file.
+ *
+ * Tutti i controlli di validità e la logica applicativa sono demandati
+ * alla classe {@link LibriService}.
  */
 public class ArchivioLibri implements Archivio{
-   /** Insieme ordinato dei libri */
+    /** Insieme ordinato dei libri presenti in archivio. */
     private Set<Libro> libri;
    
     /**
-    * @brief Costruttore: inizializza un TreeSet vuoto
-    * @post libri è inizializzato come nuovo TreeSet vuoto.
-    */
+     * @brief Costruttore dell'archivio libri.
+     *
+     * Inizializza la struttura dati interna come {@link TreeSet} vuoto
+     * e carica i libri dal file specificato.
+     *
+     * @param filename Nome del file da cui caricare i dati dei libri.
+     *
+     * @post {@code libri} è inizializzato come {@link TreeSet}.
+     * @post Se il file esiste, i libri sono caricati in memoria.
+     */
 public ArchivioLibri(String filename) {
     this.libri = new TreeSet<>();
     try {

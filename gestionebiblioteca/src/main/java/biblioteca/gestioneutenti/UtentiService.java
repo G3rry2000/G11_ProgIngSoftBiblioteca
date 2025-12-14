@@ -26,7 +26,6 @@ public class UtentiService {
      * Archivio degli utenti su cui operare
      */
     private ArchivioUtenti archivioUtenti;
-    private String filename = "utenti.csv";
     /**
      * @brief Costruttore del Service 
      * @param archivioUtenti archivio degli utenti da usare come dati
@@ -37,14 +36,26 @@ public class UtentiService {
     public UtentiService(ArchivioUtenti archivioUtenti){
         this.archivioUtenti = archivioUtenti;
     }
-    /**
-     * @brief Aggiunge un nuovo utente effettuando i dovuti controlli
-     * @param u Utente da registrare
-     * @throws ValidazioneException se i dati non sono validi
-     * @throws DuplicatoException se esiste già un utente con la stessa matricola
+/**
+     * @brief Aggiunge un nuovo utente all'archivio dopo aver effettuato tutti i controlli di validità.
+     *
+     * Verifica che tutti i campi dell'utente siano corretti:
+     * - nome e cognome non vuoti,
+     * - matricola composta da 10 cifre numeriche,
+     * - email valida e istituzionale (termina con {@code unisa.it}),
+     * - nessun duplicato di matricola già presente nell'archivio.
      * 
-     * @pre u != null
-     * @post l'utente viene aggiunto all'archivio
+     * Se tutti i controlli sono superati, l'utente viene aggiunto
+     * all'archivio e l'archivio viene salvato su file.
+     *
+     * @param u Utente da registrare.
+     *
+     * @throws ValidazioneException Se uno o più campi dell'utente non sono validi.
+     * @throws DuplicatoException Se esiste già un utente con la stessa matricola.
+     *
+     * @pre {@code u != null}
+     * @post L'utente {@code u} è stato aggiunto all'archivio
+     *       e l'archivio aggiornato è stato salvato su file {@code utenti.csv}.
      */
     public void registraUtente(Utente u) throws ValidazioneException, DuplicatoException{
     if(u.getNome() == null || u.getNome().trim().isEmpty()){
@@ -71,41 +82,49 @@ public class UtentiService {
     if(u.getEmail() == null || u.getEmail().trim().isEmpty()){
         throw new ValidazioneException("email non valida");
     }
-    if(!u.getEmail().endsWith(".unisa.it")){
+    if(!u.getEmail().endsWith("unisa.it")){
         throw new ValidazioneException("l'email deve essere istituzionale");
     }
     
-    //--- Controllo duplicato ---
+    //Controllo duplicato
     Utente u1 = archivioUtenti.ricercaMatricola(u.getMatricola());
     if(u1 != null){
         throw new DuplicatoException("Esiste già un utente con questa matricola");
     }
     
-    // --- Aggiunta all'archivio ---
+    //Aggiunta all'archivio
     archivioUtenti.aggiungiUtente(u);
         try {
-         archivioUtenti.scriviSuFile(filename);
+         archivioUtenti.scriviSuFile("utenti.csv");
         } catch(IOException e) {
          e.printStackTrace();
         }
     }
     /**
-     * @brief Elimina un utente esistente
-     * @param u Utente da eliminare
-     * @return l'utente eliminato
-     * @throws ValidazioneException se i campi forniti non sono validi
-     * @throws CancellazionePrestitoAttivoException se l'utente ha prestiti attivi
-     * 
-     * @pre u != null 
-     * @pre l'utente non deve avere prestiti attivi
-     * @post utente viene rimosso se esiste
+     * @brief Elimina un utente esistente dall'archivio.
+     *
+     * Controlla che l'utente non abbia prestiti attivi prima di rimuoverlo.
+     * Se ci sono prestiti attivi, viene sollevata un'eccezione.
+     * Dopo la rimozione, l'archivio aggiornato viene salvato su file.
+     *
+     * @param u Utente da eliminare.
+     * @return L'utente eliminato dall'archivio, oppure {@code null} se non presente.
+     *
+     * @throws CancellazionePrestitoAttivoException Se l'utente ha prestiti attivi.
+     *
+     * @pre {@code u != null}
+     * @pre L'utente non deve avere prestiti attivi.
+     * @post Se non vengono sollevate eccezioni, l'utente {@code u} è rimosso dall'archivio
+     *       e l'archivio aggiornato è salvato su file {@code utenti.csv}.
      */
     public Utente eliminaUtente(Utente u) throws CancellazionePrestitoAttivoException{
     if(u.getPrestitiAttivi()!= null && !u.getPrestitiAttivi().isEmpty()){
         throw new CancellazionePrestitoAttivoException("impossibile eliminare l'utente, ha ancora" + u.getPrestitiAttivi().size() + "prestiti attivi");
     }
+    
+    //Rimozione dall'archivio
         try {
-         archivioUtenti.scriviSuFile(filename);
+         archivioUtenti.scriviSuFile("utenti.csv");
         } catch(IOException e) {
          e.printStackTrace();
         }
@@ -113,19 +132,21 @@ public class UtentiService {
     }
 
     /**
-     * @brief Esegue una ricerca utente in base ai campi forniti (cognome, matricola).
+     * @brief Esegue una ricerca di utenti in base a cognome o matricola.
+     *
      * La ricerca segue la seguente priorità:
-     * - Se è stata inserita la matricola,viene effettuata la ricerca per matricola.
+     * - Se è stata inserita la matricola, viene effettuata la ricerca per matricola.
      * - Altrimenti, se è stato inserito il cognome, viene effettuata la ricerca per cognome.
-     * 
-     * @param cognome Cognome da cercare(può essere vuoto)
-     * @param matricola Matricola da cercare (può essere 0)
-     * 
-     * @return L'insieme deigli utenti trovati (può contenere un solo utente in caso di ricerca per matricola)
-     * 
-     * @throws ValidazioneException se tutti i campi sono vuoti o non validi
-     * @throws UtenteNonTrovatoException se nessun utente corrisponde ai criteri
-     * 
+     *
+     * @param cognome Cognome da cercare (può essere vuoto).
+     * @param matricola Matricola da cercare (può essere vuota).
+     *
+     * @return L'insieme degli utenti trovati. Può contenere un solo utente
+     *         se la ricerca è stata effettuata per matricola.
+     *
+     * @throws ValidazioneException Se tutti i campi sono vuoti o non validi.
+     * @throws UtenteNonTrovatoException Se nessun utente corrisponde ai criteri.
+     *
      * @pre Almeno uno tra cognome o matricola deve essere compilato.
      * @post Restituisce l'insieme degli utenti trovati secondo il criterio di ricerca applicato.
      */
@@ -156,19 +177,28 @@ public class UtentiService {
     }
     /**
      * @brief Modifica un utente già esistente nell'archivio.
-     * 
-     * Questo metodo applica le modifiche già presenti nell'oggetto utente passato 
-     * come parametro, dopo aver effettuato i necessari controlli di validità.
-     * Viene controllato anche che la matricola non sia duplicata.
      *
-     * @param utente L'utente già modificato(tramite tabella) da validare e salvare.
-     * @param matricolaOriginale la matricola originale dell'utente prima della modifica
-     * 
-     * @throws ValidazioneException Se uno dei campi non è valido.
+     * Applica le modifiche presenti nell'oggetto {@code utente} passato
+     * come parametro, dopo aver effettuato tutti i controlli di validità:
+     * - nome e cognome non vuoti,
+     * - email valida e istituzionale (termina con {@code @unisa.it}),
+     * - matricola composta da 10 cifre,
+     * - nessun duplicato di matricola già presente nell'archivio
+     *   (controllo effettuato solo se la matricola è stata modificata).
+     *
+     * Dopo la validazione, l'utente modificato viene salvato nell'archivio
+     * e l'archivio viene scritto su file.
+     *
+     * @param utente L'utente già modificato (tramite tabella) da validare e salvare.
+     * @param matricolaOriginale La matricola originale dell'utente prima della modifica.
+     *
+     * @throws ValidazioneException Se uno o più campi dell'utente non sono validi.
      * @throws DuplicatoException Se un altro utente con la stessa matricola esiste già.
-     * 
-     * @pre utente != null
-     * @post Le modificge vengono salvate nell'archivio, se valide.
+     *
+     * @pre {@code utente != null}
+     * @post Le modifiche dell'utente vengono salvate nell'archivio se valide
+     *       e l'archivio aggiornato viene scritto su file {@code utenti.csv}.
+     post Le modificge vengono salvate nell'archivio, se valide.
      */  
         public void modificaUtente(Utente utente, String matricolaOriginale) 
             throws ValidazioneException, DuplicatoException {
@@ -177,7 +207,7 @@ public class UtentiService {
             throw new ValidazioneException("l'utente non può essere nullo.");
         }
 
-        // --- Validazione solo sui campi effettivamente presenti ---
+        //Validazione solo sui campi effettivamente presenti
         if (utente.getNome() == null || utente.getNome().trim().isEmpty()) {
             throw new ValidazioneException("il nome non può essere vuoto");
         }
@@ -190,11 +220,11 @@ public class UtentiService {
             throw new ValidazioneException("l'email non può essere vuota");
         }
 
-        if (!utente.getEmail().endsWith(".unisa.it")) {
+        if (!utente.getEmail().endsWith("unisa.it")) {
             throw new ValidazioneException("l'email deve terminare con @unisa.it");
         }
 
-        // --- Validazione matricola ---
+        //Validazione matricola
         String matricola = utente.getMatricola();
 
         if (matricola == null || matricola.isEmpty()) {
@@ -212,8 +242,9 @@ public class UtentiService {
                 throw new DuplicatoException("esiste già un utente con questa matricola");
             }
         }
+        //Modifica all'archivio
         try {
-         archivioUtenti.scriviSuFile(filename);
+         archivioUtenti.scriviSuFile("utenti.csv");
         } catch(IOException e) {
          e.printStackTrace();
         }
@@ -227,7 +258,7 @@ public class UtentiService {
      * @post restituisce una copia dell'archivio
      */  
    public Set<Utente> visualizzaUtenti(){ 
-   return archivioUtenti.getUtenti();
+        return archivioUtenti.getUtenti();
    }
     
     

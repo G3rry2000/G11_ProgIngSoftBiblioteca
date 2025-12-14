@@ -68,7 +68,6 @@ public class PrestitiViewController implements Initializable{
     // -------------- TABELLA -----------------
     @FXML
     private TableView<Prestito> prestitoTable;
-    //mancano alcuni attributi da aggiungere
     @FXML
     private TableColumn<Prestito, Integer> colID;
     @FXML
@@ -95,21 +94,45 @@ public class PrestitiViewController implements Initializable{
     private TableColumn<Prestito, Integer> colAnnoP;
     
     // ------------- LOGICA --------------
+    
+    /** Archivio dei prestiti attivi su cui operare */
     private ArchivioPrestitiAttivi archivioPrestitiAttivi;
+
+    /** Archivio della cronologia dei prestiti su cui operare */
     private ArchivioCronologiaPrestiti archivioCronologiaPrestiti;
+
+    /** Archivio dei libri su cui operare */
     private ArchivioLibri archivioLibri;
+
+    /** Archivio degli utenti su cui operare */
     private ArchivioUtenti archivioUtenti;
-    
+
+    /** Service che gestisce la logica di validazione e registrazione dei prestiti */
     private PrestitiService prestitiService;
-    
+
+    /** Lista osservabile per popolare la tabella dei prestiti nella UI */
     private ObservableList<Prestito> listaPrestiti;
-    
+
+    /** Flag che indica se la tabella mostra la cronologia dei prestiti (true) o i prestiti attivi (false) */
     private boolean vistaCronologia = false;
 
-     /**
-     * @brief Metodo di inizializzazione del controller
-     * Inizializza archivi, configura tabella e popola colonne.
-     * Viene eseguito automaticamente all'avvio della schermata
+    /**
+     * @brief Metodo di inizializzazione del controller dei prestiti
+     * 
+     * Questo metodo viene eseguito automaticamente all'avvio della schermata.
+     * 
+     * Le operazioni eseguite comprendono:
+     * - Inizializzazione del PrestitiService con gli archivi principali (libri, utenti, prestiti attivi, cronologia)
+     * - Creazione e popolazione della lista osservabile dei prestiti
+     * - Configurazione delle colonne della tabella (TableView) con le proprietà dei prestiti e degli utenti
+     * - Impostazione della TableRowFactory per colorare in rosso i prestiti in ritardo
+     * - Disabilitazione del pulsante di aggiunta se uno dei campi obbligatori (ISBN, matricola, data restituzione) è vuoto
+     * - Disabilitazione del pulsante di ricerca se sia ISBN sia matricola non sono inseriti
+     * 
+     * @post Il TableView dei prestiti è popolato con i prestiti attivi,
+     *       le colonne sono configurate correttamente,
+     *       i prestiti in ritardo sono evidenziati,
+     *       il pulsante di aggiunta e il pulsante di ricerca sono correttamente abilitati/disabilitati in base ai campi.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -150,12 +173,17 @@ public class PrestitiViewController implements Initializable{
                 }
             }
                 });
-
+        // Disabilita il pulsante di ricerca se ISBN e matricola sono entrambi vuoti
         addButton.disableProperty().bind(
                 textISBN.textProperty().isEmpty()
                         .or(txtMatricola1.textProperty().isEmpty())
                         .or(txtDataRestituzione.textProperty().isEmpty())
         );
+        // Disabilita il pulsante di ricerca se ISBN e matricola sono entrambi vuoti
+        searchButton.disableProperty().bind(
+            textISBN.textProperty().isEmpty()
+        .       and(txtMatricola1.textProperty().isEmpty())
+         );
     }
     /** @brief Restituisce lo stage (finestra) attualmente associato alla vista.
      * Viene utilizzato principalmente per effettuare cambi di scena senza
@@ -167,7 +195,9 @@ public class PrestitiViewController implements Initializable{
     private Stage getStage(Label label) {
         return (Stage) label.getScene().getWindow();
     }
+    
     // ------------NAVIGAZIONE MENU ------------
+    
     /**
      * @brief Apre la sezione Home.
      * 
@@ -222,9 +252,18 @@ public class PrestitiViewController implements Initializable{
             e.printStackTrace();
         }
     }
+    
      //------------OPERAZIONI UTENTI ------------
+    
      /**
      * @brief Aggiunge un nuovo prestito utilizzando i dati inseriti nei campi testo.
+     * 
+     * @pre I campi `textISBN`, `txtMatricola1` e `txtDataRestituzione` devono contenere valori non vuoti
+     * @post Se valido, il prestito viene aggiunto all'archivio, aggiornando la tabella dei prestiti attivi
+     * 
+     * @throws BibliotecaException Se il prestito non può essere registrato
+     *                             (es. dati non validi, libro non disponibile, limite prestiti superato)
+     * @throws DateTimeParseException Se il formato della data non è valido
      */
     @FXML
     private void onAggiungiPrestito(ActionEvent event) {
@@ -255,6 +294,11 @@ public class PrestitiViewController implements Initializable{
     /**
     * @brief Esegue la ricerca nella cronologia dei prestiti
     *        per matricola utente o per ISBN libro.
+    * 
+    * @pre Almeno uno dei campi `txtMatricola1` o `textISBN` deve essere compilato
+    * @post La tabella `listaPrestiti` viene aggiornata con i risultati della ricerca
+    * 
+    * @throws BibliotecaException Se non viene trovato alcun prestito oppure se i dati non sono validi
     */
     @FXML
     private void onRicercaPrestito(ActionEvent event) {
@@ -281,6 +325,13 @@ public class PrestitiViewController implements Initializable{
    
      /**
      * @brief Rimuove un prestito attivo dall'archivio utilizzando i dati inseriti nei campi testo (ISBN e matricola)
+     * 
+     * 
+     * 
+     * @pre Deve essere selezionato un prestito valido nella tabella
+     * @post Il prestito selezionato viene rimosso dai prestiti attivi, aggiunto alla cronologia e la tabella dei prestiti viene aggiornata.
+     * 
+     * @throws BibliotecaException Se il prestito non è valido o se si verificano errori
      */
     @FXML
     private void onRestituzioneLibro(ActionEvent event) {
@@ -301,6 +352,8 @@ public class PrestitiViewController implements Initializable{
     }
      /**
      * @brief Mostra l'intero elenco degli prestiti attivi presenti nell’archivio.
+     * 
+     * @post La tabella dei prestiti mostra tutti i prestiti attivi correnti e la vistaCronologia è impostata a false.
      */
     @FXML
     private void onVisualizzaPrestito(ActionEvent event) {
@@ -310,6 +363,8 @@ public class PrestitiViewController implements Initializable{
     }
      /**
      * @brief Mostra l'intero elenco della cronologia dei prestiti nell’archivio.
+     * 
+     * @post La tabella dei prestiti (cronologia) mostra tutti i prestiti chiusi e la vistaCronologia è impostata a true.
      */
     @FXML
     private void onVisualizzaCronologia(ActionEvent event) {
@@ -319,7 +374,12 @@ public class PrestitiViewController implements Initializable{
     }
 
     // ---------------- ALERT ----------------
-
+    /**
+    * Mostra un alert informativo per confermare che un'operazione
+    * è stata completata correttamente.
+    *
+    * @param messaggio Testo da mostrare nel popup
+    */
     private void alertInfo(String msg) {
         Alert a = new Alert(Alert.AlertType.INFORMATION);
         a.setTitle("Info");
@@ -327,7 +387,11 @@ public class PrestitiViewController implements Initializable{
         a.setContentText(msg);
         a.showAndWait();
     }
-
+    /**
+    * Mostra un alert di errore quando si verifica un problema.
+    *
+    * @param messaggio Testo che descrive l'errore
+    */
     private void alertErrore(String msg) {
         Alert a = new Alert(Alert.AlertType.ERROR);
         a.setTitle("Errore");

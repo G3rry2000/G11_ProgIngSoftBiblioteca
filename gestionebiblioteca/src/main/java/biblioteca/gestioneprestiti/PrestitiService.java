@@ -48,30 +48,33 @@ public class PrestitiService {
         this.archivioPrestitiAttivi = archivioPrestitiAttivi;
         this.archivioCronologia = archivioCronologia;
     }
-    /**
+/**
  * @brief Aggiunge un nuovo prestito attivo effettuando i dovuti controlli.
  *
- * Il metodo verifica:
- * - la validità dei parametri forniti
- * - l'esistenza di utente e libro
- * - che l'utente non abbia superato il limite massimo di 3 prestiti attivi
- * - che il libro abbia almeno una copia disponibile
+ * Questo metodo verifica:
+ * - la validità dei parametri forniti;
+ * - l'esistenza dell'utente e del libro;
+ * - che l'utente non abbia superato il limite massimo di 3 prestiti attivi;
+ * - che il libro abbia almeno una copia disponibile.
  * 
- * In caso di esito positivo, il prestito viene registrato come ATTIVO
- * e il numero di copie disponibili del libro viene decrementato.
+ * In caso di esito positivo, il prestito viene registrato come ATTIVO,
+ * il numero di copie disponibili del libro viene decrementato.
+ * e le modifiche vengono salvate nei file CSV corrispondenti (prestitiAttivi.csv, libri.csv, utenti.csv).
+ * 
+ * @param isbn ISBN del libro da prestare (non nullo e non vuoto)
+ * @param matricola Matricola dell'utente (non nulla e valida)
+ * @param dataFine Data prevista di restituzione del libro (non nulla, futura)
  *
- * @param isbn ISBN del libro da prestare
- * @param matricola Matricola dell'utente (intero)
- * @param dataFine Data prevista di restituzione del libro
- *
- * @throws ValidazioneException se i dati forniti non sono validi
- * @throws LibroNonDisponibileException se il libro non ha copie disponibili
- * @throws LimitePrestitoSuperatoException se l'utente ha già 3 prestiti attivi
+ * @throws ValidazioneException Se i dati forniti non sono validi
+ * @throws LibroNonDisponibileException Se il libro non ha copie disponibili
+ * @throws LimitePrestitoSuperatoException Se l'utente ha già 3 prestiti attivi
  *
  * @pre isbn != null && !isbn.isEmpty()
- * @pre matricola > 0
- * @pre dataFine != null
- * @post il prestito attivo viene aggiunto all'archivio dei prestiti attivi
+ * @pre matricola != null && !matricola.isEmpty()
+ * @pre dataFine != null && dataFine > LocalDate.now()
+ * @post Viene aggiunto un nuovo prestito attivo all'archivio dei prestiti,
+ *       il numero di copie disponibili del libro è decrementato di 1.
+ *       e tutte le modifiche sono salvate su file.
  */
 public void registraPrestito(String isbn, String matricola, LocalDate dataFine)
         throws ValidazioneException, LibroNonDisponibileException, LimitePrestitoSuperatoException {
@@ -117,7 +120,10 @@ public void registraPrestito(String isbn, String matricola, LocalDate dataFine)
     if (libro.getCopieDisponibili() <= 0) {
         throw new LibroNonDisponibileException("Libro non disponibile.");
     }
-int id = archivioPrestitiAttivi.generaNuovoId();
+    
+    // Genera un nuovo ID rogressivo e univoco per il prestito attivo
+    int id = archivioPrestitiAttivi.generaNuovoId();
+    
     Prestito p = new Prestito(
             id,
             utente,
@@ -146,15 +152,18 @@ int id = archivioPrestitiAttivi.generaNuovoId();
  * Il metodo rimuove il prestito dall'archivio dei prestiti attivi,
  * incrementa il numero di copie disponibili del libro e
  * inserisce il prestito nella cronologia impostando lo stato a CHIUSO.
+ * Tutte le modifiche vengono salvate nei rispettivi file CSV:
+ * prestitiAttivi.csv, libri.csv, utenti.csv e cronologia.csv.
  *
  * @param p Prestito attivo da eliminare
  * @return Il prestito eliminato oppure null se non presente
  *
- * @throws ValidazioneException se il prestito fornito è nullo
+ * @throws ValidazioneException Se il prestito fornito è nullo
  *
  * @pre p != null
- * @post se presente, il prestito viene rimosso dai prestiti attivi
- *       e aggiunto alla cronologia
+ * @post se presente, il prestito viene rimosso dai prestiti attivi,
+ *       aggiunto alla cronologia, aggiornato lo stato a CHIUSO
+ *       e tutte le modifiche sono salvate su file.
  */
     public Prestito eliminaPrestitoAttivo(Prestito p) throws ValidazioneException {
 
@@ -203,10 +212,13 @@ int id = archivioPrestitiAttivi.generaNuovoId();
 /**
  * @brief Restituisce l'elenco completo dei prestiti attivi.
  *
+ * Il metodo aggiorna lo stato dei prestiti verificando se sono in ritardo:
+ * eventuali prestiti scaduti vengono contrassegnati con {@link StatoPrestiti#RITARDO}.
+ *
  * @return Lista dei prestiti attivi presenti in archivio
  *
  * @post la lista restituita rappresenta lo stato corrente
- *       dell'archivio dei prestiti attivi
+ *       dell'archivio dei prestiti attivi, con i prestiti eventualmente aggiornati a RITARDO.
  */
 public List<Prestito> visualizzaPrestitiAttivi() {
     for (Prestito p : archivioPrestitiAttivi.getPrestitiAttivi()) {
@@ -216,37 +228,29 @@ public List<Prestito> visualizzaPrestitiAttivi() {
     }
     return archivioPrestitiAttivi.getPrestitiAttivi();
 }
-     /**
-     * @brief Aggiunge un nuovo prestito effettuando i dovuti controlli
-     * @param p Prestito da registrare
-     * @throws ValidazioneException se i dati non sono validi
+    /**
+     * @brief Aggiunge un nuovo prestito alla cronologia.
+     *
+     * Questo metodo **accetta solo prestiti chiusi** (stato CHIUSO) e viene
+     * richiamato internamente da {@link #eliminaPrestitoAttivo(Prestito)} 
+     * quando un prestito viene restituito e spostato dalla lista dei prestiti attivi
+     * alla cronologia.
+     *
+     * @param p Prestito da registrare (deve essere chiuso)
+     * @throws ValidazioneException se i dati non sono validi o il prestito non è chiuso
      * 
-     * @pre p != null && i dati del prestito sono validi
-     * @post il prestito viene aggiunto all'archivio
+     * @pre p != null && p.getStato() == StatoPrestiti.CHIUSO
+     * @post il prestito viene aggiunto all'archivio della cronologia
      */
-   public void registraPrestitoCronologia(Prestito p) throws ValidazioneException{
+       public void registraPrestitoCronologia(Prestito p) throws ValidazioneException{
         
         if (p == null) {
             throw new ValidazioneException("Prestito nullo.");
         }
-
-        archivioCronologia.aggiungiPrestitoCronologia(p);
-   }
-     /**
-     * @brief Elimina un prestito esistente
-     * @param p Dati del prestito da eliminare
-     * 
-     * @return il prestito eliminato oppure null se non presente     * @throws ValidazioneException se i campi forniti non sono validi
-     * 
-     * @pre p != null 
-     * @post prestito viene rimosso se esiste
-     */
-   public Prestito eliminaPrestitoCronologia(Prestito p) throws ValidazioneException{
-        if (p == null) {
-            throw new ValidazioneException("Prestito nullo.");
+        if (p.getStato() != StatoPrestiti.CHIUSO) {
+            throw new ValidazioneException("Solo prestiti chiusi possono essere registrati nella cronologia.");
         }
-
-        return archivioCronologia.rimuoviPrestitoCronologia(p);
+        archivioCronologia.aggiungiPrestitoCronologia(p);
    }
      /**
     * @brief Restituisce l'insieme completo della cronologia dei prestiti
@@ -255,17 +259,71 @@ public List<Prestito> visualizzaPrestitiAttivi() {
    public List<Prestito> visualizzaCronologia(){ 
         return archivioCronologia.getCronologia();
    }
-   
-   public List<Prestito> ricercaPrestitiAttivi(String matricola, String isbn)
-        throws ValidazioneException, PrestitoNonTrovatoException {
+  /**
+  * @brief Ricerca prestiti attivi filtrando per matricola e/o ISBN.
+  *
+  * Il metodo restituisce i prestiti attivi corrispondenti ai criteri forniti.
+  * La ricerca può essere effettuata su:
+  * - entrambe matricola e ISBN,
+  * - solo matricola,
+  * - solo ISBN.
+  *
+  * @param matricola Matricola dell'utente da cercare (può essere vuota)
+  * @param isbn ISBN del libro da cercare (può essere vuoto)
+  * @return Lista dei prestiti attivi trovati
+  * @throws ValidazioneException Se i dati inseriti non sono validi (matricola/ISBN)
+  * @throws PrestitoNonTrovatoException Se non viene trovato alcun prestito corrispondente
+  *
+  * @pre Almeno uno tra matricola o ISBN deve essere fornito
+  * @post Viene restituita la lista dei prestiti attivi corrispondenti ai criteri
+  */
+   public List<Prestito> ricercaPrestitiAttivi(String matricola, String isbn) throws ValidazioneException, PrestitoNonTrovatoException {
     return ricercaPrestitiInterna(matricola, isbn, false);
     }
-   
+    /**
+     * @brief Ricerca prestiti nella cronologia filtrando per matricola e/o ISBN.
+     *
+     * Il metodo restituisce i prestiti chiusi presenti nella cronologia corrispondenti ai criteri forniti.
+     * La ricerca può essere effettuata su:
+     * - entrambe matricola e ISBN,
+     * - solo matricola,
+     * - solo ISBN.
+     *
+     * @param matricola Matricola dell'utente da cercare (può essere vuota)
+     * @param isbn ISBN del libro da cercare (può essere vuoto)
+     * @return Lista dei prestiti chiusi trovati
+     * @throws ValidazioneException Se i dati inseriti non sono validi (matricola/ISBN)
+     * @throws PrestitoNonTrovatoException Se non viene trovato alcun prestito corrispondente
+     *
+     * @pre Almeno uno tra matricola o ISBN deve essere fornito
+     * @post Viene restituita la lista dei prestiti chiusi corrispondenti ai criteri
+     */
    public List<Prestito> ricercaPrestitiCronologia(String matricola, String isbn)
         throws ValidazioneException, PrestitoNonTrovatoException {
     return ricercaPrestitiInterna(matricola, isbn, true);
 }
-   
+      /**
+      * @brief Funzione interna che esegue la ricerca dei prestiti, sia attivi che chiusi.
+      *
+      * Il metodo gestisce tutti i casi di ricerca:
+      * - matricola + ISBN
+      * - solo matricola
+      * - solo ISBN
+      * 
+      * A seconda del flag cronologia:
+      * - false → ricerca nell'archivio dei prestiti attivi
+      * - true → ricerca nell'archivio dei prestiti chiusi (cronologia)
+      *
+      * @param matricola Matricola dell'utente da cercare (può essere vuota)
+      * @param isbn ISBN del libro da cercare (può essere vuoto)
+      * @param cronologia true se la ricerca è nella cronologia, false se nei prestiti attivi
+      * @return Lista dei prestiti trovati in base ai criteri
+      * @throws ValidazioneException Se matricola o ISBN non sono validi
+      * @throws PrestitoNonTrovatoException Se non viene trovato alcun prestito corrispondente
+      *
+      * @pre Almeno uno tra matricola o ISBN deve essere fornito
+      * @post Restituisce la lista dei prestiti trovati nell'archivio corretto
+      */
     private List<Prestito> ricercaPrestitiInterna(
          String matricola,
          String isbn,
@@ -369,7 +427,19 @@ public List<Prestito> visualizzaPrestitiAttivi() {
 
      return risultati;
  }
-
+    /**
+     * @brief Verifica se un prestito attivo è in ritardo.
+     *
+     * Un prestito è considerato in ritardo se:
+     * - lo stato è {@link StatoPrestiti#ATTIVO}
+     * - la data corrente è successiva alla data di fine prestito.
+     *
+     * @param p Prestito da controllare (non nullo)
+     * @return true se il prestito è attivo e in ritardo, false altrimenti
+     *
+     * @pre p != null
+     * @post Restituisce lo stato di ritardo del prestito attivo
+     */
     public boolean prestitoInRitardo(Prestito p) {
 
          if (p == null) return false;
