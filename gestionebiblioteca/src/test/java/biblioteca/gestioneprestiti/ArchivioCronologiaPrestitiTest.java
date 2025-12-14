@@ -64,7 +64,7 @@ public class ArchivioCronologiaPrestitiTest {
         );
     }
 
-    // AGGIUNTA / RIMOZIONE
+    // AGGIUNTA
 
     @Test
     public void testAggiungiPrestitoCronologia() {
@@ -73,24 +73,6 @@ public class ArchivioCronologiaPrestitiTest {
         assertEquals(1, archivio.getCronologia().size());
         assertTrue(archivio.getCronologia().contains(prestito));
     }
-    /*
-    @Test
-    public void testRimuoviPrestitoCronologiaPresente() {
-        archivio.aggiungiPrestitoCronologia(prestito);
-
-        Prestito rimosso = archivio.rimuoviPrestitoCronologia(prestito);
-
-        assertEquals(prestito, rimosso);
-        assertTrue(archivio.getCronologia().isEmpty());
-    }
-
-    @Test
-    public void testRimuoviPrestitoCronologiaNonPresente() {
-        Prestito rimosso = archivio.rimuoviPrestitoCronologia(prestito);
-
-        assertNull(rimosso);
-    }
-    */
     // RICERCA
 
     @Test

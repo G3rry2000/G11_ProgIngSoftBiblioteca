@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -110,53 +111,64 @@ public class UtentiViewController implements Initializable{
      * @post La tabella è popolata con gli utenti attuali e i pulsanti sono abilitati/disabilitati
      *       correttamente in base ai dati inseriti nei campi di input.
      */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-         // Inizializzazione service e lista
-        utenteService= new UtentiService( Main.archivioUtenti);
-        listaUtenti= FXCollections.observableArrayList();
-        listaUtenti.setAll(utenteService.visualizzaUtenti());
-        
-        // La tabella deve essere editabile !
-        utenteTable.setEditable(true);
-        
-        //   CELL FACTORY
-        // Colonne STRINGA
-        colNome.setCellFactory(TextFieldTableCell.forTableColumn());
-        colCognome.setCellFactory(TextFieldTableCell.forTableColumn());
-        colEmail.setCellFactory(TextFieldTableCell.forTableColumn());        
-        colMatricola.setCellFactory(TextFieldTableCell.forTableColumn());
-        
-        //   VALUE FACTORY
-        colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-        colCognome.setCellValueFactory(new PropertyValueFactory<>("cognome"));
-        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-        colPrestiti.setCellValueFactory(new PropertyValueFactory<>("prestitiTitolo"));
-        colDataRest.setCellValueFactory(new PropertyValueFactory<>("prestitiDataRest"));
-        colMatricola.setCellValueFactory(new PropertyValueFactory<>("matricola"));
-        
-         // Imposta dati nella tabella
-        utenteTable.setItems(listaUtenti);
-        // BOTTTONE RICERCA
-        searchButton.disableProperty().bind(
+@Override
+public void initialize(URL url, ResourceBundle rb) {
+    // Inizializzazione service e lista
+    utenteService = new UtentiService(Main.archivioUtenti);
+    listaUtenti = FXCollections.observableArrayList();
+    listaUtenti.setAll(utenteService.visualizzaUtenti());
+
+    // La tabella deve essere editabile
+    utenteTable.setEditable(true);
+
+    // CELL FACTORY
+    colNome.setCellFactory(TextFieldTableCell.forTableColumn());
+    colCognome.setCellFactory(TextFieldTableCell.forTableColumn());
+    colEmail.setCellFactory(TextFieldTableCell.forTableColumn());
+    colMatricola.setCellFactory(TextFieldTableCell.forTableColumn());
+
+    // VALUE FACTORY
+    colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+    colCognome.setCellValueFactory(new PropertyValueFactory<>("cognome"));
+    colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+    colPrestiti.setCellValueFactory(new PropertyValueFactory<>("prestitiTitolo"));
+    colDataRest.setCellValueFactory(new PropertyValueFactory<>("prestitiDataRest"));
+    colMatricola.setCellValueFactory(new PropertyValueFactory<>("matricola"));
+
+    // Imposta dati nella tabella
+    utenteTable.setItems(listaUtenti);
+
+    // BOTTONI
+    searchButton.disableProperty().bind(
         txtCognome.textProperty().isEmpty()
         .and(txtMatricola.textProperty().isEmpty())
     );
 
-        // BOTTONE AGGIUNGI
-        addButton.disableProperty().bind(
+    addButton.disableProperty().bind(
         txtNome.textProperty().isEmpty()
         .or(txtCognome.textProperty().isEmpty())
         .or(txtMatricola.textProperty().isEmpty())
         .or(txtEmail.textProperty().isEmpty())
     );
 
-        // BOTTONE ELIMINA
-        removeButton.disableProperty().bind(
+    removeButton.disableProperty().bind(
         utenteTable.getSelectionModel().selectedItemProperty().isNull()
     );
-        
-    }    
+
+    // Imposta politica di resize colonne
+    utenteTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+    // Binding larghezza colonne (Prestiti e DataRest più grandi)
+    Platform.runLater(() -> {
+        colNome.prefWidthProperty().bind(utenteTable.widthProperty().multiply(0.10));
+        colCognome.prefWidthProperty().bind(utenteTable.widthProperty().multiply(0.10));
+        colMatricola.prefWidthProperty().bind(utenteTable.widthProperty().multiply(0.10));
+        colEmail.prefWidthProperty().bind(utenteTable.widthProperty().multiply(0.15));
+        colPrestiti.prefWidthProperty().bind(utenteTable.widthProperty().multiply(0.35));
+        colDataRest.prefWidthProperty().bind(utenteTable.widthProperty().multiply(0.20));
+    });
+}
+ 
     /** @brief Restituisce lo stage (finestra) attualmente associato alla vista.
      * Viene utilizzato principalmente per effettuare cambi di scena senza
      * ripetere codice in ogni metodo di navigazione, migliorando la pulizia

@@ -173,17 +173,34 @@ public class PrestitiViewController implements Initializable{
                 }
             }
                 });
+        
         // Disabilita il pulsante di ricerca se ISBN e matricola sono entrambi vuoti
         addButton.disableProperty().bind(
                 textISBN.textProperty().isEmpty()
                         .or(txtMatricola1.textProperty().isEmpty())
                         .or(txtDataRestituzione.textProperty().isEmpty())
         );
+        
         // Disabilita il pulsante di ricerca se ISBN e matricola sono entrambi vuoti
         searchButton.disableProperty().bind(
             textISBN.textProperty().isEmpty()
         .       and(txtMatricola1.textProperty().isEmpty())
          );
+            // BINDING LARGHEZZA COLONNE PRESTITI
+    prestitoTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+    colID.prefWidthProperty().bind(prestitoTable.widthProperty().multiply(0.05));
+    colNome.prefWidthProperty().bind(prestitoTable.widthProperty().multiply(0.08));
+    colCognome.prefWidthProperty().bind(prestitoTable.widthProperty().multiply(0.08));
+    colMatricola.prefWidthProperty().bind(prestitoTable.widthProperty().multiply(0.07));
+    colEmail.prefWidthProperty().bind(prestitoTable.widthProperty().multiply(0.10));
+    colTitolo.prefWidthProperty().bind(prestitoTable.widthProperty().multiply(0.15));
+    colAutori.prefWidthProperty().bind(prestitoTable.widthProperty().multiply(0.10));
+    colSBN.prefWidthProperty().bind(prestitoTable.widthProperty().multiply(0.08));
+    colAnnoP.prefWidthProperty().bind(prestitoTable.widthProperty().multiply(0.05));
+    colDataInizio.prefWidthProperty().bind(prestitoTable.widthProperty().multiply(0.07));
+    colDataFine.prefWidthProperty().bind(prestitoTable.widthProperty().multiply(0.10));
+    colStato.prefWidthProperty().bind(prestitoTable.widthProperty().multiply(0.07));
     }
     /** @brief Restituisce lo stage (finestra) attualmente associato alla vista.
      * Viene utilizzato principalmente per effettuare cambi di scena senza

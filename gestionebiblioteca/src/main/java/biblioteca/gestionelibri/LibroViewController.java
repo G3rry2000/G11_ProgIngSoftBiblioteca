@@ -159,6 +159,13 @@ public void initialize(URL url, ResourceBundle rb) {
             .and(txtAutori.textProperty().isEmpty())
             .and(txtISBN.textProperty().isEmpty())
     );
+    
+    // ?BINDING LARGHEZZA COLONNE
+    colTitolo.prefWidthProperty().bind(libroTable.widthProperty().multiply(0.25));
+    colAutore.prefWidthProperty().bind(libroTable.widthProperty().multiply(0.20));
+    colISBN.prefWidthProperty().bind(libroTable.widthProperty().multiply(0.20));
+    colNumCopie.prefWidthProperty().bind(libroTable.widthProperty().multiply(0.15));
+    colAnno.prefWidthProperty().bind(libroTable.widthProperty().multiply(0.20));
 }
 
      /** @brief Restituisce lo stage (finestra) attualmente associato alla vista.

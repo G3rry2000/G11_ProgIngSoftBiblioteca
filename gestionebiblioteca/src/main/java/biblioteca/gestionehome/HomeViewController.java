@@ -30,13 +30,28 @@ public class HomeViewController implements Initializable{
     private Label utentiID;
     @FXML
     private Label prestitiID;
-     /**
-     *@brief Metodo di inizializzazione del controller
-     * 
-     * Viene eseguito automaticamente all'avvio della schermata
+    
+    // Pre-caricamento dei FXML per ridurre il lag al primo click
+    private Parent libriRoot;
+    private Parent utentiRoot;
+    private Parent prestitiRoot;
+    /**
+     * @brief Inizializza il controller.
+     *
+     * Pre-carica i FXML delle sezioni Libri, Utenti e Prestiti
+     * per ridurre il lag al primo click. Viene eseguito automaticamente
+     * all'avvio della schermata.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb){
+        try {
+        // Carica tutti i FXML all’avvio dell’app
+            libriRoot = FXMLLoader.load(getClass().getResource("/view/LibroView.fxml"));
+            utentiRoot = FXMLLoader.load(getClass().getResource("/view/UtentiView.fxml"));
+            prestitiRoot = FXMLLoader.load(getClass().getResource("/view/PrestitiView.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         
     }
       // ------------NAVIGAZIONE MENU ------------
@@ -57,17 +72,18 @@ public class HomeViewController implements Initializable{
      *
      * @pre event != null
      */
-    @FXML
-    private void clickLibri(MouseEvent event){
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/view/LibroView.fxml"));
-            Stage stage = getStage((Label) event.getSource());
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+@FXML
+private void clickLibri(MouseEvent event) {
+        Stage stage = (Stage) libriID.getScene().getWindow(); // stage corrente
+
+        double width = stage.getWidth();
+        double height = stage.getHeight();
+
+        stage.getScene().setRoot(libriRoot); // cambia solo il root
+        stage.setWidth(width);                // mantiene larghezza
+        stage.setHeight(height);              // mantiene altezza
+}
+
     /**
      * @brief Apre la sezione Utenti.
      * 
@@ -77,14 +93,14 @@ public class HomeViewController implements Initializable{
      */
     @FXML
     private void clickUtenti(MouseEvent event) {
-         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/view/UtentiView.fxml"));
-            Stage stage = getStage((Label) event.getSource());
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Stage stage = (Stage) utentiID.getScene().getWindow();
+
+        double width = stage.getWidth();
+        double height = stage.getHeight();
+
+        stage.getScene().setRoot(utentiRoot);
+        stage.setWidth(width);
+        stage.setHeight(height);
     }
     /**
      * @brief Apre la sezione Prestiti.
@@ -95,14 +111,14 @@ public class HomeViewController implements Initializable{
      */
     @FXML
     private void clickPrestiti(MouseEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/view/PrestitiView.fxml"));
-            Stage stage = getStage((Label) event.getSource());
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+        Stage stage = (Stage) utentiID.getScene().getWindow();
+
+        double width = stage.getWidth();
+        double height = stage.getHeight();
+
+        stage.getScene().setRoot(utentiRoot);
+        stage.setWidth(width);
+        stage.setHeight(height);
     
+  }
 }
