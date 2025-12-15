@@ -186,22 +186,36 @@ public class PrestitiViewController implements Initializable{
             textISBN.textProperty().isEmpty()
         .       and(txtMatricola1.textProperty().isEmpty())
          );
-            // BINDING LARGHEZZA COLONNE PRESTITI
-    prestitoTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        
+        // Resize proporzionale e minWidth
+        prestitoTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-    colID.prefWidthProperty().bind(prestitoTable.widthProperty().multiply(0.05));
-    colNome.prefWidthProperty().bind(prestitoTable.widthProperty().multiply(0.08));
-    colCognome.prefWidthProperty().bind(prestitoTable.widthProperty().multiply(0.08));
-    colMatricola.prefWidthProperty().bind(prestitoTable.widthProperty().multiply(0.07));
-    colEmail.prefWidthProperty().bind(prestitoTable.widthProperty().multiply(0.10));
-    colTitolo.prefWidthProperty().bind(prestitoTable.widthProperty().multiply(0.15));
-    colAutori.prefWidthProperty().bind(prestitoTable.widthProperty().multiply(0.10));
-    colSBN.prefWidthProperty().bind(prestitoTable.widthProperty().multiply(0.08));
-    colAnnoP.prefWidthProperty().bind(prestitoTable.widthProperty().multiply(0.05));
-    colDataInizio.prefWidthProperty().bind(prestitoTable.widthProperty().multiply(0.07));
-    colDataFine.prefWidthProperty().bind(prestitoTable.widthProperty().multiply(0.10));
-    colStato.prefWidthProperty().bind(prestitoTable.widthProperty().multiply(0.07));
-    }
+        colID.prefWidthProperty().bind(prestitoTable.widthProperty().multiply(0.05));
+        colNome.prefWidthProperty().bind(prestitoTable.widthProperty().multiply(0.10));
+        colCognome.prefWidthProperty().bind(prestitoTable.widthProperty().multiply(0.10));
+        colMatricola.prefWidthProperty().bind(prestitoTable.widthProperty().multiply(0.07));
+        colEmail.prefWidthProperty().bind(prestitoTable.widthProperty().multiply(0.10));
+        colTitolo.prefWidthProperty().bind(prestitoTable.widthProperty().multiply(0.15));
+        colAutori.prefWidthProperty().bind(prestitoTable.widthProperty().multiply(0.10));
+        colSBN.prefWidthProperty().bind(prestitoTable.widthProperty().multiply(0.08));
+        colAnnoP.prefWidthProperty().bind(prestitoTable.widthProperty().multiply(0.05));
+        colDataInizio.prefWidthProperty().bind(prestitoTable.widthProperty().multiply(0.10));
+        colDataFine.prefWidthProperty().bind(prestitoTable.widthProperty().multiply(0.10));
+        colStato.prefWidthProperty().bind(prestitoTable.widthProperty().multiply(0.10));
+
+        colID.setMinWidth(40);
+        colNome.setMinWidth(80);
+        colCognome.setMinWidth(80);
+        colMatricola.setMinWidth(60);
+        colEmail.setMinWidth(100);
+        colTitolo.setMinWidth(120);
+        colAutori.setMinWidth(100);
+        colSBN.setMinWidth(80);
+        colAnnoP.setMinWidth(50);
+        colDataInizio.setMinWidth(80);
+        colDataFine.setMinWidth(80);
+        colStato.setMinWidth(60);
+            }
     /** @brief Restituisce lo stage (finestra) attualmente associato alla vista.
      * Viene utilizzato principalmente per effettuare cambi di scena senza
      * ripetere codice in ogni metodo di navigazione, migliorando la pulizia
@@ -222,17 +236,16 @@ public class PrestitiViewController implements Initializable{
      *
      * @pre event != null
      */
-    @FXML
-    private void clickHome(MouseEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/view/HomeView.fxml"));
-            Stage stage = getStage((Label) event.getSource());
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+@FXML
+private void clickHome(MouseEvent event) {
+    try {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/HomeView.fxml"));
+        Stage stage = (Stage) ((Label) event.getSource()).getScene().getWindow();
+        stage.getScene().setRoot(root);
+    } catch (IOException e) {
+        e.printStackTrace();
     }
+}
     /**
      * @brief Apre la sezione Libri.
      * 
@@ -240,17 +253,16 @@ public class PrestitiViewController implements Initializable{
      *
      * @pre event != null
      */
-    @FXML
-    private void clickLibri(MouseEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/view/LibroView.fxml"));
-            Stage stage = getStage((Label) event.getSource());
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+@FXML
+private void clickLibri(MouseEvent event) {
+    try {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/LibroView.fxml"));
+        Stage stage = (Stage) ((Label) event.getSource()).getScene().getWindow();
+        stage.getScene().setRoot(root);
+    } catch (IOException e) {
+        e.printStackTrace();
     }
+}
     /**
      * @brief Apre la sezione Utenti.
      * 
@@ -258,17 +270,16 @@ public class PrestitiViewController implements Initializable{
      *
      * @pre event != null
      */
-    @FXML
-    private void clickUtenti(MouseEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/view/UtentiView.fxml"));
-            Stage stage = getStage((Label) event.getSource());
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+@FXML
+private void clickUtenti(MouseEvent event) {
+    try {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/UtentiView.fxml"));
+        Stage stage = (Stage) ((Label) event.getSource()).getScene().getWindow();
+        stage.getScene().setRoot(root);
+    } catch (IOException e) {
+        e.printStackTrace();
     }
+}
     
      //------------OPERAZIONI UTENTI ------------
     

@@ -211,7 +211,7 @@ public Set<Libro> ricercaLibro(String titolo, String autore, String isbn) throws
  */
 public void modificaLibro(Libro libro, String isbnOriginale) throws ValidazioneException, DuplicatoException {
 
-    //Controllo campi vuoti
+    // Controllo campi vuoti
     if (libro.getTitolo() == null || libro.getTitolo().trim().isEmpty())
         throw new ValidazioneException("Il titolo non può essere vuoto.");
 
@@ -221,37 +221,38 @@ public void modificaLibro(Libro libro, String isbnOriginale) throws ValidazioneE
     if (libro.getISBN() == null || libro.getISBN().trim().isEmpty())
         throw new ValidazioneException("L'ISBN non può essere vuoto.");
 
-    //Controllo ISBN valido
+    // Controllo ISBN valido
     String isbn = libro.getISBN().trim();
     if (isbn.length() != 10 && isbn.length() != 13)
         throw new ValidazioneException("L'ISBN deve essere di 10 o 13 cifre.");
 
-    //Controllo anno
+    // Controllo anno
     int anno = libro.getAnnoPubblicazione();
     if (anno < 0 || anno > java.time.Year.now().getValue()) {
         throw new ValidazioneException("Anno di pubblicazione non valido");
     }
 
-    //Controllo copie
+    // Controllo copie
     if (libro.getCopieDisponibili() < 0) {
         throw new ValidazioneException("Il numero di copie non può essere negativo.");
     }
 
-    //Controllo ISBN duplicato solo se modificato
+    // Controllo ISBN duplicato solo se modificato
     if (!isbn.equals(isbnOriginale)) {
-        Libro esistente = archivioLibri.ricercaISBN(isbn);
-        // Se esiste ed è diverso dal libro che stiamo modificando
-        if (esistente != null && !esistente.equals(libro)) {
-            throw new DuplicatoException("Esiste già un libro con questo ISBN.");
+        for (Libro l : archivioLibri.getLibri()) {
+            if (l != libro && l.getISBN().equals(isbn)) {
+                throw new DuplicatoException("Esiste già un utente con questa matricola");
+            }
         }
     }
-    //Modifica all'archivio
+    // Scrive l'archivio su file
     try {
         archivioLibri.scriviSuFile("libri.csv");
-    } catch(IOException e) {
+    } catch (IOException e) {
         e.printStackTrace();
     }
 }
+
 
 
     /**

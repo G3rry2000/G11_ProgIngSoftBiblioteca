@@ -325,108 +325,79 @@ public List<Prestito> visualizzaPrestitiAttivi() {
       * @post Restituisce la lista dei prestiti trovati nell'archivio corretto
       */
     private List<Prestito> ricercaPrestitiInterna(
-         String matricola,
-         String isbn,
-         boolean cronologia)
-         throws ValidazioneException, PrestitoNonTrovatoException {
+            String matricola,
+            String isbn,
+            boolean cronologia)
+            throws ValidazioneException, PrestitoNonTrovatoException {
 
-     matricola = matricola == null ? "" : matricola.trim();
-     isbn = isbn == null ? "" : isbn.trim();
-     // VALIDAZIONE MATRICOLA
-    if (!matricola.isEmpty()) {
+        matricola = matricola == null ? "" : matricola.trim();
+        isbn = isbn == null ? "" : isbn.trim();
 
-    // solo numeri
-    if (!matricola.matches("\\d+")) {
-        throw new ValidazioneException(
-            "La matricola deve contenere solo numeri."
-        );
-    }
-
-    // esattamente 8 cifre
-    if (matricola.length() != 10) {
-        throw new ValidazioneException(
-            "La matricola deve essere composta da 10 cifre."
-        );
-      }
-    }
-    
-    // VALIDAZIONE ISBN
-    if (!isbn.isEmpty()) {
-
-    // solo numeri
-    if (!isbn.matches("\\d+")) {
-        throw new ValidazioneException(
-            "L'ISBN deve contenere solo numeri."
-        );
-    }
-
-    // 10 o 13 cifre
-    if (isbn.length() != 10 && isbn.length() != 13) {
-        throw new ValidazioneException(
-            "L'ISBN deve essere composto da 10 o 13 cifre."
-        );
-      }   
-    }
-     // NESSUN CAMPO
-     if (matricola.isEmpty() && isbn.isEmpty()) {
-         throw new ValidazioneException(
-             "Inserire una matricola oppure un ISBN."
-         );
-     }
-
-     // CASO 1: MATRICOLA + ISBN
-     if (!matricola.isEmpty() && !isbn.isEmpty()) {
-
-         Utente u = archivioUtenti.ricercaMatricola(matricola);
-         Libro l = archivioLibri.ricercaISBN(isbn);
-        if (u == null || l == null) {
-            throw new PrestitoNonTrovatoException("Utente o libro inesistente.");
+        // CASO: entrambi i campi vuoti → VALIDAZIONE
+        if (matricola.isEmpty() && isbn.isEmpty()) {
+            throw new ValidazioneException("Inserire una matricola oppure un ISBN.");
         }
-        
-         Prestito trovato = cronologia
-             ? archivioCronologia.ricercaPrestitoUtenteLibro(u, l)
-             : archivioPrestitiAttivi.ricercaPrestitoAttivo(u, l);
 
-         if (trovato == null) {
-             throw new PrestitoNonTrovatoException(
-                 "Nessun prestito trovato per questo utente e libro."
-             );
-         }
+        // CASO 1: matricola + ISBN
+        if (!matricola.isEmpty() && !isbn.isEmpty()) {
+            Utente u = archivioUtenti.ricercaMatricola(matricola);
+            Libro l = archivioLibri.ricercaISBN(isbn);
 
-         return Collections.singletonList(trovato);
-     }
+            if (u == null || l == null) {
+                throw new PrestitoNonTrovatoException("Utente o libro inesistente.");
+            }
 
-     // CASO 2: SOLO MATRICOLA
-     if (!matricola.isEmpty()) {
-         Utente u = archivioUtenti.ricercaMatricola(matricola);
+            Prestito trovato = cronologia
+                    ? archivioCronologia.ricercaPrestitoUtenteLibro(u, l)
+                    : archivioPrestitiAttivi.ricercaPrestitoAttivo(u, l);
 
-         List<Prestito> risultati = cronologia
-             ? archivioCronologia.ricercaPrestitoUtenteCronologia(u)
-             : archivioPrestitiAttivi.ricercaPrestitoAttivoUtente(u);
+            if (trovato == null) {
+                throw new PrestitoNonTrovatoException("Nessun prestito trovato per questo utente e libro.");
+            }
 
-         if (risultati.isEmpty()) {
-             throw new PrestitoNonTrovatoException(
-                 "Nessun prestito trovato per questo utente."
-             );
-         }
-         return risultati;
-     }
+            return Collections.singletonList(trovato);
+        }
 
-     // CASO 3: SOLO ISBN
-     Libro l = archivioLibri.ricercaISBN(isbn);
+        // CASO 2: solo matricola
+        if (!matricola.isEmpty()) {
+            Utente u = archivioUtenti.ricercaMatricola(matricola);
 
-     List<Prestito> risultati = cronologia
-         ? archivioCronologia.ricercaPrestitoLibroCronologia(l)
-         : archivioPrestitiAttivi.ricercaPrestitoAttivoLibro(l);
+            if (u == null) {
+                throw new PrestitoNonTrovatoException("Utente inesistente.");
+            }
 
-     if (risultati.isEmpty()) {
-         throw new PrestitoNonTrovatoException(
-             "Nessun prestito trovato per questo libro."
-         );
-     }
+            List<Prestito> risultati = cronologia
+                    ? archivioCronologia.ricercaPrestitoUtenteCronologia(u)
+                    : archivioPrestitiAttivi.ricercaPrestitoAttivoUtente(u);
 
-     return risultati;
- }
+            if (risultati.isEmpty()) {
+                throw new PrestitoNonTrovatoException("Nessun prestito trovato per questo utente.");
+            }
+            return risultati;
+        }
+
+        // CASO 3: solo ISBN
+        if (!isbn.isEmpty()) {
+            Libro l = archivioLibri.ricercaISBN(isbn);
+
+            if (l == null) {
+                throw new PrestitoNonTrovatoException("Libro inesistente.");
+            }
+
+            List<Prestito> risultati = cronologia
+                    ? archivioCronologia.ricercaPrestitoLibroCronologia(l)
+                    : archivioPrestitiAttivi.ricercaPrestitoAttivoLibro(l);
+
+            if (risultati.isEmpty()) {
+                throw new PrestitoNonTrovatoException("Nessun prestito trovato per questo libro.");
+            }
+            return risultati;
+        }
+
+        // Questo punto non dovrebbe mai essere raggiunto
+        throw new PrestitoNonTrovatoException("Prestito non trovato.");
+    }
+
     /**
      * @brief Verifica se un prestito attivo è in ritardo.
      *

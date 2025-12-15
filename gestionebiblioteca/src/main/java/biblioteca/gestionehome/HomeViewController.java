@@ -74,16 +74,15 @@ public class HomeViewController implements Initializable{
      */
 @FXML
 private void clickLibri(MouseEvent event) {
-        Stage stage = (Stage) libriID.getScene().getWindow(); // stage corrente
-
-        double width = stage.getWidth();
-        double height = stage.getHeight();
-
-        stage.getScene().setRoot(libriRoot); // cambia solo il root
-        stage.setWidth(width);                // mantiene larghezza
-        stage.setHeight(height);              // mantiene altezza
+    try {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/LibroView.fxml"));
+        Stage stage = (Stage) ((Label) event.getSource()).getScene().getWindow();
+        stage.getScene().setRoot(root);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
 }
-
+   
     /**
      * @brief Apre la sezione Utenti.
      * 
@@ -91,17 +90,16 @@ private void clickLibri(MouseEvent event) {
      *
      * @pre event != null
      */
-    @FXML
-    private void clickUtenti(MouseEvent event) {
-        Stage stage = (Stage) utentiID.getScene().getWindow();
-
-        double width = stage.getWidth();
-        double height = stage.getHeight();
-
-        stage.getScene().setRoot(utentiRoot);
-        stage.setWidth(width);
-        stage.setHeight(height);
+@FXML
+private void clickUtenti(MouseEvent event) {
+    try {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/UtentiView.fxml"));
+        Stage stage = (Stage) ((Label) event.getSource()).getScene().getWindow();
+        stage.getScene().setRoot(root);
+    } catch (IOException e) {
+        e.printStackTrace();
     }
+}
     /**
      * @brief Apre la sezione Prestiti.
      * 
@@ -109,16 +107,14 @@ private void clickLibri(MouseEvent event) {
      *
      * @pre event != null
      */
-    @FXML
-    private void clickPrestiti(MouseEvent event) {
-        Stage stage = (Stage) utentiID.getScene().getWindow();
-
-        double width = stage.getWidth();
-        double height = stage.getHeight();
-
-        stage.getScene().setRoot(utentiRoot);
-        stage.setWidth(width);
-        stage.setHeight(height);
-    
-  }
+@FXML
+private void clickPrestiti(MouseEvent event) {
+    try {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/PrestitiView.fxml"));
+        Stage stage = (Stage) ((Label) event.getSource()).getScene().getWindow();
+        stage.getScene().setRoot(root);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
 }

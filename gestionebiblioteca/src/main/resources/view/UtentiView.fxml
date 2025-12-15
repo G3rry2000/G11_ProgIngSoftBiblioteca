@@ -31,18 +31,17 @@
                     <Label styleClass="titolo-secondario" text="Utenti" />
                 </children>
             </HBox>
-         <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="1219.0" spacing="20.0">
-            <children>
-               <Label fx:id="homeID" onMouseClicked="#clickHome" styleClass="nav-item" text="Home">
-                  <HBox.margin>
-                     <Insets />
-                  </HBox.margin>
-               </Label>
-               <Label fx:id="libriID" onMouseClicked="#clickLibri" styleClass="nav-item" text="Libri" />
-               <Label styleClass="nav-item-current" text="Utenti" />
-               <Label fx:id="prestitiID" onMouseClicked="#clickPrestiti" styleClass="nav-item" text="Prestiti" />
-            </children>
-         </HBox>
+
+            <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="1219.0" spacing="20.0">
+                <children>
+                    <Label fx:id="homeID" onMouseClicked="#clickHome" styleClass="nav-item" text="Home">
+                        <HBox.margin><Insets /></HBox.margin>
+                    </Label>
+                    <Label fx:id="libriID" onMouseClicked="#clickLibri" styleClass="nav-item" text="Libri" />
+                    <Label styleClass="nav-item-current" text="Utenti" />
+                    <Label fx:id="prestitiID" onMouseClicked="#clickPrestiti" styleClass="nav-item" text="Prestiti" />
+                </children>
+            </HBox>
 
         </VBox>
     </top>
@@ -54,11 +53,8 @@
             <!-- CARD SINISTRA -->
             <AnchorPane styleClass="form-card">
                 <children>
-
                     <VBox spacing="12" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="20">
-
                         <children>
-
                             <Label styleClass="titolo-sezione" text="Aggiungi / Cerca Utente" />
 
                             <GridPane hgap="10" vgap="10">
@@ -68,7 +64,6 @@
                                 </columnConstraints>
 
                                 <children>
-
                                     <Label text="Nome" />
                                     <Label text="Cognome" GridPane.rowIndex="1" />
                                     <Label text="Email" GridPane.rowIndex="2" />
@@ -78,7 +73,6 @@
                                     <TextField fx:id="txtCognome" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                     <TextField fx:id="txtEmail" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                     <TextField fx:id="txtMatricola" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-
                                 </children>
 
                                 <rowConstraints>
@@ -89,16 +83,12 @@
                                 </rowConstraints>
 
                             </GridPane>
-
                         </children>
-
                     </VBox>
 
                     <!-- BOTTONI -->
                     <VBox alignment="BOTTOM_CENTER" spacing="10" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
-
                         <HBox alignment="CENTER" spacing="10">
-
                             <Button fx:id="addButton" onAction="#onAggiungiUtente" styleClass="action-btn btn-green">
                                 <graphic>
                                     <ImageView fitHeight="24" fitWidth="24">
@@ -122,42 +112,35 @@
                                     </ImageView>
                                 </graphic>
                             </Button>
-
                         </HBox>
 
                         <Button fx:id="viewButton" onAction="#onVisualizzaUtenti" styleClass="button-full-width" text="Visualizza Tutti gli Utenti" />
-
                     </VBox>
-
                 </children>
             </AnchorPane>
 
             <!-- AREA TABELLA -->
-            <AnchorPane>
-                <children>
-
-                    <VBox spacing="10" styleClass="table-view" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
-
-                        <Label styleClass="titolo-sezione" text="Risultati Ricerca" />
-
-                        <TableView fx:id="utenteTable" VBox.vgrow="ALWAYS">
-                            <columns>
-                                <TableColumn fx:id="colNome" onEditCommit="#onModificaNome" prefWidth="98.0" text="Nome" />
-                                <TableColumn fx:id="colCognome" onEditCommit="#onModificaCognome" prefWidth="96.0" text="Cognome" />
-                                <TableColumn fx:id="colMatricola" onEditCommit="#onModificaMatricola" onEditStart="#onOriginaleMatricola" prefWidth="115.0" text="Matricola" />
-                                <TableColumn fx:id="colEmail" onEditCommit="#onModificaEmail" prefWidth="91.0" text="Email" />
-                                <TableColumn fx:id="colPrestiti" minWidth="0.0" prefWidth="173.0" text="Prestiti" />
-                                <TableColumn fx:id="colDataRest" prefWidth="347.0" text="Data Restituzione" />
-                            </columns>
-                     <columnResizePolicy>
-                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                     </columnResizePolicy>
-                        </TableView>
-
-                    </VBox>
-
-                </children>
-            </AnchorPane>
+<AnchorPane>
+    <children>
+        <Label styleClass="titolo-sezione" text="Risultati Ricerca" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="20"/>
+        
+        <TableView fx:id="utenteTable" editable="true" styleClass="table-view"
+                   AnchorPane.topAnchor="40" AnchorPane.leftAnchor="20" 
+                   AnchorPane.rightAnchor="20" AnchorPane.bottomAnchor="20">
+            <columns>
+                <TableColumn fx:id="colNome" onEditCommit="#onModificaNome" prefWidth="98.0" text="Nome" />
+                <TableColumn fx:id="colCognome" onEditCommit="#onModificaCognome" prefWidth="96.0" text="Cognome" />
+                <TableColumn fx:id="colMatricola" onEditCommit="#onModificaMatricola" onEditStart="#onOriginaleMatricola" prefWidth="115.0" text="Matricola" />
+                <TableColumn fx:id="colEmail" onEditCommit="#onModificaEmail" prefWidth="91.0" text="Email" />
+                <TableColumn fx:id="colPrestiti" minWidth="0.0" prefWidth="173.0" text="Prestiti" />
+                <TableColumn fx:id="colDataRest" prefWidth="347.0" text="Data Restituzione" />
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
+        </TableView>
+    </children>
+</AnchorPane>
 
         </SplitPane>
     </center>

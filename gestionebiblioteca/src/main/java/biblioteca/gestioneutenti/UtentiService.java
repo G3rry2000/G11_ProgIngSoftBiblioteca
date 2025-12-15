@@ -200,55 +200,51 @@ public class UtentiService {
      *       e l'archivio aggiornato viene scritto su file {@code utenti.csv}.
      post Le modificge vengono salvate nell'archivio, se valide.
      */  
-        public void modificaUtente(Utente utente, String matricolaOriginale) 
-            throws ValidazioneException, DuplicatoException {
+public void modificaUtente(Utente utente, String matricolaOriginale) 
+        throws ValidazioneException, DuplicatoException {
 
-        if (utente == null) {
-            throw new ValidazioneException("l'utente non può essere nullo.");
-        }
+    if (utente == null) {
+        throw new ValidazioneException("L'utente non può essere nullo.");
+    }
 
-        //Validazione solo sui campi effettivamente presenti
-        if (utente.getNome() == null || utente.getNome().trim().isEmpty()) {
-            throw new ValidazioneException("il nome non può essere vuoto");
-        }
+    // Validazioni dei campi
+    if (utente.getNome() == null || utente.getNome().trim().isEmpty())
+        throw new ValidazioneException("Il nome non può essere vuoto");
 
-        if (utente.getCognome() == null || utente.getCognome().trim().isEmpty()) {
-            throw new ValidazioneException("il cognome non può essere vuoto");
-        }
+    if (utente.getCognome() == null || utente.getCognome().trim().isEmpty())
+        throw new ValidazioneException("Il cognome non può essere vuoto");
 
-        if (utente.getEmail() == null || utente.getEmail().trim().isEmpty()) {
-            throw new ValidazioneException("l'email non può essere vuota");
-        }
+    if (utente.getEmail() == null || utente.getEmail().trim().isEmpty())
+        throw new ValidazioneException("L'email non può essere vuota");
 
-        if (!utente.getEmail().endsWith("unisa.it")) {
-            throw new ValidazioneException("l'email deve terminare con @unisa.it");
-        }
+    if (!utente.getEmail().endsWith("unisa.it"))
+        throw new ValidazioneException("L'email deve terminare con @unisa.it");
 
-        //Validazione matricola
-        String matricola = utente.getMatricola();
+    String matricola = utente.getMatricola();
+    if (matricola == null || !matricola.matches("\\d{10}"))
+        throw new ValidazioneException("La matricola deve essere composta da 10 cifre");
 
-        if (matricola == null || matricola.isEmpty()) {
-            throw new ValidazioneException("La matricola non può essere vuota");
-        }
-
-        if (!matricola.matches("\\d{10}")) {
-            throw new ValidazioneException("La matricola deve essere composta da 10 cifre");
-        }
-
-        // --- Controllo duplicati SOLO se modificata ---
-        if (!matricola.equals(matricolaOriginale)) {
-            Utente esistente = archivioUtenti.ricercaMatricola(matricola);
-            if (esistente != null && !esistente.equals(utente)) {
+    // Controllo duplicato SOLO se la matricola è stata modificata
+    if (!matricola.equals(matricolaOriginale)) {
+        for (Utente u : archivioUtenti.getUtenti()) {
+            if (u != utente && u.getMatricola().equals(matricola)) {
                 throw new DuplicatoException("Esiste già un utente con questa matricola");
             }
         }
-        //Modifica all'archivio
-        try {
-         archivioUtenti.scriviSuFile("utenti.csv");
-        } catch(IOException e) {
-         e.printStackTrace();
-        }
     }
+
+    // Nessuna rimozione, l'oggetto nella JTable è già aggiornato
+
+    // Salva su file
+    try {
+        archivioUtenti.scriviSuFile("utenti.csv");
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
+
+
 
     
     /**

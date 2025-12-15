@@ -165,6 +165,7 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.10), 10, 0, 0, 4);
 }
 
+
 .table-view .column-header-background {
     -fx-background-color: #1a237e;
     -fx-background-radius: 10 10 0 0;

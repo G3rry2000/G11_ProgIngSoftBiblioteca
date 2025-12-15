@@ -134,7 +134,7 @@ public void initialize(URL url, ResourceBundle rb) {
     colPrestiti.setCellValueFactory(new PropertyValueFactory<>("prestitiTitolo"));
     colDataRest.setCellValueFactory(new PropertyValueFactory<>("prestitiDataRest"));
     colMatricola.setCellValueFactory(new PropertyValueFactory<>("matricola"));
-
+    
     // Imposta dati nella tabella
     utenteTable.setItems(listaUtenti);
 
@@ -155,18 +155,22 @@ public void initialize(URL url, ResourceBundle rb) {
         utenteTable.getSelectionModel().selectedItemProperty().isNull()
     );
 
-    // Imposta politica di resize colonne
+    // Resize proporzionale e minWidth
     utenteTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-    // Binding larghezza colonne (Prestiti e DataRest più grandi)
-    Platform.runLater(() -> {
-        colNome.prefWidthProperty().bind(utenteTable.widthProperty().multiply(0.10));
-        colCognome.prefWidthProperty().bind(utenteTable.widthProperty().multiply(0.10));
-        colMatricola.prefWidthProperty().bind(utenteTable.widthProperty().multiply(0.10));
-        colEmail.prefWidthProperty().bind(utenteTable.widthProperty().multiply(0.15));
-        colPrestiti.prefWidthProperty().bind(utenteTable.widthProperty().multiply(0.35));
-        colDataRest.prefWidthProperty().bind(utenteTable.widthProperty().multiply(0.20));
-    });
+    colNome.prefWidthProperty().bind(utenteTable.widthProperty().multiply(0.15));
+    colCognome.prefWidthProperty().bind(utenteTable.widthProperty().multiply(0.15));
+    colMatricola.prefWidthProperty().bind(utenteTable.widthProperty().multiply(0.10));
+    colEmail.prefWidthProperty().bind(utenteTable.widthProperty().multiply(0.20));
+    colPrestiti.prefWidthProperty().bind(utenteTable.widthProperty().multiply(0.25));
+    colDataRest.prefWidthProperty().bind(utenteTable.widthProperty().multiply(0.15));
+
+    colNome.setMinWidth(80);
+    colCognome.setMinWidth(80);
+    colMatricola.setMinWidth(60);
+    colEmail.setMinWidth(100);
+    colPrestiti.setMinWidth(120);
+    colDataRest.setMinWidth(80);
 }
  
     /** @brief Restituisce lo stage (finestra) attualmente associato alla vista.
@@ -189,17 +193,16 @@ public void initialize(URL url, ResourceBundle rb) {
      *
      * @pre event != null
      */
-    @FXML
-    private void clickHome(MouseEvent event) {
-        try {
+@FXML
+private void clickHome(MouseEvent event) {
+    try {
         Parent root = FXMLLoader.load(getClass().getResource("/view/HomeView.fxml"));
-        Stage stage = getStage((Label) event.getSource());
-        stage.setScene(new Scene(root));
-        stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Stage stage = (Stage) ((Label) event.getSource()).getScene().getWindow();
+        stage.getScene().setRoot(root);
+    } catch (IOException e) {
+        e.printStackTrace();
     }
+}
      /**
      * @brief Apre la sezione Libri.
      * 
@@ -207,17 +210,16 @@ public void initialize(URL url, ResourceBundle rb) {
      *
      * @pre event != null
      */
-    @FXML
-    private void clickLibri(MouseEvent event) {
-        try {
+@FXML
+private void clickLibri(MouseEvent event) {
+    try {
         Parent root = FXMLLoader.load(getClass().getResource("/view/LibroView.fxml"));
-        Stage stage = getStage((Label) event.getSource());
-        stage.setScene(new Scene(root));
-        stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Stage stage = (Stage) ((Label) event.getSource()).getScene().getWindow();
+        stage.getScene().setRoot(root);
+    } catch (IOException e) {
+        e.printStackTrace();
     }
+}
     /**
      * @brief Apre la sezione Prestiti.
      * 
@@ -225,18 +227,16 @@ public void initialize(URL url, ResourceBundle rb) {
      *
      * @pre event != null
      */
-    @FXML
-    private void clickPrestiti(MouseEvent event) {
-        try {
+@FXML
+private void clickPrestiti(MouseEvent event) {
+    try {
         Parent root = FXMLLoader.load(getClass().getResource("/view/PrestitiView.fxml"));
-        Stage stage = getStage((Label) event.getSource());
-        stage.setScene(new Scene(root));
-        stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Stage stage = (Stage) ((Label) event.getSource()).getScene().getWindow();
+        stage.getScene().setRoot(root);
+    } catch (IOException e) {
+        e.printStackTrace();
     }
-    
+} 
     //------------OPERAZIONI UTENTI ------------
     
      /**
@@ -353,7 +353,7 @@ public void initialize(URL url, ResourceBundle rb) {
             String nuovoNome = event.getNewValue();
     try {
         utente.setNome(nuovoNome);
-        utenteService.modificaUtente(utente, matricolaOriginale != null ? matricolaOriginale : utente.getMatricola());
+        utenteService.modificaUtente(utente, utente.getMatricola());
         listaUtenti.setAll(utenteService.visualizzaUtenti());
     } catch (BibliotecaException e) {
         // Ripristina il vecchio valore
@@ -379,7 +379,7 @@ public void initialize(URL url, ResourceBundle rb) {
             String nuovoCognome = event.getNewValue();
     try {
         utente.setCognome(nuovoCognome);
-        utenteService.modificaUtente(utente, matricolaOriginale != null ? matricolaOriginale : utente.getMatricola());
+        utenteService.modificaUtente(utente, utente.getMatricola());
         listaUtenti.setAll(utenteService.visualizzaUtenti());
     } catch (BibliotecaException e) {
         // Ripristina il vecchio valore
@@ -438,7 +438,7 @@ public void initialize(URL url, ResourceBundle rb) {
             String nuovaMail = event.getNewValue();
     try {
         utente.setEmail(nuovaMail);
-        utenteService.modificaUtente(utente, matricolaOriginale != null ? matricolaOriginale : utente.getMatricola());
+        utenteService.modificaUtente(utente, utente.getMatricola());
         listaUtenti.setAll(utenteService.visualizzaUtenti());
     } catch (BibliotecaException e) {
         // Ripristina il vecchio valore

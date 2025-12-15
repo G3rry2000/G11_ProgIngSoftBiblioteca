@@ -1,10 +1,9 @@
 ID;NOME;COGNOME;EMAIL;MATRICOLA;TITOLO;AUTORE;ANNO;ISBN;DATA_INIZIO;DATA_FINE;STATO
-1;Mario;Rossi;mario.rossi@studenti.unisa.it;2024000001;I Malavoglia;Giovanni Verga;1881;8807901210;13/12/2025;14/12/2025;ATTIVO
-2;Paolo;Conti;paolo.conti@unisa.it;2019000003;Il fu Mattia Pascal;Luigi Pirandello;1904;8807901105;13/12/2025;13/01/2026;ATTIVO
-3;Chiara;DeLuca;chiara.deluca@studenti.unisa.it;2024000006;Il conte di Montecristo;Alexandre Dumas;1844;8807901611;13/12/2025;21/02/2026;ATTIVO
-4;Elena;Russo;elena.russo@unisa.it;2019000002;Se questo è un uomo;Primo Levi;1947;8807881019;13/12/2025;15/01/2026;ATTIVO
-5;Antonio;Marino;antonio.marino@studenti.unisa.it;2024000009;Il giorno della civetta;Leonardo Sciascia;1961;8807900550;13/12/2025;30/01/2026;ATTIVO
-8;Paolo;Conti;paolo.conti@unisa.it;2019000003;Cime tempestose;Emily Brontë;1847;8807901726;13/12/2025;25/12/2025;ATTIVO
-11;Francesco;Romano;francesco.romano@studenti.unisa.it;2024000005;Fahrenheit 451;Ray Bradbury;1953;8807902043;13/12/2025;15/03/2026;ATTIVO
-12;Roberta;Vitale;roberta.vitale@unisa.it;2018000002;La divina commedia;Dante Alighieri;1320;8807901350;13/12/2025;18/05/2026;ATTIVO
-14;Antonio;Marino;antonio.marino@studenti.unisa.it;2024000009;I promessi sposi;Alessandro Manzoni;1840;8807900215;13/12/2025;14/06/2026;ATTIVO
+2;Matteo;Fontana;matteo.fontana@unisa.it;1000000008;Il gattopardo;Giuseppe Tomasi di Lampedusa;1958;7890123456;12/12/2025;20/12/2025;ATTIVO
+4;Federico;Romano;federico.romano@unisa.it;1000000006;La divina commedia;Dante Alighieri;1320;5678901234;05/12/2025;14/12/2025;RITARDO
+6;Chiara;Gallo;chiara.gallo@unisa.it;1000000007;Orgoglio e pregiudizio;Jane Austen;1813;6789012345;10/12/2025;18/12/2025;ATTIVO
+8;Sara;Ferraro;sara.ferraro@unisa.it;1000000009;Il codice da Vinci;Dan Brown;2003;8901234567;08/12/2025;13/12/2025;RITARDO
+10;Andrea;Esposito;andrea.esposito@unisa.it;1000000005;Il signore degli anelli;J.R.R. Tolkien;1954;4567890123;11/12/2025;19/12/2025;ATTIVO
+12;Mario;Rossi;mario.rossi@unisa.it;1000000001;Il nome della rosa;Umberto Eco;1980;1234567890;06/12/2025;12/12/2025;RITARDO
+14;Luca;Bianchi;luca.bianchi@unisa.it;1000000002;1984;George Orwell;1949;2345754321;13/12/2025;21/12/2025;ATTIVO
+15;Luca;Bianchi;luca.bianchi@unisa.it;1000000002;1984;George Orwell;1949;2345754321;15/12/2025;18/12/2925;ATTIVO

@@ -160,12 +160,20 @@ public class LibroViewController implements Initializable{
                .and(txtISBN.textProperty().isEmpty())
        );
 
-       // ?BINDING LARGHEZZA COLONNE
-       colTitolo.prefWidthProperty().bind(libroTable.widthProperty().multiply(0.25));
-       colAutore.prefWidthProperty().bind(libroTable.widthProperty().multiply(0.20));
-       colISBN.prefWidthProperty().bind(libroTable.widthProperty().multiply(0.20));
-       colNumCopie.prefWidthProperty().bind(libroTable.widthProperty().multiply(0.15));
-       colAnno.prefWidthProperty().bind(libroTable.widthProperty().multiply(0.20));
+        // Resize proporzionale e minWidth
+        libroTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        colTitolo.prefWidthProperty().bind(libroTable.widthProperty().multiply(0.25));
+        colAutore.prefWidthProperty().bind(libroTable.widthProperty().multiply(0.20));
+        colISBN.prefWidthProperty().bind(libroTable.widthProperty().multiply(0.20));
+        colNumCopie.prefWidthProperty().bind(libroTable.widthProperty().multiply(0.15));
+        colAnno.prefWidthProperty().bind(libroTable.widthProperty().multiply(0.20));
+
+        colTitolo.setMinWidth(120);
+        colAutore.setMinWidth(100);
+        colISBN.setMinWidth(100);
+        colNumCopie.setMinWidth(60);
+        colAnno.setMinWidth(60);
 }
 
      /** @brief Restituisce lo stage (finestra) attualmente associato alla vista.
@@ -188,17 +196,16 @@ public class LibroViewController implements Initializable{
      *
      * @pre event != null
      */
-    @FXML
-    private void clickHome(MouseEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/view/HomeView.fxml"));
-            Stage stage = getStage((Label) event.getSource());
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+@FXML
+private void clickHome(MouseEvent event) {
+    try {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/HomeView.fxml"));
+        Stage stage = (Stage) ((Label) event.getSource()).getScene().getWindow();
+        stage.getScene().setRoot(root);
+    } catch (IOException e) {
+        e.printStackTrace();
     }
+}
     /**
      * @brief Apre la sezione Utenti.
      * 
@@ -206,17 +213,16 @@ public class LibroViewController implements Initializable{
      *
      * @pre event != null
      */
-    @FXML
-    private void clickUtenti(MouseEvent event) {
-         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/view/UtentiView.fxml"));
-            Stage stage = getStage((Label) event.getSource());
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+@FXML
+private void clickUtenti(MouseEvent event) {
+    try {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/UtentiView.fxml"));
+        Stage stage = (Stage) ((Label) event.getSource()).getScene().getWindow();
+        stage.getScene().setRoot(root);
+    } catch (IOException e) {
+        e.printStackTrace();
     }
+}
     /**
      * @brief Apre la sezione Prestiti.
      * 
@@ -224,18 +230,16 @@ public class LibroViewController implements Initializable{
      *
      * @pre event != null
      */
-    @FXML
-    private void clickPrestiti(MouseEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/view/PrestitiView.fxml"));
-            Stage stage = getStage((Label) event.getSource());
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+@FXML
+private void clickPrestiti(MouseEvent event) {
+    try {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/PrestitiView.fxml"));
+        Stage stage = (Stage) ((Label) event.getSource()).getScene().getWindow();
+        stage.getScene().setRoot(root);
+    } catch (IOException e) {
+        e.printStackTrace();
     }
-
+}
     //------------OPERAZIONI UTENTI ------------
     
      /**
