@@ -103,69 +103,69 @@ public class LibroViewController implements Initializable{
      * - impostare i {@code binding} per l'abilitazione dei pulsanti in base allo stato dell'interfaccia.
      * @post La tabella dei libri è inizializzata, popolata e pronta per l'interazione dell'utente.
      */ 
-@Override
-public void initialize(URL url, ResourceBundle rb) {
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
 
-    // Inizializzazione service e lista
-    // crea il service UNA SOLA VOLTA
+        // Inizializzazione service e lista
+        // crea il service UNA SOLA VOLTA
 
-    libroService = new LibriService(Main.archivioLibri, Main.archivioPrestitiAttivi);
-    listaLibri = FXCollections.observableArrayList();
-    listaLibri.setAll(libroService.visualizzaLibri());
+        libroService = new LibriService(Main.archivioLibri, Main.archivioPrestitiAttivi);
+        listaLibri = FXCollections.observableArrayList();
+        listaLibri.setAll(libroService.visualizzaLibri());
 
-    // La tabella deve essere editabile !
-    libroTable.setEditable(true);
+        // La tabella deve essere editabile !
+        libroTable.setEditable(true);
 
-    //   CELL FACTORY
+        //   CELL FACTORY
 
-    // Colonne STRINGA
-    colTitolo.setCellFactory(TextFieldTableCell.forTableColumn());
-    colAutore.setCellFactory(TextFieldTableCell.forTableColumn());
-    colISBN.setCellFactory(TextFieldTableCell.forTableColumn());
+        // Colonne STRINGA
+        colTitolo.setCellFactory(TextFieldTableCell.forTableColumn());
+        colAutore.setCellFactory(TextFieldTableCell.forTableColumn());
+        colISBN.setCellFactory(TextFieldTableCell.forTableColumn());
 
-    // Colonne INTERE (con IntegerStringConverter)
-    colAnno.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-    colNumCopie.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        // Colonne INTERE (con IntegerStringConverter)
+        colAnno.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        colNumCopie.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
 
-    //   VALUE FACTORY
+        //   VALUE FACTORY
 
-    colTitolo.setCellValueFactory(new PropertyValueFactory<>("titolo"));
-    colAutore.setCellValueFactory(new PropertyValueFactory<>("autore"));
-    colAnno.setCellValueFactory(new PropertyValueFactory<>("annoPubblicazione"));
-    colISBN.setCellValueFactory(new PropertyValueFactory<>("ISBN"));
-    colNumCopie.setCellValueFactory(new PropertyValueFactory<>("copieDisponibili"));
+        colTitolo.setCellValueFactory(new PropertyValueFactory<>("titolo"));
+        colAutore.setCellValueFactory(new PropertyValueFactory<>("autore"));
+        colAnno.setCellValueFactory(new PropertyValueFactory<>("annoPubblicazione"));
+        colISBN.setCellValueFactory(new PropertyValueFactory<>("ISBN"));
+        colNumCopie.setCellValueFactory(new PropertyValueFactory<>("copieDisponibili"));
 
-    // Imposta dati nella tabella
-    libroTable.setItems(listaLibri);
-     //   BINDINGS 
+        // Imposta dati nella tabella
+        libroTable.setItems(listaLibri);
+        //   BINDINGS 
 
-    // Aggiungi
-    addButton.disableProperty().bind(
-        txtTitolo.textProperty().isEmpty()
-            .or(txtAutori.textProperty().isEmpty())
-            .or(txtAnno.textProperty().isEmpty())
-            .or(txtISBN.textProperty().isEmpty())
-            .or(txtCopie.textProperty().isEmpty())
-    );
+       // Aggiungi
+       addButton.disableProperty().bind(
+           txtTitolo.textProperty().isEmpty()
+               .or(txtAutori.textProperty().isEmpty())
+               .or(txtAnno.textProperty().isEmpty())
+               .or(txtISBN.textProperty().isEmpty())
+               .or(txtCopie.textProperty().isEmpty())
+       );
 
-    // Elimina
-    removeButton.disableProperty().bind(
-        libroTable.getSelectionModel().selectedItemProperty().isNull()
-    );
+       // Elimina
+       removeButton.disableProperty().bind(
+           libroTable.getSelectionModel().selectedItemProperty().isNull()
+       );
 
-    // Cerca
-    searchButton.disableProperty().bind(
-        txtTitolo.textProperty().isEmpty()
-            .and(txtAutori.textProperty().isEmpty())
-            .and(txtISBN.textProperty().isEmpty())
-    );
-    
-    // ?BINDING LARGHEZZA COLONNE
-    colTitolo.prefWidthProperty().bind(libroTable.widthProperty().multiply(0.25));
-    colAutore.prefWidthProperty().bind(libroTable.widthProperty().multiply(0.20));
-    colISBN.prefWidthProperty().bind(libroTable.widthProperty().multiply(0.20));
-    colNumCopie.prefWidthProperty().bind(libroTable.widthProperty().multiply(0.15));
-    colAnno.prefWidthProperty().bind(libroTable.widthProperty().multiply(0.20));
+       // Cerca
+       searchButton.disableProperty().bind(
+           txtTitolo.textProperty().isEmpty()
+               .and(txtAutori.textProperty().isEmpty())
+               .and(txtISBN.textProperty().isEmpty())
+       );
+
+       // ?BINDING LARGHEZZA COLONNE
+       colTitolo.prefWidthProperty().bind(libroTable.widthProperty().multiply(0.25));
+       colAutore.prefWidthProperty().bind(libroTable.widthProperty().multiply(0.20));
+       colISBN.prefWidthProperty().bind(libroTable.widthProperty().multiply(0.20));
+       colNumCopie.prefWidthProperty().bind(libroTable.widthProperty().multiply(0.15));
+       colAnno.prefWidthProperty().bind(libroTable.widthProperty().multiply(0.20));
 }
 
      /** @brief Restituisce lo stage (finestra) attualmente associato alla vista.
